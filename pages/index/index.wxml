@@ -20,7 +20,12 @@
 <!--供应信息 采购大厅 二手设备 签到-->  
 <view class='classifyList'>
   <view class='classify' wx:for='{{classify}}' wx:for-index='id'>
-    <view class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
+      <view wx:if="{{item.id==4}}" class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
+          <view class='ciImg'><image class='cimg' src='{{item.cimg}}'/></view>
+          <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='ciName'>{{item.ciName}}</button>
+      </view>
+
+    <view wx:else="" class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
       <view class='ciImg'><image class='cimg' src='{{item.cimg}}'/></view>
       <view class='ciName'>{{item.ciName}}</view>
     </view>

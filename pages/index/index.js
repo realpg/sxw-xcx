@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-const app = getApp();
+var app ;
 
 const util = require('../../utils/util.js');
 
@@ -145,6 +145,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+      app = getApp();
     const that = this;
     // that.Loading();
 
@@ -338,7 +339,8 @@ Page({
 
   getUserInfo: function(e) {
     console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+    app.globalData.wx_userInfo = e.detail.userInfo
+      app.login(app);
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true

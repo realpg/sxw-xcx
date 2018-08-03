@@ -9,6 +9,15 @@ Page({
      * 页面的初始数据
      */
     data: {
+        content://页面内容
+        {
+            catid:null,
+            address:null,
+            content:null,
+            tags:[],
+            thumbs:[]
+        },
+
         hint_details: '请认真发布信息，发布的内容尽可能描述完整。如支数、库存数量、关键指标的信息，切勿虚报乱写加入黑名单并通报全网。',
         array: ['供应', '求购', '供应', '求购'],
         objectArray: [],
@@ -67,6 +76,7 @@ Page({
     //类别选择
     bindPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
+
         this.setData({
             index: e.detail.value
         })

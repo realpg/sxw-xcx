@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/release_supply_information/release_supply_information",
+
     "pages/index/index",
     "pages/issue/issue",
     "pages/store/store",
     "pages/mine/mine",
-
+    "pages/release_supply_information/release_supply_information",
     "pages/release_purchase_information/release_purchase_information",
     "pages/second_hand_equipment/second_hand_equipment",
     "pages/information/information",

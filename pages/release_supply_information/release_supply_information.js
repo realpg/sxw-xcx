@@ -10,13 +10,13 @@ Page({
      */
     data: {
         content://页面内容
-        {
-            catid:null,
-            address:null,
-            content:null,
-            tags:[],
-            thumbs:[]
-        },
+            {
+                catid: null,
+                address: null,
+                content: null,
+                tags: [],
+                thumbs: []
+            },
 
         hint_details: '请认真发布信息，发布的内容尽可能描述完整。如支数、库存数量、关键指标的信息，切勿虚报乱写加入黑名单并通报全网。',
         array: ['供应', '求购', '供应', '求购'],
@@ -47,20 +47,20 @@ Page({
     },
 
     getEdit: function () {
-        var that=this
+        var that = this
         util.sellEdit_get({}, function (ret) {
             console.log("求购编辑所需内容", ret);
             var objectArray = [];
             for (var i in ret.catids) {
                 objectArray.push({
-                    id:  ret.catids[i].catid,
+                    id: ret.catids[i].catid,
                     name: ret.catids[i].catname
                 })
             }
-            var lable= [];
+            var lable = [];
             for (var i in ret.tags) {
                 lable.push({
-                    id:  ret.tags[i].tagid,
+                    id: ret.tags[i].tagid,
                     lable_Info: ret.tags[i].tagname,
                     setlableChoose: false
                 })
@@ -68,33 +68,63 @@ Page({
 
             that.setData({
                 objectArray: objectArray,
-                lable:lable
+                lable: lable
             })
         }, null)
     },
 
     //类别选择
     bindPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
 
+
+        var content = this.data.content;
+        content.catid = this.data.objectArray[e.detail.value].id
         this.setData({
-            index: e.detail.value
+            index: e.detail.value,
+            content: content
         })
+
+    },
+    changeAddress: function (e) {
+
+        var content = this.data.content;
+        content.address = e.detail.value
+        this.setData({
+            content: content
+        })
+    },
+    changeContent: function (e) {
+
+        var content = this.data.content;
+        content.content = e.detail.value
+        this.setData({
+            content: content
+        })
+
+        console.log(content);
     },
 
     //标签选择
     lableClick: function (e) {
         var that = this;
         // console.log(e.currentTarget.dataset.id)
+        var content = this.data.content;
+        content.tags = []
+
         let arr = that.data.lable;
         for (let i in arr) {
             if (e.currentTarget.dataset.id == arr[i].id) {
                 arr[i].setlableChoose = !arr[i].setlableChoose;
             }
+            if (arr[i].setlableChoose) {
+                content.tags.push(arr[i].id)
+            }
         }
         that.setData({
-            lable: arr
+            lable: arr,
+            content: content
         })
+        console.log(content, arr);
 
     },
     /**
@@ -115,18 +145,26 @@ Page({
                 sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                 sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
+                    console.log(res, typeof (res.tempFiles[0]));
                     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                     for (let i in res.tempFilePaths) {
-                        that.data.MessageImgList.push(
-                            b = {
-                                id: that.data.MessageImgList[that.data.MessageImgList.length - 1] ? that.data.MessageImgList[that.data.MessageImgList.length - 1].id + 1 : 0,
-                                MessageImg: res.tempFilePaths[i]
-                            }
-                        );
+                        util.uploadImage({
+                            file: res.tempFilePaths[i]
+                        }, function (ret) {
+                            console.log("上传成功", ret)
+                            that.data.MessageImgList.push(
+                                b = {
+                                    id: that.data.MessageImgList[that.data.MessageImgList.length - 1] ? that.data.MessageImgList[that.data.MessageImgList.length - 1].id + 1 : 0,
+                                    MessageImg: ret
+                                }
+                            );
+                            that.setData({
+                                MessageImgList: that.data.MessageImgList
+                            })
+                        }, null);
+
                     }
-                    that.setData({
-                        MessageImgList: that.data.MessageImgList
-                    })
+
                 }
             })
 
@@ -174,14 +212,17 @@ Page({
     },
 
     submitClick: function () {
-        const that = this;
-        let setlableid = [];
-        for (let i in that.data.lable)
-            if (that.data.lable[i].setlableChoose == true) {
-                setlableid.push(that.data.lable[i].id);
-            }
-        console.log(setlableid)
 
+        var content = this.data.content;
+        content.thumbs = []
+        for (var i in this.data.MessageImgList) {
+            content.thumbs.push(this.data.MessageImgList[i].MessageImg);
+        }
+        this.setData({
+            content: content
+        })
+
+        console.log(content);
     },
 
     //个人信息详情

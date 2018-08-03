@@ -22,7 +22,7 @@
   <view class="address">
     <view view class='picker_css'>
       <text class='sort' decode='emsp'>所在地:&emsp;</text>
-      <input class='' type='text' placeholder='请输入地址'></input>
+      <input class='' type='text' placeholder='请输入地址' bindblur="changeAddress"></input>
     </view>
   </view>
 </view>
@@ -31,7 +31,7 @@
 <view class='content_description'>
   <view class='content_description_title'>内容描述</view>
   <view class='content_description_frame'>
-    <textarea class='content_description_frame_css' maxlength='-1' placeholder-style='font-size:28rpx;line-height:50rpx;' placeholder='请输入您的信息,建议每天刷新已发布的信息,提高信息的曝光率。点击：我的—已发布信息—刷新。'>
+    <textarea class='content_description_frame_css' maxlength='-1' placeholder-style='font-size:28rpx;line-height:50rpx;' placeholder='请输入您的信息,建议每天刷新已发布的信息,提高信息的曝光率。点击：我的—已发布信息—刷新。' bindblur="changeContent">
     </textarea>
   </view>
 </view>

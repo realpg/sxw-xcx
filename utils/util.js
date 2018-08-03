@@ -64,7 +64,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
             }
         },
         fail: function (err) {
-            // console.log("wxRequest fail:" + JSON.stringify(err))
+            console.log("wxRequest fail:" + JSON.stringify(err))
 
         },
         complete: function () {
@@ -119,6 +119,44 @@ function sellEdit_post(param, successCallback, errorCallback) {
 function getBanner(param, successCallback, errorCallback) {
     param.pid = "1";
     wxRequest(SERVER_URL + '/api/ad/getByPid', param, "GET", successCallback, errorCallback);
+}
+
+function uploadImage(param, successCallback, errorCallback) {
+    wx.uploadFile({
+        url: SERVER_URL + '/api/uploadImage',
+        filePath: param.file,
+        name: 'file',
+        formData: {
+            userid: getApp().globalData.userInfo.userid,
+            _token: getApp().globalData.userInfo._token
+        },
+        success: function (ret) {
+            // console.log("ret:" + JSON.stringify(ret))
+            if(typeof (ret.data)=="string")
+            {
+                console.log(typeof (ret.data))
+                ret.data=JSON.parse(ret.data);
+            }
+
+            if (ret.data.result)
+                successCallback(ret.data.ret);
+            else {
+                console.log(ret);
+                wx.showToast({
+                    title: ret.data.message?ret.data.message:"未知错误",
+                    icon: 'none',
+                    duration: 2000
+                })
+            }
+        },
+        fail: function (err) {
+            console.log("wxRequest fail:" + JSON.stringify(err))
+
+        },
+        complete: function () {
+            // hideLoading()
+        }
+    })
 }
 
 const formatNumber = function (n) {
@@ -540,6 +578,7 @@ module.exports = {
     getBanner: getBanner,
     sellEdit_get: sellEdit_get,
     sellEdit_post: sellEdit_post,
+    uploadImage: uploadImage,
 
     formatTime: formatTime,
     formatDate: formatDate,

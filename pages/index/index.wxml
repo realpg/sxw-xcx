@@ -1,0 +1,119 @@
+
+<!--轮播图-->
+<view style='position: relative;'>
+    <swiper class='slide-swiper' circular='true' autoplay='6000' duration="1000" indicator-dots='true' indicator-color='true' >
+  <block wx:for='{{slideshow}}' >
+    <swiper-item>
+      <image src='{{item.slideshowImg}}' mode='aspectFill' class='slide_image'/>
+    </swiper-item>
+  </block>
+</swiper>
+    <!--搜索框-->
+   <view class='searchBox' bindtap='serchClick'>
+      <image class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'/>
+      <input class='searchInput' placeholder='请输入名称/品类/商家' maxlength='20' placeholder-style='color:#b2b2b2' disabled="disabled" >
+      </input>
+  </view>
+</view>
+
+
+<!--供应信息 采购大厅 二手设备 签到-->  
+<view class='classifyList'>
+  <view class='classify' wx:for='{{classify}}' wx:for-index='id'>
+    <view class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
+      <view class='ciImg'><image class='cimg' src='{{item.cimg}}'/></view>
+      <view class='ciName'>{{item.ciName}}</view>
+    </view>
+  </view>
+</view>
+
+<!--纺织头条-->
+ <view class='notice'>
+  <image class='notImg' src='../../images/index/headline.png' mode='widthFix'/>
+  <swiper class='notT' autoplay="true" circular="true" vertical='true'>
+  <block wx:for="{{noticesr}}" bindtap='clickNotlice'>
+     <swiper-item class='vvv' >
+     <view class='noticeText'>{{item.title}}</view>
+     </swiper-item>
+  </block>
+</swiper>
+ <image class='notImg_one' src='../../images/index/jiantou_two.png' mode='widthFix'/>
+</view>
+
+<!--店铺轮播图 -->
+<view class='RS_list'>
+  <swiper class='RS_list_css' autoplay='true' interval='6000' bindtap='store_particulars_click'>
+    <view class='recommend_store_List'>
+      <block wx:for='{{recommend_store_List}}'>
+        <swiper-item class='recommend_store'>
+          <view class='recommend_store_css' wx:for='{{item.recommend_store}}' data-id='{{item.id}}'>
+            <view class='store_name'>{{item.store_name}}</view>
+            <view class='store_lable'>
+              <view class='store_type'>{{item.store_type}}</view>
+              <view class='lable_one'>{{item.lable_one}}</view>
+              <view class='lable_two'>{{item.lable_two}}</view>
+            </view>
+            <view class='store_info'>{{item.store_info}}</view>
+            <view class='Enter_store'>
+              <text class='Enter_store_css'>查看名片</text>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </view>
+  </swiper>
+</view>
+
+<!--分类-->
+<view class='information_classification'>
+  <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
+  <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>供应信息</view>
+  <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>求购信息</view>
+  <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>二手设备</view>
+</view>
+
+<!--具体信息-->
+<view class='message' wx:for='{{message}}' wx:for-index='id'>
+  <view class='messageCss'    data-id='{{item.id}}'>
+    <view class='head_portrait'>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'/>
+      <image class='icon_vip' src='{{item.icon_vip}}' mode='widthFix'/>
+    </view>
+
+    <view class='The_specific_details'>
+        <view class='The_specific_details_one'>
+          <text class='datails_name'>{{item.name}}</text>
+          <text class='position'>{{item.position}}</text>
+          <text class='demand'>{{item.demand}}</text>
+          <image class='btn_dianhua' src='../../images/index/btn_dianhua.png' mode='widthFix'/>
+        </view>
+        <view class='company'>{{item.company}}</view>
+        <view>
+          <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].lable}}</text>
+          <text wx:if="{{item.lableList[1]}}" class='lable_four'>{{item.lableList[1].lable}}</text>
+          <text wx:if="{{item.lableList[2]}}" class='lable_five'>{{item.lableList[2].lable}}</text>
+        </view>
+        <view class='details'>{{item.details}}</view>
+
+        <view class='message_Img'>
+          <view class='message_Image' wx:for='{{item.message_Img}}'>
+          <image class='message_Image_Css' src='{{item.message_Image}}'/>
+          </view>
+        </view>
+
+        <view class='time'>{{item.time}}</view>
+        <view>
+          <image class='icon_map' src='../../images/index/icon_map.png'/>
+          <text class='address'>存放地：{{item.address}}</text>
+        </view>
+        <view class='eye_dianzan'>
+          <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
+            <view class='dianzan_Css'><image class='dianzan'  src='../../images/index/dianzan.png'/> <text class='like'>{{item.like}}</text></view>
+            <view class='see_details' bindtap='see_details_click'>查看详情 >></view>
+        </view>
+    </view>
+  </view>
+</view>
+
+<!--客服-->
+ <image bindtap='callClick' mode='aspectFill' class='servicer-image' src='../../images/index/service.png'/>

@@ -1,0 +1,82 @@
+<!--名片 -->
+<view class='Css'></view>
+<view class='business_card' wx:for='{{business_card}}'>
+  <view class='business_card_css'>
+    <view class='name'>{{item.name}}
+      <text class='post'>{{item.post}}</text>
+      <image class='headImg' src='../../images/index/head_portrait.png'></image>
+    </view>
+
+    <view>
+      <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
+      <text>{{item.phone}} </text>
+    </view>
+    <view>
+      <image class='iconImg' src='../../images/store/company.png'></image>
+      <text>{{item.company}} </text>
+    </view>
+    <view>
+      <image class='iconImg' src='../../images/store/map.png'></image>
+      <text>{{item.address}} </text>
+    </view>
+
+    <view class='The_main'>主营：{{item.The_main}}</view>
+    <view class='options'>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/eye.png' mode='widthFix'></image>
+        <text class='number'>{{item.browse}}                  </text>
+      </view>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/dianzan.png' mode='widthFix'></image>
+        <text class='number'>{{item.Like}}                  </text>
+      </view>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
+        <text class='number'>{{item.collect}}                  </text>
+      </view>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
+        <text class='number'>{{item.transpond}} </text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--分类-->
+<view class='information_classification'>
+  <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
+  <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>供应信息</view>
+  <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>求购信息</view>
+  <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>二手设备</view>
+</view>
+
+<!-- 信息 -->
+<view class='information'>
+  <view class='information_css' wx:for='{{information}}'>
+    <view class='lable'>
+      <text class='lable_one'>{{item.lable_one}}</text>
+      <text class='lable_two'>{{item.lable_two}}</text>
+      <text class='lable_three'>{{item.lable_three}}</text>
+    </view>
+    <view class='content'>{{item.content}}</view>
+    <view class='time'>发布时间：{{item.time}}</view>
+    <view class='menu'>
+      <view class='redact'>
+        <image class='Img_edit' src='../../images/personal_center/edit.png'></image><text class='text_css'>编辑</text>
+      </view>
+      <view class='redact_css'>
+        <view>
+          <image class='Img_eye' src='../../images/store/eye.png'></image>
+          <text class='text_css'>{{item.browse}}  </text>
+        </view>
+        <view>
+          <image class='Img_edit' src='../../images/store/dianzan.png'></image>
+          <text class='text_css'>{{item.like}}  </text> </view>
+        <view>
+          <image class='Img_edit' src='../../images/store/share.png'></image>
+          <text class='text_css'>{{item.transpond}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

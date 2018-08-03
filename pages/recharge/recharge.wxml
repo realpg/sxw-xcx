@@ -1,0 +1,20 @@
+<view class='recharge'>
+  <view><input type='number' placeholder='请输入购买数量1金币/1元'></input></view>
+  <text class='confirm'>确定</text>
+</view>
+
+<view class='package_instructions'>
+  <text>套餐说明：1元=1金币，金币可以无线刷新、发布信息、购买广告位等</text>
+</view>
+
+<!-- 充值选项 -->
+<view class='recharge_amount'>
+  <view class='select_amount ' wx:for='{{amount}}'  data-id='{{item.id}}' bindtap='selectClick'>
+    <view class='number_css' ><text style='background:{{item.background}};color:{{item.color}}' class='number'>{{item.number}}元</text></view>
+  </view>
+</view>
+<view class='gold' >赠送{{gold}}个金币</view>
+
+
+<!-- 确认按钮 -->
+<view class='confirm_button' >确认充值</view>

@@ -1,0 +1,112 @@
+<!--上传头像-->
+<view class='UserInfo'>
+  <view class='AddImgList_one'>
+    <view class='ThatMessageImgList'>
+      <view class='ThatMessageImg' wx:for='{{MessageImgList_one}}' data-index='id'>
+        <image class='MessageImg_one' bindtap='previewImClick_one' data-id='{{item.id}}' src='{{item.MessageImg}}' mode='aspectFill'></image>
+
+        <image class='DelImg_one' bindtap='DelClick_one' data-id='{{item.id}}' src='../../images/index/del.png'></image>
+      </view>
+
+      <view class='AddImgFunction' wx-if='{{MessageImgList_one.length<1}}'>
+        <view class='AddImgClick' bindtap='AddImgClick_one'>
+          <image class='AddImg' src='../../images/index/add3.png' mode='widthFix'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='UserInfoCss'>
+    <view class='name'>
+      <text class='prompt'>* </text>
+      <text class='sort' decode='emsp'>姓  名：</text>
+      <input class='name_input' type='text' placeholder='请输入姓名'></input>
+    </view>
+    <view class='name'>手机号：
+      <input class='name_input' type='number' placeholder='请输入手机号'></input>
+    </view>
+    <view class='name'>验证码：<input type='number' placeholder='请获取' style='width:48%;' ></input>
+      
+      <view>
+        <text class='get_code'>获取验证码</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 公司信息 -->
+<view class='company'>
+  <view class='company_name'>
+    <text class='prompt'>*</text>公司名称：
+    <input class='input_company' type='text' placeholder='请输入公司名称'></input>
+  </view>
+  <view class='company_name'>
+    <text class='prompt'>*</text>
+    <text class='sort' decode='emsp'>职&emsp;&emsp;位：</text>
+    <input class='input_company' type='text' placeholder='请输入您的职位'></input>
+  </view>
+  <view class='company_name'>
+    <text class='prompt'>*</text>业务类别：
+    <input class='input_business' type='text' placeholder='请选择业务类别'></input>
+    <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
+  </view>
+  <view class='business_name' bindtap='addressClick'>
+    <text class='prompt'>*</text>详细地址：<input class='input_business' type='text' placeholder='请选择详细地址' value='{{value}}'></input>
+    <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
+  </view>
+</view>
+
+
+<!--主营产品-->
+<view class='main_product'>
+  <view class='main_product_title'>
+    <text class='prompt'>*</text>主营产品</view>
+  <textarea class='main_product_info' maxlength='33' placeholder='请输入主营产品(不超过30字)'></textarea>
+</view>
+
+<!--主营公司简介-->
+<view class='main_company_profile'>
+  <view class='main_product_title'>
+    <text class='prompt'>*</text>主营公司简介</view>
+  <textarea class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介'></textarea>
+</view>
+
+<!--上传图片-->
+
+<view class='AddImgList'>
+  <view class='ThatMessageImgList'>
+    <view class='ThatMessageImg' wx:for='{{MessageImgList}}' data-index='id'>
+      <image class='MessageImg' bindtap='previewImClick_two' data-id='{{item.id}}' src='{{item.MessageImg}}' mode='aspectFill'></image>
+
+      <image class='DelImg' bindtap='DelClick_two' data-id='{{item.id}}' src='../../images/index/del.png'></image>
+    </view>
+
+    <view class='AddImgFunction' wx-if='{{MessageImgList.length<6}}'>
+      <view class='AddImgClick' bindtap='AddImgClick_two'>
+        <image class='AddImg' src='../../images/index/add1.png' mode='widthFix'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--上传二维码-->
+
+<view class='AddImgList'>
+  <view class='ThatMessageImgList'>
+    <view class='ThatMessageImg' wx:for='{{MessageImgList_three}}' data-index='id'>
+      <image class='MessageImg' bindtap='previewImClick_three' data-id='{{item.id}}' src='{{item.MessageImg}}' mode='aspectFill'></image>
+
+      <image class='DelImg' bindtap='DelClick_three' data-id='{{item.id}}' src='../../images/index/del.png'></image>
+    </view>
+
+    <view class='AddImgFunction' wx-if='{{MessageImgList_three.length<3}}'>
+      <view class='AddImgClick' bindtap='AddImgClick_three'>
+        <image class='AddImg' src='../../images/index/add2.png' mode='widthFix'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!--提交发布-->
+<view class='submit' bindtap='submitClick'>提交发布</view>

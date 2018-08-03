@@ -1,0 +1,11 @@
+<!-- 我的广告位 -->
+<view>
+  <view style='background:url({{item.bgImg}}) no-repeat;background-size:100% 100%;'
+  class='advertising_position' wx:for='{{advertising_position}}' bindtap='selectClick'>
+    <view class='title' wx:if='{{index<2}}'>点击此处选择您想发的名片或信息</view>
+    <view class='title' style='color:black' wx:if='{{index>1}}'>点击此处选择您想发的名片或信息</view>
+    <view class='advertising_position_css'>
+      <image class='Img' src='{{item.Img}}'></image>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,44 @@
+<!--名片 -->
+<view class='Css'></view>
+<view class='business_card' wx:for='{{business_card}}' bindtap='select_card_Click'  >
+  <view class='business_card_css'>
+    <view class='name'>{{item.name}}
+      <text class='post'>{{item.post}}</text>
+      <image class='selectImg' src='{{item.selectImg}}'></image>
+      <image class='headImg' src='../../images/index/head_portrait.png'></image>
+    </view>
+
+    <view>
+      <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
+      <text>{{item.phone}} </text>
+    </view>
+    <view>
+      <image class='iconImg' src='../../images/store/company.png'></image>
+      <text>{{item.company}} </text>
+    </view>
+    <view>
+      <image class='iconImg' src='../../images/store/map.png'></image>
+      <text>{{item.address}} </text>
+    </view>
+    <view class='The_main'>主营：{{item.The_main}}</view>
+  </view>
+</view>
+
+<!-- 选择发布信息 -->
+<view class='select_Info' wx:for='{{select_Info}}' data-id='{{item.id}}'bindtap='selectClick'>
+  <view class='select_Info_css'>
+    <view wx:if="{{item.type =='供应'}}"><text class='type'>{{item.type}}</text></view>
+    <view wx:if="{{item.type =='求购'}}"><text style='background:#F7CF9A' class='type'>{{item.type}}</text></view>
+    <view wx:if="{{item.type =='设备'}}"><text class='type' style='background:#9A9CF7'>{{item.type}}</text></view>
+    <view><image class='selectImg_css' src='{{item.selectImg}}'></image></view>
+  </view>
+  <view class='content'>{{item.content}}</view>
+  <view class='time'>发布时间：{{item.time}}</view>
+</view>
+
+<view class='bottom'></view>
+<!-- 确定 取消 -->
+<view class='button'>
+  <view class='cancel_button'>取消</view>
+  <view class='confirm_button'>确认</view>
+</view>

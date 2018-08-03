@@ -1,0 +1,45 @@
+<!-- 搜索框 -->
+<view class='search'>
+  <view class='search_css'>
+    <view class="section">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+          <image class='jiantou_down' src='../../images/index/jiantou_down.png'></image>
+        </view>
+      </picker>
+    </view>
+    <input class='search_input' type='text' placeholder='请输入名称/品牌/店铺'></input>
+    <view class='searchIcon_css'>
+      <image class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
+    </view>
+  </view>
+
+  <view class='search_history'>
+    <view class='recently_history'>最近搜索</view>
+    <view class='del_history'>
+      <image class='icon_shape' src='../../images/index/icon_shape.png'></image>
+      <text>清空</text>
+    </view>
+  </view>
+
+  <!--展示最近搜索3条 -->
+  <view class='recently_history_css' wx:for='{{recently_history}}'>
+    <view class='record'>{{item.record}}</view>
+  </view>
+</view>
+
+
+<!-- 搜索发现 -->
+<view class='search_found'>
+  <view class='search_found_css'>搜索发现</view>
+  <view class='CSS'>
+    <view class='hot_word' wx:for='{{hot_word}}'>
+      <view>
+        <text class='hot_word_css'>{{item.word}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+

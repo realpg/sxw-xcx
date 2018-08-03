@@ -1,0 +1,382 @@
+page{
+  background: #F7F9F8;
+}
+.slide-swiper{
+  width: 100%;
+  height: 350rpx;
+  z-index: 99999;
+}
+.slide_image{
+width: 100%;
+height: 100%;
+}
+.searchBox{
+  width: 90%;
+  margin: auto;
+  height: 60rpx;
+  display: flex;
+  align-items: center; 
+  background:#f2f2f2;
+  font-size: 28rpx;
+  border:1rpx solid #f2f2f2;
+  border-radius:30rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 4.5%;
+  opacity: 0.8;
+   /* z-index: 1000;  */
+}
+.searchIcon{
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 15rpx;
+}
+.searchInput{
+  width: 90%;
+  margin-left: 10rpx;
+  z-index: -1;
+}
+
+.classifyList{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  padding-bottom: 30rpx;
+}
+.classify{
+  width: 25%;
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.ci{
+  width: 150rpx;
+  margin: auto;
+}
+.cimg{
+  width: 100rpx;
+  height: 100rpx;
+}
+.ciName{
+  margin-top: 10rpx;
+  font-size: 26rpx;
+}
+
+
+.notice{
+  margin-top: 15rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80rpx;
+  padding-left: 10rpx;
+  background: #fff;
+}
+ .notT{
+ width: 64%;
+ height: 80rpx;
+} 
+.notImg{
+  margin-left: 3%;
+  height: 30rpx;
+  width: 180rpx;
+}
+.notImg_one{
+  margin-top: 10rpx;
+  height: 15rpx;
+  width: 40rpx;
+}
+.noticeText{
+   position: relative;
+   top: -32rpx;
+   left: 10rpx;
+   width: 95%;
+   height: 80rpx;
+   line-height: 80rpx;
+   display: -webkit-box; 
+   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+   font-size: 28rpx;
+   color: #626262;
+}
+ .vvv{
+ position: relative;
+ top: -12rpx;
+ left: 10rpx; 
+ display:block; 
+ overflow:hidden; 
+ height: 80rpx;
+  will-change:'transform';
+}
+
+
+.RS_list {
+  font-size: 26rpx;
+}
+.RS_list_css{
+ height: 375rpx; 
+}
+.recommend_store {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recommend_store_css {
+  width: 48%;
+  margin: auto;
+  background: #fff;
+}
+
+.store_name {
+  line-height: 80rpx;
+  background: #d0dfff;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 700;
+   display: -webkit-box; 
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.store_lable {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  height: 80rpx;
+  align-items: center;
+}
+
+.store_type {
+  background: #9accf7;
+  padding: 16rpx 10rpx;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.lable_one {
+  background: #dfffef;
+  color: #40b792;
+  padding: 5rpx 10rpx;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  border-radius: 5rpx;
+}
+.lable_two {
+  font-size: 22rpx;
+  background: #ffe5c0;
+  color: #ffa929;
+  padding: 5rpx 10rpx;
+  line-height: 30rpx;
+  border-radius: 5rpx;
+}
+.store_info{
+  width: 95%;
+  margin: auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 36rpx;
+  display: -webkit-box; 
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.Enter_store{
+  height: 70rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Enter_store_css{
+  font-size: 22rpx;
+  background:#01C46C;
+  color: white;
+  line-height: 32rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 6rpx;
+  align-items: center;
+}
+
+.information_classification{
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  color:  #9B9B9B; 
+}
+.all{
+  color:#01C46C;
+}
+
+.message{
+  margin-top: 20rpx; 
+  background: #fff;
+}
+.messageCss{
+  display: flex;
+  width: 90%;
+  margin: auto;
+  padding: 20rpx 0rpx 0rpx 0rpx;
+}
+.head_portrait{
+  display: flex;
+}
+.The_specific_details{
+  margin-left: 10rpx;
+}
+.datails_name{
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.position{
+  margin-left: 20rpx;
+  color: #9B9B9B;
+  font-size: 26rpx;
+  width: 150rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.demand{
+  background: #9ACCF7;
+  margin-left: 30rpx;
+  color:white;
+  font-size: 20rpx;
+  border: 1rpx solid #9ACCF7;
+  padding: 10.5rpx 5rpx;
+  border-radius: 35rpx;
+}
+.company{
+  font-size: 26rpx;
+  color: #9B9B9B;
+  line-height: 60rpx;
+}
+.lable_three{
+  background: #E9F8F1;
+  color: #01C46C;
+  font-size: 22rpx;
+  padding: 5rpx 15rpx 5rpx 15rpx ;
+  font-weight: 400;
+  border: 1rpx solid #E9F8F1;
+  border-radius: 10rpx;
+}
+.lable_four{
+  margin-left: 5%;
+  background:  #FFE5C0;
+  color:#FFB84F;
+  font-size: 22rpx;
+  padding: 5rpx 15rpx 5rpx 15rpx ;
+  font-weight: 400;
+  border: 1rpx solid  #FFE5C0;
+  border-radius: 10rpx;
+}
+.lable_five{
+  margin-left: 5%;
+  background: #E9F8F1;
+  color: #01C46C;
+  font-size: 22rpx;
+  padding: 5rpx 15rpx 5rpx 15rpx ;
+  font-weight: 400;
+  border: 1rpx solid #E9F8F1;
+  border-radius: 10rpx;
+}
+.details{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  display: -webkit-box; 
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.message_Img{
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between
+}
+.message_Image{
+  width: 32%;
+}
+.time{
+  font-size: 26rpx;
+  color: #9B9B9B;
+  line-height: 60rpx;
+}
+.address{
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color:#9B9B9B; 
+  line-height: 50rpx;
+}
+.eye_dianzan{
+  display: flex;
+  justify-content: space-between;
+  line-height: 80rpx;
+  font-size: 26rpx;
+  color: #9B9B9B;
+}
+.view,.like{
+  margin-left: 15rpx;
+}
+.see_details{
+ color: #01C46C;
+ font-size: 28rpx;
+}
+
+.head_portrait_icon{
+  width: 100rpx;
+  height:100rpx;
+}
+.icon_vip{
+  margin-left:-5rpx;
+  margin-top:66rpx;
+  width: 25rpx;
+  height: 25rpx;
+}
+.btn_dianhua{
+  margin-top: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+}
+.message_Image_Css{
+  width: 170rpx;
+  height:170rpx;
+}
+.icon_map {
+   width: 28rpx;
+  height: 40rpx;
+}
+.dianzan{
+   width: 40rpx;
+  height: 40rpx;
+}
+.eye{
+  width: 40rpx;
+  height: 30rpx;
+}
+
+
+.servicer-image{
+  position: fixed;
+  bottom: 180rpx;
+  right: 8rpx;
+  width: 60rpx;
+  height:200rpx;
+  float: right;
+}

@@ -1,0 +1,10 @@
+<view class='service_phone'>
+  <text class='service'>还可以直接联系客服</text> 
+  <text class='phone' bindtap='callClick'>点击联系</text>
+</view>
+
+<!-- 问题 -->
+
+<view class='question' wx:for='{{question}}' bindtap='answeringClick'>
+  <view class='question_title'>{{index+1}}、{{item.title}}</view>
+</view>

@@ -1,0 +1,191 @@
+page{
+  background: #F5F5F5;
+  border-top: 1rpx solid  #F5F5F5;
+}
+.hint{
+  background: #fff;
+}
+.hint_details{
+ padding: 15rpx 0;
+  width: 95%;
+  margin: auto;
+  text-indent: 2em;
+  font-size: 26rpx;
+  color: #999999;
+  line-height: 50rpx;
+}
+.picker{
+  margin-top: 15rpx;
+  background: #fff;
+  padding: 15rpx 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom:2rpx solid  #F5F5F5; 
+}
+.picker_css{
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+.sort{
+  width: 30%;
+  margin: auto;
+  font-size: 30rpx;
+  font-weight: 650;
+}
+.jiantouImg{
+  width: 18rpx;
+  height: 28rpx;
+}
+.address{
+  background: #fff;
+  padding: 15rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.content_description{
+  background: #fff;
+  margin-top: 15rpx;
+}
+.content_description_title{
+  margin-left: 50rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  font-weight: 650;
+}
+.content_description_frame_css{
+  width: 85%;
+  margin: auto;
+  border:1rpx solid #999999;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  padding: 15rpx 15rpx;
+
+}
+
+.labelList{
+background: #fff;
+padding:5% 5%;
+width: 90%;
+margin: auto;
+display:flex;
+flex-wrap:wrap;
+border-bottom:2rpx solid  #F5F5F5;
+}
+.lable{
+  width: 25%;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+.lable_border{
+  border:1rpx solid #E1E1E1;
+  border-radius: 25rpx;
+  height: 45rpx;
+  width: 150rpx;
+  margin: auto;
+ 
+}
+.lable_css{
+  color: #666666;
+  font-size: 26rpx;
+  line-height: 45rpx;
+  text-align: center;
+}
+
+.AddImgList{
+width: 90%;
+padding: 5% 5%;
+margin: auto;
+background: #fff;
+}
+.ThatMessageImgList{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ThatMessageImg{
+  width: 32%;
+  margin-top: 10rpx;
+  margin-left: 1%;
+}
+.MessageImg{
+  width:100%;
+  height:160rpx;
+  position: relative;
+}
+.AddImg{
+  margin-top: 5rpx;
+  margin-left: 5%;
+  width: 160rpx;
+  height:160rpx;
+}
+
+.DelImg{
+  position: absolute;
+  width: 35rpx;
+  height: 35rpx;
+  margin-left:-30rpx;
+  margin-top:-10rpx;
+  opacity: 0.8;
+}
+
+.personal_data{
+  background: #fff;
+  width: 90%;
+  margin: auto;
+  padding: 0 5%;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 650;
+}
+.generalize{
+  margin-top: 15rpx;
+}
+
+
+.gold_coin{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  line-height: 120rpx;
+  font-size: 30rpx;
+}
+.number{
+  color: #FF990B;
+}
+.acquire{
+  color: white;
+  border: 1rpx solid #01C46C;
+  border-radius: 10rpx;
+  background: #01C46C;
+  padding: 2rpx 10rpx;
+}
+
+.Release_notes{
+  color: #01C46C;
+  margin-left: 5%;
+  line-height: 40rpx;
+  font-size: 30rpx;
+}
+
+.submit{
+  width: 85%;
+  font-size: 32rpx;
+  font-weight: bold;
+  background:#01C46C;
+  border-radius: 50rpx;
+  color: #fff;
+  margin: auto;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+}/* pages/release_purchase_information/release_purchase_information.wxss */

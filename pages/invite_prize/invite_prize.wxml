@@ -1,0 +1,30 @@
+<view class='Small_program_code'>
+  <view>买纱卖纱到中国纱线网</view>
+  <view>
+    <image class='Img_code' bindtap='Img_codeClick' src='{{Img_code}}' mode='widthFix'></image>
+  </view>
+  <view>点击放大长按识别进入小程序</view>
+</view>
+
+<view class='invite'>
+  <view>每次邀请成功都可以得5金币</view>
+  <button open-type="share">立即邀请好友</button>
+</view>
+
+<!--我的收益-->
+
+<view class='earnings'>
+  <view class='earnings_mine'>我的收益</view>
+  <view class='gold_user'>
+    <view class='gold_mine'>
+      <image class='Image_gold_mine'  src='../../images/personal_center/icon_gold.png'></image>
+      <view class='text'>我赚取得金币</view>
+      <view class='text_color'>{{gold}}个</view>
+    </view>
+    <view class='user_mine'>
+      <image class='Image_gold_mine' src='../../images/personal_center/icon_people.png'></image>
+      <view class='text'>我邀请的用户</view>
+      <view class='text_color'>{{user}}个</view>
+    </view>
+  </view>
+</view>

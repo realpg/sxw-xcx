@@ -1,0 +1,30 @@
+<!--免责声明-->
+<view class='disclaimer'>
+  <view class='disclaimer_title'>免责声明</view>
+  <view class='disclaimer_details' wx:for='{{details}}'>
+    <view class='disclaimer_details_Css'>{{item.disclaimer_details}}</view>
+  </view>
+</view>
+
+<view class='cut_off_rule'></view>
+
+<!--发布信息-->
+<view class='information_publish'>
+  <view class='information_publish_Css'>
+    <view class='line'></view>
+    <view class='title'>选择对应的频道发布信息</view>
+    <view class='line'></view>
+  </view>
+
+  <!--供应信息 采购大厅 二手设备 -->
+  <view class='classifyList'>
+    <view class='classify' wx:for='{{classify}}' wx:for-index='id'>
+      <view class='ci' bindtap='classifyClick' data-id='{{item.id}}'>
+        <view class='ciImg'>
+          <image class='cimg' src='{{item.cimg}}'></image>
+        </view>
+        <view class='ciName'>{{item.ciName}}</view>
+      </view>
+    </view>
+  </view>
+</view>

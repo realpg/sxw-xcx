@@ -1,0 +1,68 @@
+page{
+  background: #f5f5f5;
+}
+.adcImg{
+  margin: 20rpx 0 ;
+  width: 100%;
+  height: 240rpx;
+}
+
+.price_column{
+  background: #fff;
+  padding: 20rpx 0;
+}
+.radio {
+    display: block;
+    line-height: 90rpx;
+    margin-left: 10%;
+    font-size: 28rpx;
+}
+.price{
+  margin-left: 50rpx;
+}
+
+.hint{
+  background: #fff;
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  padding: 20rpx 0 60rpx 0;
+}
+.hint_time{
+  line-height: 60rpx;
+}
+.hint_context{
+  color: #9C9C9C;
+  font-size: 24rpx;
+}
+
+.gold{
+  margin-top: 200rpx;
+  display: flex;
+  justify-content: space-around;
+  font-size: 26rpx;
+  color: #9C9C9C;
+}
+.mine_gold, .pay_gold{
+  color:#F5A623;
+  font-size: 26rpx;
+}
+.gain_gold{
+  border: 1rpx solid #01C46C;
+  color:#01C46C;
+  font-size: 22rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 6rpx;
+}
+
+.confirm_button{
+  width: 100%;
+  height: 100rpx;
+  background:#01C46C;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }

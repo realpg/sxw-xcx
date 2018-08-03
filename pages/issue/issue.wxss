@@ -1,0 +1,73 @@
+page{
+  background: #fff;
+  border-top: 1rpx solid #F7F9F8;
+}
+.disclaimer{
+  background: #fff;
+  padding: 0 0 20rpx 0;
+}
+.disclaimer_title{
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 80rpx;
+  text-align: center;
+}
+.disclaimer_details{
+   width: 95%;
+  margin: auto;
+  font-size: 25rpx;
+  color: #999999;
+  line-height: 50rpx;
+}
+
+.cut_off_rule{
+  border:10rpx solid #F7F9F8;
+}
+
+.information_publish{
+  background: #fff;
+  margin-top: 20rpx;
+  height: 49%;
+}
+.information_publish_Css{
+  display: flex;
+}
+.line{
+  width: 18%;
+  margin: auto;
+  border-top: 1rpx solid #999999;
+}
+.title{
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height:120rpx;
+  text-align: center;
+}
+
+.classifyList{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  margin-top: 60rpx;
+}
+.classify{
+  width: 33%;
+  font-size: 26rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.ci{
+  width: 150rpx;
+  margin: auto;
+}
+.cimg{
+  width: 100rpx;
+  height: 100rpx;
+}
+.ciName{
+  margin-top: 20rpx;
+}
+
+

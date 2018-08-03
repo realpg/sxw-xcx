@@ -1,0 +1,78 @@
+{
+  "pages": [
+    "pages/release_supply_information/release_supply_information",
+    "pages/index/index",
+    "pages/issue/issue",
+    "pages/store/store",
+    "pages/mine/mine",
+
+    "pages/release_purchase_information/release_purchase_information",
+    "pages/second_hand_equipment/second_hand_equipment",
+    "pages/information/information",
+    "pages/release_notes/release_notes",
+    "pages/personal_data/personal_data",
+    "pages/invite_prize/invite_prize",
+    "pages/store_particulars/store_particulars",
+    "pages/shops_intro/shops_intro",
+    "pages/ranking_list/ranking_list",
+    "pages/Information_details/Information_details",
+    "pages/information_provision/information_provision",
+    "pages/particulars/particulars",
+    "pages/answer_gold/answer_gold",
+    "pages/mine_promotion/mine_promotion",
+    "pages/mine_AdPositionId/mine_AdPositionId",
+    "pages/mine_message/mine_message",
+    "pages/mine_attention/mine_attention",
+    "pages/help_center/help_center",
+    "pages/customer_services/customer_services", 
+    "pages/recharge/recharge",
+    "pages/pay_advertising/pay_advertising",
+    "pages/mine_issue/mine_issue",
+    "pages/select_issue/select_issue",
+    "pages/search/search",
+    "pages/question_answering/question_answering"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "纱线网",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#686868",
+    "selectedColor": "#3BE281",
+    "list": [
+      {
+        "iconPath": "images/footbar/tab_home.png",
+        "selectedIconPath": "images/footbar/tab_home_pre.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/footbar/tab_new.png",
+        "selectedIconPath": "images/footbar/tab_news.png",
+        "pagePath": "pages/information/information",
+        "text": "资讯"
+      },
+      {
+        "iconPath": "images/footbar/tab_fabu.png",
+        "selectedIconPath": "images/footbar/tab_fabu.png",
+        "pagePath": "pages/issue/issue",
+        "text": "发布"
+      },
+      {
+        "iconPath": "images/footbar/tab_shop.png",
+        "selectedIconPath": "images/footbar/tab_shop_pre.png",
+        "pagePath": "pages/store/store",
+        "text": "名片"
+      },
+      {
+        "iconPath": "images/footbar/tab_own.png",
+        "selectedIconPath": "images/footbar/tab_own_pre.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  }
+}

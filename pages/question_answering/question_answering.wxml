@@ -1,0 +1,2 @@
+<view class='question'>{{question}}</view>
+<view class='answering'>{{answering}}</view>

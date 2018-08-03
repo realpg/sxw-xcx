@@ -1,0 +1,93 @@
+<!--名片 -->
+<view class='Css'></view>
+<view class='business_card' wx:for='{{business_card}}' >
+  <view class='business_card_css'>
+    <view class='name'>{{item.name}}
+      <text class='post'>{{item.post}}</text>
+      <image class='headImg' src='../../images/index/head_portrait.png'></image>
+    </view>
+
+    <view>
+      <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
+      <text>{{item.phone}} </text>
+    </view>
+    <view>
+      <image class='iconImg' src='../../images/store/company.png'></image>
+      <text>{{item.company}} </text>
+    </view>
+    <view>
+      <image class='iconImg' src='../../images/store/map.png'></image>
+      <text>{{item.address}} </text>
+    </view>
+
+    <view class='The_main'>主营：{{item.The_main}}</view>
+    <view class='options'>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/eye.png' mode='widthFix'></image>
+        <text class='number'>{{item.browse}}                  </text>
+      </view>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/dianzan.png' mode='widthFix'></image>
+        <text class='number'>{{item.Like}}                  </text>
+      </view>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
+        <text class='number'>{{item.collect}}                  </text>
+      </view>
+      <view class='browse'>
+        <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
+        <text class='number'>{{item.transpond}} </text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 签到 -->
+<view class='sign_in'>
+  <view class='sign_in_css'>
+    <view>金币：
+      <text class='gold'>{{gold}}</text>
+    </view>
+    <view>
+      <text class='singIn'>签到</text>
+    </view>
+    <view>
+      <text class='gain' bindtap='gainClick'>获取金币</text>
+    </view>
+  </view>
+
+  <view class='sign_in_date'>
+    <view class='sign_in_date_css' wx:for='{{sign_in_date}}'>
+      <image class='sign_in_Img' src='{{item.sign_in_Img}}'></image>
+      <view class='week'>{{item.week}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 
+ { id: '8', iconImg: '../../images/personal_center/kefu.png', title: '联系客服', describe: '随时联系客服咨询和反馈', }, -->
+<!-- 选项 -->
+
+<view class='each_column' >
+    <view class='mine_item' wx:for='{{mine_item}}' bindtap='mine_item_click' wx:for-index='id'  data-id='{{item.id}}'>
+      <image class='icon_Img' src='{{item.iconImg}}'></image>
+      <view class='title'>{{item.title}}</view>
+      <view class='describe'>{{item.describe}}</view>
+      <image class='jiantou' src='../../images/personal_center/jiantou.png'></image>
+    </view>
+</view>
+
+<view class='service'>
+    <button class='service_but' open-type="contact">
+      <image class='kefu_Img' src='../../images/personal_center/kefu.png'></image>
+      <view class='service_title'>联系客服</view>
+      <view class='service_content'>随时联系客服咨询和反馈</view>
+      <image class='jiantou_Img' src='../../images/personal_center/jiantou.png'></image>
+    </button>
+</view>
+
+
+
+
+
+

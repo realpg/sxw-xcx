@@ -1,0 +1,51 @@
+page{
+  background: #F5F5F5;
+}
+.slide-swiper{
+  width: 100%;
+  height: 350rpx;
+}
+.slide_image{
+width: 100%;
+height: 100%;
+}
+
+
+.information_classification{
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color:  #9B9B9B; 
+}
+.all{
+  color:#01C46C;
+}
+
+.information_list{
+  background: #fff;
+  display: flex;
+  padding: 5% 3%;
+  margin-top: 15rpx;
+}
+.information_Img{
+  width: 220rpx;
+  height: 180rpx;
+}
+.title_time{
+  margin-left: 5%;
+  font-size: 30rpx;
+}
+.title{
+   display: -webkit-box; 
+   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.time{
+  margin-top: 60rpx;
+  font-size: 26rpx;
+  color: #B2B2B2;
+}

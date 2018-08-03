@@ -1,0 +1,27 @@
+<!--轮播图-->
+<view style='position: relative;'>
+    <swiper class='slide-swiper' circular='true' autoplay='6000' duration="1000" indicator-dots='true' indicator-color='true'  >
+  <block wx:for='{{slideshow}}' >
+    <swiper-item>
+      <image src='{{item.slideshowImg}}' mode='aspectFill' class='slide_image'></image>
+    </swiper-item>
+  </block>
+</swiper>
+</view>
+
+<!--分类-->
+<view class='information_classification'>
+  <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
+  <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>行业新闻</view>
+  <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>行情信息</view>
+  <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>平台公共</view>
+</view>
+
+<!--信息列表 -->
+<view class='information_list' bindtap='information_details_click' wx:for='{{information_list}}' wx:for-index='id'>
+  <view class='information_Img'><image class='information_Img' src='{{item.information_Img}}'></image></view>
+  <view class='title_time'>
+    <view class='title'>{{item.title}}</view>
+    <view class='time'>{{item.time}}</view>
+  </view>
+</view>

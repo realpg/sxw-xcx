@@ -1,0 +1,23 @@
+<view><image class='banner' src='{{banner}}'></image></view>
+
+<!-- 广告位 -->
+<view>
+  <view style='background:url({{item.bgImg}}) no-repeat;background-size:100% 100%;'
+  class='advertising_position' wx:for='{{advertising_position}}' bindtap='selectClick'>
+    <view class='title' wx:if='{{index<2}}'>可选名片或信息</view>
+    <view class='title' style='color:black' wx:if='{{index>1}}'>可选名片或信息</view>
+    <view class='advertising_position_css'>
+      <image class='Img' src='{{item.Img}}'></image>
+       <view class='gold_type' wx:if='{{index<2}}'>
+        <view>{{item.gold_week}}金币/周</view>
+        <view>{{item.gold_month}}金币/月</view>
+        <view>{{item.gold_year}}金币/年</view>
+      </view>
+      <view class='gold_type'style='color:black' wx:if='{{index>1}}'>
+        <view>{{item.gold_week}}金币/周</view>
+        <view>{{item.gold_month}}金币/月</view>
+        <view>{{item.gold_year}}金币/年</view>
+      </view>
+    </view>
+  </view>
+</view>

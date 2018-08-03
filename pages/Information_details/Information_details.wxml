@@ -1,0 +1,15 @@
+<!--pages/article/article.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='message'>
+<view class='messageRoughlyText'>
+       <view class='messageRoughlyTitle'>{{messageTitle}}</view>
+       <view class='messageDescribe'>
+         <view class='messageSource'>{{messageSource}}</view>
+         <view class='messageTime'>{{messageTime}}</view>
+       </view>
+    </view>
+</view>
+
+ <view class="wxParse">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+ </view>

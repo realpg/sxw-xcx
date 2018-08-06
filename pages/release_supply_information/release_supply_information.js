@@ -47,7 +47,8 @@ Page({
     },
 
     getEdit: function () {
-        var that = this
+        var that = this;
+        //获得类别和标签
         util.sellEdit_get({}, function (ret) {
             console.log("求购编辑所需内容", ret);
             var objectArray = [];
@@ -71,7 +72,15 @@ Page({
                 lable: lable
             })
         }, null)
+
+        util.getSystemKeyValue({id: 4}, function (ret) {
+            that.setData({
+                gold_coin_pay: ret.value,
+                gold_coin_balance: app.globalData.userInfo.credit
+            })
+        }, null)
     },
+
 
     //类别选择
     bindPickerChange: function (e) {
@@ -222,7 +231,51 @@ Page({
             content: content
         })
 
-        console.log(content);
+        if (content.catid && content.address
+            && content.content
+            && content.tags.length > 0
+            && content.thumbs.length > 0
+            && this.data.gold_coin_balance >= this.data.gold_coin_pay
+            && app.globalData.userInfo.groupid == '5'
+            // && app.globalData.userInfo.mobile
+        ) {
+            var param = {
+                title: "供应信息",
+                introduce: content.content.length > 30 ? content.content.substring(0, 30) + "……" : content.content,
+                catid: content.catid,
+                content: content.content,
+                thumb: content.thumbs,
+                telephone: app.globalData.userInfo.mobile?app.globalData.userInfo.mobile:"100000000",
+                tag: content.tags.join(",")
+            };
+            console.log('验证通过', param);
+            util.sellEdit_post(param,function (ret) {
+                console.log(ret);
+                app.globalData.userInfo.credit-=this.data.gold_coin_pay;
+                wx.showToast({
+                    title: "提交成功",
+                    icon: "success",
+                    success:function () {
+                        wx.reLaunch({
+                            url: "../index/index",
+                        })
+                    }
+                })
+            },null)
+        } else
+            wx.showToast({
+                title: "验证失败，请确保信息填写完整",
+                icon: "none"
+            })
+        //     console.log('aaaaa content.catid\n' + content.catid +
+        //         '            && content.address\n' + content.address +
+        //         '            && content.content\n' + content.content +
+        //         '            && content.tags\n' + (content.tags.length > 0) +
+        //         '            && content.thumbs\n' + (content.thumbs.length > 0) +
+        //         '            && this.data.gold_coin_balance >= this.data.gold_coin_pay\n' + (this.data.gold_coin_balance >= this.data.gold_coin_pay) +
+        //         '            && app.globalData.userInfo.groupid == \'5\'' + (app.globalData.userInfo.groupid == 5))
+        // console.log(content);
+
     },
 
     //个人信息详情

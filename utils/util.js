@@ -33,7 +33,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
             return;
         }
     }
-    showLoading();
+
 
     if (!judgeIsAnyNullStr(App.globalData.userInfo)) {
         //user_id未设置
@@ -42,6 +42,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
         }
         param._token = App.globalData.userInfo._token;
     }
+    showLoading();
     // console.log("param：" + JSON.stringify(param))
     wx.request({
         url: url,
@@ -52,7 +53,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
         // header: { 'content-type': 'application/x-www-form-urlencoded' },
         method: method,
         success: function (ret) {
-            // console.log("ret:" + JSON.stringify(ret))
+
             if (ret.data.result)
                 successCallback(ret.data.ret);
             else {
@@ -67,7 +68,8 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
             console.log("wxRequest fail:" + JSON.stringify(err))
 
         },
-        complete: function () {
+        complete: function (ret) {
+            console.log("ret:" + JSON.stringify(ret))
             hideLoading()
         }
     });
@@ -119,6 +121,10 @@ function sellEdit_post(param, successCallback, errorCallback) {
 function getBanner(param, successCallback, errorCallback) {
     param.pid = "1";
     wxRequest(SERVER_URL + '/api/ad/getByPid', param, "GET", successCallback, errorCallback);
+}
+
+function getSystemKeyValue(param, successCallback, errorCallback) {
+    wxRequest(SERVER_URL + '/api/system/getKeyValue', param, "GET", successCallback, errorCallback);
 }
 
 function uploadImage(param, successCallback, errorCallback) {
@@ -579,6 +585,7 @@ module.exports = {
     sellEdit_get: sellEdit_get,
     sellEdit_post: sellEdit_post,
     uploadImage: uploadImage,
+    getSystemKeyValue:getSystemKeyValue,
 
     formatTime: formatTime,
     formatDate: formatDate,

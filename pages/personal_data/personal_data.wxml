@@ -19,10 +19,10 @@
     <view class='name'>
       <text class='prompt'>* </text>
       <text class='sort' decode='emsp'>姓  名：</text>
-      <input class='name_input' type='text' placeholder='请输入姓名'></input>
+      <input class='name_input' type='text' placeholder='请输入姓名' value="{{bussinesscard.truename}}"></input>
     </view>
     <view class='name'>手机号：
-      <input class='name_input' type='number' placeholder='请输入手机号'></input>
+      <input class='name_input' type='number' placeholder='请输入手机号' value="{{bussinesscard.mobile}}"></input>
     </view>
     <view class='name'>验证码：<input type='number' placeholder='请获取' style='width:48%;' ></input>
       
@@ -37,20 +37,20 @@
 <view class='company'>
   <view class='company_name'>
     <text class='prompt'>*</text>公司名称：
-    <input class='input_company' type='text' placeholder='请输入公司名称'></input>
+    <input class='input_company' type='text' placeholder='请输入公司名称' value="{{bussinesscard.company}}"></input>
   </view>
   <view class='company_name'>
     <text class='prompt'>*</text>
     <text class='sort' decode='emsp'>职&emsp;&emsp;位：</text>
-    <input class='input_company' type='text' placeholder='请输入您的职位'></input>
+    <input class='input_company' type='text' placeholder='请输入您的职位' value="{{bussinesscard.career}}"></input>
   </view>
   <view class='company_name'>
     <text class='prompt'>*</text>业务类别：
-    <input class='input_business' type='text' placeholder='请选择业务类别'></input>
+    <input class='input_business' type='text' placeholder='请选择业务类别' ></input>
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
   </view>
   <view class='business_name' bindtap='addressClick'>
-    <text class='prompt'>*</text>详细地址：<input class='input_business' type='text' placeholder='请选择详细地址' value='{{value}}'></input>
+    <text class='prompt'>*</text>详细地址：<input class='input_business' type='text' placeholder='请选择详细地址' value="{{bussinesscard.address}}"></input>
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
   </view>
 </view>
@@ -60,14 +60,14 @@
 <view class='main_product'>
   <view class='main_product_title'>
     <text class='prompt'>*</text>主营产品</view>
-  <textarea class='main_product_info' maxlength='33' placeholder='请输入主营产品(不超过30字)'></textarea>
+  <textarea class='main_product_info' maxlength='33' placeholder='请输入主营产品(不超过30字)' value="{{bussinesscard.bussiness}}"></textarea>
 </view>
 
 <!--主营公司简介-->
 <view class='main_company_profile'>
   <view class='main_product_title'>
     <text class='prompt'>*</text>主营公司简介</view>
-  <textarea class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介'></textarea>
+  <textarea class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介' value="{{bussinesscard.introduce}}"></textarea>
 </view>
 
 <!--上传图片-->

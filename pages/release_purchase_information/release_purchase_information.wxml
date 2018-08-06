@@ -22,7 +22,7 @@
   <view class="address">
     <view view class='picker_css'>
       <text class='sort' decode='emsp'>所在地:&emsp;</text>
-      <input class='' type='text' placeholder='请输入地址'></input>
+      <input class='Address_input' type='text' placeholder='请输入地址'></input>
     </view>
   </view>
 </view>
@@ -39,7 +39,7 @@
 <!--标签选择-->
 <view class='labelList'>
   <view class='lable' wx:for='{{lable}}' wx:for-index='id'>
-    <view class='lable_border' bindtap='lableClick'>
+    <view class='{{item.setlableChoose?"lable_border1":"lable_border"}}' data-id='{{item.id}}'  bindtap='lableClick'>
       <view class='lable_css' data-id='{{item.id}}'>{{item.lable_Info}} </view>
     </view>
   </view>

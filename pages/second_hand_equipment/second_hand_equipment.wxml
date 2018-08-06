@@ -22,7 +22,7 @@
   <view class="address">
     <view view class='picker_css'>
       <text class='sort' decode='emsp'>所在地:&emsp;</text>
-      <input class='' type='text' placeholder='请输入地址'></input>
+      <input class='Address_input' type='text' placeholder='请输入地址'></input>
     </view>
   </view>
 </view>

@@ -8,13 +8,59 @@ Page({
     slideshow: [{ id: 0, slideshowImg: '../../images/index/Yarn_image1.jpg' }, { id: 1, slideshowImg: '../../images/index/Yarn_image.jpg' }, { id: 2, slideshowImg: '../../images/index/Yarn_image1.jpg' }],
 
     classify: [{ id: 0, cimg: '../../images/store/icon_mianhua.png', ciName: '棉花' }, { id: 1, cimg: '../../images/store/icon_shaxian.png', ciName: '纱线' }, { id: 2, cimg: '../../images/store/icon_huaqian.png', ciName: '化纤' }, { id: 3, cimg: '../../images/store/icon_peibu.png', ciName: '坯布' }, { id: 4, cimg: '../../images/store/icon_mianliao.png', ciName: '面料' }, { id: 5, cimg: '../../images/store/icon_fuliao.png', ciName: '辅料' }, { id: 6, cimg: '../../images/store/icon_fuzhuang.png', ciName: '服装' }, { id: 7, cimg: '../../images/store/icon_jipeijian.png', ciName: '机配件' }, { id: 8, cimg: '../../images/store/icon_qita.png', ciName: '其他' }, { id: 9, cimg: '../../images/store/icon_paihangbang.png', ciName: '排行榜' },],
+
     recommend_store_List: [
-      {    
-      recommend_store: [{ id: 0, store_name: '南通银源纺织科技', store_type: '供应', lable_one: '差别化', lable_two: '纺织用纱', store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, { id: 2, store_name: '南通银源纺织科技', store_type: '供应', lable_one: '差别化', lable_two: '纺织用纱', store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }]
-       },
       {
-        recommend_store: [{ id: 0, store_name: '南通银源纺织科技1', store_type: '供应', lable_one: '差别化', lable_two: '纺织用纱', store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, { id: 2, store_name: '南通银源纺织科技', store_type: '供应', lable_one: '差别化', lable_two: '纺织用纱', store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }]
+        business_card: [{
+          id: '0',
+          icon_first: '../../images/store/icon_first.png',
+          name: '董小姐',
+          post: '销售总监',
+          phone: '13666666666',
+          headImg: '../../images/index/head_portrait.png',
+          company: '南通纺织银源科技有限公司',
+          address: '江苏省南通市滨水路6号',
+          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+          number: '888',
+        }, {
+          id: '1',
+          icon_first: '../../images/store/icon_second.png',
+          name: '董小姐',
+          post: '销售总监',
+          phone: '13666666666',
+          headImg: '../../images/index/head_portrait.png',
+          company: '南通纺织银源科技有限公司',
+          address: '江苏省南通市滨水路6号',
+          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+          number: '888',
+        },
+        ],
       },
+      {
+        business_card: [{
+          id: '0',
+          icon_first: '../../images/store/icon_first.png',
+          name: '董小姐',
+          post: '销售总监',
+          phone: '13666666666',
+          headImg: '../../images/index/head_portrait.png',
+          company: '南通纺织银源科技有限公司',
+          address: '江苏省南通市滨水路6号',
+          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+
+        }, {
+          id: '1',
+          icon_first: '../../images/store/icon_second.png',
+          name: '董小姐',
+          post: '销售总监',
+          phone: '13666666666',
+          headImg: '../../images/index/head_portrait.png',
+          company: '南通纺织银源科技有限公司',
+          address: '江苏省南通市滨水路6号',
+          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+        },
+        ],
+      }
     ],
 
     //点击改变颜色
@@ -23,12 +69,23 @@ Page({
     buy_color: '',
     equipment_color: '',
 
-    messageList: [{ id: 0, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, { id: 1, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, { id:2, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' },]
+    messageList: [{ id: 0, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, { id: 1, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, { id: 2, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' },]
   },
 
-
+  //搜索框跳转
+  serchClick: function () {
+    wx.navigateTo({
+      url: '../search/search',
+      success: function (res) {
+      },
+      fail: function (res) {
+      },
+      complete: function (res) {
+      },
+    })
+  },
   //查看名片
-  enter_store_click:function(){
+  enter_store_click: function () {
     wx.navigateTo({
       url: "../store_particulars/store_particulars"
     })
@@ -36,7 +93,7 @@ Page({
 
   //分类
   classifyClick: function (e) {
-    const that=this;
+    const that = this;
     switch (e.currentTarget.dataset.ciName) {
       case '排行榜':
         wx.navigateTo({
@@ -54,11 +111,11 @@ Page({
     })
   },
 
-//查看
-  messageList_click:function(){
-      wx.navigateTo({
-        url: '../store_particulars/store_particulars',
-      })
+  //查看
+  messageList_click: function () {
+    wx.navigateTo({
+      url: '../store_particulars/store_particulars',
+    })
   },
   //信息栏选择
   selectClick: function (e) {

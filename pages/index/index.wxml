@@ -22,7 +22,7 @@
   <view class='classify' wx:for='{{classify}}' wx:for-index='id'>
       <view wx:if="{{item.id==4}}" class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
           <view class='ciImg'><image class='cimg' src='{{item.cimg}}'/></view>
-          <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='ciName'>{{item.ciName}}</button>
+          <button class='sign_in' open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='ciName'>{{item.ciName}}</button>
       </view>
 
     <view wx:else="" class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
@@ -90,7 +90,7 @@
           <text class='datails_name'>{{item.name}}</text>
           <text class='position'>{{item.position}}</text>
           <text class='demand'>{{item.demand}}</text>
-          <image class='btn_dianhua' src='../../images/index/btn_dianhua.png' mode='widthFix'/>
+          <image bindtap='phoneClick' class='btn_dianhua' data-id='{{item.id}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
         </view>
         <view class='company'>{{item.company}}</view>
         <view>

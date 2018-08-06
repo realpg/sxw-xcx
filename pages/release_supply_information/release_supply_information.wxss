@@ -29,7 +29,6 @@ page{
   font-size: 26rpx;
 }
 .sort{
-  width: 30%;
   margin: auto;
   font-size: 30rpx;
   font-weight: 650;
@@ -197,4 +196,8 @@ background: #fff;
   line-height: 90rpx;
   margin-top: 20rpx;
   margin-bottom: 50rpx;
+}
+
+.Address_input{
+  width: 500rpx;
 }

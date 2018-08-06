@@ -341,6 +341,7 @@ height: 100%;
 .head_portrait_icon{
   width: 100rpx;
   height:100rpx;
+  border-radius: 50%;
 }
 .icon_vip{
   margin-left:-5rpx;

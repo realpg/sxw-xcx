@@ -9,7 +9,7 @@
     <view class="picker">
       <view view class='picker_css'>
         <text class='sort' decode='emsp'>类&emsp;别:&emsp;</text>
-        <input type='text' placeholder='请选择' value='{{objectArray[index].name}}'></input>
+        <input class='select_input' type='text' placeholder='请选择' value='{{objectArray[index].name}}'></input>
       </view>
 
       <view>
@@ -22,7 +22,7 @@
   <view class="address">
     <view view class='picker_css'>
       <text class='sort' decode='emsp'>所在地:&emsp;</text>
-      <input class='' type='text' placeholder='请输入地址' bindblur="changeAddress"></input>
+      <input class='Address_input' type='text' placeholder='请输入地址' bindblur="changeAddress"></input>
     </view>
   </view>
 </view>

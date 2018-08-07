@@ -1,0 +1,18 @@
+<view class="page-section">
+  <!-- <view class="page-section-title">请勾选，可多选</view> -->
+  <view class="weui-cells weui-cells_after-title">
+    <checkbox-group bindchange="checkboxChange">
+      <view wx:for="{{items}}">
+        <label class="weui-cell weui-check__label">
+          <view class="weui-cell__hd">
+            <checkbox value="{{index}}" checked="{{item.checked?'checked':''}}" data-index="{{index}}" />
+          </view>
+          <view class="weui-cell__bd">{{item.name}}</view>
+        </label>
+      </view>
+    </checkbox-group>
+  </view>
+</view>
+
+<!--提交发布-->
+<view class='submit' bindtap='submitClick'>确认</view>

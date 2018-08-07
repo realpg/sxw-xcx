@@ -24,18 +24,7 @@ Page({
     index: '',
 
     lable: [
-      { id: 0, lable_Info: '面纱', setlableChoose: false },
-      { id: 1, lable_Info: '进口棉', setlableChoose: false },
-      { id: 2, lable_Info: '包漂', setlableChoose: false },
-      { id: 3, lable_Info: '面纱', setlableChoose: false },
-      { id: 4, lable_Info: '气流纺', setlableChoose: false },
-      { id: 5, lable_Info: '针织纱用', setlableChoose: false },
-      { id: 6, lable_Info: '涡流纺', setlableChoose: false },
-      { id: 7, lable_Info: '环锭纱', setlableChoose: false },
-      { id: 8, lable_Info: '免费拿样', setlableChoose: false },
-      { id: 9, lable_Info: '送货上门', setlableChoose: false },
-      { id: 10, lable_Info: '面纱', setlableChoose: false },
-      { id: 11, lable_Info: '进口棉', setlableChoose: false },
+     
     ],
 
     MessageImgList: [],
@@ -222,12 +211,13 @@ Page({
 
   submitClick: function () {
 
-    var content = this.data.content;
+var that=this
+    var content = that.data.content;
     content.thumbs = []
-    for (var i in this.data.MessageImgList) {
-      content.thumbs.push(this.data.MessageImgList[i].MessageImg);
+    for (var i in that.data.MessageImgList) {
+      content.thumbs.push(that.data.MessageImgList[i].MessageImg);
     }
-    this.setData({
+    that.setData({
       content: content
     })
 
@@ -235,7 +225,7 @@ Page({
       && content.content
       && content.tags.length > 0
       && content.thumbs.length > 0
-      && this.data.gold_coin_balance >= this.data.gold_coin_pay
+      && that.data.gold_coin_balance >= that.data.gold_coin_pay
       && app.globalData.userInfo.groupid == '5'
       // && app.globalData.userInfo.mobile
     ) {
@@ -251,7 +241,7 @@ Page({
       console.log('验证通过', param);
       util.sellEdit_post(param, function (ret) {
         console.log(ret);
-        app.globalData.userInfo.credit -= this.data.gold_coin_pay;
+        app.globalData.userInfo.credit -= that.data.gold_coin_pay;
         wx.showToast({
           title: "提交成功",
           icon: "success",

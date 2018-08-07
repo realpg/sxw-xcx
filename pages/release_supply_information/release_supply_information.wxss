@@ -33,6 +33,9 @@ page{
   font-size: 30rpx;
   font-weight: 650;
 }
+.sort_css{
+  width: 130rpx;
+}
 .jiantouImg{
   width: 18rpx;
   height: 28rpx;

@@ -8,7 +8,7 @@
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
     <view class="picker">
       <view view class='picker_css'>
-        <text class='sort' decode='emsp'>类&emsp;别:&emsp;</text>
+        <text class='sort sort_css' decode='emsp'>类&emsp;别:</text>
         <input type='text' placeholder='请选择' value='{{array[index]}}'></input>
       </view>
 

@@ -33,6 +33,9 @@ page{
   font-size: 30rpx;
   font-weight: 650;
 }
+.sort_css{
+  width: 130rpx;
+}
 .jiantouImg{
   width: 18rpx;
   height: 28rpx;
@@ -84,7 +87,16 @@ border-bottom:2rpx solid  #F5F5F5;
   height: 45rpx;
   width: 150rpx;
   margin: auto;
- 
+  color: #666666;
+}
+.lable_border1{
+  border:1rpx solid #01C46C;
+  background: #01C46C;
+  border-radius: 25rpx;
+  height: 45rpx;
+  width: 150rpx;
+  margin: auto;
+  color: #fff;
 }
 .lable_css{
   color: #666666;

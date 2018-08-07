@@ -25,7 +25,6 @@
       <input class='name_input' type='number' placeholder='请输入手机号' value="{{bussinesscard.mobile}}"></input>
     </view>
     <view class='name'>验证码：<input type='number' placeholder='请获取' style='width:48%;' ></input>
-      
       <view>
         <text class='get_code'>获取验证码</text>
       </view>
@@ -44,13 +43,13 @@
     <text class='sort' decode='emsp'>职&emsp;&emsp;位：</text>
     <input class='input_company' type='text' placeholder='请输入您的职位' value="{{bussinesscard.career}}"></input>
   </view>
-  <view class='company_name'>
+  <view class='company_name' bindtap='promptClick'>
     <text class='prompt'>*</text>业务类别：
-    <input class='input_business' type='text' placeholder='请选择业务类别' ></input>
+    <input class='input_business' type='text' placeholder='请选择业务类别' value='{{bussinesscard.value_prompt[0].name}}{{bussinesscard.value_prompt[1].name?",":""}}{{bussinesscard.value_prompt[1].name}}{{bussinesscard.value_prompt[2].name?",":""}}{{bussinesscard.value_prompt[2].name}}{{bussinesscard.value_prompt.length>3?"...":""}}'  disabled="disabled"></input>
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
   </view>
   <view class='business_name' bindtap='addressClick'>
-    <text class='prompt'>*</text>详细地址：<input class='input_business' type='text' placeholder='请选择详细地址' value="{{bussinesscard.address}}"></input>
+    <text class='prompt'>*</text>详细地址：<input class='input_business' type='text' placeholder='请选择详细地址' value="{{bussinesscard.address}}"  disabled="disabled"></input>
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
   </view>
 </view>
@@ -86,6 +85,7 @@
       </view>
     </view>
   </view>
+  <view style='color:#666;font-size:22rpx;float:right'>上传公司照片(最多上传六张)</view>
 </view>
 
 <!--上传二维码-->
@@ -98,7 +98,7 @@
       <image class='DelImg' bindtap='DelClick_three' data-id='{{item.id}}' src='../../images/index/del.png'></image>
     </view>
 
-    <view class='AddImgFunction' wx-if='{{MessageImgList_three.length<3}}'>
+    <view class='AddImgFunction' wx-if='{{MessageImgList_three.length<1}}'>
       <view class='AddImgClick' bindtap='AddImgClick_three'>
         <image class='AddImg' src='../../images/index/add2.png' mode='widthFix'></image>
       </view>

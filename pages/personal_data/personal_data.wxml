@@ -2,15 +2,15 @@
 <view class='UserInfo'>
   <view class='AddImgList_one'>
     <view class='ThatMessageImgList'>
-      <view class='ThatMessageImg' wx:for='{{MessageImgList_one}}' data-index='id'>
-        <image class='MessageImg_one' bindtap='previewImClick_one' data-id='{{item.id}}' src='{{item.MessageImg}}' mode='aspectFill'></image>
+      <view class='ThatMessageImg' wx:for='{{avatar}}' data-index='id'>
+        <image class='MessageImg_one' bindtap='previewImClick_one' data-id='{{item.id}}' src='{{item}}' mode='aspectFill'/>
 
-        <image class='DelImg_one' bindtap='DelClick_one' data-id='{{item.id}}' src='../../images/index/del.png'></image>
+        <image class='DelImg_one' bindtap='DelClick_one' data-id='{{item.id}}' src='../../images/index/del.png'/>
       </view>
 
-      <view class='AddImgFunction' wx-if='{{MessageImgList_one.length<1}}'>
+      <view class='AddImgFunction' wx-if='{{avatar.length<1}}'>
         <view class='AddImgClick' bindtap='AddImgClick_one'>
-          <image class='AddImg' src='../../images/index/add3.png' mode='widthFix'></image>
+          <image class='AddImg' src='../../images/index/add3.png' mode='widthFix'/>
         </view>
       </view>
     </view>
@@ -19,12 +19,12 @@
     <view class='name'>
       <text class='prompt'>* </text>
       <text class='sort' decode='emsp'>姓  名：</text>
-      <input class='name_input' type='text' placeholder='请输入姓名' value="{{bussinesscard.truename}}"></input>
+      <input class='name_input' type='text' placeholder='请输入姓名' value="{{businesscard.truename}}" bindblur="changeBusinesscard" data-key="truename"/>
     </view>
     <view class='name'>手机号：
-      <input class='name_input' type='number' placeholder='请输入手机号' value="{{bussinesscard.mobile}}"></input>
+      <input class='name_input' type='number' placeholder='请输入手机号' value="{{businesscard.mobile}}"  bindblur="changeBusinesscard" data-key="mobile"/>
     </view>
-    <view class='name'>验证码：<input type='number' placeholder='请获取' style='width:48%;' ></input>
+    <view class='name'>验证码：<input type='number' placeholder='请获取' style='width:48%;'  bindblur="changeBusinesscard"/>
       <view>
         <text class='get_code'>获取验证码</text>
       </view>
@@ -36,21 +36,21 @@
 <view class='company'>
   <view class='company_name'>
     <text class='prompt'>*</text>公司名称：
-    <input class='input_company' type='text' placeholder='请输入公司名称' value="{{bussinesscard.company}}"></input>
+    <input class='input_company' type='text' placeholder='请输入公司名称' value="{{businesscard.company}}" bindblur="changeBusinesscard" data-key="company"/>
   </view>
   <view class='company_name'>
     <text class='prompt'>*</text>
     <text class='sort' decode='emsp'>职&emsp;&emsp;位：</text>
-    <input class='input_company' type='text' placeholder='请输入您的职位' value="{{bussinesscard.career}}"></input>
+    <input class='input_company' type='text' placeholder='请输入您的职位' value="{{businesscard.career}}" bindblur="changeBusinesscard" data-key="career"/>
   </view>
   <view class='company_name' bindtap='promptClick'>
     <text class='prompt'>*</text>业务类别：
-    <input class='input_business' type='text' placeholder='请选择业务类别' value='{{bussinesscard.value_prompt[0].name}}{{bussinesscard.value_prompt[1].name?",":""}}{{bussinesscard.value_prompt[1].name}}{{bussinesscard.value_prompt[2].name?",":""}}{{bussinesscard.value_prompt[2].name}}{{bussinesscard.value_prompt.length>3?"...":""}}'  disabled="disabled"></input>
-    <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
+    <input class='input_business' type='text' placeholder='请选择业务类别' value='{{businesscard.ywlb[0].name}}{{businesscard.ywlb[1].name?",":""}}{{businesscard.ywlb[1].name}}{{businesscard.ywlb[2].name?",":""}}{{businesscard.ywlb[2].name}}{{businesscard.ywlb.length>3?"...":""}}'  disabled="disabled"/>
+    <image class='Image_jiantou' src='../../images/index/jiantou_right.png'/>
   </view>
   <view class='business_name' bindtap='addressClick'>
-    <text class='prompt'>*</text>详细地址：<input class='input_business' type='text' placeholder='请选择详细地址' value="{{bussinesscard.address}}"  disabled="disabled"></input>
-    <image class='Image_jiantou' src='../../images/index/jiantou_right.png'></image>
+    <text class='prompt'>*</text>详细地址：<input class='input_business' type='text' placeholder='请选择详细地址' value="{{businesscard.address}}"  disabled="disabled"/>
+    <image class='Image_jiantou' src='../../images/index/jiantou_right.png'/>
   </view>
 </view>
 
@@ -59,29 +59,29 @@
 <view class='main_product'>
   <view class='main_product_title'>
     <text class='prompt'>*</text>主营产品</view>
-  <textarea class='main_product_info' maxlength='33' placeholder='请输入主营产品(不超过30字)' value="{{bussinesscard.bussiness}}"></textarea>
+  <textarea class='main_product_info' maxlength='33' placeholder='请输入主营产品(不超过30字)' value="{{businesscard.business}}"  bindblur="changeBusinesscard" data-key="business"/>
 </view>
 
 <!--主营公司简介-->
 <view class='main_company_profile'>
   <view class='main_product_title'>
-    <text class='prompt'>*</text>主营公司简介</view>
-  <textarea class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介' value="{{bussinesscard.introduce}}"></textarea>
+    <text class='prompt'>*</text>公司简介</view>
+  <textarea class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介' value="{{businesscard.introduce}}" bindblur="changeBusinesscard" data-key="introduce"/>
 </view>
 
 <!--上传图片-->
 
 <view class='AddImgList'>
   <view class='ThatMessageImgList'>
-    <view class='ThatMessageImg' wx:for='{{MessageImgList}}' data-index='id'>
-      <image class='MessageImg' bindtap='previewImClick_two' data-id='{{item.id}}' src='{{item.MessageImg}}' mode='aspectFill'></image>
+    <view class='ThatMessageImg' wx:for='{{thumb}}' data-index='id'>
+      <image class='MessageImg' bindtap='previewImClick_two' data-id='{{item.id}}' src='{{item}}' mode='aspectFill'/>
 
-      <image class='DelImg' bindtap='DelClick_two' data-id='{{item.id}}' src='../../images/index/del.png'></image>
+      <image class='DelImg' bindtap='DelClick_two' data-id='{{item.id}}' src='../../images/index/del.png'/>
     </view>
 
-    <view class='AddImgFunction' wx-if='{{MessageImgList.length<6}}'>
+    <view class='AddImgFunction' wx-if='{{thumb.length<6}}'>
       <view class='AddImgClick' bindtap='AddImgClick_two'>
-        <image class='AddImg' src='../../images/index/add1.png' mode='widthFix'></image>
+        <image class='AddImg' src='../../images/index/add1.png' mode='widthFix'/>
       </view>
     </view>
   </view>
@@ -92,15 +92,15 @@
 
 <view class='AddImgList'>
   <view class='ThatMessageImgList'>
-    <view class='ThatMessageImg' wx:for='{{MessageImgList_three}}' data-index='id'>
-      <image class='MessageImg' bindtap='previewImClick_three' data-id='{{item.id}}' src='{{item.MessageImg}}' mode='aspectFill'></image>
+    <view class='ThatMessageImg' wx:for='{{wxqr}}' data-index='id'>
+      <image class='MessageImg' bindtap='previewImClick_three' data-id='{{item.id}}' src='{{item}}' mode='aspectFill'/>
 
-      <image class='DelImg' bindtap='DelClick_three' data-id='{{item.id}}' src='../../images/index/del.png'></image>
+      <image class='DelImg' bindtap='DelClick_three' data-id='{{item.id}}' src='../../images/index/del.png'/>
     </view>
 
-    <view class='AddImgFunction' wx-if='{{MessageImgList_three.length<1}}'>
+    <view class='AddImgFunction' wx-if='{{wxqr.length<1}}'>
       <view class='AddImgClick' bindtap='AddImgClick_three'>
-        <image class='AddImg' src='../../images/index/add2.png' mode='widthFix'></image>
+        <image class='AddImg' src='../../images/index/add2.png' mode='widthFix'/>
       </view>
     </view>
   </view>

@@ -1,5 +1,5 @@
 //测试标识
-var TESTMODE = false;
+var TESTMODE = true;
 //服务器地址
 var SERVER_URL = "http://xcx.hzmuji.com";
 var DEBUG_URL = "http://localhost/sxw-master/public";
@@ -125,6 +125,13 @@ function getBanner(param, successCallback, errorCallback) {
 
 function getSystemKeyValue(param, successCallback, errorCallback) {
     wxRequest(SERVER_URL + '/api/system/getKeyValue', param, "GET", successCallback, errorCallback);
+}
+
+function editInfo_get(param, successCallback, errorCallback) {
+    wxRequest(SERVER_URL + '/api/member/editInfo', param, "GET", successCallback, errorCallback);
+}
+function editInfo_post(param, successCallback, errorCallback) {
+    wxRequest(SERVER_URL + '/api/member/editInfo', param, "POST", successCallback, errorCallback);
 }
 
 function uploadImage(param, successCallback, errorCallback) {
@@ -586,6 +593,8 @@ module.exports = {
     sellEdit_post: sellEdit_post,
     uploadImage: uploadImage,
     getSystemKeyValue:getSystemKeyValue,
+    editInfo_get:editInfo_get,
+    editInfo_post:editInfo_post,
 
     formatTime: formatTime,
     formatDate: formatDate,

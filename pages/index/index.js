@@ -181,10 +181,10 @@ Page({
                         id: ret.data[i].itemid, //信息id
                         head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
                         icon_vip: 0, //  0===非vip 1==vip  暂未实现
-                        name: ret.data[i].bussinessCard.truename, //用户姓名
-                        position: ret.data[i].bussinessCard.career, //职位
+                        name: ret.data[i].businessCard.truename, //用户姓名
+                        position: ret.data[i].businessCard.career, //职位
                         demand: '供应', //发布类别  ()
-                        company: ret.data[i].bussinessCard.company, //公司
+                        company: ret.data[i].businessCard.company, //公司
                         lableList: [ //标签 后续跟进
                             {
                                 lable: '混纺纱'
@@ -238,10 +238,10 @@ Page({
                         id: ret.data[i].itemid, //信息id
                         head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
                         icon_vip: 0, //  0===非vip 1==vip  暂未实现
-                        name: ret.data[i].bussinessCard.truename, //用户姓名
-                        position: ret.data[i].bussinessCard.career, //职位
+                        name: ret.data[i].businessCard.truename, //用户姓名
+                        position: ret.data[i].businessCard.career, //职位
                         demand: '求购', //发布类别  ()
-                        company: ret.data[i].bussinessCard.company, //公司
+                        company: ret.data[i].businessCard.company, //公司
                         lableList: [ //标签 后续跟进
                             {
                                 lable: '混纺纱'
@@ -295,10 +295,10 @@ Page({
                         id: ret.data[i].itemid, //信息id
                         head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
                         icon_vip: 0, //  0===非vip 1==vip  暂未实现
-                        name: ret.data[i].bussinessCard.truename, //用户姓名
-                        position: ret.data[i].bussinessCard.career, //职位
+                        name: ret.data[i].businessCard.truename, //用户姓名
+                        position: ret.data[i].businessCard.career, //职位
                         demand: '纺机', //发布类别  ()
-                        company: ret.data[i].bussinessCard.company, //公司
+                        company: ret.data[i].businessCard.company, //公司
                         lableList: [ //标签 后续跟进
                             {
                                 lable: '混纺纱'

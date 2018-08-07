@@ -13,26 +13,26 @@
   <view class='business_card'  wx:for='{{business_card}}' wx:for-index='index' data-index='{{index}}' >
     <view class='business_card_css'>
       <image class='icon_first' src='../../images/store/icon_{{index}}.png'></image>
-      <view class='name'>{{item.bussinessCard.truename}}
-        <text class='post'>{{item.bussinessCard.post}}</text>
+      <view class='name'>{{item.businessCard.truename}}
+        <text class='post'>{{item.businessCard.post}}</text>
         <text class='card_details'>名片详情</text>
-        <image class='headImg' src='{{item.bussinessCard.headImg}}'></image>
+        <image class='headImg' src='{{item.businessCard.headImg}}'></image>
       </view>
 
       <view>
         <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-        <text>{{item.bussinessCard.phone}} </text>
+        <text>{{item.businessCard.phone}} </text>
       </view>
       <view>
         <image class='iconImg' src='../../images/store/company.png'></image>
-        <text>{{item.bussinessCard.company}} </text>
+        <text>{{item.businessCard.company}} </text>
       </view>
       <view>
         <image class='iconImg' src='../../images/store/map.png'></image>
-        <text>{{item.bussinessCard.address}} </text>
+        <text>{{item.businessCard.address}} </text>
       </view>
 
-      <view class='The_main'>主营：{{item.bussinessCard.The_main}}</view>
+      <view class='The_main'>主营：{{item.businessCard.The_main}}</view>
     </view>
   </view>
 

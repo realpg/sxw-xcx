@@ -235,6 +235,7 @@ height: 100%;
 }
 .The_specific_details{
   margin-left: 10rpx;
+  align-items: center;
 }
 .datails_name{
   font-size: 30rpx;
@@ -245,10 +246,6 @@ height: 100%;
   color: #9B9B9B;
   font-size: 26rpx;
   width: 150rpx;
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .demand{
   background: #9ACCF7;

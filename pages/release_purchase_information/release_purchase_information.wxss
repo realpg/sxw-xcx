@@ -99,7 +99,7 @@ border-bottom:2rpx solid  #F5F5F5;
   color: #fff;
 }
 .lable_css{
-  color: #666666;
+ 
   font-size: 26rpx;
   line-height: 45rpx;
   text-align: center;
@@ -140,7 +140,7 @@ background: #fff;
   height: 35rpx;
   margin-left:-30rpx;
   margin-top:-10rpx;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .personal_data{
@@ -199,7 +199,7 @@ background: #fff;
   line-height: 90rpx;
   margin-top: 20rpx;
   margin-bottom: 50rpx;
-}/* pages/release_purchase_information/release_purchase_information.wxss */
+}
 
 .Address_input{
   width: 500rpx;

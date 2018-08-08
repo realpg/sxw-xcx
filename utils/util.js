@@ -1,5 +1,5 @@
 //测试标识
-var TESTMODE = true;
+var TESTMODE = false;
 //服务器地址
 var SERVER_URL = "http://xcx.hzmuji.com";
 var DEBUG_URL = "http://localhost/sxw-master/public";
@@ -70,7 +70,8 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
         },
         complete: function (ret) {
             console.log("ret:" + JSON.stringify(ret))
-            hideLoading()
+            setTimeout(function(){
+            hideLoading()},2000)
         }
     });
 }
@@ -116,6 +117,24 @@ function sellEdit_get(param, successCallback, errorCallback) {
 
 function sellEdit_post(param, successCallback, errorCallback) {
     wxRequest(SERVER_URL + '/api/sell/edit', param, "POST", successCallback, errorCallback);
+}
+
+//求购
+function buyEdit_get(param,successCallback,errorCallback){
+  wxRequest(SERVER_URL + '/api/buy/edit', param, "GET", successCallback, errorCallback);
+}
+
+function buyEdit_post(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/buy/edit', param, "POST", successCallback, errorCallback);
+}
+
+//纺机贸易
+function fjmyEdit_get(param,successCallback,errorCallback){
+  wxRequest(SERVER_URL + '/api/fjmy/edit',param,"GET",successCallback,errorCallback);
+}
+
+function fjmyEdit_post(param, successCallback, errorCallback){
+  wxRequest(SERVER_URL + '/api/fjmy/edit',param,"POST",successCallback,errorCallback);
 }
 
 function getBanner(param, successCallback, errorCallback) {
@@ -591,6 +610,10 @@ module.exports = {
     getBanner: getBanner,
     sellEdit_get: sellEdit_get,
     sellEdit_post: sellEdit_post,
+    buyEdit_get: buyEdit_get,
+    buyEdit_post: buyEdit_post,
+    fjmyEdit_get: fjmyEdit_get,
+    fjmyEdit_post: fjmyEdit_post,
     uploadImage: uploadImage,
     getSystemKeyValue:getSystemKeyValue,
     editInfo_get:editInfo_get,

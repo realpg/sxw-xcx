@@ -359,8 +359,10 @@ Page({
                 avatar: [app.globalData.userInfo.avatarUrl],  //头像
                 wxqr: ret.businesscard.wxqr ? [ret.businesscard.wxqr] : [],
                 ywlbs: ret.ywlb
-            })
+          })
+          console.log("业务类别", that.data.businesscard, that.data.businesscard.ywlb)
         })
+      
     },
     submitClick: function (e) {
 

@@ -140,7 +140,7 @@ background: #fff;
   height: 35rpx;
   margin-left:-30rpx;
   margin-top:-10rpx;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .personal_data{

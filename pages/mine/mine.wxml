@@ -1,64 +1,77 @@
 <!--名片 -->
 <view class='Css'></view>
-<view class='business_card' wx:for='{{business_card}}' >
+<view  wx:if='{{business_card.groupid==6}}' class='business_card'>
   <view class='business_card_css'>
-    <view class='name'>{{item.name}}
-      <text class='post'>{{item.post}}</text>
-      <image class='headImg' src='../../images/index/head_portrait.png'></image>
+    <view class='name'>{{business_card.businesscard.truename}}
+      <text class='post'>{{business_card.career}}</text>
+      <image class='headImg' src='{{business_card.avatarUrl}}'></image>
     </view>
 
-    <view>
+    <view class='itemscenter'>
       <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{item.phone}} </text>
+      <text>{{business_card.mobile}} </text>
     </view>
-    <view>
+    <view class='itemscenter' >
       <image class='iconImg' src='../../images/store/company.png'></image>
-      <text>{{item.company}} </text>
+      <text>{{business_card.company}} </text>
     </view>
-    <view>
+    <view class='redactList'>
+    <view class='redact' >
       <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{item.address}} </text>
+      <text>{{business_card.companyInfo.address}} </text>
+      </view>
+      <view>
+       <text bindtap='redactClick' class='redactInfo' >编辑资料</text>
+      </view>
+
     </view>
 
-    <view class='The_main'>主营：{{item.The_main}}</view>
+    <view class='The_main'>主营：{{business_card.companyInfo.business}}</view>
     <view class='options'>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/eye.png' mode='widthFix'></image>
-        <text class='number'>{{item.browse}}                  </text>
+        <text class='number'>{{business_card.businesscard.view}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/dianzan.png' mode='widthFix'></image>
-        <text class='number'>{{item.Like}}                  </text>
+        <text class='number'>{{business_card.businesscard.agree}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{item.collect}}                  </text>
+        <text class='number'>{{business_card.businesscard.userid}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-        <text class='number'>{{item.transpond}} </text>
+        <text class='number'>分享 </text>
+        <!-- <text class='number'>{{business_card.transpond}} </text> -->
       </view>
     </view>
   </view>
 </view>
 
+<view wx:else='{{business_card.groupid==5}}' class='business_card'>
+  <view bindtap='redactClick' class='business_card_css redactuserinfo'>
+    <text class='redactuserinfo' >请完善个人信息</text>
+  </view>
+  </view>
+
 <!-- 签到 -->
 <view class='sign_in'>
   <view class='sign_in_css'>
     <view>金币：
-      <text class='gold'>{{gold}}</text>
+      <text class='gold'>{{business_card.credit}}</text>
     </view>
     <view>
-      <text class='singIn'>签到</text>
+      <text bindtap='singInClick' class='singIn'>签到</text>
     </view>
-    <view>
+    <view>  
       <text class='gain' bindtap='gainClick'>获取金币</text>
     </view>
   </view>
 
   <view class='sign_in_date'>
     <view class='sign_in_date_css' wx:for='{{sign_in_date}}'>
-      <image class='sign_in_Img' src='{{item.sign_in_Img}}'></image>
+      <image class='sign_in_Img' src='{{item.isSignin?"../../images/personal_center/oval_gold.png":"../../images/personal_center/oval _gold_pre.png"}}'></image>
       <view class='week'>{{item.week}}</view>
     </view>
   </view>

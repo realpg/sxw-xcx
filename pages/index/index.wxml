@@ -16,16 +16,10 @@
   </view>
 </view>
 
-
 <!--供应信息 采购大厅 二手设备 签到-->  
 <view class='classifyList'>
   <view class='classify' wx:for='{{classify}}' wx:for-index='id'>
-      <view wx:if="{{item.id==4}}" class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
-          <view class='ciImg'><image class='cimg' src='{{item.cimg}}'/></view>
-          <button class='sign_in' open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='ciName'>{{item.ciName}}</button>
-      </view>
-
-    <view wx:else="" class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
+    <view class='ci' bindtap='classifyClick'  data-id='{{item.id}}'>
       <view class='ciImg'><image class='cimg' src='{{item.cimg}}'/></view>
       <view class='ciName'>{{item.ciName}}</view>
     </view>
@@ -45,36 +39,60 @@
  <image class='notImg_one' src='../../images/index/jiantou_two.png' mode='widthFix'/>
 </view>
 
-<!--店铺轮播图 -->
-<view class='RS_list'>
-  <swiper class='RS_list_css' autoplay='true' interval='6000' bindtap='store_particulars_click'>
-    <view class='recommend_store_List'>
-      <block wx:for='{{recommend_store_List}}'>
-        <swiper-item class='recommend_store'>
-          <view class='recommend_store_css' wx:for='{{item.recommend_store}}' data-id='{{item.id}}'>
-            <view class='store_name'>{{item.store_name}}</view>
-            <view class='store_lable'>
-              <view class='store_type'>{{item.store_type}}</view>
-              <view class='lable_one'>{{item.lable_one}}</view>
-              <view class='lable_two'>{{item.lable_two}}</view>
-            </view>
-            <view class='store_info'>{{item.store_info}}</view>
-            <view class='Enter_store'>
-              <text class='Enter_store_css'>查看名片</text>
+<!-- 轮播图 -->
+<view class='CSS'>
+    <swiper class='slide-swiper_css' circular='true' autoplay='6000' duration="1000" indicator-color='true'>
+      <block wx:for='{{recommend_store_one}}'>
+        <swiper-item>
+          <view>
+            <view class='recommend_store_css' data-id='{{item.id}}'bindtap='store_particulars_click'> 
+              <view class='store_name'>{{item.store_name}}</view>
+              <view class='store_lable'>
+                <view wx:if="{{item.store_type =='供应'}}" class='store_type'>{{item.store_type}}</view>
+                <view wx:if="{{item.store_type =='求购'}}" class='store_type' style='background:#F7CF9A'>{{item.store_type}}</view>
+                <view wx:if="{{item.store_type =='纺机'}}" class='store_type' style='background:#9A9CF7'>{{item.store_type}}</view>
+                <view class='lable_one'>{{item.lable_one}}</view>
+                <view class='lable_two'>{{item.lable_two}}</view>
+              </view>
+              <view class='store_info'>{{item.store_info}}</view>
+              <view class='Enter_store'>
+                <text class='Enter_store_css'>查看名片</text>
+              </view>
             </view>
           </view>
         </swiper-item>
       </block>
-    </view>
-  </swiper>
-</view>
+    </swiper>
+    <swiper class='slide-swiper_css' circular='true' autoplay='6000' duration="1000" indicator-color='true'>
+      <block wx:for='{{recommend_store_two}}'>
+        <swiper-item>
+          <view>
+            <view class='recommend_store_css' data-id='{{item.id}}'bindtap='store_particulars_click'>
+              <view class='store_name'>{{item.store_name}}</view>
+              <view class='store_lable'>
+                <view wx:if="{{item.store_type =='供应'}}" class='store_type'>{{item.store_type}}</view>
+                <view wx:if="{{item.store_type =='求购'}}" class='store_type' style='background:#F7CF9A'>{{item.store_type}}</view>
+                <view wx:if="{{item.store_type =='纺机'}}" class='store_type' style='background:#9A9CF7'>{{item.store_type}}</view>
+                <view class='lable_one'>{{item.lable_one}}</view>
+                <view class='lable_two'>{{item.lable_two}}</view>
+              </view>
+              <view class='store_info'>{{item.store_info}}</view>
+              <view class='Enter_store'>
+                <text class='Enter_store_css'>查看名片</text>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
 
 <!--分类-->
 <view class='information_classification'>
   <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
   <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>供应信息</view>
   <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>求购信息</view>
-  <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>二手设备</view>
+  <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>纺机贸易</view>
 </view>
 
 <!--具体信息-->
@@ -89,7 +107,9 @@
         <view class='The_specific_details_one'>
           <text class='datails_name'>{{item.name}}</text>
           <text class='position'>{{item.position}}</text>
-          <text class='demand'>{{item.demand}}</text>
+         <text  wx:if="{{item.demand =='供应'}}" class='demand'>{{item.demand}}</text>
+          <text  wx:if="{{item.demand =='求购'}}" class='demand' style='background:#F7CF9A'>{{item.demand}}</text>
+          <text  wx:if="{{item.demand =='纺机'}}" class='demand' style='background:#9A9CF7'>{{item.demand}}</text>
           <image bindtap='phoneClick' class='btn_dianhua' data-id='{{item.id}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
         </view>
         <view class='company'>{{item.company}}</view>

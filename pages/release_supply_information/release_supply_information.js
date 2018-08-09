@@ -21,19 +21,16 @@ Page({
     hint_details: '请认真发布信息，发布的内容尽可能描述完整。如支数、库存数量、关键指标的信息，切勿虚报乱写加入黑名单并通报全网。',
     objectArray: [],
     index: '',
-
     lable: [],
     MessageImgList: [],
     gold_coin_balance: '5',
     gold_coin_pay: '1',
-    lable_color: '',
-    lable_background: '' //#01C46C
   },
 
   getEdit: function() {
     var that = this;
     //获得类别和标签
-    util.sellEdit_get({}, function(ret) {
+    util.sellEdit_get({},function(ret) {
       console.log("求购编辑所需内容", ret);
       var objectArray = [];
       for (var i in ret.catids) {
@@ -77,6 +74,7 @@ Page({
       content: content
     })
   },
+  //地址
   changeAddress: function(e) {
     var content = this.data.content;
     content.address = e.detail.value
@@ -84,6 +82,7 @@ Page({
       content: content
     })
   },
+  //内容
   changeContent: function(e) {
     var content = this.data.content;
     content.content = e.detail.value
@@ -287,8 +286,6 @@ Page({
   onReady: function() {
     const that = this;
     that.getEdit();
-
-
   },
 
   /**

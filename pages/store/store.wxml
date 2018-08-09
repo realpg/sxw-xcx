@@ -20,13 +20,12 @@
 </view>
 
 <!--店铺轮播图 -->
-<view class='RS_list'>
-  <swiper class='RS_list_css' autoplay='true' interval='6000'>
-    <view class='recommend_store_List'>
-      <block wx:for='{{recommend_store_List}}'>
+<view class='CSS'>
+    <swiper class='slide-swiper_css' circular='true' autoplay='6000' duration="1000" indicator-color='true'>
+      <block wx:for='{{recommend_store_one}}'>
         <swiper-item class='recommend_store'>
 
-          <view class='recommend_store_css' wx:for='{{item.business_card}}' bindtap='enter_store_click' data-id='{{item.id}}'>
+          <view class='recommend_store_css' bindtap='enter_store_click' data-id='{{item.id}}'>
             <view class='business_card_css'>
               <view class='name_css'>{{item.name}}
                 <text class='post_css'>{{item.post}}</text>
@@ -53,10 +52,40 @@
 
         </swiper-item>
       </block>
-    </view>
-  </swiper>
-</view>
+    </swiper>
+    <swiper class='slide-swiper_css' circular='true' autoplay='6000' duration="1000" indicator-color='true'>
+      <block wx:for='{{recommend_store_two}}'>
+        <swiper-item class='recommend_store'>
 
+          <view class='recommend_store_css' bindtap='enter_store_click' data-id='{{item.id}}'>
+            <view class='business_card_css'>
+              <view class='name_css'>{{item.name}}
+                <text class='post_css'>{{item.post}}</text>
+               
+                <image class='headImg_css' src='../../images/index/head_portrait.png'></image>
+              </view>
+
+              <view>
+                <image class='iconImg_css' src='../../images/store/btn_dianhua.png'></image>
+                <text>{{item.phone}} </text>
+              </view>
+              <view>
+                <image class='iconImg_css' src='../../images/store/company.png'></image>
+                <text>{{item.company}} </text>
+              </view>
+              <view>
+                <image class='iconImg_css' src='../../images/store/map.png'></image>
+                <text>{{item.address}} </text>
+              </view>
+              <view class='The_main_css'>主营：{{item.The_main}}</view>
+                <text class='enter_css'>名片详情</text>       
+            </view>
+          </view>
+
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
 <!-- 分类
 <view class='information_classification'>
   <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
@@ -66,17 +95,17 @@
 </view> -->
 
 <!--展示信息列表 -->
-<view class='messageList' wx:for='{{messageList}}' data-id='{{item.id}}'>
+<view class='messageList' wx:for='{{messageList}}' data-id='{{item.userid}}'>
   <view class='messageListCss' bindtap='messageList_click'>
     <view class='message'>
-      <image class='iconImg' src='{{item.iconImg}}'></image>
+      <image class='iconImg' src='{{item.avatarUrl}}'></image>
       <view class='messageCss'>
         <view class='employee_information'>
-          <view class='name'>{{item.name}}</view>
-          <view class='post'>{{item.post}}</view>
+          <view class='name'>{{item.bussinesscard.truename}}</view>
+          <view class='post'>{{item.career}}</view>
           <image class='vip_Img' src='{{item.vip}}'></image>
         </view>
-        <view class='companyName'>{{item.companyName}}</view>
+        <view class='companyName'>{{item.company}}</view>
       </view>
     </view>
 
@@ -86,11 +115,11 @@
       </view>
       <view class='pageView'>
         <image class='pageView_Img' src='../../images/index/eye.png'></image>
-        <text class='number'>{{item.number}}</text>
+        <text class='number'>{{item.bussinesscard.view}}</text>
       </view>
     </view>
   </view>
   <view class='main_business'>
-    <view>主营：{{item.main_business}}</view>
+    <view>主营：{{item.bussinesscard.business}}</view>
   </view>
 </view>

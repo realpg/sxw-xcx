@@ -1,4 +1,7 @@
 // pages/store/store.js
+const app = getApp();
+const util = require('../../utils/util.js');
+let that;
 Page({
 
   /**
@@ -9,58 +12,54 @@ Page({
 
     classify: [{ id: 0, cimg: '../../images/store/icon_mianhua.png', ciName: '棉花' }, { id: 1, cimg: '../../images/store/icon_shaxian.png', ciName: '纱线' }, { id: 2, cimg: '../../images/store/icon_huaqian.png', ciName: '化纤' }, { id: 3, cimg: '../../images/store/icon_peibu.png', ciName: '坯布' }, { id: 4, cimg: '../../images/store/icon_mianliao.png', ciName: '面料' }, { id: 5, cimg: '../../images/store/icon_fuliao.png', ciName: '辅料' }, { id: 6, cimg: '../../images/store/icon_fuzhuang.png', ciName: '服装' }, { id: 7, cimg: '../../images/store/icon_jipeijian.png', ciName: '机配件' }, { id: 8, cimg: '../../images/store/icon_qita.png', ciName: '其他' }, { id: 9, cimg: '../../images/store/icon_paihangbang.png', ciName: '排行榜' },],
 
-    recommend_store_List: [
-      {
-        business_card: [{
-          id: '0',
-          icon_first: '../../images/store/icon_first.png',
-          name: '董小姐',
-          post: '销售总监',
-          phone: '13666666666',
-          headImg: '../../images/index/head_portrait.png',
-          company: '南通纺织银源科技有限公司',
-          address: '江苏省南通市滨水路6号',
-          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
-          number: '888',
-        }, {
-          id: '1',
-          icon_first: '../../images/store/icon_second.png',
-          name: '董小姐',
-          post: '销售总监',
-          phone: '13666666666',
-          headImg: '../../images/index/head_portrait.png',
-          company: '南通纺织银源科技有限公司',
-          address: '江苏省南通市滨水路6号',
-          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
-          number: '888',
-        },
-        ],
-      },
-      {
-        business_card: [{
-          id: '0',
-          icon_first: '../../images/store/icon_first.png',
-          name: '董小姐',
-          post: '销售总监',
-          phone: '13666666666',
-          headImg: '../../images/index/head_portrait.png',
-          company: '南通纺织银源科技有限公司',
-          address: '江苏省南通市滨水路6号',
-          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+    recommend_store_one: [{
+      id: '0',
+      icon_first: '../../images/store/icon_first.png',
+      name: '董小姐2',
+      post: '销售总监',
+      phone: '13666666666',
+      headImg: '../../images/index/head_portrait.png',
+      company: '南通纺织银源科技有限公司',
+      address: '江苏省南通市滨水路6号',
+      The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+      number: '888',
+    }, {
+      id: '1',
+      icon_first: '../../images/store/icon_second.png',
+      name: '董小姐',
+      post: '销售总监',
+      phone: '13666666666',
+      headImg: '../../images/index/head_portrait.png',
+      company: '南通纺织银源科技有限公司',
+      address: '江苏省南通市滨水路6号',
+      The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+      number: '888',
+    },
+    ],
 
-        }, {
-          id: '1',
-          icon_first: '../../images/store/icon_second.png',
-          name: '董小姐',
-          post: '销售总监',
-          phone: '13666666666',
-          headImg: '../../images/index/head_portrait.png',
-          company: '南通纺织银源科技有限公司',
-          address: '江苏省南通市滨水路6号',
-          The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
-        },
-        ],
-      }
+
+    recommend_store_two: [{
+      id: '0',
+      icon_first: '../../images/store/icon_first.png',
+      name: '董小姐',
+      post: '销售总监2',
+      phone: '13666666666',
+      headImg: '../../images/index/head_portrait.png',
+      company: '南通纺织银源科技有限公司',
+      address: '江苏省南通市滨水路6号',
+      The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+
+    }, {
+      id: '1',
+      icon_first: '../../images/store/icon_second.png',
+      name: '董小姐',
+      post: '销售总监',
+      phone: '13666666666',
+      headImg: '../../images/index/head_portrait.png',
+      company: '南通纺织银源科技有限公司',
+      address: '江苏省南通市滨水路6号',
+      The_main: '精疏60支,环锭纺,16支，气流纺织,环纺普纱',
+    },
     ],
 
     //点击改变颜色
@@ -155,18 +154,36 @@ Page({
     }
   },
 
+
+  visitingCard: function () {
+    let param = {
+      userid: wx.getStorageSync('UsetInfo').userid,
+      _token: wx.getStorageSync('UsetInfo')._token,
+    };
+    util.visitingCard(param, function (ret) {
+      console.log('名片列表', ret)
+      that.setData({
+        messageList: ret.data
+      })
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this;
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    setTimeout(function () {
+      // console.log('000',app.globalData.userInfo)
+    }, 5000)
 
+    that.visitingCard();
   },
 
   /**

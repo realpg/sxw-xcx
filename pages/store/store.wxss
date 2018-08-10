@@ -5,7 +5,7 @@ page {
 .searchBox {
   width: 90%;
   margin: 30rpx auto;
-  height: 70rpx;
+  height: 60rpx;
   display: flex;
   align-items: center;
   background: #fff;

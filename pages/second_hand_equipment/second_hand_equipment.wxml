@@ -9,7 +9,7 @@
     <view class="picker">
       <view view class='picker_css'>
         <text class='sort sort_css' decode='emsp'>类&emsp;别:</text>
-        <input class='select_input' type='text' placeholder='请选择' value='{{objectArray[index].name}}'></input>
+        <input class='select_input' type='text' placeholder='请选择' value='{{objectArray[index].name}}' disabled='disabled'></input>
       </view>
       <view>
         <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>

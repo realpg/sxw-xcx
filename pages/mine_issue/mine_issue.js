@@ -1,4 +1,7 @@
 // pages/mine_issue/mine_issue.js
+const app = getApp()
+const util = require('../../utils/util.js');
+var that;
 Page({
 
   /**
@@ -17,7 +20,7 @@ Page({
       collect: '198',
       transpond: '68',
     }],
-    information: [{ id: '0', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', transpond: '126' }, { id: '1', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', transpond: '126' }, { id: '2', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', transpond: '126' },]
+    information: [{ id: '0', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' }, { id: '1', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' }, { id: '2', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' },]
   },
   //信息栏选择
   selectClick: function (e) {
@@ -62,15 +65,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    that = this;
+    that.setData({
+      business_card: wx.getStorageSync('UsetInfo')
+    })
+    setTimeout(function(){
+      util.sellList_mine({}, function (ret) {
+        console.log(ret);
+      }, null);
+    },3000)
+    
   },
+
+
 
   /**
    * 生命周期函数--监听页面显示

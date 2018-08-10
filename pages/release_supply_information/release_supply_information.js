@@ -198,9 +198,9 @@ Page({
   submitClick: function() {
     var that = this;
     var content = that.data.content;
-    content.thumbs = []
+    content.thumbs = ""
     for (var i in that.data.MessageImgList) {
-      content.thumbs.push(that.data.MessageImgList[i].MessageImg);
+      content.thumbs = content.thumbs + (that.data.MessageImgList[i].MessageImg) + ",";
     }
     that.setData({
       content: content

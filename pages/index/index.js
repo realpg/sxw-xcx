@@ -74,16 +74,13 @@ Page({
     buy_color: '',
     equipment_color: '',
 
-    message: //产品list
-      [],
+    message: [], //产品list
     sellList: [],
     sell_next_page: 1,
     buyList: [],
     buy_next_page: 1,
     fjmyList: [],
     fjmy_next_page: 1,
-
-
   },
 
   //搜索框跳转
@@ -217,8 +214,11 @@ Page({
           sellList: sellList,
           sell_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
+        var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
+        messageALL = that.sort(messageALL);
+
         that.setData({
-          message: that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList)),
+          message: messageALL,
         })
       }, null)
   },
@@ -275,8 +275,11 @@ Page({
           buyList: buyList,
           buy_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
+        var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
+        messageALL = that.sort(messageALL);
+
         that.setData({
-          message: that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList)),
+          message: messageALL,
         })
       }, null)
   },
@@ -329,12 +332,17 @@ Page({
             })
         }
         console.log("纺机", that.data.fjmyList)
+        
         that.setData({
           fjmyList: fjmyList,
           fjmy_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
+
+        var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
+        messageALL = that.sort(messageALL);
+        
         that.setData({
-          message: that.data.sellList.concat(that.data.fjmyList.concat(that.data.fjmyList)),
+          message: messageALL,
         })
       }, null)
   },
@@ -385,20 +393,41 @@ Page({
     })
   },
 
+//排序
+  sort: function (messageALL){
+    var that = this;
+    
+    for (var i = 0; i < messageALL.length; i++) {
+      for (var u = i + 1; u < messageALL.length; u++) {
+        if (messageALL[i].time.split("-") < messageALL[u].time.split("-")) {
+          //如果 array[i] > <array[u] ，就声明一个缓存遍历 num 存放大的数据，然后把两个数据的下标进行更换，达到升序排序的效果。
+          var num = messageALL[i];
+          messageALL[i] = messageALL[u];
+          messageALL[u] = num;
+        }
+      }
+    }
+    return messageALL;  
+  },
+
   //信息栏选择
   selectClick: function (e) {
     var that = this;
+  
+       
     // console.log(e)
-    if (e.target.dataset.nn == 1) {
+    if (e.target.dataset.nn == 1) {  
+      var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
+      messageALL = that.sort(messageALL);
       that.setData({
         all_color: '#01C46C',
         supply_color: '#9B9B9B',
         buy_color: '#9B9B9B',
         equipment_color: '#9B9B9B',
-        message: that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList)),
+        message:messageALL,
       })
     } else if (e.target.dataset.nn == 2) {
-
+    
       that.setData({
         all_color: '#9B9B9B',
         supply_color: '#01C46C',

@@ -35,6 +35,7 @@ page{
   width: 130rpx;
   height: 130rpx;
   float: right;
+  border-radius: 50%;
 }
 .iconImg{
   margin-right: 20rpx;
@@ -44,6 +45,7 @@ page{
 .options{
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .optionsImg{
   width: 32rpx;
@@ -130,3 +132,13 @@ page{
  .text_css{
    margin-left: 10rpx;
  }
+
+ button {
+  font-size: 22rpx;
+  color: #666;
+  background: #fff;
+  line-height:30rpx;
+}
+button::after{
+  border-style:none;
+}

@@ -170,6 +170,31 @@ function editInfo_post(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/member/editInfo', param, "POST", successCallback, errorCallback);
 }
 
+//我的发布_供应
+function sellList_mine(param, successCallback, errorCallback){
+param.conditions=JSON.stringify({
+  key:["userid"],
+  value: [getApp().globalData.userInfo.userid]
+})
+  wxRequest(SERVER_URL + '/api/sell/getByCondition', param, "GET", successCallback, errorCallback);
+}
+//我的发布_求购
+function buyList_mine(param, successCallback, errorCallback) {
+  param.conditions = {
+    key: ["userid"],
+    value: [App.globalData.userInfo.userid]
+  }
+  wxRequest(SERVER_URL + '/api/buy/getByCondition', param, "GET", successCallback, errorCallback);
+}
+//我的发布_纺机
+function fjmyList_mine(param, successCallback, errorCallback) {
+  param.conditions = {
+    key: ["userid"],
+    value: [App.globalData.userInfo.userid]
+  }
+  wxRequest(SERVER_URL + '/api/fjmy/getByCondition', param, "GET", successCallback, errorCallback);
+}
+
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
     url: SERVER_URL + '/api/uploadImage',
@@ -637,6 +662,9 @@ module.exports = {
   signInList: signInList,
   signIn: signIn,
   visitingCard: visitingCard,
+  sellList_mine: sellList_mine,
+  buyList_mine: buyList_mine,
+  fjmyList_mine: fjmyList_mine,
 
   formatTime: formatTime,
   formatDate: formatDate,

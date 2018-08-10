@@ -227,11 +227,12 @@ Page({
     ) {
       var param = {
         title: "供应信息",
-        introduce: content.content.length > 30 ? content.content.substring(0, 30) + "……" : content.content,
+        introduce: content.content.length > 100 ? content.content.substring(0, 100) + "……" : content.content,
         catid: content.catid,
         content: content.content,
         thumb: content.thumbs,
         telephone: app.globalData.userInfo.mobile ? app.globalData.userInfo.mobile : "100000000",
+        address: content.address,
         tag: content.tags.join(",")
       };
       console.log('验证通过', param);

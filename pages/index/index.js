@@ -175,7 +175,7 @@ Page({
             sellList.push({
               id: ret.data[i].itemid, //信息id
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-              icon_vip: 0, //  0===非vip 1==vip  暂未实现
+              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
               name: ret.data[i].user.truename, //用户姓名
               position: ret.data[i].businesscard.career, //职位
               demand: '供应', //发布类别  ()
@@ -216,7 +216,6 @@ Page({
         })
         var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
         messageALL = that.sort(messageALL);
-
         that.setData({
           message: messageALL,
         })
@@ -236,7 +235,7 @@ Page({
             buyList.push({
               id: ret.data[i].itemid, //信息id
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-              icon_vip: 0, //  0===非vip 1==vip  暂未实现
+              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
               name: ret.data[i].businesscard.truename, //用户姓名
               position: ret.data[i].businesscard.career, //职位
               demand: '求购', //发布类别  ()
@@ -297,7 +296,7 @@ Page({
             fjmyList.push({
               id: ret.data[i].itemid, //信息id
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-              icon_vip: 0, //  0===非vip 1==vip  暂未实现
+              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
               name: ret.data[i].businesscard.truename, //用户姓名
               position: ret.data[i].businesscard.career, //职位
               demand: '纺机', //发布类别  ()
@@ -399,7 +398,13 @@ Page({
     
     for (var i = 0; i < messageALL.length; i++) {
       for (var u = i + 1; u < messageALL.length; u++) {
-        if (messageALL[i].time.split("-") < messageALL[u].time.split("-")) {
+        if (messageALL[i].icon_vip < messageALL[u].icon_vip) if (messageALL[i].time < messageALL[u].time) {
+          //如果 array[i] > <array[u] ，就声明一个缓存遍历 num 存放大的数据，然后把两个数据的下标进行更换，达到升序排序的效果。
+          var num = messageALL[i];
+          messageALL[i] = messageALL[u];
+          messageALL[u] = num;
+        }
+        else if (messageALL[i].icon_vip == messageALL[u].icon_vip&&messageALL[i].time < messageALL[u].time) {
           //如果 array[i] > <array[u] ，就声明一个缓存遍历 num 存放大的数据，然后把两个数据的下标进行更换，达到升序排序的效果。
           var num = messageALL[i];
           messageALL[i] = messageALL[u];
@@ -412,11 +417,9 @@ Page({
 
   //信息栏选择
   selectClick: function (e) {
-    var that = this;
-  
-       
+    var that = this;    
     // console.log(e)
-    if (e.target.dataset.nn == 1) {  
+    if (e.target.dataset.nn == 1){  
       var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
       messageALL = that.sort(messageALL);
       that.setData({
@@ -427,7 +430,6 @@ Page({
         message:messageALL,
       })
     } else if (e.target.dataset.nn == 2) {
-    
       that.setData({
         all_color: '#9B9B9B',
         supply_color: '#01C46C',

@@ -38,7 +38,7 @@
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.businesscard.userid}}                  </text>
+        <text class='number'>{{business_card.businesscard.favorite}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>

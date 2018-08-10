@@ -231,6 +231,7 @@ Page({
         content: content.content,
         thumb: content.thumbs,
         telephone: app.globalData.userInfo.mobile ? app.globalData.userInfo.mobile : "100000000",
+        address: content.address,
         tag: content.tags.join(",")
       };
       console.log('验证通过', param);

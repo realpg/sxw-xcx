@@ -32,7 +32,7 @@
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.businesscard.userid}} </text>
+        <text class='number'>{{business_card.businesscard.favorite}} </text>
       </view>
       <view class='browse'>
        <button open-type='share'><image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
@@ -53,12 +53,12 @@
 <!-- 信息 -->
 <view class='information'>
   <view class='information_css' wx:for='{{information}}'>
-    <view class='lable'>
-      <text class='lable_one'>{{item.lable_one}}</text>
-      <text class='lable_two'>{{item.lable_two}}</text>
-      <text class='lable_three'>{{item.lable_three}}</text>
+    <view class='lable' >
+      <text class='lable_one'>{{item.lableList[0].lable}}</text>
+      <text class='lable_two'>{{item.lableList[1].lable}}</text>
+      <text class='lable_three'>{{item.lableList[2].lable}}</text>
     </view>
-    <view class='content'>{{item.content}}</view>
+    <view class='content'>{{item.details}}</view>
     <view class='time'>发布时间：{{item.time}}</view>
     <view class='menu'>
       <view class='redact'>
@@ -67,14 +67,14 @@
       <view class='redact_css'>
         <view>
           <image class='Img_eye' src='../../images/store/eye.png'></image>
-          <text class='text_css'>{{item.browse}}  </text>
+          <text class='text_css'>{{item.page_view}}  </text>
         </view>
         <view>
           <image class='Img_edit' src='../../images/store/dianzan.png'></image>
           <text class='text_css'>{{item.like}}  </text> </view>
         <view>
           <image class='Img_edit' src='../../images/store/star.png'></image>
-          <text class='text_css'>{{item.collect}}</text>
+          <text class='text_css'>{{item.favorite}}</text>
         </view>
       </view>
     </view>

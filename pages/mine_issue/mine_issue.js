@@ -20,7 +20,11 @@ Page({
       collect: '198',
       transpond: '68',
     }],
-    information: [{ id: '0', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' }, { id: '1', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' }, { id: '2', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' },]
+    information: [{ id: '0', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' }, { id: '1', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' }, { id: '2', lable_one: '混纺纱', lable_two: '纺织用纱', lable_three: '混纺纱', content: '精疏紧密60支，条干13支，56棉结50强力180，气流纺织21、环纺普纱21支，竹纤维21-60S、竹棉炭32-40S', time: '2018-07-12 14:45', browse: '880', like: '68', collect: '126' },],
+
+    sellList:[],
+    buyList:[],
+    fjmyList:[]
   },
   //信息栏选择
   selectClick: function (e) {
@@ -32,6 +36,7 @@ Page({
         supply_color: '#9B9B9B',
         buy_color: '#9B9B9B',
         equipment_color: '#9B9B9B',
+        information: that.data.sellList
       })
     } else if (e.target.dataset.nn == 2) {
 
@@ -73,15 +78,60 @@ Page({
    */
   onReady: function () {
     that = this;
+    
     that.setData({
       business_card: wx.getStorageSync('UsetInfo')
     })
     setTimeout(function(){
       util.sellList_mine({}, function (ret) {
         console.log(ret);
+        var sellList = that.data.sellList;
+        for (var i in ret.data) {
+          if (ret.data[i].user)
+            sellList.push({
+              id: ret.data[i].itemid, //信息id
+              head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
+              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+              name: ret.data[i].user.truename, //用户姓名
+              position: ret.data[i].businesscard.career, //职位
+              demand: '供应', //发布类别  ()
+              company: ret.data[i].businesscard.company, //公司
+              lableList: [ //标签 后续跟进
+                {
+                  lable: '混纺纱'
+                },
+                {
+                  lable: '纺织用纱'
+                },
+                {
+                  lable: '混纺纱'
+                },
+              ],
+              details: ret.data[i].introduce, //信息详情描述
+              message_Img: //详情图片  后续跟进
+                [{
+                  message_Image: ret.data[i].thumb
+                },
+                {
+                  message_Image: ret.data[i].thumb1
+                },
+                {
+                  message_Image: ret.data[i].thumb2
+                }
+                ],
+              time: ret.data[i].adddate, //发布时间
+              address: ret.data[i].address, //货物存放地
+              page_view: ret.data[i].hits, //浏览量
+              like: ret.data[i].agree, //点赞
+              favorite: ret.data[i].favorite
+            })
+        }
+        that.setData({
+          sellList: sellList,
+          sell_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
+        })
       }, null);
-    },3000)
-    
+    },2000) 
   },
 
 

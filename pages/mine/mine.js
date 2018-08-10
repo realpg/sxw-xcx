@@ -190,7 +190,7 @@ Page({
       }
 
       wx.showToast({
-        title: '签到成功',
+        title: '签到成功，金币+5',
         duration: 1500
       })
 

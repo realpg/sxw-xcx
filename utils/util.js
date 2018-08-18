@@ -18,18 +18,18 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
     if (!App) {
       setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
-      }, 3000)
+      }, 200)
       return;
     }
     if (judgeIsAnyNullStr(App.globalData.userInfo)) {
       setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
-      }, 3000)
+      }, 200)
       return;
     } else if (judgeIsAnyNullStr(App.globalData.userInfo._token)) {
       setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
-      }, 3000)
+      }, 200)
       return;
     }
   }

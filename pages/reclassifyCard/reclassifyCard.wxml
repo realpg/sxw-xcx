@@ -1,0 +1,30 @@
+<!--pages/reclassifyCard/reclassifyCard.wxml-->
+<!--展示信息列表 -->
+<view class='messageList' wx:for='{{messageList}}'>
+  <view class='messageListCss' data-id='{{item.userid}}' bindtap='messageList_click'>
+    <view class='message'>
+      <image class='iconImg' src='{{item.avatarUrl}}'></image>
+      <view class='messageCss'>
+        <view class='employee_information'>
+          <view class='name'>{{item.bussinesscard.truename}}</view>
+          <view class='post'>{{item.career}}</view>
+          <image class='vip_Img' src='{{item.vip}}'></image>
+        </view>
+        <view class='companyName'>{{item.company}}</view>
+      </view>
+    </view>
+
+    <view class='enter_pageView'>
+      <view class='enter_css'>
+        <text class='enter'>查看</text>
+      </view>
+      <view class='pageView'>
+        <image class='pageView_Img' src='../../images/index/eye.png'></image>
+        <text class='number'>{{item.bussinesscard.view}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='main_business'>
+    <view>主营：{{item.bussinesscard.business}}</view>
+  </view>
+</view>

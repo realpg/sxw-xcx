@@ -251,7 +251,7 @@ Page({
           }
         })
       }, null)
-    } else 
+    } else
       wx.showToast({
         title: "验证失败，请确保信息填写完整",
         icon: "none"

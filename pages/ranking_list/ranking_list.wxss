@@ -13,6 +13,9 @@ page{
 .all{
   color:#01C46C;
 }
+allhide{
+  color: #9B9B9B;
+}
 
 
 .icon_first{
@@ -64,6 +67,7 @@ page{
   height: 130rpx;
   float: right;
   margin-right: 30rpx;
+  border-radius: 50%;
 }
 .iconImg{
   margin-right: 20rpx;

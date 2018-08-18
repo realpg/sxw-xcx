@@ -1,6 +1,9 @@
 {
   "pages": [
+
+    
     "pages/index/index",
+    "pages/reclassifyCard/reclassifyCard",
     "pages/release_supply_information/release_supply_information",
     "pages/issue/issue",
     "pages/store/store",

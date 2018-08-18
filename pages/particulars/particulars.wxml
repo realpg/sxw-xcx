@@ -1,23 +1,27 @@
 <!--具体详情-->
-<view class='message' wx:for='{{message}}' wx:for-index='id'>
+<view class='message' wx:for='{{message}}'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
       <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'></image>
-      <image class='icon_vip' src='{{item.icon_vip}}' mode='widthFix'></image>
+       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 
     <view class='The_specific_details'>
       <view class='The_specific_details_one'>
         <text class='datails_name'>{{item.name}}</text>
         <text class='position'>{{item.position}}</text>
-        <text class='demand'>{{item.demand}}</text>
-        <image class='btn_dianhua' src='../../images/index/btn_dianhua.png' mode='widthFix'></image>
+        
+        <text  wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
+
+        <image class='btn_dianhua' bindtap='making_call_click' src='../../images/index/btn_dianhua.png' mode='widthFix'></image>
       </view>
       <view class='company'>{{item.company}}</view>
       <view>
-        <text class='lable_three'>{{item.lable_three}}</text>
-        <text class='lable_four'>{{item.lable_four}}</text>
-        <text class='lable_five'>{{item.lable_five}}</text>
+        <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
+        <text wx:if="{{item.lableList[1]}}" class='lable_four'>{{item.lableList[1].tagname}}</text>
+        <text wx:if="{{item.lableList[2]}}" class='lable_five'>{{item.lableList[2].tagname}}</text>
       </view>
       <view class='details'>{{item.details}}</view>
 
@@ -31,20 +35,18 @@
         <image class='icon_map' src='../../images/index/icon_map.png'></image>
         <text class='address'>存放地：{{item.address}}</text>
       </view>
-      <view class='time'>发布时间：{{item.release_time}}</view>
-      <view class='time'>更新时间：{{item.turnover_time}}</view>
+      <view class='time'>发布时间：{{item.addtime}}</view>
+      <view class='time'>更新时间：{{item.edittime}}</view>
       <view class='hint'>联系时请说是在中国纱线网上看到的</view>
       <view class='eye_dianzan'>
         <view class='eye_Css'>
           <image class='eye' src='../../images/index/eye.png'></image>
           <text class='view'>{{item.page_view}}</text>
         </view>
-        <view class='dianzan_Css'>
-          <image class='dianzan' src='../../images/index/dianzan.png'></image>
-          <text class='like'>{{item.like}}</text>
-        </view>
-        <view class='dianzan_Css'>
-          <image class='dianzan' src='../../images/store/star.png'></image>
+        <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+            <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
+        <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+          <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
           <text class='like'>{{item.star}}</text>
         </view>
         <button open-type='share'>
@@ -62,97 +64,118 @@
 <!-- 留言 -->
 <view class='Message_board'>
   <view class='Message_board_css'>
-    <view class='leave_word_sum'>留言(5)</view>
+    <view class='leave_word_sum'>留言({{leave_word_details.length?leave_word_details.length:0}})</view>
     <view>
-      <text class='leave_word'>留言</text>
+      <text bindtap='leaveWordClick' class='leave_word'>留言</text>
     </view>
+
   </view>
-  <view class='leave_word_details' wx:for='{{leave_word_details}}'>
+
+  <!--评论框  -->
+  <view class='commentBox' wx:if='{{sendTranspondChoose}}'>
+    <input class='commentInput' bindinput='exacommentClick' value='{{MyTranspondValue}}'></input>
+    <text class='send' catchtap='sendClick' data-id='{{item.id}}'>发送 </text>
+  </view>
+
+
+
+  <view class='leave_word_details' wx:for='{{leave_word_details}}' wx:for-item='items'>
     <view class='leave_word_details_css'>
       <view class='leave_word_iconImage'>
-        <image class='leave_word_iconImage_css' src='{{item.iconImg}}'></image>
-        <text class='leave_word_name'>{{item.name}}</text>
+        <image class='leave_word_iconImage_css' src='{{items.iconImg}}'></image>
+        <text class='leave_word_name'>{{items.truename}}</text>
       </view>
-      <view class='leave_word_time'>{{item.time}}</view>
+      <view class='leave_word_time'>{{items.addtime}}</view>
     </view>
-    <view wx:if="{{item.leave_word_name ==''}}">
-      <view class='leave_word_content'> {{item.content}}</view>
+    <view wx:if="{{items.itemid}}">
+      <view class='leave_word_content'> {{items.content}}</view>
     </view>
-    <view wx:if="{{item.leave_word_name !=''}}">
+    <!-- <view wx:if="{{item.itemid !=''}}">
       <view class='leave_word_content'>回复 {{item.leave_word_name}}：{{item.content}}</view>
-    </view>
+    </view> -->
 
   </view>
 
-  <view class='view_more'>查看更多留言</view>
+  <view class='view_more' bindtap='view_more_click' wx:if='{{leave_word_details.length > message_number}}'>查看更多留言</view>
+  <view class='view_more' bindtap='view_more_click_css' wx:elif='{{leave_word_details.length < message_number}}'>关闭更多留言</view>
+
 </view>
 
 <!-- 名片 -->
 <view class='Css'></view>
-<view class='business_card' wx:for='{{business_card}}' bindtap='view_card_click'>
+<view class='business_card'>
   <view class='business_card_css'>
-    <view class='name'>{{item.name}}
-      <text class='post'>{{item.post}}</text>
-      <image class='headImg' src='../../images/index/head_portrait.png'></image>
+    <view class='name'>{{business_card.truename}}
+      <text class='post'>{{business_card.career}}</text>
+      <image class='headImg' src='{{business_card.avatarUrl}}'></image>
     </view>
 
     <view>
       <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{item.phone}} </text>
+      <text>{{business_card.mobile}} </text>
     </view>
     <view>
       <image class='iconImg' src='../../images/store/company.png'></image>
-      <text>{{item.company}} </text>
+      <text>{{business_card.company}} </text>
     </view>
     <view>
       <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{item.address}} </text>
-      <text  class='view_card'>名片详情</text>
+      <text>{{business_card.address}} </text>
+      <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
     </view>
 
-    <view class='The_main'>主营：{{item.The_main}}</view>
+    <view class='The_main'>主营：{{business_card.business}}</view>
   </view>
 </view>
 
 <!--推荐信息-->
-<view class='message' wx:for='{{message_recommend}}' wx:for-index='id'>
-  <view class='messageCss recommend'    data-id='{{item.id}}'>
+<!--具体信息-->
+<view class='message' wx-if="{{item.id!=id&&item.mid!=mid}}" wx:for='{{messageList}}'>
+  <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'></image>
-      <image class='icon_vip' src='{{item.icon_vip}}' mode='widthFix'></image>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix' />
+       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 
     <view class='The_specific_details'>
-        <view class='The_specific_details_one'>
-          <text class='datails_name'>{{item.name}}</text>
-          <text class='position'>{{item.position}}</text>
-          <text class='demand'>{{item.demand}}</text>
-          <image class='btn_dianhua' src='../../images/index/btn_dianhua.png' mode='widthFix'></image>
-        </view>
-        <view class='company'>{{item.company}}</view>
-        <view>
-          <text class='lable_three'>{{item.lable_three}}</text>
-          <text class='lable_four'>{{item.lable_four}}</text>
-          <text class='lable_five'>{{item.lable_five}}</text>
-        </view>
-        <view class='details'>{{item.details}}</view>
+      <view class='The_specific_details_one'>
+        <text class='datails_name'>{{item.name}}</text>
+        <text class='position'>{{item.position}}</text>
 
-        <view class='message_Img'>
-          <view class='message_Image' wx:for='{{item.message_Img}}'>
-          <image class='message_Image_Css' src='{{item.message_Image}}'></image>
-          </view>
-        </view>
+        <text  wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
 
-        <view class='time'>{{item.time}}</view>
-        <view>
-          <image class='icon_map' src='../../images/index/icon_map.png'></image>
-          <text class='address'>存放地：{{item.address}}</text>
+        <image bindtap='phoneClick' bindtap='making_call_click' class='btn_dianhua' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix' />
+      </view>
+      <view class='company'>{{item.company}}</view>
+      <view>
+        <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
+        <text wx:if="{{item.lableList[1]}}" class='lable_four'>{{item.lableList[1].tagname}}</text>
+        <text wx:if="{{item.lableList[2]}}" class='lable_five'>{{item.lableList[2].tagname}}</text>
+      </view>
+      <view class='details'>{{item.details}}</view>
+
+      <view class='message_Img'>
+        <view class='message_Image' wx:for='{{item.message_Img}}'>
+          <image class='message_Image_Css' src='{{item.message_Image}}' />
         </view>
-        <view class='eye_dianzan'>
-          <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'></image> <text class='view'>{{item.page_view}}</text></view>
-            <view class='dianzan_Css'><image class='dianzan'  src='../../images/index/dianzan.png'></image> <text class='like'>{{item.like}}</text></view>
-            <view class='see_details' bindtap='see_details_click'>查看详情 >></view>
+      </view>
+
+      <view class='time'>{{item.time}}</view>
+      <view class='address_css'>
+        <image class='icon_map' src='../../images/index/icon_map.png' />
+        <text class='address'>存放地：{{item.address}}</text>
+      </view>
+      <view class='eye_dianzan'>
+        <view class='eye_Css'>
+          <image class='eye' src='../../images/index/eye.png' />
+          <text class='view'>{{item.page_view}}</text>
         </view>
+        <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+            <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
+        <view class='see_details' data-id='{{item.id}}' data-mid='{{item.mid}}' bindtap='see_details_click'>查看详情 >></view>
+      </view>
     </view>
   </view>
 </view>
@@ -163,5 +186,7 @@
 <view class='Bottom_navigation_bar'>
   <image bindtap='back_homepage_click' class='table_home_img' src='../../images/store/tab_home.png'></image>
   <image bindtap='making_call_click' class='table_home_img' src='../../images/store/tab_phone.png'></image>
-   <button  open-type="share"><image class='table_home_img' src='../../images/store/tab_share_u.png'></image></button>
+  <button open-type="share">
+    <image class='table_home_img' src='../../images/store/tab_share_u.png'></image>
+  </button>
 </view>

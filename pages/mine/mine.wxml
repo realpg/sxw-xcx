@@ -9,7 +9,7 @@
 
     <view class='itemscenter'>
       <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{business_card.mobile}} </text>
+      <text>{{business_card.businesscard.mobile}} </text>
     </view>
     <view class='itemscenter' >
       <image class='iconImg' src='../../images/store/company.png'></image>
@@ -38,7 +38,7 @@
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.businesscard.favorite}}                  </text>
+        <text class='number'>{{business_card.businesscard.userid}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>

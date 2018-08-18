@@ -19,8 +19,8 @@ page{
   display: flex;
   font-size: 28rpx;
   line-height: 70rpx;
-  margin-left: 5%;
   align-items: center;
+  width: 480rpx;
 }
 .name_input{
   width: 300rpx;

@@ -1,116 +1,186 @@
 // pages/information/information.js
+const app = getApp()
+const util = require('../../utils/util.js');
+var that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    slideshow: [{ id: 1, slideshowImg: '../../images/index/Yarn_image1.jpg' }, { id: 2, slideshowImg: '../../images/index/Yarn_image.jpg' }, { id: 3, slideshowImg: '../../images/index/Yarn_image1.jpg' }],
-   
-    //点击改变颜色
-    all_color: '',
-    supply_color: '',
-    buy_color: '',
-    equipment_color: '',
-    information_list: [{ id: 0, information_Img: '../../images/other/pic_list.png', title: '储备棉最新公告出炉，美国白宫称将会对中国商家购买有限制美国白宫称将会对中国商家购买有限制', time: '2018-06-04' }, { id: 1, information_Img: '../../images/other/pic_list.png', title: '储备棉最新公告出炉，美国白宫称将会对中国商家购买有限制美国白宫称将会对中国商家购买有限制', time: '2018-06-04' }, { id: 2, information_Img: '../../images/other/pic_list.png', title: '储备棉最新公告出炉，美国白宫称将会对中国商家购买有限制美国白宫称将会对中国商家购买有限制', time: '2018-06-04' }, { id: 3, information_Img: '../../images/other/pic_list.png', title: '储备棉最新公告出炉，美国白宫称将会对中国商家购买有限制美国白宫称将会对中国商家购买有限制', time: '2018-06-04' },]
+    slideshow: [],
+
+    classify: [],
+
+    information_list: []
   },
 
-//资讯详情
-  information_details_click:function() {
+  //资讯详情
+  information_details_click: function (e) {
+    console.log(e.currentTarget.dataset.itemid)
     wx.navigateTo({
-      url: "../Information_details/Information_details"
+      url: "../Information_details/Information_details?itemid=" + e.currentTarget.dataset.itemid
     })
   },
   //信息栏选择
   selectClick: function (e) {
-    var that = this;
-    // console.log(e)
-    if (e.target.dataset.nn == 1) {
-      that.setData({
-        all_color: '#01C46C',
-        supply_color: '#9B9B9B',
-        buy_color: '#9B9B9B',
-        equipment_color: '#9B9B9B',
-      })
-    } else if (e.target.dataset.nn == 2) {
+    for (let i in that.data.classify) {
+      if (that.data.classify[i].catid == e.currentTarget.dataset.id) {
+        that.data.classify[i].setchoose = true;
+        var conditions = JSON.stringify({ key: ['catid'], value: [that.data.classify[i].catid] });
+        let param = {
+          userid: wx.getStorageSync('UserInfo').userid,
+          _token: wx.getStorageSync('UserInfo')._token,
+          conditions: conditions
+        };
+        util.InfoListByCondition(param, function (res) {
+          console.log('根据条件查询资讯列表', res);
+          that.data.information_list = [];
+          for (let i in res.data) {
+            that.data.information_list.push({
+              addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
+              itemid: res.data[i].itemid,
+              title: res.data[i].title,
+              thumb: res.data[i].thumb
+            })
+          }
+          that.setData({
+            information_list: that.data.information_list
+          })
 
-      that.setData({
-        all_color: '#9B9B9B',
-        supply_color: '#01C46C',
-        buy_color: '#9B9B9B',
-        equipment_color: '#9B9B9B',
-      })
-    } else if (e.target.dataset.nn == 3) {
+        }, null)
 
-      that.setData({
-        all_color: '#9B9B9B',
-        supply_color: '#9B9B9B',
-        buy_color: '#01C46C',
-        equipment_color: '#9B9B9B',
-      })
-    } else if (e.target.dataset.nn == 4) {
-
-      that.setData({
-        all_color: '#9B9B9B',
-        supply_color: '#9B9B9B',
-        buy_color: '#9B9B9B',
-        equipment_color: '#01C46C',
-      })
+      }
+      if (that.data.classify[i].catid != e.currentTarget.dataset.id) {
+        that.data.classify[i].setchoose = false
+      }
     }
+    that.setData({
+      classify: that.data.classify
+    })
+
   },
+
+  getBanner: function () {
+    util.getBanner({}, function (ret) {
+      console.log(ret);
+      var slideshow = that.data.slideshow;
+      for (var i in ret) {
+        slideshow.push({
+          slideshowImg: ret[i].img
+        })
+      }
+      that.setData({
+        slideshow: slideshow
+      })
+    }, null)
+  },
+
+  Loading: function () {
+    let param = {
+      userid: wx.getStorageSync('UserInfo').userid,
+      _token: wx.getStorageSync('UserInfo')._token,
+      mid: 21
+    };
+    util.setClassify(param, function (res) {
+      console.log('分类列表', res);
+      for (let i in res) {
+
+        that.data.classify.push({
+          catid: res[i].catid,
+          catname: res[i].catname,
+          setchoose: i == 0 ? true : false
+        })
+      }
+      that.setData({
+        classify: that.data.classify
+      })
+
+      console.log(that.data.classify[0].catid)
+      var conditions = JSON.stringify({ key: ['catid'], value: [that.data.classify[0].catid] });
+      let param = {
+        userid: wx.getStorageSync('UserInfo').userid,
+        _token: wx.getStorageSync('UserInfo')._token,
+        conditions: conditions
+      };
+      util.InfoListByCondition(param, function (res) {
+        console.log('根据条件查询资讯列表', res);
+        for (let i in res.data) {
+          that.data.information_list.push({
+            addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
+            itemid: res.data[i].itemid,
+            title: res.data[i].title,
+            thumb: res.data[i].thumb
+          })
+        }
+        that.setData({
+          information_list: that.data.information_list
+        })
+
+      }, null)
+
+      console.log(that.data.classify)
+    }, null)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    that = this;
+    that.getBanner();
+    that.Loading();
+
+
+    // that.InfoList();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

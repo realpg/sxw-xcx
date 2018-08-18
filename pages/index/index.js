@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
-var app;
-
+var app = getApp();
 const util = require('../../utils/util.js');
 
 Page({
@@ -35,38 +34,9 @@ Page({
 
     //店铺轮播图
 
-    recommend_store_one: [{
-      id: 0,
-      store_name: '南通银源纺织科技',
-      store_type: '供应',
-      lable_one: '差别化',
-      lable_two: '纺织用纱',
-      store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支'
-    }, {
-      id: 2,
-      store_name: '南通银源纺织科技11',
-      store_type: '供应',
-      lable_one: '差别化',
-      lable_two: '纺织用纱',
-      store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支'
-    }],
+    recommend_store_one: [],
 
-
-    recommend_store_two: [{
-      id: 0,
-      store_name: '南通银源纺织科技1',
-      store_type: '纺机',
-      lable_one: '差别化',
-      lable_two: '纺织用纱',
-      store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支'
-    }, {
-      id: 2,
-      store_name: '南通银源纺织科技',
-      store_type: '供应',
-      lable_one: '差别化',
-      lable_two: '纺织用纱',
-      store_info: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支'
-    }],
+    recommend_store_two: [],
 
     //点击改变颜色
     all_color: '',
@@ -81,6 +51,7 @@ Page({
     buy_next_page: 1,
     fjmyList: [],
     fjmy_next_page: 1,
+    messageALL: [],
   },
 
   //搜索框跳转
@@ -99,43 +70,56 @@ Page({
     })
   },
 
-  Loading: function () {
+  setLikeClick: function (e) {
     const that = this;
-
-    var param = {};
-    util.getBuyList(param, function (res) {
-      console.log(res);
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    var param = {
+      // userid: wx.getStorageSync('UserInfo').userid.userid,
+      // _token: wx.getStorageSync('UserInfo')._token,
+      item_mid: e.currentTarget.dataset.mid,
+      item_id: e.currentTarget.dataset.id
+    };
+    util.setLike(param, function (res) {
+      console.log('点击点赞', res);
+      for (let i in that.data.message){
+        if (that.data.message[i].id == res.itemid){
+          that.data.message[i].I_agree=true;
+          that.data.message[i].like++;
+        }
+      }
       that.setData({
-        AllmessageList: res,
-        message: res.data
+        message:that.data.message
       })
     }, null)
 
+  },
 
-    // wx.request({
-    //   url: app.https.url + 'api/sell/getList',
-    //   data: {
-    //     userid: wx.getStorageSync('UsetInfo').userid,
-    //     _token: wx.getStorageSync('UsetInfo')._token
-    //   },
-    //   header: { 'content-type': 'application/x-www-form-urlencoded' },
-    //   method: 'GET',
-    // success: function (res) {
-    //   console.log(res.data.ret);
-    //   that.setData({
-    //     AllmessageList: res.data.ret,
-    //     message: res.data.ret.data
-    //   })
-    // },
-    //   fail: function (res) { },
-    // })
+  Loading: function () {
+    const that = this;
+    var param = {
+      userid: wx.getStorageSync('UserInfo').userid.userid,
+      _token: wx.getStorageSync('UserInfo')._token,
+      inviter_userid: that.data.userid
+    };
+    util.getBuyInvited(param, function (res) {
+      console.log('邀请', res);
+    }, null)
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
+  onLoad: function (options) {
     const that = this;
+    var scene = decodeURIComponent(options.scene)
+    if (options.userid) {
+      that.setData({
+        userid: options.userid
+      })
+      that.Loading();
+    }
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -144,13 +128,45 @@ Page({
     app = getApp();
     const that = this;
     // that.Loading();
+    //首页推荐
+    util.homepage_recommend({}, function (ret) {
+      console.log(222222, ret);
+      var recommend_store_one = that.data.recommend_store_one;
+      var recommend_store_two = that.data.recommend_store_two;
+      for (var i in ret) {
+        if (ret[i].listorder % 2 == 0) {
+          console.log(1314, ret)
+          recommend_store_one.push({
+            id: ret[i].info.itemid, //信息id
+            store_name: ret[i].info.company,
+            mid: ret[i].item_mid,
+            lableList: ret[i].info.tags,
+            store_info: ret[i].info.introduce,
+          })
+        } else {
+          recommend_store_two.push({
+            id: ret[i].info.itemid, //信息id
+            store_name: ret[i].info.company,
+            mid: ret[i].item_mid,
+            lableList: ret[i].info.tags,
+            store_info: ret[i].info.introduce,
+          })
+        }
+      }
+      that.setData({
+        recommend_store_one: recommend_store_one,
+        recommend_store_two: recommend_store_two,
+      })
+    })
 
+    //首页轮播图
     util.getBanner({}, function (ret) {
       console.log(ret);
       var slideshow = that.data.slideshow;
       for (var i in ret) {
         slideshow.push({
           slideshowImg: ret[i].img
+
         })
       }
       that.setData({
@@ -174,24 +190,18 @@ Page({
           if (ret.data[i].user)
             sellList.push({
               id: ret.data[i].itemid, //信息id
+              mid: 5,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
               name: ret.data[i].user.truename, //用户姓名
               position: ret.data[i].businesscard.career, //职位
+              mobile: ret.data[i].businesscard.mobile,//电话
               demand: '供应', //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
-              lableList: [ //标签 后续跟进
-                {
-                  lable: '混纺纱'
-                },
-                {
-                  lable: '纺织用纱'
-                },
-                {
-                  lable: '混纺纱'
-                },
-              ],
+              lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
+              I_agree: ret.data[i].I_agree,
+              I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
                   message_Image: ret.data[i].thumb
@@ -204,6 +214,7 @@ Page({
                 }
                 ],
               time: ret.data[i].adddate, //发布时间
+              addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               like: ret.data[i].agree //点赞
@@ -234,24 +245,18 @@ Page({
           if (ret.data[i].user)
             buyList.push({
               id: ret.data[i].itemid, //信息id
+              mid: 6,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
               name: ret.data[i].businesscard.truename, //用户姓名
               position: ret.data[i].businesscard.career, //职位
+              mobile: ret.data[i].businesscard.mobile,//电话
               demand: '求购', //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
-              lableList: [ //标签 后续跟进
-                {
-                  lable: '混纺纱'
-                },
-                {
-                  lable: '纺织用纱'
-                },
-                {
-                  lable: '混纺纱'
-                },
-              ],
+              lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
+              I_agree: ret.data[i].I_agree,
+              I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
                   message_Image: ret.data[i].thumb
@@ -264,6 +269,7 @@ Page({
                 }
                 ],
               time: ret.data[i].adddate, //发布时间
+              addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               like: ret.data[i].agree //点赞
@@ -295,24 +301,18 @@ Page({
           if (ret.data[i].user)
             fjmyList.push({
               id: ret.data[i].itemid, //信息id
+              mid: 88,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
               name: ret.data[i].businesscard.truename, //用户姓名
               position: ret.data[i].businesscard.career, //职位
+              mobile: ret.data[i].businesscard.mobile,//电话
               demand: '纺机', //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
-              lableList: [ //标签 后续跟进
-                {
-                  lable: '混纺纱'
-                },
-                {
-                  lable: '纺织用纱'
-                },
-                {
-                  lable: '混纺纱'
-                },
-              ],
+              lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
+              I_agree: ret.data[i].I_agree,
+              I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
                   message_Image: ret.data[i].thumb
@@ -325,13 +325,14 @@ Page({
                 }
                 ],
               time: ret.data[i].adddate, //发布时间
+              addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               like: ret.data[i].agree //点赞
             })
         }
         console.log("纺机", that.data.fjmyList)
-        
+
         that.setData({
           fjmyList: fjmyList,
           fjmy_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
@@ -339,7 +340,7 @@ Page({
 
         var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
         messageALL = that.sort(messageALL);
-        
+
         that.setData({
           message: messageALL,
         })
@@ -355,6 +356,7 @@ Page({
       hasUserInfo: true
     })
   },
+
   classifyClick: function (e) {
     var that = this;
     console.log(e.currentTarget.dataset.id);
@@ -368,21 +370,31 @@ Page({
   // 供应信息 采购大厅 二手设备 签到
   classifyClick: function (e) {
     const that = this;
-    if (e.currentTarget.dataset.id < 4) {
+    if (e.currentTarget.dataset.id != 4) {
       wx.navigateTo({
         url: '../information_provision/information_provision?id=' + e.currentTarget.dataset.id,
       })
+    } else {
+      if (wx.getStorageSync('UserInfo')) {
+        let param = {
+          userid: wx.getStorageSync('UserInfo').userid,
+          _token: wx.getStorageSync('UserInfo')._token,
+        };
+        util.signIn(param, function (ret) {
+          console.log(ret)
+          wx.showToast({
+            title: '签到成功',
+            duration: 1500
+          })
+        });
+      } else {
+        wx.showToast({
+          title: '请先登录',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     }
-  },
-
-  //查看名片
-  store_particulars_click: function () {
-    wx.navigateTo({
-      url: '../store_particulars/store_particulars',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
   },
 
   //联系客服
@@ -392,42 +404,62 @@ Page({
     })
   },
 
-//排序
-  sort: function (messageALL){
+  //联系商家
+  phoneClick: function (e) {
+    const that = this;
+    // var phoneNumber =e.currentTarget.dataset.mobile 
+    // console.log(888, phoneNumber )
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.mobile  //仅为示例，并非真实的电话号码
+    })
+  },
+  //排序
+  sort: function (messageALL) {
     var that = this;
-    
-    for (var i = 0; i < messageALL.length; i++) {
-      for (var u = i + 1; u < messageALL.length; u++) {
-        if (messageALL[i].icon_vip < messageALL[u].icon_vip) if (messageALL[i].time < messageALL[u].time) {
+    var arr = messageALL;
+    console.log("排序", arr);
+    for (var i = 0; i < arr.length; i++)
+      for (var u = i + 1; u < arr.length; u++) {
+        if (arr[i].addtime < arr[u].addtime) {
           //如果 array[i] > <array[u] ，就声明一个缓存遍历 num 存放大的数据，然后把两个数据的下标进行更换，达到升序排序的效果。
-          var num = messageALL[i];
-          messageALL[i] = messageALL[u];
-          messageALL[u] = num;
-        }
-        else if (messageALL[i].icon_vip == messageALL[u].icon_vip&&messageALL[i].time < messageALL[u].time) {
-          //如果 array[i] > <array[u] ，就声明一个缓存遍历 num 存放大的数据，然后把两个数据的下标进行更换，达到升序排序的效果。
-          var num = messageALL[i];
-          messageALL[i] = messageALL[u];
-          messageALL[u] = num;
+          var num = arr[i];
+          arr[i] = arr[u];
+          arr[u] = num;
         }
       }
+
+    for (var i = 0; i < arr.length; i++) {
+      for (var u = i + 1; u < arr.length; u++) {
+        if (arr[i].icon_vip < arr[u].icon_vip) {
+          //如果 array[i] > <array[u] ，就声明一个缓存遍历 num 存放大的数据，然后把两个数据的下标进行更换，达到升序排序的效果。
+          var num = arr[i];
+          arr[i] = arr[u];
+          arr[u] = num;
+        }
+
+      }
+
     }
-    return messageALL;  
+
+    return arr;
   },
 
   //信息栏选择
   selectClick: function (e) {
-    var that = this;    
+    var that = this;
+
     // console.log(e)
-    if (e.target.dataset.nn == 1){  
+    if (e.target.dataset.nn == 1) {
       var messageALL = that.data.sellList.concat(that.data.buyList.concat(that.data.fjmyList));
+      console.log('排序前', messageALL)
       messageALL = that.sort(messageALL);
+      console.log('排序后', messageALL)
       that.setData({
         all_color: '#01C46C',
         supply_color: '#9B9B9B',
         buy_color: '#9B9B9B',
         equipment_color: '#9B9B9B',
-        message:messageALL,
+        message: messageALL,
       })
     } else if (e.target.dataset.nn == 2) {
       that.setData({
@@ -459,12 +491,9 @@ Page({
   },
 
   //查看详情
-  see_details_click: function () {
+  see_details_click: function (e) {
     wx.navigateTo({
-      url: '../particulars/particulars',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+      url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
     })
   }
 })

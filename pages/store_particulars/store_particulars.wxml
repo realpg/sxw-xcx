@@ -1,42 +1,42 @@
 <!--名片 -->
 <view class='Css'></view>
-<view class='business_card' wx:for='{{business_card}}'>
+<view class='business_card'>
   <view class='business_card_css'>
-    <view class='name'>{{item.name}}
-      <text class='post'>{{item.post}}</text>
-      <image class='headImg' src='../../images/index/head_portrait.png'></image>
+    <view class='name'>{{business_card.truename}}
+      <text class='post'>{{business_card.career}}</text>
+      <image class='headImg' src='{{business_card.avatarUrl}}'></image>
     </view>
 
     <view>
       <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{item.phone}} </text>
+      <text>{{business_card.mobile}} </text>
     </view>
     <view>
       <image class='iconImg' src='../../images/store/company.png'></image>
-      <text>{{item.company}} </text>
+      <text>{{business_card.company}} </text>
     </view>
     <view>
       <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{item.address}} </text>
+      <text>{{business_card.address}} </text>
     </view>
 
-    <view class='The_main'>主营：{{item.The_main}}</view>
+    <view class='The_main'>主营：{{business_card.business}}</view>
     <view class='options'>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/eye.png' mode='widthFix'></image>
-        <text class='number'>{{item.browse}}                  </text>
+        <text class='number'>{{business_card.view}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/dianzan.png' mode='widthFix'></image>
-        <text class='number'>{{item.Like}}                  </text>
+        <text class='number'>{{business_card.agree}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{item.collect}}                  </text>
+        <text class='number'>{{business_card.favorite}}                  </text>
       </view>
       <view class='browse'>
         <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-        <text class='number'>{{item.transpond}} </text>
+        <text class='number'>分享 </text>
       </view>
     </view>
   </view>
@@ -46,58 +46,52 @@
 
 <!-- 具体描述 -->
 <view class='specific'>
-  <view class='specific_css'>{{specific}}</view>
-  <view class='view_details' bindtap='view_details_click'>
+  <view class='specific_css'>{{business_card.introduce}}</view>
+  <view class='view_details' data-introduce='{{business_card.introduce}}' bindtap='view_details_click'>
     <text class='view_details_css'>查看详情</text>
   </view>
 </view>
 
 
 <!--具体信息-->
-<view class='message' wx:for='{{message}}' wx:for-index='id'>
+<view class='message' wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'></image>
-      <image class='icon_vip' src='{{item.icon_vip}}' mode='widthFix'></image>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'/>
+      <image class='icon_vip' src='{{item.icon_vip}}' mode='widthFix'/>
     </view>
 
     <view class='The_specific_details'>
-      <view class='The_specific_details_one'>
-        <text class='datails_name'>{{item.name}}</text>
-        <text class='position'>{{item.position}}</text>
-        <text class='demand'>{{item.demand}}</text>
-        <image class='btn_dianhua' src='../../images/index/btn_dianhua.png' mode='widthFix'></image>
-      </view>
-      <view class='company'>{{item.company}}</view>
-      <view>
-        <text class='lable_three'>{{item.lable_three}}</text>
-        <text class='lable_four'>{{item.lable_four}}</text>
-        <text class='lable_five'>{{item.lable_five}}</text>
-      </view>
-      <view class='details'>{{item.details}}</view>
+        <view class='The_specific_details_one'>
+          <text class='datails_name'>{{item.name}}</text>
+          <text class='position'>{{item.position}}</text>
+          <text class='demand'>{{item.demand}}</text>
+          <image bindtap='phoneClick' bindtap='making_call_click' class='btn_dianhua' data-mobile='{{item.mobile}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
+        </view>
+        <view class='company'>{{item.company}}</view>
+        <view>
+          <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
+          <text wx:if="{{item.lableList[1]}}" class='lable_four'>{{item.lableList[1].tagname}}</text>
+          <text wx:if="{{item.lableList[2]}}" class='lable_five'>{{item.lableList[2].tagname}}</text>
+        </view>
+        <view class='details'>{{item.details}}</view>
 
-      <view class='message_Img'>
-        <view class='message_Image' wx:for='{{item.message_Img}}'>
-          <image class='message_Image_Css' src='{{item.message_Image}}'></image>
+        <view class='message_Img'>
+          <view class='message_Image' wx:for='{{item.message_Img}}'>
+          <image class='message_Image_Css' src='{{item.message_Image}}'/>
+          </view>
         </view>
-      </view>
 
-      <view class='time'>{{item.time}}</view>
-      <view>
-        <image class='icon_map' src='../../images/index/icon_map.png'></image>
-        <text class='address'>存放地：{{item.address}}</text>
-      </view>
-      <view class='eye_dianzan'>
-        <view class='eye_Css'>
-          <image class='eye' src='../../images/index/eye.png'></image>
-          <text class='view'>{{item.page_view}}</text>
+        <view class='time'>{{item.time}}</view>
+        <view>
+          <image class='icon_map' src='../../images/index/icon_map.png'/>
+          <text class='address'>存放地：{{item.address}}</text>
         </view>
-        <view class='dianzan_Css'>
-          <image class='dianzan' src='../../images/index/dianzan.png'></image>
-          <text class='like'>{{item.like}}</text>
+        <view class='eye_dianzan'>
+          <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
+            <view class='dianzan_Css'><image class='dianzan'  src='../../images/index/dianzan.png'/> <text class='like'>{{item.like}}</text></view>
+            <view class='see_details' data-id='{{item.id}}' data-mid='{{item.mid}}' bindtap='see_details_click'>查看详情 >></view>
         </view>
-        <view class='see_details'>查看详情 >></view>
-      </view>
     </view>
   </view>
 </view>

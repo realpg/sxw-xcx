@@ -1,9 +1,7 @@
 <!-- 排行榜 -->
 <!--分类-->
 <view class='information_classification'>
-  <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>日排行</view>
-  <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>周排行</view>
-  <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>月排行</view>
+  <view class='{{item.setchoose?"all":"allhide"}}' wx:for='{{classify}}' data-id='{{item.id}}' bindtap='selectClick'>{{item.name}}</view>
 </view>
 
 
@@ -12,27 +10,27 @@
 
   <view class='business_card'  wx:for='{{business_card}}' wx:for-index='index' data-index='{{index}}' >
     <view class='business_card_css'>
-      <image class='icon_first' src='../../images/store/icon_{{index}}.png'></image>
-      <view class='name'>{{item.businessCard.truename}}
-        <text class='post'>{{item.businessCard.post}}</text>
+      <image class='icon_first' src='../../images/store/icon_{{index+1}}.png'></image>
+      <view class='name'>{{item.businesscard.truename}}
+        <text class='post'>{{item.businesscard.career}}</text>
         <text class='card_details'>名片详情</text>
-        <image class='headImg' src='{{item.businessCard.headImg}}'></image>
+        <image class='headImg' src='{{item.businesscard.avatarUrl}}'></image>
       </view>
 
       <view>
         <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-        <text>{{item.businessCard.phone}} </text>
+        <text>{{item.businesscard.mobile}} </text>
       </view>
       <view>
         <image class='iconImg' src='../../images/store/company.png'></image>
-        <text>{{item.businessCard.company}} </text>
+        <text>{{item.businesscard.company}} </text>
       </view>
       <view>
         <image class='iconImg' src='../../images/store/map.png'></image>
-        <text>{{item.businessCard.address}} </text>
+        <text>{{item.businesscard.address}} </text>
       </view>
 
-      <view class='The_main'>主营：{{item.businessCard.The_main}}</view>
+      <view class='The_main'>主营：{{item.businesscard.business}}</view>
     </view>
   </view>
 
@@ -43,13 +41,13 @@
  <view class='messageList' wx:for='{{business_card}}' wx:if='{{index >= 3}}' data-id='{{item.id}}'>
   <view class='messageListCss'>
     <view class='message'>
-      <image class='head_Img' src='{{item.headImg}}'></image>
+      <image class='head_Img' src='{{item.businesscard.avatarUrl}}'></image>
       <view class='messageCss'>
         <view class='employee_information'>
-          <view class='name'>{{item.username}}</view>
-          <view class='post'>{{item.post}}</view>
+          <view class='name'>{{item.businesscard.truename}}</view>
+          <view class='post'>{{item.businesscard.career}}</view>
         </view>
-        <view class='companyName'>{{item.company}}</view>
+        <view class='companyName'>{{item.businesscard.company}}</view>
       </view>
     </view>
 
@@ -59,12 +57,12 @@
       </view>
       <view class='pageView'>
         <image class='pageView_Img' src='../../images/index/eye.png'></image>
-        <text class='number'>{{item.number}}</text>
+        <text class='number'>{{item.businesscard.mobile}}</text>
       </view>
     </view>
   </view>
   <view class='main_business'>
-    <view>主营：{{item.The_main}}</view>
+    <view>主营：{{item.businesscard.business}}</view>
   </view>
 </view>
 

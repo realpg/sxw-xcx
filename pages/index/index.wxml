@@ -45,21 +45,24 @@
       <block wx:for='{{recommend_store_one}}'>
         <swiper-item>
           <view>
-            <view class='recommend_store_css' data-id='{{item.id}}'bindtap='store_particulars_click'> 
+            <view class='recommend_store_css' data-id='{{item.id}}'data-mid='{{item.mid}}' bindtap='see_details_click' > 
               <view class='store_name'>{{item.store_name}}</view>
               <view class='store_lable'>
-                <view wx:if="{{item.store_type =='供应'}}" class='store_type'>{{item.store_type}}</view>
-                <view wx:if="{{item.store_type =='求购'}}" class='store_type' style='background:#F7CF9A'>{{item.store_type}}</view>
-                <view wx:if="{{item.store_type =='纺机'}}" class='store_type' style='background:#9A9CF7'>{{item.store_type}}</view>
-                <view class='lable_one'>{{item.lable_one}}</view>
-                <view class='lable_two'>{{item.lable_two}}</view>
+                <view wx:if="{{item.mid =='5'}}" class='store_type'>供应</view>
+                <view wx:if="{{item.mid =='6'}}" class='store_type' style='background:#F7CF9A'>求购</view>
+                <view wx:if="{{item.mid =='88'}}" class='store_type' style='background:#9A9CF7'>纺机</view>
+               <view wx:for='{{item.lableList}}' wx:for-index='index'>
+                   <view class='lable_one' wx:if='{{index==0}}'>{{item.tagname}}</view>
+                  <view class='lable_two' wx:if='{{index==1}}'>{{item.tagname}}</view>
+                </view>
               </view>
               <view class='store_info'>{{item.store_info}}</view>
               <view class='Enter_store'>
-                <text class='Enter_store_css'>查看名片</text>
+                <text class='Enter_store_css'   >查看详情</text>
               </view>
             </view>
           </view>
+         
         </swiper-item>
       </block>
     </swiper>
@@ -70,15 +73,17 @@
             <view class='recommend_store_css' data-id='{{item.id}}'bindtap='store_particulars_click'>
               <view class='store_name'>{{item.store_name}}</view>
               <view class='store_lable'>
-                <view wx:if="{{item.store_type =='供应'}}" class='store_type'>{{item.store_type}}</view>
-                <view wx:if="{{item.store_type =='求购'}}" class='store_type' style='background:#F7CF9A'>{{item.store_type}}</view>
-                <view wx:if="{{item.store_type =='纺机'}}" class='store_type' style='background:#9A9CF7'>{{item.store_type}}</view>
-                <view class='lable_one'>{{item.lable_one}}</view>
-                <view class='lable_two'>{{item.lable_two}}</view>
+                <view wx:if="{{item.mid =='5'}}" class='store_type'><text>供应</text></view>
+                <view wx:if="{{item.mid =='6'}}" class='store_type' style='background:#F7CF9A'><text>求购</text></view>
+                <view wx:if="{{item.mid=='88'}}" class='store_type' style='background:#9A9CF7'><text>纺机</text></view>
+                <view wx:for='{{item.lableList}}' wx:for-index='index'>
+                   <view class='lable_one' wx:if='{{index==0}}'>{{item.tagname}}</view>
+                  <view class='lable_two' wx:if='{{index==1}}'>{{item.tagname}}</view>
+                </view>
               </view>
               <view class='store_info'>{{item.store_info}}</view>
               <view class='Enter_store'>
-                <text class='Enter_store_css'>查看名片</text>
+                <text class='Enter_store_css' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情</text>
               </view>
             </view>
           </view>
@@ -107,16 +112,18 @@
         <view class='The_specific_details_one'>
           <text class='datails_name'>{{item.name}}</text>
           <text class='position'>{{item.position}}</text>
-         <text  wx:if="{{item.demand =='供应'}}" class='demand'>{{item.demand}}</text>
-          <text  wx:if="{{item.demand =='求购'}}" class='demand' style='background:#F7CF9A'>{{item.demand}}</text>
-          <text  wx:if="{{item.demand =='纺机'}}" class='demand' style='background:#9A9CF7'>{{item.demand}}</text>
-          <image bindtap='phoneClick' class='btn_dianhua' data-id='{{item.id}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
+         <text  wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
+          <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
         </view>
         <view class='company'>{{item.company}}</view>
-        <view>
-          <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].lable}}</text>
-          <text wx:if="{{item.lableList[1]}}" class='lable_four'>{{item.lableList[1].lable}}</text>
-          <text wx:if="{{item.lableList[2]}}" class='lable_five'>{{item.lableList[2].lable}}</text>
+        <view class='lable'>
+          <view wx:for='{{item.lableList}}' wx:for-index='index'>
+            <text class='lable_three' wx:if='{{index==0}}' >{{item.tagname}}</text>
+            <text class='lable_four' wx:if='{{index==1}}' >{{item.tagname}}</text>
+            <text class='lable_five' wx:if='{{index==2}}' >{{item.tagname}}</text>
+          </view>
         </view>
         <view class='details'>{{item.details}}</view>
 
@@ -127,14 +134,15 @@
         </view>
 
         <view class='time'>{{item.time}}</view>
-        <view>
+        <view class='address_css'>
           <image class='icon_map' src='../../images/index/icon_map.png'/>
           <text class='address'>存放地：{{item.address}}</text>
         </view>
         <view class='eye_dianzan'>
           <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
-            <view class='dianzan_Css'><image class='dianzan'  src='../../images/index/dianzan.png'/> <text class='like'>{{item.like}}</text></view>
-            <view class='see_details' bindtap='see_details_click'>查看详情 >></view>
+            <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+            <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
+            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
         </view>
     </view>
   </view>

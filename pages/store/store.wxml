@@ -9,14 +9,24 @@
 <!--分类-->
 
 <view class='classifyList'>
-  <view class='classify' wx:for='{{classify}}' wx:for-index='id'>
-    <view class='ci' bindtap='classifyClick' data-id='{{item.id}}'>
+  <view class='classify' wx:for='{{classify}}'>
+    <view class='ci' bindtap='classifyClick' data-name='{{item.name}}' data-id='{{item.id}}'>
       <view class='ciImg'>
-        <image class='cimg' src='{{item.cimg}}'></image>
+        <image class='cimg' src='{{item.icon_path}}'></image>
       </view>
-      <view class='ciName'>{{item.ciName}}</view>
+      <view class='ciName'>{{item.name}}</view>
     </view>
   </view>
+
+   <view class='classify'>
+    <view class='ci' bindtap='classifyClick' data-name='{{classifys.name}}' >
+      <view class='ciImg'>
+        <image class='cimg' src='{{classifys.icon_path}}'></image>
+      </view>
+      <view class='ciName'>{{classifys.name}}</view>
+    </view>
+  </view>
+
 </view>
 
 <!--店铺轮播图 -->
@@ -25,12 +35,12 @@
       <block wx:for='{{recommend_store_one}}'>
         <swiper-item class='recommend_store'>
 
-          <view class='recommend_store_css' bindtap='enter_store_click' data-id='{{item.id}}'>
+          <view class='recommend_store_css' bindtap='messageList_click' data-id='{{item.userid}}'>
             <view class='business_card_css'>
               <view class='name_css'>{{item.name}}
                 <text class='post_css'>{{item.post}}</text>
                
-                <image class='headImg_css' src='../../images/index/head_portrait.png'></image>
+                <image class='headImg_css' src='{{item.headImg}}'></image>
               </view>
 
               <view>
@@ -57,12 +67,12 @@
       <block wx:for='{{recommend_store_two}}'>
         <swiper-item class='recommend_store'>
 
-          <view class='recommend_store_css' bindtap='enter_store_click' data-id='{{item.id}}'>
+          <view class='recommend_store_css' bindtap='messageList_click' data-id='{{item.userid}}'>
             <view class='business_card_css'>
               <view class='name_css'>{{item.name}}
                 <text class='post_css'>{{item.post}}</text>
                
-                <image class='headImg_css' src='../../images/index/head_portrait.png'></image>
+                <image class='headImg_css' src='{{item.headImg}}'></image>
               </view>
 
               <view>
@@ -96,7 +106,7 @@
 
 <!--展示信息列表 -->
 <view class='messageList' wx:for='{{messageList}}' data-id='{{item.userid}}'>
-  <view class='messageListCss' bindtap='messageList_click'>
+  <view class='messageListCss' data-id='{{item.userid}}' bindtap='messageList_click'>
     <view class='message'>
       <image class='iconImg' src='{{item.avatarUrl}}'></image>
       <view class='messageCss'>

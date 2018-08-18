@@ -1,0 +1,81 @@
+/* pages/reclassifyCard/reclassifyCard.wxss */
+page {
+  background: #f5f5f5;
+}
+
+.messageList{
+  background: #fff;
+  width:90%;
+  margin: auto;
+  padding:3% 5%; 
+  margin-top: 20rpx;
+}
+.messageListCss{
+ display: flex;
+ border-bottom: 1rpx solid #f5f5f5;
+ justify-content: space-between;
+line-height: 50rpx;
+padding-bottom: 3%;
+}
+.message{
+  display: flex;
+   line-height: 50rpx;
+}
+.messageCss{
+  margin-left: 20rpx;
+}
+.employee_information{
+  display: flex;
+  line-height: 50rpx;
+  align-items: center;
+}
+.name{
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.post{
+  margin-left: 15rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.companyName{
+  color: #666;
+  font-size: 26rpx;
+}
+.main_business{
+  margin-top: 10rpx;
+  line-height: 46rpx;
+  font-size: 28rpx;
+   display: -webkit-box; 
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.enter{
+  background: #01C46C;
+  color: white;
+  font-size: 22rpx;
+  padding: 5rpx 25rpx;
+  border-radius: 6rpx;
+}
+.number{
+  margin-left: 10rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.iconImg{
+width: 100rpx;
+height: 100rpx;
+border-radius: 50%;
+}
+.pageView_Img{
+  width: 30rpx;
+  height: 20rpx;
+}
+.vip_Img{
+  margin-left: 15rpx;
+  width: 26rpx;
+  height: 26rpx;
+}

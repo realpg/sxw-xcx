@@ -86,7 +86,8 @@ page {
 
 .business_card_css{
   padding: 3% 3% 5% 3%;
-  color: #666
+  color: #666;
+  height:300rpx;
 }
 .name_css{
   font-size: 26rpx;
@@ -105,14 +106,15 @@ page {
   background: #01C46C;
   color: white;
   font-size: 22rpx;
-  padding: 8rpx 25rpx;
+  padding: 6rpx 22rpx;
   border-radius: 6rpx;
   margin-left:30%;
 }
 .headImg_css{
-  width: 80rpx;
+  width: 80rpx; 
   height: 80rpx;
   float: right;
+  border-radius: 50%;
 }
 .iconImg_css{
   width: 25rpx;

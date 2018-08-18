@@ -9,37 +9,97 @@
         </view>
       </picker>
     </view>
-    <input class='search_input' type='text' placeholder='请输入名称/品牌/店铺'></input>
+    <input class='search_input' bindinput='seekInput' value='{{seekInp}}' type='text' placeholder='请输入名称/品牌/店铺'></input>
     <view class='searchIcon_css'>
-      <image class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
+      <image bindtap='seekClick' class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
     </view>
   </view>
 
+  </view>
+
+
+
+<view class='search searchs'>
+
   <view class='search_history'>
     <view class='recently_history'>最近搜索</view>
-    <view class='del_history'>
+    <view bindtap='clear' class='del_history'>
       <image class='icon_shape' src='../../images/index/icon_shape.png'></image>
       <text>清空</text>
     </view>
   </view>
 
+
+
   <!--展示最近搜索3条 -->
-  <view class='recently_history_css' wx:for='{{recently_history}}'>
-    <view class='record'>{{item.record}}</view>
+  <view class='recently_history_css' wx:for-index='index' data-index='{{index}}' wx:if='{{recently_history.length-1==index||recently_history.length-2==index||recently_history.length-3==index}}' wx:for='{{recently_history}}'>
+    <view bindtap='sethistoryClick' data-history='{{item}}' class='record'>{{item}}</view>
   </view>
 </view>
 
-
+    <view wx:if='{{messageList.length<1}}' >
 <!-- 搜索发现 -->
 <view class='search_found'>
   <view class='search_found_css'>搜索发现</view>
   <view class='CSS'>
     <view class='hot_word' wx:for='{{hot_word}}'>
       <view>
-        <text class='hot_word_css'>{{item.word}}</text>
+        <text bindtap='sethistoryClick' data-history='{{item}}' class='hot_word_css'>{{item}}</text>
       </view>
     </view>
   </view>
 </view>
 
 
+</view>
+
+<view wx:if='{{messageList.length>0}}' >
+<!--具体信息-->
+<view class='message' wx:for='{{messageList}}' wx:for-index='id'>
+  <view class='messageCss'    data-id='{{item.id}}'>
+    <view class='head_portrait'>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'/>
+      <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
+    </view>
+
+    <view class='The_specific_details'>
+        <view class='The_specific_details_one'>
+          <text class='datails_name'>{{item.name}}</text>
+          <text class='position'>{{item.position}}</text>
+         <text  wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
+          <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
+          <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
+        </view>
+        <view class='company'>{{item.company}}</view>
+        <view class='lable'>
+          <view wx:for='{{item.lableList}}' wx:for-index='index'>
+            <text class='lable_three' wx:if='{{index==0}}' >{{item.tagname}}</text>
+            <text class='lable_four' wx:if='{{index==1}}' >{{item.tagname}}</text>
+            <text class='lable_five' wx:if='{{index==2}}' >{{item.tagname}}</text>
+          </view>
+        </view>
+        <view class='details'>{{item.details}}</view>
+
+        <view class='message_Img'>
+          <view class='message_Image' wx:for='{{item.message_Img}}'>
+          <image class='message_Image_Css' src='{{item.message_Image}}'/>
+          </view>
+        </view>
+
+        <view class='time'>{{item.time}}</view>
+        <view class='address_css'>
+          <image class='icon_map' src='../../images/index/icon_map.png'/>
+          <text class='address'>存放地：{{item.address}}</text>
+        </view>
+        <view class='eye_dianzan'>
+          <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
+            <view class='dianzan_Css'><image class='dianzan'  src='../../images/index/dianzan.png'/> <text class='like'>{{item.like}}</text></view>
+            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
+        </view>
+    </view>
+  </view>
+</view>
+
+
+</view>

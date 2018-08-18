@@ -62,7 +62,7 @@ App({
     wx.login({
       success: function(res) {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // console.log("用户信息", res);
+        console.log("用户信息", res);
         util.getOpenId({
           code: res.code
         }, function(ret) {
@@ -89,7 +89,7 @@ App({
       // console.log("登录服务器成功", res.)
       app.globalData.userInfo = res;
       // console.log("用户信息", app.globalData.userInfo);
-      wx.setStorageSync('UsetInfo', app.globalData.userInfo)
+      wx.setStorageSync('UserInfo', app.globalData.userInfo)
 
       // console.log("登录服务器成功")
     }, function(res) {

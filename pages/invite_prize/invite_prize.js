@@ -1,5 +1,6 @@
 // pages/invite_prize/invite_prize.js
 var app = getApp();
+let that;
 Page({
   /**
    * 页面的初始数据
@@ -30,7 +31,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    console.log();
   },
 
   /**
@@ -68,6 +69,20 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    const that = this;
+    return {
+      title: '我分享了纱线网小程序',
+      path: 'pages/index/index?userid=' + wx.getStorageSync('UserInfo').userid,
+      success: function (res) {
+        // 转发成功
+        wx.showToast({
+          title: '转发成功',
+          duration: 1000
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

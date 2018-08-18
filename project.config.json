@@ -13,7 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.1.1",
 	"appid": "wxd80c70c308c99008",
-	"projectname": "%E7%BA%B1%E7%BA%BF%E7%BD%91",
+	"projectname": "%E7%BA%B1%E7%BA%BF%E7%BD%91817",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -33,12 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
 					"name": "详情页",
-					"pathName": "pages/mine_issue/mine_issue",
+					"pathName": "pages/particulars/particulars",
 					"query": ""
 				},
 				{
@@ -70,6 +70,47 @@
 					"name": "详情页",
 					"pathName": "pages/personal_data/personal_data",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "名片",
+					"pathName": "pages/store/store",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "邀请",
+					"pathName": "pages/invite_prize/invite_prize",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购买广告位",
+					"pathName": "pages/mine_promotion/mine_promotion",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "资讯列表",
+					"pathName": "pages/information/information",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "名片详情",
+					"pathName": "pages/store_particulars/store_particulars",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/search/search"
 				}
 			]
 		}

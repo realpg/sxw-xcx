@@ -3,15 +3,24 @@
 </view>
 
 <!-- 价格栏 -->
-<view class='price_column'>
+<view class='price_column' wx:if='{{advertisingVIP.length!=0}}'>
 <radio-group class="radio-group" bindchange="radioChange">
-  <radio class="radio"><text class='price'>{{gold_week}}金币/周</text></radio>
-  <radio class="radio" checked='checked'><text class='price'>{{gold_month}}金币/月</text></radio>
-  <radio class="radio"><text class='price'>{{gold_year}}金币/年</text></radio>
+  <radio value="{{advertisingVIP[2].amount}},{{advertisingVIP[2].id}}" class="radio"><text class='price'>{{advertisingVIP[2].amount}}金币/周</text></radio>
+  <radio value="{{advertisingVIP[1].amount}},{{advertisingVIP[1].id}}" class="radio" ><text class='price'>{{advertisingVIP[1].amount}}金币/月</text></radio>
+  <radio value="{{advertisingVIP[0].amount}},{{advertisingVIP[0].id}}" class="radio"><text class='price'>{{advertisingVIP[0].amount}}金币/年</text></radio>
 </radio-group>
 </view>
 
-<!--广告位截止时间 -->
+<!-- 价格栏 -->
+<view class='price_column' wx:else='{{sellingADs.length!=0}}'>
+<radio-group class="radio-group" wx:for='{{sellingADs}}' bindchange="radioChange">
+  <radio value="{{item.amount}}" class="radio"><text class='price'>{{item.amount}}金币/周</text></radio>
+  <radio value="{{item.amount}}" class="radio" ><text class='price'>{{item.amount}}金币/月</text></radio>
+  <radio value="{{item.amount}}" class="radio"><text class='price'>{{item.amount}}金币/年</text></radio>
+</radio-group>
+</view>
+
+<!-- 广告位截止时间 -->
 <view class='hint'>
   <view  class='hint_time'>广告位预计截止时间：{{hint_time}}</view>
   <view class='hint_context'>提示：支付成功后广告位会立即生效</view>
@@ -19,10 +28,10 @@
 
 <!-- 金币 -->
 <view class='gold' >
-  <view>我的金币：<text class='mine_gold'>{{mine_gold}}</text></view>
+  <view>我的金币：<text class='mine_gold'>{{userinfo.credit}}</text></view>
   <view>本次扣除：<text class='pay_gold'>-{{pay_gold}}</text></view>
   <view class='gain_gold' bindtap='gain_goldClick'>获取金币</view>
 </view>
 
 <!-- 确认按钮 -->
-<view class='confirm_button'>立即支付</view>
+<view bindtap='payClick' class='confirm_button'>立即支付</view>

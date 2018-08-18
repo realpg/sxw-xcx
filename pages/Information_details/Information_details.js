@@ -1,7 +1,8 @@
 // pages/article/article.js
 const app = getApp();
-const u = require('../../utils/util.js')
+const util = require('../../utils/util.js')
 var WxParse = require('../../wxParse/wxParse.js');
+let that;
 Page({
 
   /**
@@ -11,15 +12,46 @@ Page({
     messageTitle:'储备棉最新消息',
     messageSource:'中国纱线网',
     messageTime:'2018-7-20',
+    itemid:null
+  },
+
+  setInfo:function(){
+
+    let param = {
+      userid: wx.getStorageSync('UserInfo').userid,
+      _token: wx.getStorageSync('UserInfo')._token,
+      itemid: that.data.itemid,
+    };
+    util.setInfo(param, function (res) {
+      console.log('根据itemid查询资讯详情', res);
+      // for (let i in res.data) {
+        // that.data.information_list.push({
+        //   addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
+        //   itemid: res.data[i].itemid,
+        //   title: res.data[i].title,
+        //   thumb: res.data[i].thumb
+        // })
+      // }
+      that.setData({
+        messageTime: util.formatTime(new Date(res.addtime * 1000)),
+        messageSource: res.copyfrom,
+        messageTitle:res.title,
+      })
+      let article = res.data.content;
+        if (article) {
+          WxParse.wxParse('article', 'html', article, that, 5);
+        }
+    }, null)
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that = this;
+    that = this;
     that.setData({
-      id: options.id
+      itemid: options.itemid
     })
   },
 
@@ -27,40 +59,44 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    const that = this;
+    
+    that.setInfo();
     /**
       * 加载产品信息
       * */
-    wx.request({
-      url: app.https.url + "/select/Information",
-      data: {
-        id: that.data.id
-      },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
-      method: 'POST',
-      success: function (res) {
-        console.log(res.data)
-        // for (let i in res.data) {
-        that.setData({
-          id: res.data[0].id,
-          messageIconImg: res.data[0].images,
-          messageTitle: res.data[0].content,
-          messageSource: res.data[0].network,
-          messageTime: u.formatTime(new Date(res.data[0].gmtconfig)),
-          article: res.data[0].informationdetail,
-        })
-        let article = res.data[0].informationdetail;
-        if (article) {
-          WxParse.wxParse('article', 'html', article, that, 5);
-        }
-        // wx.setNavigationBarTitle({
-        //   title: res.data[0].productName,
-        // })
 
-      },
-      fail: function (res) { },
-      omplete: function (res) { },
-    })
+
+
+    // wx.request({
+    //   url: app.https.url + "/select/Information",
+    //   data: {
+    //     id: that.data.id
+    //   },
+    //   header: { 'content-type': 'application/x-www-form-urlencoded' },
+    //   method: 'POST',
+    //   success: function (res) {
+    //     console.log(res.data)
+    //     // for (let i in res.data) {
+    //     that.setData({
+    //       id: res.data[0].id,
+    //       messageIconImg: res.data[0].images,
+    //       messageTitle: res.data[0].content,
+    //       messageSource: res.data[0].network,
+    //       messageTime: u.formatTime(new Date(res.data[0].gmtconfig)),
+    //       article: res.data[0].informationdetail,
+    //     })
+    //     let article = res.data[0].informationdetail;
+    //     if (article) {
+    //       WxParse.wxParse('article', 'html', article, that, 5);
+    //     }
+    //     // wx.setNavigationBarTitle({
+    //     //   title: res.data[0].productName,
+    //     // })
+
+    //   },
+    //   fail: function (res) { },
+    //   omplete: function (res) { },
+    // })
   },
 
   /**

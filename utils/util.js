@@ -16,18 +16,18 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
 
 
     if (!App) {
-      setTimeout(function () {
+      setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 3000)
       return;
     }
     if (judgeIsAnyNullStr(App.globalData.userInfo)) {
-      setTimeout(function () {
+      setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 3000)
       return;
     } else if (judgeIsAnyNullStr(App.globalData.userInfo._token)) {
-      setTimeout(function () {
+      setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 3000)
       return;
@@ -52,7 +52,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
     },
     // header: { 'content-type': 'application/x-www-form-urlencoded' },
     method: method,
-    success: function (ret) {
+    success: function(ret) {
 
       if (ret.data.result)
         successCallback(ret.data.ret);
@@ -64,13 +64,13 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
         })
       }
     },
-    fail: function (err) {
+    fail: function(err) {
       // console.log("wxRequest fail:" + JSON.stringify(err))
 
     },
-    complete: function (ret) {
+    complete: function(ret) {
       // console.log("ret:" + JSON.stringify(ret))
-      setTimeout(function () {
+      setTimeout(function() {
         hideLoading()
       }, 2000)
     }
@@ -166,34 +166,179 @@ function visitingCard(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/businesscard', param, "GET", successCallback, errorCallback);
 }
 
+//根据userid获取名片信息
+function visitingCardInfo(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/businesscard/getByUserid', param, "GET", successCallback, errorCallback);
+}
+
 function editInfo_post(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/member/editInfo', param, "POST", successCallback, errorCallback);
 }
 
+//邀请
+function getBuyInvited(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/user/invited', param, "GET", successCallback, errorCallback);
+}
+
+//广告位
+function GetAdvertising(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/ad/selling', param, "GET", successCallback, errorCallback);
+}
+
+//指定广告位列表
+function GetAdvertisingInfo(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/ad/getByPid', param, "GET", successCallback, errorCallback);
+}
+
+//VIP广告位
+function GetAdvertisingVIP(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/vip/selling', param, "GET", successCallback, errorCallback);
+}
+
+//资讯列表
+function InfoList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/article/getList', param, "GET", successCallback, errorCallback);
+}
+//根据条件获取资讯列表
+function InfoListByCondition(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/article/getByCondition', param, "GET", successCallback, errorCallback);
+}
+
+//获取分类列表
+function setClassify(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/category/getByMid', param, "GET", successCallback, errorCallback);
+}
+
+//种类
+function varietyList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/businesscard/getYWLB', param, "GET", successCallback, errorCallback);
+}
+
+//种类名片列表
+function reclassifyCard(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/businesscard/getByYWLB', param, "GET", successCallback, errorCallback);
+}
+
+//日排行
+function todayranking(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/ranking', param, "GET", successCallback, errorCallback);
+}
+
+//根据itemid获取资讯详情
+function setInfo(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/article/getById', param, "GET", successCallback, errorCallback);
+}
+
+//供应
+function supplyByUserid(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/sell/getByCondition', param, "GET", successCallback, errorCallback);
+}
+
+//求购
+function PurchaseByUserid(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/buy/getByCondition', param, "GET", successCallback, errorCallback);
+}
+
+//纺织贸易
+function tradeByUserid(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/fjmy/getByCondition', param, "GET", successCallback, errorCallback);
+}
+
+//供应信息详情
+function sellInfoDetails(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/sell/getById', param, "GET", successCallback, errorCallback);
+}
+
+//求购信息详情
+function buyInfoDetails(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/buy/getById', param, "GET", successCallback, errorCallback);
+}
+
+//求购信息详情
+function tradeInfoDetails(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/fjmy/getById', param, "GET", successCallback, errorCallback);
+}
+
+//发送留言
+function leaveWord(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/comment', param, "POST", successCallback, errorCallback);
+}
+
+//收藏
+function enshrine(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/favorite', param, "POST", successCallback, errorCallback);
+}
+
+//购买vip
+function payVIP(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/vip/buy', param, "POST", successCallback, errorCallback);
+}
+
+//购买指定广告位
+function payAssign(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/ad/buy', param, "POST", successCallback, errorCallback);
+}
+
+
+//供应信息详情
+function SupplySearch(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/sell/search', param, "POST", successCallback, errorCallback);
+}
+
+//求购信息详情
+function BuySearch(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/buy/search', param, "POST", successCallback, errorCallback);
+}
+
+//纺机信息详情
+function FrameSearch(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/fjmy/search', param, "POST", successCallback, errorCallback);
+}
+
 //我的发布_供应
-function sellList_mine(param, successCallback, errorCallback){
-param.conditions=JSON.stringify({
-  key:["userid"],
-  value: [getApp().globalData.userInfo.userid]
-})
+function sellList_mine(param, successCallback, errorCallback) {
+  param.conditions = JSON.stringify({
+    key: ["userid"],
+    value: [getApp().globalData.userInfo.userid]
+  })
   wxRequest(SERVER_URL + '/api/sell/getByCondition', param, "GET", successCallback, errorCallback);
 }
 //我的发布_求购
 function buyList_mine(param, successCallback, errorCallback) {
-  param.conditions = {
+  param.conditions = JSON.stringify({
     key: ["userid"],
-    value: [App.globalData.userInfo.userid]
-  }
+    value: [getApp().globalData.userInfo.userid]
+  })
   wxRequest(SERVER_URL + '/api/buy/getByCondition', param, "GET", successCallback, errorCallback);
 }
 //我的发布_纺机
 function fjmyList_mine(param, successCallback, errorCallback) {
-  param.conditions = {
+  param.conditions = JSON.stringify({
     key: ["userid"],
-    value: [App.globalData.userInfo.userid]
-  }
+    value: [getApp().globalData.userInfo.userid]
+  })
   wxRequest(SERVER_URL + '/api/fjmy/getByCondition', param, "GET", successCallback, errorCallback);
 }
+//获取广告位首页推荐
+function homepage_recommend(param, successCallback, errorCallback) {
+  param.pid = "2";
+  wxRequest(SERVER_URL + '/api/ad/getByPid', param, "GET", successCallback, errorCallback);
+}
+//获取广告位名片推荐
+function card_recommend(param, successCallback, errorCallback) {
+  param.pid = "3";
+  wxRequest(SERVER_URL + '/api/ad/getByPid', param, "GET", successCallback, errorCallback);
+}
+//获取验证码
+function sendVertifyCode(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/member/sendVertifyCode', param, "POST", successCallback, errorCallback);
+}
+//点赞
+function setLike(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/agree', param, "POST", successCallback, errorCallback);
+}
+
+
 
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
@@ -204,9 +349,9 @@ function uploadImage(param, successCallback, errorCallback) {
       userid: getApp().globalData.userInfo.userid,
       _token: getApp().globalData.userInfo._token
     },
-    success: function (ret) {
+    success: function(ret) {
       // console.log("ret:" + JSON.stringify(ret))
-      if (typeof (ret.data) == "string") {
+      if (typeof(ret.data) == "string") {
         // console.log(typeof (ret.data))
         ret.data = JSON.parse(ret.data);
       }
@@ -222,17 +367,17 @@ function uploadImage(param, successCallback, errorCallback) {
         })
       }
     },
-    fail: function (err) {
+    fail: function(err) {
       // console.log("wxRequest fail:" + JSON.stringify(err))
 
     },
-    complete: function () {
+    complete: function() {
       // hideLoading()
     }
   })
 }
 
-const formatNumber = function (n) {
+const formatNumber = function(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
@@ -274,7 +419,7 @@ function showModal(title, content, confirmCallBack, cancelCallBack) {
   wx.showModal({
     title: title,
     content: content,
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
         confirmCallBack(res)
@@ -291,7 +436,7 @@ function showErrorModal(msg) {
   wx.showModal({
     title: '调用失败',
     content: msg,
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
       } else if (res.cancel) {
@@ -322,7 +467,7 @@ function hideLoading() {
   wx.hideLoading();
 }
 
-const formatTime = function (date) {
+const formatTime = function(date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -332,7 +477,7 @@ const formatTime = function (date) {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-const formatDate = function (date) {
+const formatDate = function(date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -374,7 +519,7 @@ function navigateToRegister(param) {
 //---------------------------------------------------  
 // 判断闰年  
 //---------------------------------------------------  
-Date.prototype.isLeapYear = function () {
+Date.prototype.isLeapYear = function() {
   return (0 == this.getYear() % 4 && ((this.getYear() % 100 != 0) || (this.getYear() % 400 == 0)));
 }
 
@@ -388,7 +533,7 @@ Date.prototype.isLeapYear = function () {
 // mm/m 分钟  
 // ss/SS/s/S 秒  
 //---------------------------------------------------  
-Date.prototype.Format = function (formatStr) {
+Date.prototype.Format = function(formatStr) {
   var str = formatStr;
   var Week = ['日', '一', '二', '三', '四', '五', '六'];
 
@@ -434,7 +579,7 @@ function daysBetween(DateOne, DateTwo) {
 //+---------------------------------------------------  
 //| 日期计算  
 //+---------------------------------------------------  
-Date.prototype.DateAdd = function (strInterval, Number) {
+Date.prototype.DateAdd = function(strInterval, Number) {
   var dtTmp = this;
   switch (strInterval) {
     case 's':
@@ -459,7 +604,7 @@ Date.prototype.DateAdd = function (strInterval, Number) {
 //+---------------------------------------------------  
 //| 比较日期差 dtEnd 格式为日期型或者有效日期格式字符串  
 //+---------------------------------------------------  
-Date.prototype.DateDiff = function (strInterval, dtEnd) {
+Date.prototype.DateDiff = function(strInterval, dtEnd) {
   var dtStart = this;
   if (typeof dtEnd == 'string') //如果是字符串转换为日期型
   {
@@ -486,7 +631,7 @@ Date.prototype.DateDiff = function (strInterval, dtEnd) {
 //+---------------------------------------------------  
 //| 日期输出字符串，重载了系统的toString方法  
 //+---------------------------------------------------  
-Date.prototype.toString = function (showWeek) {
+Date.prototype.toString = function(showWeek) {
   var myDate = this;
   var str = myDate.toLocaleDateString();
   if (showWeek) {
@@ -543,7 +688,7 @@ function CheckDateTime(str) {
 //+---------------------------------------------------  
 //| 把日期分割成数组  
 //+---------------------------------------------------  
-Date.prototype.toArray = function () {
+Date.prototype.toArray = function() {
   var myDate = this;
   var myArray = Array();
   myArray[0] = myDate.getFullYear();
@@ -560,7 +705,7 @@ Date.prototype.toArray = function () {
 //| 参数 interval 表示数据类型  
 //| y 年 m月 d日 w星期 ww周 h时 n分 s秒  
 //+---------------------------------------------------  
-Date.prototype.DatePart = function (interval) {
+Date.prototype.DatePart = function(interval) {
   var myDate = this;
   var partStr = '';
   var Week = ['日', '一', '二', '三', '四', '五', '六'];
@@ -596,7 +741,7 @@ Date.prototype.DatePart = function (interval) {
 //+---------------------------------------------------  
 //| 取得当前日期所在月的最大天数  
 //+---------------------------------------------------  
-Date.prototype.MaxDayOfDate = function () {
+Date.prototype.MaxDayOfDate = function() {
   var myDate = this;
   var ary = myDate.toArray();
   var date1 = (new Date(ary[0], ary[1] + 1, 1));
@@ -662,9 +807,39 @@ module.exports = {
   signInList: signInList,
   signIn: signIn,
   visitingCard: visitingCard,
+  getBuyInvited: getBuyInvited,
+  GetAdvertising: GetAdvertising,
+  GetAdvertisingInfo: GetAdvertisingInfo,
+  GetAdvertisingVIP: GetAdvertisingVIP,
+  InfoList: InfoList,
+  setClassify: setClassify,
+  InfoListByCondition: InfoListByCondition,
+  setInfo: setInfo,
+  varietyList: varietyList,
+  todayranking: todayranking,
+  reclassifyCard: reclassifyCard,
+  visitingCardInfo: visitingCardInfo,
+  supplyByUserid: supplyByUserid,
+  PurchaseByUserid: PurchaseByUserid,
+  tradeByUserid: tradeByUserid,
+  sellInfoDetails: sellInfoDetails,
+  buyInfoDetails: buyInfoDetails,
+  tradeInfoDetails: tradeInfoDetails,
+  leaveWord: leaveWord,
+  SupplySearch: SupplySearch,
+  BuySearch: BuySearch,
+  FrameSearch: FrameSearch,
+  setLike: setLike,
+  enshrine: enshrine,
+  payVIP: payVIP,
+  payAssign: payAssign,
+
   sellList_mine: sellList_mine,
   buyList_mine: buyList_mine,
   fjmyList_mine: fjmyList_mine,
+  homepage_recommend: homepage_recommend,
+  card_recommend: card_recommend,
+  sendVertifyCode: sendVertifyCode,
 
   formatTime: formatTime,
   formatDate: formatDate,

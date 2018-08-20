@@ -4,7 +4,7 @@
     <swiper class='slide-swiper' circular='true' autoplay='6000' duration="1000" indicator-dots='true' indicator-color='true' >
   <block wx:for='{{slideshow}}' >
     <swiper-item>
-      <image src='{{item.slideshowImg}}' mode='aspectFill' class='slide_image'/>
+      <image bindtap='slideshowClick' data-linktype='{{item.linktype}}' data-id='{{item.itemid}}' data-mid='{{item.mid}}' data-userid='{{item.userid}}' src='{{item.slideshowImg}}' mode='aspectFill' class='slide_image'/>
     </swiper-item>
   </block>
 </swiper>

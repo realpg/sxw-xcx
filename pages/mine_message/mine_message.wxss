@@ -1,1 +1,36 @@
-/* pages/mine_message/mine_message.wxss */
+@import "../../wxParse/wxParse.wxss";
+page{
+  background: #f5f5f5
+}
+.message_css{
+  display: flex;
+  justify-content:space-between;
+  background: #fff;
+  line-height: 80rpx;
+  font-size: 26rpx;
+   margin-top: 15rpx;
+  padding: 0 20rpx;
+}
+.message_time{
+  color: #999;
+  font-size: 24rpx;
+}
+
+.message_content{
+border-top: 1rpx #f5f5f5 solid;
+background: #fff;
+line-height: 80rpx;
+font-size: 26rpx;
+padding: 0 20rpx;
+display:none;
+color: #666
+}
+.message_content_css{
+border-top: 1rpx #f5f5f5 solid;
+background: #fff;
+line-height: 70rpx;
+font-size: 24rpx;
+padding: 0 20rpx;
+display:block;
+color:#666
+}

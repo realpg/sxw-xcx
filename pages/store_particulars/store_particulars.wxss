@@ -101,6 +101,7 @@ text-align: center;
 }
 .The_specific_details{
   margin-left: 10rpx;
+  width: 80%；
 }
 .datails_name{
   font-size: 30rpx;
@@ -177,6 +178,10 @@ text-align: center;
   font-size: 26rpx;
   color: #9B9B9B;
   line-height: 60rpx;
+}
+.address_css{
+   display: flex;
+  align-items: center;
 }
 .address{
   margin-left: 20rpx;

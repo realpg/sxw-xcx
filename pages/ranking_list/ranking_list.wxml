@@ -8,12 +8,12 @@
 <!--前三名片 -->
 
 
-  <view class='business_card'  wx:for='{{business_card}}' wx:for-index='index' data-index='{{index}}' >
+  <view class='business_card'  wx:for='{{business_card}}'  wx:for-index='index' wx:if='{{index <3}}'data-index='{{index}}' >
     <view class='business_card_css'>
       <image class='icon_first' src='../../images/store/icon_{{index+1}}.png'></image>
       <view class='name'>{{item.businesscard.truename}}
         <text class='post'>{{item.businesscard.career}}</text>
-        <text class='card_details'>名片详情</text>
+        <text class='card_details' data-id='{{item.userid}}' bindtap='card_details_click'>名片详情</text>
         <image class='headImg' src='{{item.businesscard.avatarUrl}}'></image>
       </view>
 
@@ -38,7 +38,7 @@
 <view class='Css'></view>
 
 
- <view class='messageList' wx:for='{{business_card}}' wx:if='{{index >= 3}}' data-id='{{item.id}}'>
+ <view class='messageList' wx:for='{{business_card}}' wx:if='{{index >=3}}' data-id='{{item.id}}'>
   <view class='messageListCss'>
     <view class='message'>
       <image class='head_Img' src='{{item.businesscard.avatarUrl}}'></image>

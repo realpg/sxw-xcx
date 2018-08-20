@@ -1,2 +1,11 @@
-<!--pages/mine_message/mine_message.wxml-->
-<text>pages/mine_message/mine_message.wxml</text>
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view class='message' wx:for='{{message}}'>
+   <view class='message_css' bindtap='openClick' data-id='{{item.id}}'>
+  <view class='message_title' >{{item.title}} </view>
+  <view class='message_time'>{{item.time}}</view>
+  </view>
+  <view class='{{item.state ? "message_content" : "message_content_css"}}'>
+<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+</view> 

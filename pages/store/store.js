@@ -1,7 +1,7 @@
 // pages/store/store.js
 const app=getApp();
 const util = require('../../utils/util.js');
-let that = this;
+let that;
 Page({
 
   /**
@@ -106,9 +106,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    setTimeout(function(){
-    // console.log('000',app.globalData.userInfo)
-    },5000)
+    that=this
     that.Loading();
     that.visitingCard();
     //名片推荐

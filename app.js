@@ -2,13 +2,11 @@
 // const this = getApp();
 const util = require('/utils/util.js');
 App({
-  onLaunch: function() {
+  onLaunch: function () {
     // 展示本地存储能力
 
 
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    this.globalData.userInfo = wx.getStorageSync('UserInfo') || []
 
     this.getopenid();
     // 获取用户信息
@@ -57,15 +55,15 @@ App({
     // }
 
   },
-  getopenid: function() {
-    var app=this;
+  getopenid: function () {
+    var app = this;
     wx.login({
-      success: function(res) {
+      success: function (res) {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log("用户信息", res);
         util.getOpenId({
           code: res.code
-        }, function(ret) {
+        }, function (ret) {
           // console.log("getOpenId:" + JSON.stringify(ret))
 
           app.globalData.openId = ret.openid;
@@ -75,7 +73,7 @@ App({
     });
   },
 
-  login: function(app) {
+  login: function (app) {
 
     var userInfo = app.globalData.wx_userInfo;
     var openId = app.globalData.openId;
@@ -83,7 +81,7 @@ App({
       openId: openId,
       userInfo: userInfo
     }
-    util.login(param, function(res) {
+    util.login(param, function (res) {
       console.log("登录服务器返回", res)
 
       // console.log("登录服务器成功", res.)
@@ -92,13 +90,13 @@ App({
       wx.setStorageSync('UserInfo', app.globalData.userInfo)
 
       // console.log("登录服务器成功")
-    }, function(res) {
+    }, function (res) {
       console.log("登录服务器失败", res)
     })
 
 
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     // console.log(e)
     this.globalData.userInfo = e.detail.userInfo
     this.setData({

@@ -1,13 +1,26 @@
-// pages/mine_message/mine_message.js
+const app = getApp();
+const util = require('../../utils/util.js');
+var WxParse = require('../../wxParse/wxParse.js');
+let that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    message: []
   },
 
+//打开
+  openClick:function(e){
+    const that = this;
+    var message = that.data.message
+    var id = e.currentTarget.dataset.id 
+    that.data.message[id].state = !that.data.message[id].state    
+    that.setData({
+      message: message
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -19,7 +32,28 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    that=this;
+    var message = that.data.message
+    util.myMessage({}, function (ret) {
+      console.log(1111,ret);
+    
+      for (var i in ret) {
+        let article = ret[i].content;
+        if (article) {
+            WxParse.wxParse('article', 'html', article, that, 5);
+           message.push({
+             id:i,
+             title: ret[i].title,
+             state:true,
+             content: article, 
+             time: util.formatTime(new Date(ret[i].addtime))
+           })
+        }
+     }
+      that.setData({
+        message: that.data.message
+      })
+    }, null)  
   },
 
   /**

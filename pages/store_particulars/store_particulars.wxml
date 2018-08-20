@@ -83,7 +83,7 @@
         </view>
 
         <view class='time'>{{item.time}}</view>
-        <view>
+        <view class='address_css'>
           <image class='icon_map' src='../../images/index/icon_map.png'/>
           <text class='address'>存放地：{{item.address}}</text>
         </view>

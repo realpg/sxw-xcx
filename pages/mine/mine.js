@@ -147,6 +147,10 @@ Page({
   },
 
   singInClick: function () {
+    wx.showToast({
+      title: '金币+' + 2,
+      duration: 1500
+    })
     let date = new Date();
     let day = date.getDay();
 
@@ -154,52 +158,52 @@ Page({
       userid: that.data.business_card.userid,
       _token: that.data.business_card._token,
     };
-    util.signIn(param, function (ret) {
-      // console.log();
+    // util.signIn(param, function (ret) {
+    //   // console.log();
       
-    switch(day){
-      case 1:
-        that.data.sign_in_date[0].isSignin = true;
-      break;
+    // switch(day){
+    //   case 1:
+    //     that.data.sign_in_date[0].isSignin = true;
+    //   break;
 
-      case 2:
-        that.data.sign_in_date[1].isSignin = true;
-        break;
+    //   case 2:
+    //     that.data.sign_in_date[1].isSignin = true;
+    //     break;
 
-      case 3:
-        that.data.sign_in_date[2].isSignin = true;
-        break;
+    //   case 3:
+    //     that.data.sign_in_date[2].isSignin = true;
+    //     break;
 
-      case 4:
-        that.data.sign_in_date[3].isSignin = true;
-        break;
+    //   case 4:
+    //     that.data.sign_in_date[3].isSignin = true;
+    //     break;
 
-      case 5:
-        that.data.sign_in_date[4].isSignin = true;
-        break;
+    //   case 5:
+    //     that.data.sign_in_date[4].isSignin = true;
+    //     break;
 
-      case 6:
-        that.data.sign_in_date[5].isSignin = true;
-        break;
+    //   case 6:
+    //     that.data.sign_in_date[5].isSignin = true;
+    //     break;
 
-      case 7:
-        that.data.sign_in_date[6].isSignin = true;
-        break;
+    //   case 7:
+    //     that.data.sign_in_date[6].isSignin = true;
+    //     break;
 
-      default:
+    //   default:
 
-      break;
-    }
+    //   break;
+    // }
 
-    wx.showToast({
-      title: '签到成功，金币+' + that.data.gold_coin_get,
-      duration: 1500
-    })
+    // wx.showToast({
+    //   title: '签到成功，金币+' + 2,
+    //   duration: 1500
+    // })
     
-    that.setData({
-      sign_in_date: that.data.sign_in_date
-    })
-    })
+    // that.setData({
+    //   sign_in_date: that.data.sign_in_date
+    // })
+    // })
   },
 
   /**

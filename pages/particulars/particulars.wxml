@@ -26,12 +26,12 @@
       <view class='details'>{{item.details}}</view>
 
       <view class='message_Img'>
-        <view class='message_Image' wx:for='{{item.message_Img}}'>
-          <image class='message_Image_Css' src='{{item.message_Image}}'></image>
+       <view class='message_Image' wx:for='{{item.message_Img}}' wx:for-index='index'>
+          <image  class='message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick'  data-id='{{index}}' src='{{item}}'></image>
         </view>
       </view>
 
-      <view>
+      <view class='address_css'>
         <image class='icon_map' src='../../images/index/icon_map.png'></image>
         <text class='address'>存放地：{{item.address}}</text>
       </view>
@@ -96,8 +96,9 @@
 
   </view>
 
-  <view class='view_more' bindtap='view_more_click' wx:if='{{leave_word_details.length > message_number}}'>查看更多留言</view>
-  <view class='view_more' bindtap='view_more_click_css' wx:elif='{{leave_word_details.length < message_number}}'>关闭更多留言</view>
+ <view class='view_more' bindtap='view_more_click' wx:if='{{leave_word_details.length > message_number}}'>查看更多留言</view>
+  <view class='view_more' bindtap='view_more_click_css' wx:elif='{{leave_word_details.length < message_number  && leave_word_details.length != 0 && leave_word_details.length != 1}}'>关闭更多留言</view>
+
 
 </view>
 

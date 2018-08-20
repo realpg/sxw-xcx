@@ -14,8 +14,8 @@ let that;
 
      classify: [
        { id: 1, name: '日排行', setchoose: true, },
-       { id: 2, name: '月排行', setchoose: false, },
-       { id: 3, name: '周排行', setchoose: false, },
+       { id: 2, name: '周排行', setchoose: false, },
+       { id: 3, name: '月排行', setchoose: false, },
      ],
      /**
       * 在页面上展示的榜单
@@ -25,7 +25,12 @@ let that;
 
    },
 
-
+   //名片详情
+   card_details_click: function (e) {
+     wx.navigateTo({
+       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
+     })
+   },
    //信息栏选择
    selectClick: function(e) {
      var that = this;

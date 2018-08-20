@@ -23,6 +23,7 @@ page {
 
 .The_specific_details {
   margin-left: 10rpx;
+  width:80%;
 }
 
 .datails_name {
@@ -205,14 +206,14 @@ button::after {
   width: 90%;
   margin: auto;
   background: #fff;
-  padding: 5% 5%  0%;
+  padding: 2% 5%  0%;
   margin-top: 20rpx;
   font-size: 26rpx;
 }
 .Message_board_css {
   display: flex;
   justify-content: space-between;
-  line-height: 60rpx;
+  line-height: 80rpx;
 }
 .leave_word_details{
    padding:2% 0 2% 0 ;

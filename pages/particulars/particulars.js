@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    message_number:2,
     id: null,
     mid: null,
     messageList: [],
@@ -25,6 +25,24 @@ Page({
     sendTranspondChoose: false,
     MyTranspondValue: '',
 
+  },
+
+  //预览图片
+  previewImClick: function (e) {
+    console.log(123456, e.currentTarget.dataset.id)
+    var that = this;
+    var id = e.currentTarget.dataset.id
+    var aasss = that.data.message[0].message_Img;
+    console.log(66666, that.data.message[0].message_Img)
+    for (var i in aasss) {
+      if (i == id) {
+        console.log(344324, aasss[id]);
+        wx.previewImage({
+          // current: getArr[i].id, // 当前显示图片的http链接
+          urls: [aasss[id]] // 需要预览的图片http链接列表
+        })
+      }
+    }
   },
   //名片详情
   view_card_click: function (e) {
@@ -95,6 +113,25 @@ Page({
       })
 
     });
+  },
+
+
+
+  //查看更多留言
+  view_more_click: function () {
+    const that = this
+    var message_number = that.data.message_number + 10
+    that.setData({
+      message_number: message_number
+    })
+  },
+  //关闭更多留言
+  view_more_click_css: function () {
+    const that = this
+    var message_number = 2
+    that.setData({
+      message_number: message_number
+    })
   },
 
   setLikeClick: function (e) {
@@ -213,17 +250,7 @@ Page({
         I_agree: ret.I_agree,
         I_favortie: ret.I_favortie,
         details: ret.introduce, //信息详情描述
-        message_Img: //详情图片  后续跟进
-          [{
-            message_Image: ret.thumb
-          },
-          {
-            message_Image: ret.thumb1
-          },
-          {
-            message_Image: ret.thumb2
-          }
-          ],
+        message_Img: ret.thumbs.split(','), //详情图片  后续跟进
         time: ret.adddate, //发布时间
         addtime: util.formatTime(new Date(ret.addtime * 1000)), //发布详细时间
         edittime: util.formatTime(new Date(ret.edittime * 1000)),
@@ -277,17 +304,7 @@ Page({
         I_agree: ret.I_agree,
         I_favortie: ret.I_favortie,
         details: ret.introduce, //信息详情描述
-        message_Img: //详情图片  后续跟进
-          [{
-            message_Image: ret.thumb
-          },
-          {
-            message_Image: ret.thumb1
-          },
-          {
-            message_Image: ret.thumb2
-          }
-          ],
+        message_Img: ret.thumbs.split(','), //详情图片  后续跟进
         time: ret.adddate, //发布时间
         addtime: util.formatTime(new Date(ret.addtime * 1000)), //发布详细时间
         edittime: util.formatTime(new Date(ret.edittime * 1000)),
@@ -343,17 +360,7 @@ Page({
         I_agree: ret.I_agree,
         I_favortie: ret.I_favortie,
         details: ret.introduce, //信息详情描述
-        message_Img: //详情图片  后续跟进
-          [{
-            message_Image: ret.thumb
-          },
-          {
-            message_Image: ret.thumb1
-          },
-          {
-            message_Image: ret.thumb2
-          }
-          ],
+        message_Img: ret.thumbs.split(','), //详情图片  后续跟进
         time: ret.adddate, //发布时间
         addtime: util.formatTime(new Date(ret.addtime * 1000)), //发布详细时间
         edittime: util.formatTime(new Date(ret.edittime * 1000)),

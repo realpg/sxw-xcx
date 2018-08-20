@@ -38,9 +38,7 @@ page{
   font-size: 28rpx;
   color:  #9B9B9B; 
 }
-.all{
-  color:#01C46C;
-}
+
 
 .message{
   margin-top: 20rpx; 

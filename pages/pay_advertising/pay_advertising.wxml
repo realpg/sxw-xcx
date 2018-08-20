@@ -14,9 +14,9 @@
 <!-- 价格栏 -->
 <view class='price_column' wx:else='{{sellingADs.length!=0}}'>
 <radio-group class="radio-group" wx:for='{{sellingADs}}' bindchange="radioChange">
-  <radio value="{{item.amount}}" class="radio"><text class='price'>{{item.amount}}金币/周</text></radio>
-  <radio value="{{item.amount}}" class="radio" ><text class='price'>{{item.amount}}金币/月</text></radio>
-  <radio value="{{item.amount}}" class="radio"><text class='price'>{{item.amount}}金币/年</text></radio>
+  <radio value="{{item.amount0}},0"  class="radio"><text class='price'>{{item.amount0}}金币/周</text></radio>
+  <radio value="{{item.amount1}},1" class="radio" ><text class='price'>{{item.amount1}}金币/月</text></radio>
+  <radio value="{{item.amount2}},2" class="radio"><text class='price'>{{item.amount2}}金币/年</text></radio>
 </radio-group>
 </view>
 

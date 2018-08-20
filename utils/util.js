@@ -11,23 +11,23 @@ var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 //进行接口调用的基本方法
 function wxRequest(url, param, method, successCallback, errorCallback) {
   const App = getApp();
-  // console.log("wxRequest url:" + JSON.stringify(url) + " param:" + JSON.stringify(param));
+  console.log("wxRequest url:" + JSON.stringify(url) + " param:" + JSON.stringify(param));
   if (judgeIsAnyNullStr(param.code) && judgeIsAnyNullStr(param.openId)) {
 
 
     if (!App) {
-      setTimeout(function() {
+      setTimeout(function () {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 200)
       return;
     }
     if (judgeIsAnyNullStr(App.globalData.userInfo)) {
-      setTimeout(function() {
+      setTimeout(function () {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 200)
       return;
     } else if (judgeIsAnyNullStr(App.globalData.userInfo._token)) {
-      setTimeout(function() {
+      setTimeout(function () {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 200)
       return;
@@ -42,7 +42,8 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
     }
     param._token = App.globalData.userInfo._token;
   }
-  showLoading();
+  //  showLoading();
+  var time_start = new Date().getTime();
   // console.log("param：" + JSON.stringify(param))
   wx.request({
     url: url,
@@ -52,8 +53,9 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
     },
     // header: { 'content-type': 'application/x-www-form-urlencoded' },
     method: method,
-    success: function(ret) {
-
+    success: function (ret) {
+      var time_end = new Date().getTime();
+      console.log("请求时间", time_end - time_start);
       if (ret.data.result)
         successCallback(ret.data.ret);
       else {
@@ -64,14 +66,14 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
         })
       }
     },
-    fail: function(err) {
+    fail: function (err) {
       // console.log("wxRequest fail:" + JSON.stringify(err))
 
     },
-    complete: function(ret) {
+    complete: function (ret) {
       // console.log("ret:" + JSON.stringify(ret))
-      setTimeout(function() {
-        hideLoading()
+      setTimeout(function () {
+        // hideLoading()
       }, 2000)
     }
   });
@@ -98,6 +100,10 @@ function test(param, successCallback, errorCallback) {
 
 function getByConditions(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/buy/getByCondition', param, "GET", successCallback, errorCallback);
+}
+
+function getAllList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/info/getList', param, "GET", successCallback, errorCallback);
 }
 
 function getSellList(param, successCallback, errorCallback) {
@@ -337,7 +343,14 @@ function sendVertifyCode(param, successCallback, errorCallback) {
 function setLike(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/agree', param, "POST", successCallback, errorCallback);
 }
-
+//我的收藏
+function myFavorite(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
+}
+//我的消息
+function myMessage(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/member/message', param, "GET", successCallback, errorCallback);
+}
 
 
 function uploadImage(param, successCallback, errorCallback) {
@@ -349,9 +362,9 @@ function uploadImage(param, successCallback, errorCallback) {
       userid: getApp().globalData.userInfo.userid,
       _token: getApp().globalData.userInfo._token
     },
-    success: function(ret) {
+    success: function (ret) {
       // console.log("ret:" + JSON.stringify(ret))
-      if (typeof(ret.data) == "string") {
+      if (typeof (ret.data) == "string") {
         // console.log(typeof (ret.data))
         ret.data = JSON.parse(ret.data);
       }
@@ -367,17 +380,17 @@ function uploadImage(param, successCallback, errorCallback) {
         })
       }
     },
-    fail: function(err) {
+    fail: function (err) {
       // console.log("wxRequest fail:" + JSON.stringify(err))
 
     },
-    complete: function() {
+    complete: function () {
       // hideLoading()
     }
   })
 }
 
-const formatNumber = function(n) {
+const formatNumber = function (n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
@@ -419,7 +432,7 @@ function showModal(title, content, confirmCallBack, cancelCallBack) {
   wx.showModal({
     title: title,
     content: content,
-    success: function(res) {
+    success: function (res) {
       if (res.confirm) {
         console.log('用户点击确定')
         confirmCallBack(res)
@@ -436,7 +449,7 @@ function showErrorModal(msg) {
   wx.showModal({
     title: '调用失败',
     content: msg,
-    success: function(res) {
+    success: function (res) {
       if (res.confirm) {
         console.log('用户点击确定')
       } else if (res.cancel) {
@@ -467,7 +480,7 @@ function hideLoading() {
   wx.hideLoading();
 }
 
-const formatTime = function(date) {
+const formatTime = function (date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -477,7 +490,7 @@ const formatTime = function(date) {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-const formatDate = function(date) {
+const formatDate = function (date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -519,7 +532,7 @@ function navigateToRegister(param) {
 //---------------------------------------------------  
 // 判断闰年  
 //---------------------------------------------------  
-Date.prototype.isLeapYear = function() {
+Date.prototype.isLeapYear = function () {
   return (0 == this.getYear() % 4 && ((this.getYear() % 100 != 0) || (this.getYear() % 400 == 0)));
 }
 
@@ -533,7 +546,7 @@ Date.prototype.isLeapYear = function() {
 // mm/m 分钟  
 // ss/SS/s/S 秒  
 //---------------------------------------------------  
-Date.prototype.Format = function(formatStr) {
+Date.prototype.Format = function (formatStr) {
   var str = formatStr;
   var Week = ['日', '一', '二', '三', '四', '五', '六'];
 
@@ -579,7 +592,7 @@ function daysBetween(DateOne, DateTwo) {
 //+---------------------------------------------------  
 //| 日期计算  
 //+---------------------------------------------------  
-Date.prototype.DateAdd = function(strInterval, Number) {
+Date.prototype.DateAdd = function (strInterval, Number) {
   var dtTmp = this;
   switch (strInterval) {
     case 's':
@@ -604,7 +617,7 @@ Date.prototype.DateAdd = function(strInterval, Number) {
 //+---------------------------------------------------  
 //| 比较日期差 dtEnd 格式为日期型或者有效日期格式字符串  
 //+---------------------------------------------------  
-Date.prototype.DateDiff = function(strInterval, dtEnd) {
+Date.prototype.DateDiff = function (strInterval, dtEnd) {
   var dtStart = this;
   if (typeof dtEnd == 'string') //如果是字符串转换为日期型
   {
@@ -631,7 +644,7 @@ Date.prototype.DateDiff = function(strInterval, dtEnd) {
 //+---------------------------------------------------  
 //| 日期输出字符串，重载了系统的toString方法  
 //+---------------------------------------------------  
-Date.prototype.toString = function(showWeek) {
+Date.prototype.toString = function (showWeek) {
   var myDate = this;
   var str = myDate.toLocaleDateString();
   if (showWeek) {
@@ -688,7 +701,7 @@ function CheckDateTime(str) {
 //+---------------------------------------------------  
 //| 把日期分割成数组  
 //+---------------------------------------------------  
-Date.prototype.toArray = function() {
+Date.prototype.toArray = function () {
   var myDate = this;
   var myArray = Array();
   myArray[0] = myDate.getFullYear();
@@ -705,7 +718,7 @@ Date.prototype.toArray = function() {
 //| 参数 interval 表示数据类型  
 //| y 年 m月 d日 w星期 ww周 h时 n分 s秒  
 //+---------------------------------------------------  
-Date.prototype.DatePart = function(interval) {
+Date.prototype.DatePart = function (interval) {
   var myDate = this;
   var partStr = '';
   var Week = ['日', '一', '二', '三', '四', '五', '六'];
@@ -741,7 +754,7 @@ Date.prototype.DatePart = function(interval) {
 //+---------------------------------------------------  
 //| 取得当前日期所在月的最大天数  
 //+---------------------------------------------------  
-Date.prototype.MaxDayOfDate = function() {
+Date.prototype.MaxDayOfDate = function () {
   var myDate = this;
   var ary = myDate.toArray();
   var date1 = (new Date(ary[0], ary[1] + 1, 1));
@@ -785,11 +798,22 @@ function getToday() {
   return year + "-" + month + "-" + day;
 }
 
+//验证手机号
+function phonenum_verify(phone) {
+  var phoneReg = /(^1[3|4|5|6|7|8]\d{9}$)|(^09\d{8}$)/;
+  if (!phoneReg.test(phone)) {
+    return false;
+  }
+  return true;
+}
+
 module.exports = {
   getOpenId: getOpenId,
   login: login,
   test: test,
   getByConditions: getByConditions,
+  getAllList: getAllList,
+
   getSellList: getSellList,
   getBuyList: getBuyList,
   getFJMYList: getFJMYList,
@@ -840,6 +864,8 @@ module.exports = {
   homepage_recommend: homepage_recommend,
   card_recommend: card_recommend,
   sendVertifyCode: sendVertifyCode,
+  myFavorite: myFavorite,
+  myMessage: myMessage,
 
   formatTime: formatTime,
   formatDate: formatDate,
@@ -850,5 +876,5 @@ module.exports = {
   judgeIsAnyNullStr: judgeIsAnyNullStr,
   navigateToRegister: navigateToRegister, //跳转到注册页面
   getToday: getToday,
-
+  phonenum_verify: phonenum_verify
 }

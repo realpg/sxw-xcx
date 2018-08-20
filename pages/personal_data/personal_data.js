@@ -352,17 +352,23 @@ Page({
 
   },
   getBusinessCard: function () {
+    console.log("请求名片中")
     util.editInfo_get({}, function (ret) {
 
       console.log("请求成功", ret, that.data)
       that.setData({
         businesscard: ret.businesscard,
-        mobile: ret.businesscard.mobile,
-        thumb: ret.businesscard.thumb.split(','),   //公司图片
-        avatar: [app.globalData.userInfo.avatarUrl],  //头像
-        wxqr: ret.businesscard.wxqr ? [ret.businesscard.wxqr] : [],
+        avatar: app.globalData.userInfo.avatarUrl ? [app.globalData.userInfo.avatarUrl] : [],  //头像
         ywlbs: ret.ywlb
       })
+      if(ret.business){
+        that.setData({
+          mobile: ret.businesscard.mobile,
+          thumb: ret.businesscard.thumb ? ret.businesscard.thumb.split(',') : [],   //公司图片
+          
+          wxqr: ret.businesscard.wxqr ? [ret.businesscard.wxqr] : [],
+        })
+      }
       console.log("业务类别", that.data.businesscard, that.data.businesscard.ywlb)
     })
   },

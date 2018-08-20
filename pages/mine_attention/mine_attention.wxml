@@ -10,7 +10,7 @@
 <view class='message' wx:for='{{message}}' wx:for-index='id'>
   <view class='messageCss'    data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'/>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 

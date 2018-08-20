@@ -1,7 +1,7 @@
     <!--搜索框-->
 <view>
    <view class='searchBox' bindtap='serchClick'>
-      <image class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
+      <image class='searchIcon' src='../../images/index/icon_search.png' ></image>
       <input class='searchInput' placeholder='请输入名称/品类/商家' maxlength='20' placeholder-style='color:#b2b2b2' disabled="disabled">
       </input>
   </view>
@@ -12,14 +12,14 @@
 <view class='information_classification'>
   <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>供应信息</view>
   <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>求购信息</view>
-  <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>二手设备</view>
+  <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>纺机贸易</view>
 </view>
 
 <!--具体信息-->
 <view class='message' wx:for='{{message}}' wx:for-index='id'>
   <view class='messageCss'    data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'/>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 

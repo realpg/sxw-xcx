@@ -2,7 +2,7 @@
 <view class='message' wx:for='{{message}}'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'></image>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'></image>
        <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 
@@ -79,7 +79,7 @@
 
 
 
-  <view class='leave_word_details' wx:for='{{leave_word_details}}' wx:for-item='items'>
+  <view class='leave_word_details' wx:for='{{leave_word_details}}' wx:for-item='items' wx:if='{{leave_word_details.length <= message_number}}'>
     <view class='leave_word_details_css'>
       <view class='leave_word_iconImage'>
         <image class='leave_word_iconImage_css' src='{{items.iconImg}}'></image>
@@ -130,11 +130,11 @@
 </view>
 
 <!--推荐信息-->
-<!--具体信息-->
+
 <view class='message' wx-if="{{item.id!=id&&item.mid!=mid}}" wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix' />
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
        <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 

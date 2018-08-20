@@ -206,7 +206,7 @@ Page({
       var slideshow = that.data.slideshow;
       for (var i in ret) {
         slideshow.push({
-          itemid: ret[i].itemid,
+          itemid: ret[i].item_id,
           slideshowImg: ret[i].img,
           mid: ret[i].item_mid,
           linktype: ret[i].linktype,
@@ -232,7 +232,7 @@ Page({
           if (ret.data[i].user)
             messageALL.push({
               id: ret.data[i].itemid, //信息id
-              mid: 5,
+              mid: ret.data[i].mid,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].user.truename, //用户姓名

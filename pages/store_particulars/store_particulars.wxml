@@ -57,7 +57,7 @@
 <view class='message' wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' mode='widthFix'/>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'/>
       <image class='icon_vip' src='{{item.icon_vip}}' mode='widthFix'/>
     </view>
 

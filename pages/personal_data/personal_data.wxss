@@ -90,6 +90,7 @@ page{
   border:1rpx solid #f5f5f5;
   font-size: 28rpx;
   line-height: 50rpx;
+  padding:10rpx;
 }
 
 .main_company_profile{
@@ -104,6 +105,7 @@ page{
   border:1rpx solid #f5f5f5;
   font-size: 28rpx;
   line-height: 50rpx;
+  padding: 10rpx;
 }
 
 

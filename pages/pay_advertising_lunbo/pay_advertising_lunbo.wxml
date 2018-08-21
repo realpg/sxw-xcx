@@ -1,37 +1,43 @@
 <view>
   <image class='adcImg' src='{{advImg}}'></image>
 </view>
-
 <!-- 价格栏 -->
-<view class='price_column' wx:if='{{advertisingVIP.length!=0}}'>
-<radio-group class="radio-group" bindchange="radioChange">
-  <radio value="{{advertisingVIP[2].amount}},{{advertisingVIP[2].id}}" class="radio"><text class='price'>{{advertisingVIP[2].amount}}金币/周</text></radio>
-  <radio value="{{advertisingVIP[1].amount}},{{advertisingVIP[1].id}}" class="radio" ><text class='price'>{{advertisingVIP[1].amount}}金币/月</text></radio>
-  <radio value="{{advertisingVIP[0].amount}},{{advertisingVIP[0].id}}" class="radio"><text class='price'>{{advertisingVIP[0].amount}}金币/年</text></radio>
-</radio-group>
-</view>
-
-<!-- 价格栏 -->
-<view class='price_column' wx:else='{{sellingADs.length!=0}}'>
-<radio-group class="radio-group" wx:for='{{sellingADs}}' bindchange="radioChange">
-  <radio value="{{item.amount0}},0"  class="radio"><text class='price'>{{item.amount0}}金币/周</text></radio>
-  <radio value="{{item.amount1}},1" class="radio" ><text class='price'>{{item.amount1}}金币/月</text></radio>
-  <radio value="{{item.amount2}},2" class="radio"><text class='price'>{{item.amount2}}金币/年</text></radio>
-</radio-group>
+<view class='price_column'>
+  <radio-group class="radio-group" bindchange="radioChange">
+    <block wx:for='{{sellingADs}}' wx:for-index='index'>
+      <view class='select_lunbo' bindtap='select_lunbo' data-index='{{index}}'>轮播位{{item.itemid}}</view>
+      <view class='{{item.state ? "select_lunbo_block":"select_lunbo_none"}}'>
+        <radio value="{{index}},0" class="radio">
+          <text class='price'>{{item.amount0}}金币/周</text>
+        </radio>
+        <radio value="{{index}},1" class="radio">
+          <text class='price'>{{item.amount1}}金币/月</text>
+        </radio>
+        <radio value="{{index}},2" class="radio">
+          <text class='price'>{{item.amount2}}金币/年</text>
+        </radio>
+      </view>
+    </block>
+  </radio-group>
 </view>
 
 <!-- 广告位截止时间 -->
 <view class='hint'>
-  <view  class='hint_time'>广告位预计截止时间：{{hint_time}}</view>
-  <view class='hint_context'>提示：支付成功后广告位会立即生效</view>
+  <view class='hint_time'>广告位预计截止时间：{{hint_time}}</view>
+  <view class='hint_context'>提示：支付成功后广告会立即生效</view>
 </view>
 
 <!-- 金币 -->
-<view class='gold' >
-  <view>我的金币：<text class='mine_gold'>{{userinfo.credit}}</text></view>
-  <view>本次扣除：<text class='pay_gold'>-{{pay_gold}}</text></view>
+<view class='gold'>
+  <view>我的金币：
+    <text class='mine_gold'>{{userinfo.credit}}</text>
+  </view>
+  <view>本次扣除：
+    <text class='pay_gold'>-{{pay_gold}}</text>
+  </view>
   <view class='gain_gold' bindtap='gain_goldClick'>获取金币</view>
 </view>
 
+<view style='height:200rpx;'></view>
 <!-- 确认按钮 -->
 <view bindtap='payClick' class='confirm_button'>立即支付</view>

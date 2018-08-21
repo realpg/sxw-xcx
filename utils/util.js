@@ -56,6 +56,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
     success: function(ret) {
       var time_end = new Date().getTime();
       console.log("请求时间", time_end - time_start);
+
       if (ret.data.result)
         successCallback(ret.data.ret);
       else {
@@ -75,7 +76,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
 
     },
     complete: function(ret) {
-      console.log("ret:" + JSON.stringify(ret))
+      // console.log("ret:" + JSON.stringify(ret))
       setTimeout(function() {
         // hideLoading()
       }, 2000)

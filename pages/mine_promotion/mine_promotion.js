@@ -34,7 +34,7 @@ Page({
     console.log(e.currentTarget.dataset.sellingads)
     if (e.currentTarget.dataset.sellingads != '[]'){
     wx.navigateTo({
-      url: '../pay_advertising/pay_advertising?sellingADs=' + e.currentTarget.dataset.sellingads,
+      url: '../pay_advertising_lunbo/pay_advertising_lunbo?sellingADs=' + e.currentTarget.dataset.sellingads,
     })
     }else{
       wx.showToast({

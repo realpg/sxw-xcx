@@ -16,18 +16,18 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
 
 
     if (!App) {
-      setTimeout(function () {
+      setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 200)
       return;
     }
     if (judgeIsAnyNullStr(App.globalData.userInfo)) {
-      setTimeout(function () {
+      setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 200)
       return;
     } else if (judgeIsAnyNullStr(App.globalData.userInfo._token)) {
-      setTimeout(function () {
+      setTimeout(function() {
         wxRequest(url, param, method, successCallback, errorCallback);
       }, 200)
       return;
@@ -53,26 +53,30 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
     },
     // header: { 'content-type': 'application/x-www-form-urlencoded' },
     method: method,
-    success: function (ret) {
+    success: function(ret) {
       var time_end = new Date().getTime();
       console.log("请求时间", time_end - time_start);
       if (ret.data.result)
         successCallback(ret.data.ret);
       else {
-        wx.showToast({
+        if (ret.data.code == '102') {
+          setTimeout(function() {
+            wxRequest(url, param, method, successCallback, errorCallback);
+          }, 500)
+        } else wx.showToast({
           title: ret.data.message,
           icon: 'none',
           duration: 2000
         })
       }
     },
-    fail: function (err) {
+    fail: function(err) {
       // console.log("wxRequest fail:" + JSON.stringify(err))
 
     },
-    complete: function (ret) {
-     console.log("ret:" + JSON.stringify(ret))
-      setTimeout(function () {
+    complete: function(ret) {
+      console.log("ret:" + JSON.stringify(ret))
+      setTimeout(function() {
         // hideLoading()
       }, 2000)
     }
@@ -362,9 +366,9 @@ function uploadImage(param, successCallback, errorCallback) {
       userid: getApp().globalData.userInfo.userid,
       _token: getApp().globalData.userInfo._token
     },
-    success: function (ret) {
+    success: function(ret) {
       // console.log("ret:" + JSON.stringify(ret))
-      if (typeof (ret.data) == "string") {
+      if (typeof(ret.data) == "string") {
         // console.log(typeof (ret.data))
         ret.data = JSON.parse(ret.data);
       }
@@ -380,17 +384,17 @@ function uploadImage(param, successCallback, errorCallback) {
         })
       }
     },
-    fail: function (err) {
+    fail: function(err) {
       // console.log("wxRequest fail:" + JSON.stringify(err))
 
     },
-    complete: function () {
+    complete: function() {
       // hideLoading()
     }
   })
 }
 
-const formatNumber = function (n) {
+const formatNumber = function(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
@@ -432,7 +436,7 @@ function showModal(title, content, confirmCallBack, cancelCallBack) {
   wx.showModal({
     title: title,
     content: content,
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
         confirmCallBack(res)
@@ -449,7 +453,7 @@ function showErrorModal(msg) {
   wx.showModal({
     title: '调用失败',
     content: msg,
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
       } else if (res.cancel) {
@@ -480,7 +484,7 @@ function hideLoading() {
   wx.hideLoading();
 }
 
-const formatTime = function (date) {
+const formatTime = function(date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -490,7 +494,7 @@ const formatTime = function (date) {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-const formatDate = function (date) {
+const formatDate = function(date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -532,7 +536,7 @@ function navigateToRegister(param) {
 //---------------------------------------------------  
 // 判断闰年  
 //---------------------------------------------------  
-Date.prototype.isLeapYear = function () {
+Date.prototype.isLeapYear = function() {
   return (0 == this.getYear() % 4 && ((this.getYear() % 100 != 0) || (this.getYear() % 400 == 0)));
 }
 
@@ -546,7 +550,7 @@ Date.prototype.isLeapYear = function () {
 // mm/m 分钟  
 // ss/SS/s/S 秒  
 //---------------------------------------------------  
-Date.prototype.Format = function (formatStr) {
+Date.prototype.Format = function(formatStr) {
   var str = formatStr;
   var Week = ['日', '一', '二', '三', '四', '五', '六'];
 
@@ -592,7 +596,7 @@ function daysBetween(DateOne, DateTwo) {
 //+---------------------------------------------------  
 //| 日期计算  
 //+---------------------------------------------------  
-Date.prototype.DateAdd = function (strInterval, Number) {
+Date.prototype.DateAdd = function(strInterval, Number) {
   var dtTmp = this;
   switch (strInterval) {
     case 's':
@@ -617,7 +621,7 @@ Date.prototype.DateAdd = function (strInterval, Number) {
 //+---------------------------------------------------  
 //| 比较日期差 dtEnd 格式为日期型或者有效日期格式字符串  
 //+---------------------------------------------------  
-Date.prototype.DateDiff = function (strInterval, dtEnd) {
+Date.prototype.DateDiff = function(strInterval, dtEnd) {
   var dtStart = this;
   if (typeof dtEnd == 'string') //如果是字符串转换为日期型
   {
@@ -644,7 +648,7 @@ Date.prototype.DateDiff = function (strInterval, dtEnd) {
 //+---------------------------------------------------  
 //| 日期输出字符串，重载了系统的toString方法  
 //+---------------------------------------------------  
-Date.prototype.toString = function (showWeek) {
+Date.prototype.toString = function(showWeek) {
   var myDate = this;
   var str = myDate.toLocaleDateString();
   if (showWeek) {
@@ -701,7 +705,7 @@ function CheckDateTime(str) {
 //+---------------------------------------------------  
 //| 把日期分割成数组  
 //+---------------------------------------------------  
-Date.prototype.toArray = function () {
+Date.prototype.toArray = function() {
   var myDate = this;
   var myArray = Array();
   myArray[0] = myDate.getFullYear();
@@ -718,7 +722,7 @@ Date.prototype.toArray = function () {
 //| 参数 interval 表示数据类型  
 //| y 年 m月 d日 w星期 ww周 h时 n分 s秒  
 //+---------------------------------------------------  
-Date.prototype.DatePart = function (interval) {
+Date.prototype.DatePart = function(interval) {
   var myDate = this;
   var partStr = '';
   var Week = ['日', '一', '二', '三', '四', '五', '六'];
@@ -754,7 +758,7 @@ Date.prototype.DatePart = function (interval) {
 //+---------------------------------------------------  
 //| 取得当前日期所在月的最大天数  
 //+---------------------------------------------------  
-Date.prototype.MaxDayOfDate = function () {
+Date.prototype.MaxDayOfDate = function() {
   var myDate = this;
   var ary = myDate.toArray();
   var date1 = (new Date(ary[0], ary[1] + 1, 1));

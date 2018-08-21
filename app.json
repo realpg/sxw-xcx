@@ -29,6 +29,7 @@
     "pages/customer_services/customer_services", 
     "pages/recharge/recharge",
     "pages/pay_advertising/pay_advertising",
+    "pages/pay_advertising_lunbo/pay_advertising_lunbo",
     "pages/mine_issue/mine_issue",
     "pages/select_issue/select_issue",
     "pages/search/search",

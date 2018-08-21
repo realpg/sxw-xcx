@@ -23,7 +23,7 @@
 <!-- 广告位截止时间 -->
 <view class='hint'>
   <view  class='hint_time'>广告位预计截止时间：{{hint_time}}</view>
-  <view class='hint_context'>提示：支付成功后vip身份会立即生效</view>
+  <view class='hint_context'>提示：支付成功后广告位会立即生效</view>
 </view>
 
 <!-- 金币 -->

@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "详情页",
-					"pathName": "pages/mine_issue/mine_issue",
+					"pathName": "pages/mine_promotion/mine_promotion",
 					"query": ""
 				},
 				{

@@ -105,7 +105,7 @@ let that;
        type: 3,
      };
      util.todayranking(param, function (ret) {
-       console.log('周排行榜', ret)
+       console.log('月排行榜', ret)
         that.setData({
           // business_card: ret
           monthList: ret

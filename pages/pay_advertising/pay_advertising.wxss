@@ -38,7 +38,7 @@ page{
 }
 
 .gold{
-  margin-top: 200rpx;
+  margin-top: 100rpx;
   display: flex;
   justify-content: space-around;
   font-size: 26rpx;

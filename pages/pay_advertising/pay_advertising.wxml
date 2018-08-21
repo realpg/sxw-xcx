@@ -2,28 +2,21 @@
   <image class='adcImg' src='{{advImg}}'></image>
 </view>
 
+
 <!-- 价格栏 -->
-<view class='price_column' wx:if='{{advertisingVIP.length!=0}}'>
+<view class='price_column' >
 <radio-group class="radio-group" bindchange="radioChange">
-  <radio value="{{advertisingVIP[2].amount}},{{advertisingVIP[2].id}}" class="radio"><text class='price'>{{advertisingVIP[2].amount}}金币/周</text></radio>
-  <radio value="{{advertisingVIP[1].amount}},{{advertisingVIP[1].id}}" class="radio" ><text class='price'>{{advertisingVIP[1].amount}}金币/月</text></radio>
-  <radio value="{{advertisingVIP[0].amount}},{{advertisingVIP[0].id}}" class="radio"><text class='price'>{{advertisingVIP[0].amount}}金币/年</text></radio>
+  <radio value="2" class="radio"><text class='price'>{{advertisingVIP[2].amount}}金币/{{advertisingVIP[2].druation/86400}}天</text></radio>
+  <radio value="1" class="radio" ><text class='price'>{{advertisingVIP[1].amount}}金币/{{advertisingVIP[1].druation/86400}}天</text></radio>
+  <radio value="0" class="radio"><text class='price'>{{advertisingVIP[0].amount}}金币/{{advertisingVIP[0].druation/86400}}天</text></radio>
 </radio-group>
 </view>
 
-<!-- 价格栏 -->
-<view class='price_column' wx:else='{{sellingADs.length!=0}}'>
-<radio-group class="radio-group" wx:for='{{sellingADs}}' bindchange="radioChange">
-  <radio value="{{item.amount0}},0"  class="radio"><text class='price'>{{item.amount0}}金币/周</text></radio>
-  <radio value="{{item.amount1}},1" class="radio" ><text class='price'>{{item.amount1}}金币/月</text></radio>
-  <radio value="{{item.amount2}},2" class="radio"><text class='price'>{{item.amount2}}金币/年</text></radio>
-</radio-group>
-</view>
 
 <!-- 广告位截止时间 -->
 <view class='hint'>
-  <view  class='hint_time'>广告位预计截止时间：{{hint_time}}</view>
-  <view class='hint_context'>提示：支付成功后vip身份会立即生效</view>
+  <view  class='hint_time'>VIP预计截止时间：{{hint_time}}</view>
+  <view class='hint_context'>提示：非VIP用户支付成功后，VIP身份会立即生效。VIP用户支付成功后，会在已购买的VIP全部过期后生效</view>
 </view>
 
 <!-- 金币 -->
@@ -34,4 +27,5 @@
 </view>
 
 <!-- 确认按钮 -->
-<view bindtap='payClick' class='confirm_button'>立即支付</view>
+<view wx:if="{{!paying}}" bindtap='payClick' class='confirm_button'>立即支付</view>
+<view wx:else="" class='confirm_button_disable'>等待支付完成...</view>

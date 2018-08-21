@@ -296,8 +296,8 @@ button::after {
   background: #01c46c;
   color: white;
   font-size: 22rpx;
-  border-radius: 5rpx;
-  padding: 6rpx 20rpx;
+  border-radius: 8rpx;
+  padding: 5rpx 18rpx;
 }
 .headImg{
   width: 120rpx;

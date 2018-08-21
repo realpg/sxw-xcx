@@ -33,12 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "详情页",
-					"pathName": "pages/particulars/particulars",
+					"pathName": "pages/mine_issue/mine_issue",
 					"query": ""
 				},
 				{
@@ -110,7 +110,8 @@
 				{
 					"id": -1,
 					"name": "搜索",
-					"pathName": "pages/search/search"
+					"pathName": "pages/search/search",
+					"query": ""
 				}
 			]
 		}

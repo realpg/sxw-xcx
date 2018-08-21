@@ -71,8 +71,24 @@ Page({
   },
 
   //编辑
-  redactclick: function () {
-
+  redactclick: function (e) {
+    console.log(1314,e.currentTarget.dataset)
+    if (e.currentTarget.dataset.mid==5){
+      console.log(51111111111111, e.currentTarget.dataset.mid)
+    wx.navigateTo({
+      url: '../release_supply_information/release_supply_information?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
+    })
+    } else if (e.currentTarget.dataset.mid == 6){
+      console.log(61111111111111, e.currentTarget.dataset.mid)
+      wx.navigateTo({
+        url: '../release_purchase_information/release_purchase_information?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.id,
+      })
+    }else{
+      console.log(88111111111111, e.currentTarget.dataset.mid)
+      wx.navigateTo({
+        url: '../second_hand_equipment/second_hand_equipment?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -97,23 +113,14 @@ Page({
           if (ret.data[i].user)
             sellList.push({
               id: ret.data[i].itemid, //信息id
+              mid:5,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
               name: ret.data[i].user.truename, //用户姓名
               position: ret.data[i].businesscard.career, //职位
               demand: '供应', //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
-              lableList: [ //标签 后续跟进
-                {
-                  lable: '混纺纱'
-                },
-                {
-                  lable: '纺织用纱'
-                },
-                {
-                  lable: '混纺纱'
-                },
-              ],
+              lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               message_Img: //详情图片  后续跟进
                 [{
@@ -153,23 +160,14 @@ Page({
         if (ret.data[i].user)
           buyList.push({
             id: ret.data[i].itemid, //信息id
+            mid:6,
             head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
             icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
             name: ret.data[i].user.truename, //用户姓名
             position: ret.data[i].businesscard.career, //职位
             demand: '供应', //发布类别  ()
             company: ret.data[i].businesscard.company, //公司
-            lableList: [ //标签 后续跟进
-              {
-                lable: '混纺纱'
-              },
-              {
-                lable: '纺织用纱'
-              },
-              {
-                lable: '混纺纱'
-              },
-            ],
+            lableList: ret.data[i].tags,//标签
             details: ret.data[i].introduce, //信息详情描述
             message_Img: //详情图片  后续跟进
               [{
@@ -206,23 +204,14 @@ Page({
         if (ret.data[i].user)
           fjmyList.push({
             id: ret.data[i].itemid, //信息id
+            mid:88,
             head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
             icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
             name: ret.data[i].user.truename, //用户姓名
             position: ret.data[i].businesscard.career, //职位
             demand: '供应', //发布类别  ()
             company: ret.data[i].businesscard.company, //公司
-            lableList: [ //标签 后续跟进
-              {
-                lable: '混纺纱'
-              },
-              {
-                lable: '纺织用纱'
-              },
-              {
-                lable: '混纺纱'
-              },
-            ],
+            lableList: ret.data[i].tags,//标签
             details: ret.data[i].introduce, //信息详情描述
             message_Img: //详情图片  后续跟进
               [{
@@ -291,6 +280,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '我分享了' + that.data.business_card.truename + '的名片',
+      path: 'pages/store_particulars/store_particulars?id=' + that.data.id,
+      success: function (res) {
+        // 转发成功
+        wx.showToast({
+          title: '分享成功',
+          duration: 1500
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

@@ -41,9 +41,8 @@
         <text class='number'>{{business_card.businesscard.userid}}                  </text>
       </view>
       <view class='browse'>
-        <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-        <text class='number'>分享 </text>
-        <!-- <text class='number'>{{business_card.transpond}} </text> -->
+       <button open-type='share'><image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
+        <text class='number'>转发</text></button>
       </view>
     </view>
   </view>

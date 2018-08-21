@@ -319,5 +319,20 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  onReachBottom: function (e) {
+    console.log("触底加载", that.data.id)
+    switch (that.data.id) {
+      case '1':
+        that.getSellList();
+        break;
+      case '2':
+        that.getBuyList();
+        break
+      case '3':
+        that.getFJMYList();
+        break
+    }
   }
 })

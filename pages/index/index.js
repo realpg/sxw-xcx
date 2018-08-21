@@ -595,6 +595,7 @@ Page({
     })
   },
 
+//触底加载
   onReachBottom: function (e) {
     console.log("触底加载", that.data.nn)
     switch (that.data.nn) {

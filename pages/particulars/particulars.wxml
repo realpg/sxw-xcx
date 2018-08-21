@@ -79,7 +79,7 @@
 
 
 
-  <view class='leave_word_details' wx:for='{{leave_word_details}}' wx:for-item='items' wx:if='{{leave_word_details.length <= message_number}}'>
+  <view class='leave_word_details' wx:for='{{leave_word_details}}' wx:for-item='items' wx:for-index='index'  wx:if='{{index < message_number}}'>
     <view class='leave_word_details_css'>
       <view class='leave_word_iconImage'>
         <image class='leave_word_iconImage_css' src='{{items.iconImg}}'></image>

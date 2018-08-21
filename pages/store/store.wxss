@@ -101,6 +101,11 @@ page {
 }
 .The_main_css{
   margin-bottom: 10rpx;
+  display: -webkit-box; 
+   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .enter_css{
   background: #01C46C;

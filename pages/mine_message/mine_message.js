@@ -46,7 +46,7 @@ Page({
              title: ret[i].title,
              state:true,
              content: article, 
-             time: util.formatTime(new Date(ret[i].addtime))
+             time: new Date(parseInt(ret[i].addtime) * 1000).toLocaleString().replace(/:\d{1,2}$/, '')
            })
         }
      }

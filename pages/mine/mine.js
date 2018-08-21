@@ -9,59 +9,124 @@ Page({
    */
   data: {
     business_card: {
-      name: '董小姐',
-      post: '销售总监',
-      phone: '13666666666',
-      company: '南通纺织银源科技有限公司',
-      address: '江苏省南通市滨水路6号',
-      The_main: '条干13.56,环纺普纱21,普纱28支',
-      browse: '888',
-      Like: '169',
-      collect: '198',
-      transpond: '68',
+      name: '',
+      post: '',
+      phone: '',
+      company: '',
+      address: '',
+      The_main: '',
+      browse: '',
+      Like: '',
+      collect: '',
+      transpond: '',
     },
 
-    gold: '62',
-    sign_in_date: [
-      { id: 1, isSignin: false, week: '周一' },
-      { id: 2, isSignin: false, week: '周二' },
-      { id: 3, isSignin: false, week: '周三' },
-      { id: 4, isSignin: false, week: '周四' },
-      { id: 5, isSignin: false, week: '周五' },
-      { id: 6, isSignin: false, week: '周六' },
-      { id: 7, isSignin: false, week: '周日' }
+    gold: '',
+    sign_in_date: [{
+        id: 1,
+        isSignin: false,
+        week: '周一'
+      },
+      {
+        id: 2,
+        isSignin: false,
+        week: '周二'
+      },
+      {
+        id: 3,
+        isSignin: false,
+        week: '周三'
+      },
+      {
+        id: 4,
+        isSignin: false,
+        week: '周四'
+      },
+      {
+        id: 5,
+        isSignin: false,
+        week: '周五'
+      },
+      {
+        id: 6,
+        isSignin: false,
+        week: '周六'
+      },
+      {
+        id: 7,
+        isSignin: false,
+        week: '周日'
+      }
     ],
 
-    mine_item: [
-      { id: '0', iconImg: '../../images/personal_center/yaoyue.png', title: '邀约赚金币', describe: '邀请好友赚金币', }, 
-      { id: '1', iconImg: '../../images/personal_center/dati.png', title: '答题赚金币', describe: '玩游戏涨知识赚金币', }, 
-      { id: '2', iconImg: '../../images/personal_center/wtuiguang.png', title: '我要推广', describe: 'PC、移动端全网覆盖，帮您推广', }, 
-      { id: '3', iconImg: '../../images/personal_center/guanggaowei.png', title: '我的广告位', describe: '在这里查看购买的广告位', }, 
-      { id: '4', iconImg: '../../images/personal_center/mine_issue.png', title: '我的发布', describe: '在这里查看发布的信息', }, 
-      { id: '5', iconImg: '../../images/personal_center/xiaoxi.png', title: '我的消息', describe: '在这里查看信息', }, 
-      { id: '6', iconImg: '../../images/personal_center/guanzhu.png', title: '我的关注', describe: '查看关注的信息', }, 
-      { id: '7', iconImg: '../../images/personal_center/help.png', title: '帮助中心', describe: '遇到问题查看帮助中心', },
-      ],
+    mine_item: [{
+        id: '0',
+        iconImg: '../../images/personal_center/yaoyue.png',
+        title: '邀约赚金币',
+        describe: '邀请好友赚金币',
+      },
+      {
+        id: '1',
+        iconImg: '../../images/personal_center/dati.png',
+        title: '答题赚金币',
+        describe: '玩游戏涨知识赚金币',
+      },
+      {
+        id: '2',
+        iconImg: '../../images/personal_center/wtuiguang.png',
+        title: '我要推广',
+        describe: 'PC、移动端全网覆盖，帮您推广',
+      },
+      {
+        id: '3',
+        iconImg: '../../images/personal_center/guanggaowei.png',
+        title: '我的广告位',
+        describe: '在这里查看购买的广告位',
+      },
+      {
+        id: '4',
+        iconImg: '../../images/personal_center/mine_issue.png',
+        title: '我的发布',
+        describe: '在这里查看发布的信息',
+      },
+      {
+        id: '5',
+        iconImg: '../../images/personal_center/xiaoxi.png',
+        title: '我的消息',
+        describe: '在这里查看信息',
+      },
+      {
+        id: '6',
+        iconImg: '../../images/personal_center/guanzhu.png',
+        title: '我的关注',
+        describe: '查看关注的信息',
+      },
+      {
+        id: '7',
+        iconImg: '../../images/personal_center/help.png',
+        title: '帮助中心',
+        describe: '遇到问题查看帮助中心',
+      },
+    ],
 
     gold_coin_get: '2'
   },
 
   //获取金币
-  gainClick: function () {
+  gainClick: function() {
     wx.navigateTo({
       url: '../recharge/recharge',
     })
   },
 
-  redactClick: function () {
+  redactClick: function() {
     wx.navigateTo({
       url: '../personal_data/personal_data',
     })
-
   },
 
   //点击选择
-  mine_item_click: function (e) {
+  mine_item_click: function(e) {
     var that = this;
     if (e.currentTarget.dataset.id == 0) {
       wx.navigateTo({
@@ -71,8 +136,7 @@ Page({
       wx.navigateTo({
         url: '../answer_gold/answer_gold',
       })
-    }
-    else if (e.currentTarget.dataset.id == 2) {
+    } else if (e.currentTarget.dataset.id == 2) {
       wx.navigateTo({
         url: '../mine_promotion/mine_promotion',
       })
@@ -103,7 +167,7 @@ Page({
     }
   },
 
-  signInList:function(){
+  signInList: function() {
     var now = new Date();
     var nowTime = now.getTime();
     var day = now.getDay();
@@ -123,20 +187,20 @@ Page({
 
     console.log(monday);
     console.log(sunday);
-    
-    let param={
+
+    let param = {
       userid: that.data.business_card.userid,
       _token: that.data.business_card._token,
       date: monday.toString(),
-      days:7,
+      days: 7,
     };
 
-    util.signInList(param, function (ret) {
-      console.log('00',ret);
-      for(let i in ret){
-      if(ret[i]){
-        that.data.sign_in_date[i].isSignin = true;
-      }
+    util.signInList(param, function(ret) {
+      console.log('00', ret);
+      for (let i in ret) {
+        if (ret[i]) {
+          that.data.sign_in_date[i].isSignin = true;
+        }
       }
 
       that.setData({
@@ -146,7 +210,7 @@ Page({
 
   },
 
-  singInClick: function () {
+  singInClick: function() {
     let date = new Date();
     let day = date.getDay();
 
@@ -154,123 +218,150 @@ Page({
       userid: that.data.business_card.userid,
       _token: that.data.business_card._token,
     };
-    util.signIn(param, function (ret) {
+    util.signIn(param, function(ret) {
       // console.log();
-      
-    switch(day){
-      case 1:
-        that.data.sign_in_date[0].isSignin = true;
-      break;
 
-      case 2:
-        that.data.sign_in_date[1].isSignin = true;
-        break;
+      switch (day) {
+        case 1:
+          that.data.sign_in_date[0].isSignin = true;
+          break;
 
-      case 3:
-        that.data.sign_in_date[2].isSignin = true;
-        break;
+        case 2:
+          that.data.sign_in_date[1].isSignin = true;
+          break;
 
-      case 4:
-        that.data.sign_in_date[3].isSignin = true;
-        break;
+        case 3:
+          that.data.sign_in_date[2].isSignin = true;
+          break;
 
-      case 5:
-        that.data.sign_in_date[4].isSignin = true;
-        break;
+        case 4:
+          that.data.sign_in_date[3].isSignin = true;
+          break;
 
-      case 6:
-        that.data.sign_in_date[5].isSignin = true;
-        break;
+        case 5:
+          that.data.sign_in_date[4].isSignin = true;
+          break;
 
-      case 7:
-        that.data.sign_in_date[6].isSignin = true;
-        break;
+        case 6:
+          that.data.sign_in_date[5].isSignin = true;
+          break;
 
-      default:
+        case 7:
+          that.data.sign_in_date[6].isSignin = true;
+          break;
 
-      break;
-    }
+        default:
 
-    wx.showToast({
-      title: '金币+' + that.data.gold_coin_get,
-      duration: 1500
-    })
-    
-    that.setData({
-      sign_in_date: that.data.sign_in_date
-    })
+          break;
+      }
+
+      wx.showToast({
+        title: '金币+' + that.data.gold_coin_get,
+        duration: 1500
+      })
+
+      that.setData({
+        sign_in_date: that.data.sign_in_date
+      })
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    that = this;
+  refresh: function() {
+    app.login(app,function(){
+      that.setData({
+        business_card: app.globalData.userInfo
+      })
+      console.log("现在的userinfo",that.data.business_card)
+    });
+
     let date = new Date();
     let day = date.getDay();
+    
+    console.log(888888, that.data.business_card)
 
-    that.setData({
-      business_card: wx.getStorageSync('UserInfo')
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
     that.signInList();
     var gold_coin_get = that.data.gold_coin_get
     util.getSystemKeyValue({
       id: 10
-    }, function (ret) {
+    }, function(ret) {
       that.setData({
         gold_coin_get: ret.value,
       })
       console.log(222222222222222222222, that.data.gold_coin_get)
     }, null)
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    that = this;
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+    that.refresh()
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh: function() {
+    console.log('下拉刷新')
+    that.refresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function() {
+    return {
+      title: '我分享了' + that.data.business_card.truename + '的名片',
+      path: 'pages/store_particulars/store_particulars?id=' + that.data.id,
+      success: function(res) {
+        // 转发成功
+        wx.showToast({
+          title: '分享成功',
+          duration: 1500
+        })
+      },
+      fail: function(res) {
+        // 转发失败
+      }
+    }
   }
+
+
 })

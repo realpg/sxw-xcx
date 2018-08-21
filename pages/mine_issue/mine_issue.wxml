@@ -53,15 +53,17 @@
 <!-- 信息 -->
 <view class='information'>
   <view class='information_css' wx:for='{{information}}'>
-    <view class='lable' >
-      <text class='lable_one'>{{item.lableList[0].lable}}</text>
-      <text class='lable_two'>{{item.lableList[1].lable}}</text>
-      <text class='lable_three'>{{item.lableList[2].lable}}</text>
-    </view>
+    <view class='lable'>
+          <view wx:for='{{item.lableList}}' wx:for-index='index'>
+            <text class='lable_one' wx:if='{{index==0}}' >{{item.tagname}}</text>
+            <text class='lable_two' wx:if='{{index==1}}' >{{item.tagname}}</text>
+            <text class='lable_three' wx:if='{{index==2}}' >{{item.tagname}}</text>
+          </view>
+        </view>
     <view class='content'>{{item.details}}</view>
     <view class='time'>发布时间：{{item.time}}</view>
     <view class='menu'>
-      <view class='redact' bindtap='redactclick'> 
+      <view class='redact' bindtap='redactclick' data-mid='{{item.mid}}' data-id='{{item.id}}'> 
         <image class='Img_edit' src='../../images/personal_center/edit.png'></image><text class='text_css'>编辑</text>
       </view>
       <view class='redact_css'>

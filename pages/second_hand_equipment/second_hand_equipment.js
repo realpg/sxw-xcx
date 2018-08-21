@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id:'',
+    mid:'',
     content://页面内容
       {
         catid: null,
@@ -289,7 +291,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this;
+    if (options.id && options.mid) {
+      that.setData({
+        id: options.id,
+        mid: options.mid,
+      })
+    }
   },
 
   /**
@@ -297,8 +305,28 @@ Page({
    */
   onReady: function () {
     const that = this;
-    that.getEdit();
+    switch (that.data.mid) {
+      case '5':
+        that.sellInfoDetails();
+        break;
+      case '6':
+        that.buyInfoDetails();
+        break;
+      case '88':
+        that.tradeInfoDetails();
+        break;
+    }
+  },
+//供应信息
+  sellInfoDetails:function(){
 
+  },
+//求购信息  
+  buyInfoDetails: function () {
+
+  },
+//纺机贸易
+  tradeInfoDetails: function () {
 
   },
 

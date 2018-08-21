@@ -73,7 +73,8 @@ App({
     });
   },
 
-  login: function (app) {
+  login: function (app,callback) {
+    callback = typeof callback !== 'undefined' ? callback : ()=>{};
 
     var userInfo = app.globalData.wx_userInfo;
     var openId = app.globalData.openId;
@@ -88,7 +89,7 @@ App({
       app.globalData.userInfo = res;
       // console.log("用户信息", app.globalData.userInfo);
       wx.setStorageSync('UserInfo', app.globalData.userInfo)
-
+      callback();
       // console.log("登录服务器成功")
     }, function (res) {
       console.log("登录服务器失败", res)

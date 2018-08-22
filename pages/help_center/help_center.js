@@ -1,4 +1,7 @@
 // pages/help_center/help_center.js
+const app = getApp()
+const util = require('../../utils/util.js');
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -33,7 +36,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    util.getSystemKeyValue({
+      id: 29
+    }, function (ret) {
+     
+      console.log(222222222222222222222, ret)
+    }, null)
   },
 
   /**

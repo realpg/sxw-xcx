@@ -58,7 +58,7 @@
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
       <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'/>
-      <image class='icon_vip' src='{{item.icon_vip}}' mode='widthFix'/>
+       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 
     <view class='The_specific_details'>

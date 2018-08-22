@@ -254,21 +254,21 @@ Page({
         setTimeout(function () {
           that.getBuyList();
           that.getFJMYList();
-        }, 2000)
+        }, 800)
         break;
       case '2':
         that.getBuyList();
         setTimeout(function () {
           that.getSellList();
           that.getFJMYList();
-        }, 2000)
+        }, 800)
         break;
       case '3':
         that.getFJMYList();
         setTimeout(function () {
           that.getSellList();
           that.getBuyList();
-        }, 2000)
+        }, 800)
         break;
     }
     that.setTab();

@@ -2,21 +2,22 @@
 const app = getApp();
 const util = require('../../utils/util.js');
 let count;
+var that;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    id:'',
-    mid:'',
-    content://页面内容
-      {
-        catid: null,
-        address: null,
-        content: null,
-        tags: [],
-        thumbs: []
-      },
+    id: '',
+    mid: '',
+    content: //页面内容
+    {
+      catid: null,
+      address: null,
+      content: null,
+      tags: [],
+      thumbs: []
+    },
 
     hint_details: '请认真发布信息，发布的内容尽可能描述完整。如支数、库存数量、关键指标的信息，切勿虚报乱写加入黑名单并通报全网。',
 
@@ -30,13 +31,13 @@ Page({
     gold_coin_balance: '5',
     gold_coin_pay: '1',
     lable_color: '',
-    lable_background: ''//#01C46C
+    lable_background: '' //#01C46C
   },
 
-  getEdit: function () {
+  getEdit: function() {
     var that = this;
     //获得类别和标签
-    util.fjmyEdit_get({}, function (ret) {
+    util.fjmyEdit_get({}, function(ret) {
       console.log("求购编辑所需内容", ret);
       var objectArray = [];
       for (var i in ret.catids) {
@@ -60,7 +61,9 @@ Page({
       })
     }, null)
 
-    util.getSystemKeyValue({ id: 4 }, function (ret) {
+    util.getSystemKeyValue({
+      id: 4
+    }, function(ret) {
       that.setData({
         gold_coin_pay: ret.value,
         gold_coin_balance: app.globalData.userInfo.credit
@@ -70,7 +73,7 @@ Page({
 
 
   //类别选择
-  bindPickerChange: function (e) {
+  bindPickerChange: function(e) {
 
 
     var content = this.data.content;
@@ -80,7 +83,7 @@ Page({
       content: content
     })
   },
-  changeAddress: function (e) {
+  changeAddress: function(e) {
 
     var content = this.data.content;
     content.address = e.detail.value
@@ -88,7 +91,7 @@ Page({
       content: content
     })
   },
-  changeContent: function (e) {
+  changeContent: function(e) {
 
     var content = this.data.content;
     content.content = e.detail.value
@@ -100,7 +103,7 @@ Page({
   },
 
   //标签选择
-  lableClick: function (e) {
+  lableClick: function(e) {
     var that = this;
     // console.log(e.currentTarget.dataset.id)
     var content = this.data.content;
@@ -126,7 +129,7 @@ Page({
    * 添加图片
    * */
 
-  AddImgClick: function () {
+  AddImgClick: function() {
     const that = this;
     let b = [];
 
@@ -139,13 +142,13 @@ Page({
         count: count, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
-          console.log(res, typeof (res.tempFiles[0]));
+        success: function(res) {
+          console.log(res, typeof(res.tempFiles[0]));
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           for (let i in res.tempFilePaths) {
             util.uploadImage({
               file: res.tempFilePaths[i]
-            }, function (ret) {
+            }, function(ret) {
               console.log("上传成功", ret)
               that.data.MessageImgList.push(
                 b = {
@@ -167,7 +170,7 @@ Page({
 
   },
   // 图片预览
-  previewImClick: function (event) {
+  previewImClick: function(event) {
     var that = this;
     // wx.previewImage({
     // current: '', // 当前显示图片的http链接
@@ -191,7 +194,7 @@ Page({
     }
   },
   //删除图片
-  DelClick: function (e) {
+  DelClick: function(e) {
     const that = this;
     let MIL = that.data.MessageImgList;
     for (let i in MIL) {
@@ -206,7 +209,7 @@ Page({
 
   },
 
-  submitClick: function () {
+  submitClick: function() {
 
     var that = this
     var content = that.data.content;
@@ -218,17 +221,17 @@ Page({
       content: content
     })
 
-    if (content.catid && content.address
-      && content.content
-      && content.tags.length > 0
-      && content.thumbs.length > 0
-      && that.data.gold_coin_balance >= that.data.gold_coin_pay
-      && app.globalData.userInfo.groupid == '6'
+    if (content.catid && content.address &&
+      content.content &&
+      content.tags.length > 0 &&
+      content.thumbs.length > 0 &&
+      that.data.gold_coin_balance >= that.data.gold_coin_pay &&
+      app.globalData.userInfo.groupid == '6'
       // && app.globalData.userInfo.mobile
     ) {
       var param = {
         title: "供应信息",
-        introduce: content.content.length > 30 ? content.content.substring(0, 30) + "……" : content.content,
+        introduce: content.content.length > 100 ? content.content.substring(0, 100) + "……" : content.content,
         catid: content.catid,
         content: content.content,
         thumb: content.thumbs,
@@ -237,14 +240,14 @@ Page({
         tag: content.tags.join(",")
       };
       console.log('验证通过', param);
-      util.fjmyEdit_post(param, function (ret) {
+      util.fjmyEdit_post(param, function(ret) {
         console.log(ret);
         app.globalData.userInfo.credit -= that.data.gold_coin_pay;
         wx.showToast({
           title: "提交成功",
           icon: "success",
-          success: function () {
-            setTimeout(function () {
+          success: function() {
+            setTimeout(function() {
               wx.reLaunch({
                 url: "../index/index",
               })
@@ -269,20 +272,20 @@ Page({
   },
 
   //个人信息详情
-  personal_data_click: function () {
+  personal_data_click: function() {
     wx.navigateTo({
       url: '../personal_data/personal_data',
     })
   },
 
   //获取金币
-  acquireClick: function () {
+  acquireClick: function() {
     wx.navigateTo({
       url: '../recharge/recharge',
     })
   },
   //发布须知
-  Release_notes_Click: function () {
+  Release_notes_Click: function() {
     wx.navigateTo({
       url: '../release_notes/release_notes',
     })
@@ -290,85 +293,72 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
-    if (options.id && options.mid) {
-      that.setData({
-        id: options.id,
-        mid: options.mid,
-      })
-    }
+    console.log("opt:", options)
+  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     const that = this;
-    switch (that.data.mid) {
-      case '5':
-        that.sellInfoDetails();
-        break;
-      case '6':
-        that.buyInfoDetails();
-        break;
-      case '88':
-        that.tradeInfoDetails();
-        break;
-    }
-  },
-//供应信息
-  sellInfoDetails:function(){
+    that.getEdit();
 
   },
-//求购信息  
-  buyInfoDetails: function () {
+  //供应信息
+  sellInfoDetails: function() {
 
   },
-//纺机贸易
-  tradeInfoDetails: function () {
+  //求购信息  
+  buyInfoDetails: function() {
+
+  },
+  //纺机贸易
+  tradeInfoDetails: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

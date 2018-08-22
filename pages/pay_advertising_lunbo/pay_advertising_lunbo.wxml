@@ -5,7 +5,7 @@
 <view class='price_column'>
   <radio-group class="radio-group" bindchange="radioChange">
     <block wx:for='{{sellingADs}}' wx:for-index='index'>
-      <view class='select_lunbo' bindtap='select_lunbo' data-index='{{index}}'>轮播位{{item.itemid}}</view>
+      <view class='select_lunbo' bindtap='select_lunbo' data-index='{{index}}'>{{item.desc}}</view>
       <view class='{{item.state ? "select_lunbo_block":"select_lunbo_none"}}'>
         <radio value="{{index}},0" class="radio">
           <text class='price'>{{item.amount0}}金币/周</text>
@@ -33,7 +33,7 @@
     <text class='mine_gold'>{{userinfo.credit}}</text>
   </view>
   <view>本次扣除：
-    <text class='pay_gold'>-{{pay_gold}}</text>
+    <text class='pay_gold'>{{pay_gold}}</text>
   </view>
   <view class='gain_gold' bindtap='gain_goldClick'>获取金币</view>
 </view>

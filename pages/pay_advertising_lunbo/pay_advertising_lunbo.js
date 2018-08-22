@@ -29,18 +29,20 @@ Page({
     var index = arr[0];
     var level = arr[1];
 
-
     //
     if (parseInt(arr[1]) == 0) {
-      that.data.hint_time = that.data.sellingADs[0].druation0;
+      that.data.hint_time = that.data.sellingADs[index].druation0;
+      that.data.pay_gold = that.data.sellingADs[index].amount0;
     } else if (parseInt(arr[1]) == 1) {
-      that.data.hint_time = that.data.sellingADs[0].druation1;
+      that.data.hint_time = that.data.sellingADs[index].druation1;
+      that.data.pay_gold = that.data.sellingADs[index].amount1;
     } else {
-      that.data.hint_time = that.data.sellingADs[0].druation2;
+      that.data.hint_time = that.data.sellingADs[index].druation2;
+      that.data.pay_gold = that.data.sellingADs[index].amount2;
     }
 
     that.setData({
-      pay_gold: parseInt(arr[0]),
+      pay_gold: that.data.pay_gold, 
       index: index,
       level: level,
       hint_time: that.data.hint_time
@@ -50,12 +52,31 @@ Page({
   },
 
   payClick: function() {
+
+    that = this
+    wx.showModal({
+      title: '提示',
+      content: '是否确认购买？',
+      cancelColor: 'red',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.confirm();
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
+  confirm:function(){
     if (that.data.index && that.data.level) {
       var param = {
         itemid: that.data.sellingADs[that.data.index].itemid,
         level: that.data.level
       };
-      util.payAssign(param, function(res) {
+      console.log(11111111111)
+      util.payAssign(param, function (res) {
         console.log('指定广告位', res);
         wx.showToast({
           title: '购买成功',
@@ -63,9 +84,9 @@ Page({
           duration: 2000
         })
 
-        setTimeout(function() {
+        setTimeout(function () {
           wx.navigateBack();
-        },2000)
+        }, 2000)
         // that.setData({
         //   advertisingAssign: res
         // })
@@ -73,7 +94,6 @@ Page({
 
     }
   },
-
 
   // 获取金币
   gain_goldClick: function() {
@@ -84,8 +104,8 @@ Page({
 
   GetAdvertisingInfo: function() {
     var param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: app.globalData.userInfo.userid,
+      _token: app.globalData.userInfo._token,
       pid: that.data.pid
     };
     util.GetAdvertisingInfo(param, function(res) {
@@ -101,7 +121,7 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    console.log(11236, wx.getStorageSync('UserInfo'))
+    console.log(11236, app.globalData.userInfo)
 
     if (options.sellingADs) {
       console.log(JSON.parse(options.sellingADs))
@@ -124,7 +144,7 @@ Page({
       }
       that.setData({
         sellingADs: arrb,
-        userinfo: wx.getStorageSync('UserInfo')
+        userinfo: app.globalData.userInfo
       })
       console.log(that.data.sellingADs[0].amount)
       wx.setNavigationBarTitle({
@@ -145,7 +165,7 @@ Page({
       }
       that.setData({
         advertisingVIP: that.data.advertisingVIP,
-        userinfo: wx.getStorageSync('UserInfo')
+        userinfo: app.globalData.userInfo
       })
     }
 

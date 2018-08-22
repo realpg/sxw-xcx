@@ -1,7 +1,7 @@
 //测试标识
 var TESTMODE = false;
 //服务器地址
-var SERVER_URL = "http://xcx.hzmuji.com";
+var SERVER_URL = "http://dt.chinayarn.com/xcx/public/index.php";
 var DEBUG_URL = "http://localhost/sxw-master/public";
 var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 

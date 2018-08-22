@@ -42,7 +42,7 @@
   <view class='company_name'>
     <text class='prompt'>*</text>
     <text class='sort' decode='emsp'>职&emsp;&emsp;位：</text>
-    <input class='input_company' type='text' placeholder='请输入您的职位' value="{{businesscard.career}}" bindblur="changeBusinesscard" data-key="career" />
+    <input class='input_company' type='text' placeholder='请输入您的职位' value="{{businesscard.career}}" bindblur="changeBusinesscard" data-key="career" maxlength='8'/>
   </view>
   <view class='company_name' bindtap='promptClick'>
     <text class='prompt'>*</text>业务类别：

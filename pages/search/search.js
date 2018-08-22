@@ -37,7 +37,7 @@ Page({
       id: '1', lable_Info: '进口棉'
     }, { id: '2', lable_Info: '包漂' }, { id: '3', lable_Info: '面纱' }, { id: '4', lable_Info: '气流纺' }, { id: '5', lable_Info: '针织纱用' }, {
       id: '6', lable_Info: '涡流纺'
-    }, { id: '7', lable_Info: '环锭纱' }, { id: '8', lable_Info: '免费拿样' }, { id: '9', lable_Info: '送货上门古' }, { id: '10', lable_Info: '面纱' }, {
+    }, { id: '7', lable_Info: '环锭纱' }, { id: '8', lable_Info: '免费拿样' }, { id: '9', lable_Info: '送货上门' }, { id: '10', lable_Info: '面纱' }, {
       id: '11', lable_Info: '进口棉'
     },],
 
@@ -96,13 +96,12 @@ Page({
   seekClick:function(){
     const that = this;
     console.log('点击搜索')
-    
+    that.data.messageList=[];
     switch (that.data.index){
       case '0':
         that.SupplySearch();
         that.BuySearch();
         that.FrameSearch();
-
       break;
 
       case '1':
@@ -381,5 +380,12 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+
+  //查看详情
+  see_details_click: function (e) {
+    wx.navigateTo({
+      url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
+    })
+  },
 })

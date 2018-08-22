@@ -121,13 +121,13 @@ Page({
     that.getAllList();
      setTimeout(function () {
        that.getSellList();
-     }, 3000)
+     }, 300)
     setTimeout(function () {
      that.getBuyList();
-     }, 5000)
+     }, 500)
      setTimeout(function () {
       that.getFJMYList();
-     }, 7000)
+     }, 700)
 
     var scene = decodeURIComponent(options.scene)
     if (options.userid) {

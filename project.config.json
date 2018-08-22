@@ -33,12 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "详情页",
-					"pathName": "pages/mine_promotion/mine_promotion",
+					"pathName": "pages/mine/mine",
 					"query": ""
 				},
 				{
@@ -116,7 +116,8 @@
 				{
 					"id": -1,
 					"name": "广告位",
-					"pathName": "pages/mine_promotion/mine_promotion"
+					"pathName": "pages/mine_promotion/mine_promotion",
+					"query": ""
 				}
 			]
 		}

@@ -4,10 +4,10 @@ page{
 }
 .search{
   background: #fff;
-  padding:30rpx 0  10rpx 0 ;
+  padding:20rpx 0 20rpx 0 ;
 }
 .searchs{
-  padding:10rpx 0  10rpx 0 ;
+  padding:0 0  10rpx 0 ;
 }
 .search_css{
   width: 90%;
@@ -135,7 +135,6 @@ margin-top: 40rpx;
   font-size: 26rpx;
   width: 150rpx;
   display: inline-block;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

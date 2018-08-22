@@ -241,6 +241,7 @@ button::after {
   margin-top: 10rpx;
   line-height: 40rpx;
   margin-left: 60rpx;
+  color: #666;
 }
 .leave_word{
   background: #01c46c;

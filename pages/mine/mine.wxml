@@ -70,7 +70,8 @@
 
   <view class='sign_in_date'>
     <view class='sign_in_date_css' wx:for='{{sign_in_date}}'>
-      <image class='sign_in_Img' src='{{item.isSignin?"../../images/personal_center/oval_gold.png":"../../images/personal_center/oval _gold_pre.png"}}'></image>
+      <image class='sign_in_Img' src='{{item.isSignin?"../../images/personal_center/oval_gold.png":"../../images/personal_center/gold.png"}}'></image>
+  
       <view class='week'>{{item.week}}</view>
     </view>
   </view>

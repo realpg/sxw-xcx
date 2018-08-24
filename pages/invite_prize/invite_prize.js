@@ -16,7 +16,7 @@ Page({
   Img_codeClick: function () {
     wx.previewImage({
       current: '', // 当前显示图片的http链接   
-      urls: ["https://www.cslpyx.com/weiH5/jrkj.jpg"] // 需要预览的图片http链接列表   
+      urls: ["https://i02picsos.sogoucdn.com/bb82941dda9ed5ef"] // 需要预览的图片http链接列表   
     })
   },
 

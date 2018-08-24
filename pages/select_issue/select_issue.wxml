@@ -29,7 +29,7 @@
   <view class='select_Info_css'>
     <view wx:if="{{item.type =='供应'}}"><text class='type'>{{item.type}}</text></view>
     <view wx:if="{{item.type =='求购'}}"><text style='background:#F7CF9A' class='type'>{{item.type}}</text></view>
-    <view wx:if="{{item.type =='设备'}}"><text class='type' style='background:#9A9CF7'>{{item.type}}</text></view>
+    <view wx:if="{{item.type =='纺机'}}"><text class='type' style='background:#9A9CF7'>{{item.type}}</text></view>
     <view><image class='selectImg_css' src='{{item.selectImg}}'></image></view>
   </view>
   <view class='content'>{{item.content}}</view>

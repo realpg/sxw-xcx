@@ -22,6 +22,8 @@
         <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
         <text wx:if="{{item.lableList[1]}}" class='lable_four'>{{item.lableList[1].tagname}}</text>
         <text wx:if="{{item.lableList[2]}}" class='lable_five'>{{item.lableList[2].tagname}}</text>
+        <text wx:if="{{item.lableList[3]}}" class='lable_four'>{{item.lableList[3].tagname}}</text>
+        <text wx:if="{{item.lableList[4]}}" class='lable_five'>{{item.lableList[4].tagname}}</text>
       </view>
       <view class='details'>{{item.details}}</view>
 

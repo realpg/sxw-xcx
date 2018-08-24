@@ -5,7 +5,11 @@
 <view class='price_column'>
   <radio-group class="radio-group" bindchange="radioChange">
     <block wx:for='{{sellingADs}}' wx:for-index='index'>
-      <view class='select_lunbo' bindtap='select_lunbo' data-index='{{index}}'>{{item.desc}}</view>
+      <view class='select_lunbo_price' bindtap='select_lunbo' data-index='{{index}}'>
+      <view class='select_lunbo' >{{item.desc}}</view>
+      <image   class='{{item.state ? "jiantou_img":"jiantou_css_img"}}' 
+    src='{{item.state?"../../images/index/jiantou_right_down.png" : "../../images/index/jiantou_right.png"}}'></image>
+      </view>
       <view class='{{item.state ? "select_lunbo_block":"select_lunbo_none"}}'>
         <radio value="{{index}},0" class="radio">
           <text class='price'>{{item.amount0}}金币/周</text>
@@ -40,4 +44,4 @@
 
 <view style='height:200rpx;'></view>
 <!-- 确认按钮 -->
-<view bindtap='payClick' class='confirm_button'>立即支付</view>
+<view bindtap='payClick' class='confirm_button'>立即购买</view>

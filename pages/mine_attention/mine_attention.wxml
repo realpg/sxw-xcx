@@ -6,6 +6,8 @@
 
 <view class=''></view>
 
+<view class='hint' wx:if='{{message.length<1}}'>您还未关注该类信息</view>
+
 <!--信息-->
 <view class='message' wx:for='{{message}}' wx:for-index='id'>
   <view class='messageCss'    data-id='{{item.id}}'>

@@ -2,14 +2,12 @@ page{
   background: #f5f5f5;
 }
 .adcImg{
-  margin: 20rpx 0 ;
   width: 100%;
-  height: 240rpx;
+  height: 300rpx;
 }
-
 .price_column{
   background: #fff;
-  padding: 20rpx 0;
+  padding: 26rpx 0;
   margin-bottom: 20rpx;
 }
 .radio {
@@ -68,10 +66,29 @@ page{
   align-items: center;
   }
 
-
+.select_lunbo{
+    font-size: 30rpx;
+    line-height: 70rpx;   
+}
   .select_lunbo_block{
     display: block;
   }
   .select_lunbo_none{
      display: none;
+  }
+.select_lunbo_price{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  border-bottom:1rpx solid #f5f5f5;
+  align-items: center;
+  }
+  .jiantou_img{
+    width: 30rpx;
+    height: 20rpx;
+  }
+  .jiantou_css_img{
+    width: 20rpx;
+    height: 30rpx;
   }

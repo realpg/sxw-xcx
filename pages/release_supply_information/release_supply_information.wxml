@@ -73,7 +73,7 @@
 </view>
 
 <!--我要推广 -->
-<view class='personal_data generalize'>
+<view class='personal_data generalize' bindtap='personal_click'>
   <view class='personal'> 我要推广</view>
   <view>
     <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>

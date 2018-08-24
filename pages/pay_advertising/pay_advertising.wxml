@@ -6,9 +6,9 @@
 <!-- 价格栏 -->
 <view class='price_column' >
 <radio-group class="radio-group" bindchange="radioChange">
-  <radio value="2" class="radio"><text class='price'>{{advertisingVIP[2].amount}}金币/{{advertisingVIP[2].druation/86400}}天</text></radio>
-  <radio value="1" class="radio" ><text class='price'>{{advertisingVIP[1].amount}}金币/{{advertisingVIP[1].druation/86400}}天</text></radio>
-  <radio value="0" class="radio"><text class='price'>{{advertisingVIP[0].amount}}金币/{{advertisingVIP[0].druation/86400}}天</text></radio>
+  <radio value="2" class="radio"><text class='price'>{{advertisingVIP[2].amount}}金币/周</text></radio>
+  <radio value="1" class="radio" ><text class='price'>{{advertisingVIP[1].amount}}金币/月</text></radio>
+  <radio value="0" class="radio"><text class='price'>{{advertisingVIP[0].amount}}金币/年</text></radio>
 </radio-group>
 </view>
 
@@ -27,5 +27,5 @@
 </view>
 
 <!-- 确认按钮 -->
-<view wx:if="{{!paying}}" bindtap='payClick' class='confirm_button'>立即支付</view>
+<view wx:if="{{!paying}}" bindtap='payClick' class='confirm_button'>立即购买</view>
 <view wx:else="" class='confirm_button_disable'>等待支付完成...</view>

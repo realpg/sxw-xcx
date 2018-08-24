@@ -12,7 +12,7 @@ Page({
     gold_week: '100',
     gold_month: '350',
     gold_year: '3500',
-    hint_time: '2018-07-10 17:55:55',
+    hint_time: '2018-07-10',
     mine_gold: '5',
     pay_gold: 0,
     sellingADs: [],
@@ -42,7 +42,7 @@ Page({
     }
 
     that.setData({
-      pay_gold: that.data.pay_gold, 
+      pay_gold: that.data.pay_gold,
       index: index,
       level: level,
       hint_time: that.data.hint_time
@@ -58,7 +58,7 @@ Page({
       title: '提示',
       content: '是否确认购买？',
       cancelColor: 'red',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
           that.confirm();
@@ -69,14 +69,14 @@ Page({
     })
   },
 
-  confirm:function(){
+  confirm: function() {
     if (that.data.index && that.data.level) {
       var param = {
         itemid: that.data.sellingADs[that.data.index].itemid,
         level: that.data.level
       };
       console.log(11111111111)
-      util.payAssign(param, function (res) {
+      util.payAssign(param, function(res) {
         console.log('指定广告位', res);
         wx.showToast({
           title: '购买成功',
@@ -84,7 +84,7 @@ Page({
           duration: 2000
         })
 
-        setTimeout(function () {
+        setTimeout(function() {
           wx.navigateBack();
         }, 2000)
         // that.setData({
@@ -122,16 +122,18 @@ Page({
   onLoad: function(options) {
     that = this;
     console.log(11236, app.globalData.userInfo)
-
+    that.setData({
+      hint_time: util.formatTime(new Date())
+    })
     if (options.sellingADs) {
       console.log(JSON.parse(options.sellingADs))
       let arr = JSON.parse(options.sellingADs)
       let arrb = [];
       for (let i in arr) {
         arrb.push({
-          druation0: util.formatTime(new Date((Date.parse(new Date()) / 1000 + arr[i].druation0) * 1000)),
-          druation1: util.formatTime(new Date((Date.parse(new Date()) / 1000 + arr[i].druation1) * 1000)),
-          druation2: util.formatTime(new Date((Date.parse(new Date()) / 1000 + arr[i].druation2) * 1000)),
+          druation0: util.formatTime(new Date(Date.now() + arr[i].druation0 * 1000)),
+          druation1: util.formatTime(new Date(Date.now() + arr[i].druation1 * 1000)),
+          druation2: util.formatTime(new Date(Date.now() + arr[i].druation2 * 1000)),
           id: arr[i].id,
           vip: arr[i].vip,
           desc: arr[i].desc,
@@ -176,8 +178,10 @@ Page({
     that = this
     console.log(13333, e.currentTarget.dataset.index)
     that.data.sellingADs[e.currentTarget.dataset.index].state = !that.data.sellingADs[e.currentTarget.dataset.index].state;
+    that.data.pay_gold = 0;
     that.setData({
-      sellingADs: that.data.sellingADs
+      sellingADs: that.data.sellingADs,
+      pay_gold: that.data.pay_gold
     })
   },
   /**

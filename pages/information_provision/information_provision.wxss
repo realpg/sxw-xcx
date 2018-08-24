@@ -8,12 +8,12 @@ page{
 .searchBox{
   width: 90%;
   margin: auto;
-  height: 60rpx;
+  height: 1.8rem;
   display: flex;
   align-items: center; 
   background:#fff;
   border:1rpx solid #f2f2f2;
-  border-radius:30rpx;
+  border-radius:35rpx;
   left: 4.5%;
   margin-top: 30rpx;
 }
@@ -34,7 +34,7 @@ page{
   background: #fff;
   display: flex;
   justify-content: space-around;
-  line-height: 80rpx;
+  line-height: 90rpx;
   font-size: 28rpx;
   color:  #9B9B9B; 
 }

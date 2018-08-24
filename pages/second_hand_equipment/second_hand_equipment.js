@@ -277,7 +277,12 @@ Page({
       url: '../personal_data/personal_data',
     })
   },
-
+  //我要推广
+  personal_click: function () {
+    wx.navigateTo({
+      url: '../mine_promotion/mine_promotion',
+    })
+  },
   //获取金币
   acquireClick: function() {
     wx.navigateTo({

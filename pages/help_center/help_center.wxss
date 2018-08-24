@@ -14,5 +14,5 @@ text-align: center;
   line-height: 50rpx;
   border-bottom: 1rpx solid #e2e2e2;
   font-size: 28rpx;
-  padding: 25rpx 0 ;
+  padding: 20rpx 0 ;
 }

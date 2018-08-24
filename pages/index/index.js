@@ -612,5 +612,25 @@ Page({
         that.getFJMYList();
         break
     }
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+       title: '我分享纱线网小程序',
+      path: 'pages/index/index',
+      success: function (res) {
+        // 转发成功
+        wx.showToast({
+          title: '分享成功',
+          duration: 1500
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
+
 })

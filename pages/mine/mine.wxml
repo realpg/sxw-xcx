@@ -50,7 +50,7 @@
 
 <view wx:else='{{business_card.groupid==5}}' class='business_card'>
   <view bindtap='redactClick' class='business_card_css redactuserinfo'>
-    <text class='redactuserinfo' >请完善个人信息</text>
+   <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo' >请完善个人信息</text></button> 
   </view>
   </view>
 

@@ -361,7 +361,15 @@ Page({
         // 转发失败
       }
     }
-  }
-
+  },
+getUserInfo: function (e) {
+    console.log("aaaa",e)
+    app.globalData.wx_userInfo = e.detail.userInfo
+    app.login(app);
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
 
 })

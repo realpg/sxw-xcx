@@ -77,8 +77,8 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
         complete: function (ret) {
             console.log("ret:" + JSON.stringify(ret))
             setTimeout(function () {
-                // hideLoading()
-            }, 2000)
+                 hideLoading()
+            }, 1500)
         }
     });
 }
@@ -372,7 +372,7 @@ function myMessage(param, successCallback, errorCallback) {
 
 function uploadImage(param, successCallback, errorCallback) {
     wx.uploadFile({
-        url: SERVER_URL + '/api/uploadImage',
+        url: 'http://xcx.hzmuji.com/api/uploadImage',
         filePath: param.file,
         name: 'file',
         formData: {

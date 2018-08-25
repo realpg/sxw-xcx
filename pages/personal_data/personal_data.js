@@ -10,9 +10,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    thumb: [],   //公司图片
-    avatar: [],  //头像
-    wxqr: [],  //二维码
+    sending_cd: 0,
+
+    thumb: [], //公司图片
+    avatar: [], //头像
+    wxqr: [], //二维码
     businesscard: {
       truename: "",
       mobile: "",
@@ -28,24 +30,21 @@ Page({
 
 
   //业务类别
-  promptClick: function () {
+  promptClick: function() {
     wx.navigateTo({
-      url: '../class_of_business/class_of_business?ywlb='
-        + JSON.stringify(that.data.businesscard.ywlb)
-        + "&ywlbs=" + JSON.stringify(that.data.ywlbs),
-      success: function (res) {
-      },
-      fail: function (res) {
-      },
-      complete: function (res) {
-      },
+      url: '../class_of_business/class_of_business?ywlb=' +
+        JSON.stringify(that.data.businesscard.ywlb) +
+        "&ywlbs=" + JSON.stringify(that.data.ywlbs),
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
   //地图位置选择
-  addressClick: function () {
+  addressClick: function() {
     wx.chooseLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         var name = res.name
         var address = res.address
@@ -60,7 +59,7 @@ Page({
   },
   //上传头像
 
-  AddImgClick_one: function () {
+  AddImgClick_one: function() {
     let b = [];
 
     if (that.data.avatar.length < 1) {
@@ -72,13 +71,13 @@ Page({
         count: count, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
-          console.log(res, typeof (res.tempFiles[0]));
+        success: function(res) {
+          console.log(res, typeof(res.tempFiles[0]));
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           for (let i in res.tempFilePaths) {
             util.uploadImage({
               file: res.tempFilePaths[i]
-            }, function (ret) {
+            }, function(ret) {
               console.log("上传成功", ret)
               that.data.avatar.push(
                 ret
@@ -96,7 +95,7 @@ Page({
     }
   },
   // 图片预览
-  previewImClick_one: function (event) {
+  previewImClick_one: function(event) {
 
     // wx.previewImage({
     // current: '', // 当前显示图片的http链接
@@ -120,7 +119,7 @@ Page({
     }
   },
   //删除图片
-  DelClick_one: function (e) {
+  DelClick_one: function(e) {
     let MIL = that.data.avatar;
     for (let i in MIL) {
       if (e.currentTarget.dataset.id == MIL[i].id) {
@@ -135,7 +134,7 @@ Page({
 
 
   //添加图片
-  AddImgClick_two: function () {
+  AddImgClick_two: function() {
     let b = [];
 
     if (that.data.thumb.length < 6) {
@@ -147,12 +146,12 @@ Page({
         count: count, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
+        success: function(res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           for (let i in res.tempFilePaths) {
             util.uploadImage({
               file: res.tempFilePaths[i]
-            }, function (ret) {
+            }, function(ret) {
               console.log("上传成功", ret)
               that.data.thumb.push(
                 ret
@@ -169,7 +168,7 @@ Page({
 
   },
   // 图片预览
-  previewImClick_two: function (event) {
+  previewImClick_two: function(event) {
 
     // wx.previewImage({
     // current: '', // 当前显示图片的http链接
@@ -193,7 +192,7 @@ Page({
     }
   },
   //删除图片
-  DelClick_two: function (e) {
+  DelClick_two: function(e) {
     let MIL = that.data.thumb;
     for (let i in MIL) {
       if (e.currentTarget.dataset.id == MIL[i].id) {
@@ -209,7 +208,7 @@ Page({
 
   //上传二维码
 
-  AddImgClick_three: function () {
+  AddImgClick_three: function() {
     let b = [];
 
     if (that.data.wxqr.length < 1) {
@@ -221,12 +220,12 @@ Page({
         count: count, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
+        success: function(res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           for (let i in res.tempFilePaths) {
             util.uploadImage({
               file: res.tempFilePaths[i]
-            }, function (ret) {
+            }, function(ret) {
               console.log("上传成功", ret)
               that.data.wxqr.push(
                 ret
@@ -249,7 +248,7 @@ Page({
 
   },
   // 图片预览
-  previewImClick_three: function (event) {
+  previewImClick_three: function(event) {
 
     // wx.previewImage({
     // current: '', // 当前显示图片的http链接
@@ -273,7 +272,7 @@ Page({
     }
   },
   //删除图片
-  DelClick_three: function (e) {
+  DelClick_three: function(e) {
     let MIL = that.data.wxqr;
     for (let i in MIL) {
       if (e.currentTarget.dataset.id == MIL[i].id) {
@@ -290,21 +289,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     that.getBusinessCard()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
     // that.setData({
     // ywlb: wx.getStorageSync('ClassSer')
@@ -314,59 +313,59 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  getBusinessCard: function () {
+  getBusinessCard: function() {
     console.log("请求名片中")
-    util.editInfo_get({}, function (ret) {
+    util.editInfo_get({}, function(ret) {
 
       console.log("请求成功", ret, that.data)
       that.setData({
-        
-        avatar: app.globalData.userInfo.avatarUrl ? [app.globalData.userInfo.avatarUrl] : [],  //头像
+
+        avatar: app.globalData.userInfo.avatarUrl ? [app.globalData.userInfo.avatarUrl] : [], //头像
         ywlbs: ret.ywlb
       })
-      if (ret.businesscard){
+      if (ret.businesscard) {
         that.setData({
           businesscard: ret.businesscard,
           mobile: ret.businesscard.mobile,
-          thumb: ret.businesscard.thumb ? ret.businesscard.thumb.split(',') : [],   //公司图片
+          thumb: ret.businesscard.thumb ? ret.businesscard.thumb.split(',') : [], //公司图片
           wxqr: ret.businesscard.wxqr ? [ret.businesscard.wxqr] : [],
         })
       }
       console.log("业务类别", that.data.businesscard, that.data.businesscard.ywlb)
     })
   },
-  submitClick: function (e) {
+  submitClick: function(e) {
 
     var ywlb_ids = []
     for (var i in that.data.businesscard.ywlb) {
@@ -386,14 +385,14 @@ Page({
       avatarUrl: that.data.avatar[0],
       wxqr: that.data.wxqr[0]
     }
-    util.editInfo_post(param, function (ret) {
+    util.editInfo_post(param, function(ret) {
       console.log(ret);
       app.globalData.userInfo.credit -= that.data.gold_coin_pay;
       wx.showToast({
         title: ret,
         icon: "success",
-        success: function () {
-          setTimeout(function () {
+        success: function() {
+          setTimeout(function() {
             wx.reLaunch({
               url: "../index/index",
             })
@@ -403,7 +402,7 @@ Page({
     }, null)
   },
 
-  changeBusinesscard: function (e) {
+  changeBusinesscard: function(e) {
     console.log(11111, e.detail.value)
     var key = e.currentTarget.dataset.key;
     var value = e.detail.value;
@@ -414,7 +413,7 @@ Page({
     console.log(2222, that.data.businesscard)
   },
 
-  changeMobile: function (e) {
+  changeMobile: function(e) {
     var verification_code = that.data.verification_code
     if (e.detail.value != that.data.mobile) {
       verification_code = true
@@ -426,24 +425,60 @@ Page({
     })
   },
 
-  //获取验证码
-  get_codeClick: function () {
+  // >>获取验证码
+  getVerificationCode: function () {
+
     if (!util.phonenum_verify(that.data.businesscard.mobile)) {
       wx.showToast({
         title: "请输入正确的手机号",
         icon: "none",
       })
     } else {
+
       util.sendVertifyCode({
         phonenum: that.data.businesscard.mobile
       }, function (ret) {
+        console.log("发送读秒")
+        var num = 61;
+        var timer = setInterval(function () {
+          num--;
+          if (num <= 0) {
+            clearInterval(timer);
+            that.setData({
+              sending_cd: num
+            })
+
+          } else {
+            that.setData({
+              sending_cd: num
+            })
+          }
+        }, 1000)
         console.log(888, ret);
         wx.showToast({
           title: "发送成功",
           icon: "success",
         })
       }, null)
-    }
 
-  }
+      // util.sendVertifyCode({
+      //   phonenum: that.data.businesscard.mobile
+      // }, function (ret) {
+
+
+
+      //   console.log(888, ret);
+      //   wx.showToast({
+      //     title: "发送成功",
+      //     icon: "success",
+      //   })
+      // }, null)
+    }
+  },
+  onPullDownRefresh: function() {
+    console.log('下拉刷新')
+    that.setData({
+      avatar: app.globalData.userInfo.avatarUrl ? [app.globalData.userInfo.avatarUrl] : []
+    })
+  },
 })

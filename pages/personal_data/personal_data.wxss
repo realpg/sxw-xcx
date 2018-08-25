@@ -179,3 +179,31 @@ margin-top: 20rpx;
   margin-top: -180rpx;
   margin-left: 140rpx;
 }
+
+.codeBtn{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right:40rpx;
+  top: 170rpx;
+  color: #fff;
+  width: 20%;
+  font-size: 24rpx;
+  height: 60rpx;
+  line-height: 58rpx;
+  background-color:#01C46C;
+}
+
+.codeBtn_css{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right:40rpx;
+  top: 170rpx;
+  color: #fff;
+  width: 20%;
+  font-size: 24rpx;
+  height: 60rpx;
+  line-height: 58rpx;
+  background-color:#999999;
+}

@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "详情页",
-					"pathName": "pages/help_center/help_center",
+					"pathName": "pages/mine/mine",
 					"query": ""
 				},
 				{

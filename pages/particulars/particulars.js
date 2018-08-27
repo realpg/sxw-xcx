@@ -353,7 +353,7 @@ Page({
         icon_vip: ret.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
         position: ret.businesscard.career, //职位
-        demand: '纺机贸易', //发布类别  ()
+        demand: '纺机', //发布类别  ()
         mobile: ret.mobile,
         company: ret.businesscard.company, //公司
         lableList: ret.tags,

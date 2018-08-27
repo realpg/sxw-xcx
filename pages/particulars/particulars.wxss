@@ -55,7 +55,7 @@ margin-left: 50rpx;
 .company {
   font-size: 26rpx;
   color: #9b9b9b;
-  line-height: 60rpx;
+  line-height: 40rpx;
 }
 
 .lable_three {

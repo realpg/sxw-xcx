@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    advertising_position: [{ id: 0, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg1.png', Img: '../../images/personal_center/vip1.png', gold_week: '100', gold_month: '350', gold_year: '3500' }, { id: 1, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg2.png', Img: '../../images/personal_center/vip2.png', gold_week: '80', gold_month: '300', gold_year: '3000' }, { id: 2, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png', Img: '../../images/personal_center/vip3.png', gold_week: '60', gold_month: '200', gold_year: '2000' }, { id: 3, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png', Img: '../../images/personal_center/top.png', gold_week: '30', gold_month: '100', gold_year: '1200' }, { id: 4, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png', Img: '../../images/personal_center/carousel.png', gold_week: '300', gold_month: '600', gold_year: '6000' }, { id: 5, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png', Img: '../../images/personal_center/recommend.png', gold_week: '300', gold_month: '600', gold_year: '6000' },]
+    advertising_position: [{ id: 0, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg1.png', Img: '../../images/personal_center/vip1.png', gold_week: '100', gold_month: '350', gold_year: '3500' },  { id: 5, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png', Img: '../../images/personal_center/recommend.png', gold_week: '300', gold_month: '600', gold_year: '6000' },]
   },
 
 selectClick:function(){

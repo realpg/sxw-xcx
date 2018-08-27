@@ -36,6 +36,7 @@ page{
   height: 130rpx;
   float: right;
    margin-right: 20rpx;
+   border-radius: 50%
 }
 .iconImg{
   margin-right: 20rpx;

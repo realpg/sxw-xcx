@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ['全部', '供应', '求购', '纺机'],
+    array: ['全部', '供应', '求购', '纺机','名片'],
     objectArray: [{
         id: 0,
         name: '全部'
@@ -24,15 +24,15 @@ Page({
       {
         id: 3,
         name: '设备'
+      },
+      {
+        id:4,
+        name: '名片'
       }
     ],
     index: '0',
-
     recently_history: [],
-
     hot_word: [],
-
-
     lable: [{
       id: '0',
       lable_Info: '面纱'
@@ -371,6 +371,11 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+    that.data.index=options
+    that.setData({
+        index:options
+      })
+    console.log(33333333333,options);
   },
 
   /**

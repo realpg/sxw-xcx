@@ -277,7 +277,7 @@ text-align: center;
 .company{
   font-size: 26rpx;
   color: #9B9B9B;
-  line-height: 60rpx;
+  line-height: 40rpx;
 }
 .lable{
   display:-webkit-flex;

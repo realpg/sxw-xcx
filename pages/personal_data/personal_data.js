@@ -365,8 +365,9 @@ Page({
       console.log("业务类别", that.data.businesscard, that.data.businesscard.ywlb)
     })
   },
-  submitClick: function(e) {
 
+  //发布
+  submitClick: function(e) {
     var ywlb_ids = []
     for (var i in that.data.businesscard.ywlb) {
       ywlb_ids.push(that.data.businesscard.ywlb[i].ywlb_id);

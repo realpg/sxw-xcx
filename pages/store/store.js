@@ -34,13 +34,7 @@ Page({
   //搜索框跳转
   serchClick: function () {
     wx.navigateTo({
-      url: '../search/search',
-      success: function (res) {
-      },
-      fail: function (res) {
-      },
-      complete: function (res) {
-      },
+      url: '../search/search?index=4',
     })
   },
 

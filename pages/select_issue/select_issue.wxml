@@ -1,38 +1,38 @@
 <!--名片 -->
 <view class='Css'></view>
-<view class='business_card' wx:for='{{business_card}}' bindtap='select_card_Click'  >
+<view class='business_card'  bindtap='select_card_Click'  >
   <view class='business_card_css'>
-    <view class='name'>{{item.name}}
-      <text class='post'>{{item.post}}</text>
-      <image class='selectImg' src='{{item.selectImg}}'></image>
-      <image class='headImg' src='../../images/index/head_portrait.png'></image>
+    <view class='name'>{{business_card.businesscard.truename}}
+      <text class='post'>{{business_card.career}}</text>
+      <!-- <image class='selectImg' src='{{selectImg}}'></image> -->
+      <image class='headImg' src='{{business_card.avatarUrl}}'></image>
     </view>
 
     <view>
       <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{item.phone}} </text>
+      <text>{{business_card.mobile}} </text>
     </view>
     <view>
       <image class='iconImg' src='../../images/store/company.png'></image>
-      <text>{{item.company}} </text>
+      <text>{{business_card.company}} </text>
     </view>
     <view>
       <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{item.address}} </text>
+      <text>{{business_card.companyInfo.address}} </text>
     </view>
-    <view class='The_main'>主营：{{item.The_main}}</view>
+    <view class='The_main'>主营：{{business_card.companyInfo.business}}</view>
   </view>
 </view>
 
 <!-- 选择发布信息 -->
-<view class='select_Info' wx:for='{{select_Info}}' data-id='{{item.id}}'bindtap='selectClick'>
+<view class='select_Info' wx:for='{{messageALL}}' data-id='{{item.id}}'bindtap='selectClick'>
   <view class='select_Info_css'>
-    <view wx:if="{{item.type =='供应'}}"><text class='type'>{{item.type}}</text></view>
-    <view wx:if="{{item.type =='求购'}}"><text style='background:#F7CF9A' class='type'>{{item.type}}</text></view>
-    <view wx:if="{{item.type =='纺机'}}"><text class='type' style='background:#9A9CF7'>{{item.type}}</text></view>
+    <view wx:if="{{item.mid =='5'}}"><text class='type'>{{item.demand}}</text></view>
+    <view wx:if="{{item.mid =='6'}}"><text style='background:#F7CF9A' class='type'>{{item.demand}}</text></view>
+    <view wx:if="{{item.mid =='88'}}"><text class='type' style='background:#9A9CF7'>{{item.demand}}</text></view>
     <view><image class='selectImg_css' src='{{item.selectImg}}'></image></view>
   </view>
-  <view class='content'>{{item.content}}</view>
+  <view class='content'>{{item.details}}</view>
   <view class='time'>发布时间：{{item.time}}</view>
 </view>
 

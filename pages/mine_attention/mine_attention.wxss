@@ -6,6 +6,7 @@ page{
   color: #9B9B9B;
   line-height: 180rpx;
   text-align: center;
+  
 }
 .attention{
   margin: auto;

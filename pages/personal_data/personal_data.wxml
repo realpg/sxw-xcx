@@ -26,7 +26,7 @@
     </view>
     <view class='name' wx:if='{{verification_code}}'>验证码：
       <input type='number' placeholder='获取验证码' style='width:55%;'  bindblur="changeBusinesscard" data-key="vertify_code" />
-        <button wx:if='{{sending_cd==0}}' class='codeBtn'  bindtap='getVerificationCode' >发送验证码</button>
+        <button wx:if='{{sending_cd==0}}' class='codeBtn'  bindtap='getVerificationCode' >获取验证码</button>
       <button wx:else='' class='codeBtn_css'  >{{sending_cd}} s</button>        
     </view>
   </view>

@@ -296,7 +296,6 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-
   },
 
   /**

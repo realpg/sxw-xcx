@@ -74,7 +74,8 @@ Page({
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
-          like: ret.data[i].agree //点赞
+          I_agree: ret.data[i].I_agree, //我点赞
+          like: ret.data[i].agree, //点赞
         })
       }
       that.data.messageList = that.sort(that.data.messageList)
@@ -123,6 +124,7 @@ Page({
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
+          I_agree: ret.data[i].I_agree, //我点赞
           like: ret.data[i].agree //点赞
         })
       }
@@ -171,6 +173,7 @@ Page({
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
+          I_agree: ret.data[i].I_agree, //我点赞
           like: ret.data[i].agree //点赞
         })
       }
@@ -324,5 +327,28 @@ Page({
         // 转发失败
       }
     }
-  }
+  },
+  setLikeClick: function (e) {
+
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    var param = {
+      // userid: wx.getStorageSync('UserInfo').userid.userid,
+      // _token: wx.getStorageSync('UserInfo')._token,
+      item_mid: e.currentTarget.dataset.mid,
+      item_id: e.currentTarget.dataset.id
+    };
+    util.setLike(param, function (res) {
+      console.log('点击点赞', res, that.data.messageList);
+      for (let i in that.data.messageList) {
+        if (that.data.messageList[i].id == res.itemid) {
+          that.data.messageList[i].I_agree = true;
+          that.data.messageList[i].like=res.agree;
+        }
+      }
+      that.setData({
+        messageList: that.data.messageList
+      })
+    }, null)
+
+  },
 })

@@ -1,5 +1,5 @@
 //测试标识
-var TESTMODE = false;
+var TESTMODE = true;
 //服务器地址
 var SERVER_URL = "http://dt.chinayarn.com/xcx/public";
 var DEBUG_URL = "http://xcx.hzmuji.com";
@@ -209,7 +209,7 @@ function myVIP(param, successCallback, errorCallback) {
 }
 
 function vipTimeto(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/vip/time', param, "GET", successCallback, errorCallback);
+  wxRequest(SERVER_URL + '/api/vip/timeto', param, "GET", successCallback, errorCallback);
 }
 
 //资讯列表

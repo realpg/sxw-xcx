@@ -4,57 +4,7 @@ var app = getApp();
 const util = require('../../utils/util.js');
 var that;
 Page({
-  data: {
-    slideshow: [],
-    classify: [{
-      id: 1,
-      cimg: '../../images/index/icon_xinxigy.png',
-      ciName: '供应信息'
-    }, {
-      id: 2,
-      cimg: '../../images/index/icon_shop.png',
-      ciName: '采购大厅'
-    }, {
-      id: 3,
-      cimg: '../../images/index/icon_ershou.png',
-      ciName: '纺机贸易'
-    }, {
-      id: 4,
-      cimg: '../../images/index/icon_qiandao.png',
-      ciName: '签到'
-    }],
-    noticesr: [{
-      title: '祝贝娜：纤维用量增长，纤维用量增长，纤维用量增长'
-    }, {
-      title: '祝贝娜：纤维用量增长，纤维用量增长，纤维用量增长'
-    }, {
-      title: '祝贝娜：纤维用量增长，纤维用量增长，纤维用量增长'
-    }],
-
-
-    //店铺轮播图
-
-    recommend_store_one: [],
-
-    recommend_store_two: [],
-
-    //点击改变颜色
-    all_color: '',
-    supply_color: '',
-    buy_color: '',
-    equipment_color: '',
-
-    message: [], //产品list
-    all_next_page: 1,
-    sellList: [],
-    sell_next_page: 1,
-    buyList: [],
-    buy_next_page: 1,
-    fjmyList: [],
-    fjmy_next_page: 1,
-    messageALL: [],
-    nn: '1'
-  },
+  data: {},
 
   //搜索框跳转
   serchClick: function () {
@@ -118,17 +68,6 @@ Page({
   onLoad: function (options) {
     that = this;
 
-    that.getAllList();
-     setTimeout(function () {
-       that.getSellList();
-     }, 300)
-    setTimeout(function () {
-     that.getBuyList();
-     }, 500)
-     setTimeout(function () {
-      that.getFJMYList();
-     }, 700)
-
     var scene = decodeURIComponent(options.scene)
     if (options.userid) {
       that.setData({
@@ -137,7 +76,7 @@ Page({
       that.Loading();
     }
 
-
+    that.reload();
   },
 
   slideshowClick: function (e) {
@@ -165,59 +104,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    app = getApp();
-
-
-    // that.Loading();
-    //首页推荐
-    util.homepage_recommend({}, function (ret) {
-      console.log(222222, ret);
-      var recommend_store_one = that.data.recommend_store_one;
-      var recommend_store_two = that.data.recommend_store_two;
-      for (var i in ret) {
-        if (ret[i].listorder % 2 == 0) {
-          console.log(1314, ret)
-          recommend_store_one.push({
-            id: ret[i].info.itemid, //信息id
-            store_name: ret[i].info.company,
-            mid: ret[i].item_mid,
-            lableList: ret[i].info.tags,
-            store_info: ret[i].info.introduce,
-          })
-        } else {
-          recommend_store_two.push({
-            id: ret[i].info.itemid, //信息id
-            store_name: ret[i].info.company,
-            mid: ret[i].item_mid,
-            lableList: ret[i].info.tags,
-            store_info: ret[i].info.introduce,
-          })
-        }
-      }
-      that.setData({
-        recommend_store_one: recommend_store_one,
-        recommend_store_two: recommend_store_two,
-      })
-    })
-
-    //首页轮播图
-    util.getBanner({}, function (ret) {
-      console.log(ret);
-      var slideshow = that.data.slideshow;
-      for (var i in ret) {
-        slideshow.push({
-          itemid: ret[i].item_id,
-          slideshowImg: ret[i].img,
-          mid: ret[i].item_mid,
-          linktype: ret[i].linktype,
-          userid: ret[i].userid,
-        })
-      }
-      that.setData({
-        slideshow: slideshow
-      })
-    }, null)
-
+   
   },
   getAllList: function () {
     console.log("加载全部信息中")
@@ -599,7 +486,7 @@ Page({
  * 页面相关事件处理函数--监听用户下拉动作
  */
   onPullDownRefresh: function () {
-    
+    that.reload()
     console.log('下拉刷新');
   },
 
@@ -639,6 +526,128 @@ Page({
         // 转发失败
       }
     }
+  },
+  reload:function(){
+
+    //初始数据
+    that.setData({
+      slideshow: [],
+      classify: [{
+        id: 1,
+        cimg: '../../images/index/icon_xinxigy.png',
+        ciName: '供应信息'
+      }, {
+        id: 2,
+        cimg: '../../images/index/icon_shop.png',
+        ciName: '采购大厅'
+      }, {
+        id: 3,
+        cimg: '../../images/index/icon_ershou.png',
+        ciName: '纺机贸易'
+      }, {
+        id: 4,
+        cimg: '../../images/index/icon_qiandao.png',
+        ciName: '签到'
+      }],
+      noticesr: [{
+        title: '祝贝娜：纤维用量增长，纤维用量增长，纤维用量增长'
+      }, {
+        title: '祝贝娜：纤维用量增长，纤维用量增长，纤维用量增长'
+      }, {
+        title: '祝贝娜：纤维用量增长，纤维用量增长，纤维用量增长'
+      }],
+
+
+      //店铺轮播图
+
+      recommend_store_one: [],
+
+      recommend_store_two: [],
+
+      //点击改变颜色
+      all_color: '',
+      supply_color: '',
+      buy_color: '',
+      equipment_color: '',
+
+      message: [], //产品list
+      all_next_page: 1,
+      sellList: [],
+      sell_next_page: 1,
+      buyList: [],
+      buy_next_page: 1,
+      fjmyList: [],
+      fjmy_next_page: 1,
+      messageALL: [],
+      nn: '1'
+    });
+
+    //获取
+    that.getAllList();
+    setTimeout(function () {
+      that.getSellList();
+    }, 300)
+    setTimeout(function () {
+      that.getBuyList();
+    }, 500)
+    setTimeout(function () {
+      that.getFJMYList();
+    }, 700)
+
+
+    app = getApp();
+
+
+    // that.Loading();
+    //首页推荐
+    util.homepage_recommend({}, function (ret) {
+      console.log(222222, ret);
+      var recommend_store_one = that.data.recommend_store_one;
+      var recommend_store_two = that.data.recommend_store_two;
+      for (var i in ret) {
+        if (ret[i].listorder % 2 == 0) {
+          console.log(1314, ret)
+          recommend_store_one.push({
+            id: ret[i].info.itemid, //信息id
+            store_name: ret[i].info.company,
+            mid: ret[i].item_mid,
+            lableList: ret[i].info.tags,
+            store_info: ret[i].info.introduce,
+          })
+        } else {
+          recommend_store_two.push({
+            id: ret[i].info.itemid, //信息id
+            store_name: ret[i].info.company,
+            mid: ret[i].item_mid,
+            lableList: ret[i].info.tags,
+            store_info: ret[i].info.introduce,
+          })
+        }
+      }
+      that.setData({
+        recommend_store_one: recommend_store_one,
+        recommend_store_two: recommend_store_two,
+      })
+    })
+
+    //首页轮播图
+    util.getBanner({}, function (ret) {
+      console.log(ret);
+      var slideshow = that.data.slideshow;
+      for (var i in ret) {
+        slideshow.push({
+          itemid: ret[i].item_id,
+          slideshowImg: ret[i].img,
+          mid: ret[i].item_mid,
+          linktype: ret[i].linktype,
+          userid: ret[i].userid,
+        })
+      }
+      that.setData({
+        slideshow: slideshow
+      })
+    }, null)
+
   }
 
 })

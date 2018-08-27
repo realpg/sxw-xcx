@@ -230,7 +230,7 @@ Page({
       // && app.globalData.userInfo.mobile
     ) {
       var param = {
-        title: "供应信息",
+        title: "纺机贸易",
         introduce: content.content.length > 100 ? content.content.substring(0, 100) + "……" : content.content,
         catid: content.catid,
         content: content.content,

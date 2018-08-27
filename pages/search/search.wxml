@@ -69,8 +69,8 @@
         <view class='The_specific_details_one'>
           <text class='datails_name'>{{item.name}}</text>
           <text class='position'>{{item.position}}</text>
-          <text wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
-          <text wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
+          <text wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>供应</text></text>
+          <text wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>求购</text></text>
           <text wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>纺机</text></text>
           <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix' />
         </view>

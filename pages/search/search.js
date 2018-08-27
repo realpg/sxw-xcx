@@ -125,7 +125,7 @@ Page({
   },
 
   seekClick: function() {
-    console.log('点击搜索')
+    console.log('点击搜索',that.data.index)
     that.data.messageList = [];
     switch (that.data.index) {
       case '0':
@@ -171,13 +171,13 @@ Page({
           that.data.messageList.push({
             id: ret.data[i].itemid, //信息id
             mid: 5,
-            head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
+            head_portrait_icon: ret.user ? (ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png') : '../../images/index/head_portrait.png', //头像，后面是默认头像
             icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
-            name: ret.data[i].businesscard.truename, //用户姓名
-            position: ret.data[i].businesscard.career, //职位
-            demand: '供应', //发布类别  ()
+            name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
+            position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
+            demand: '纺机贸易', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: ret.data[i].businesscard.company, //公司
+            company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
             lableList: ret.data[i].tags,
 
             details: ret.data[i].introduce, //信息详情描述
@@ -226,13 +226,13 @@ Page({
           that.data.messageList.push({
             id: ret.data[i].itemid, //信息id
             mid: 6,
-            head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
+            head_portrait_icon: ret.user ? (ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png') : '../../images/index/head_portrait.png', //头像，后面是默认头像
             icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
-            name: ret.data[i].businesscard.truename, //用户姓名
-            position: ret.data[i].businesscard.career, //职位
-            demand: '求购', //发布类别  ()
+            name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
+            position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
+            demand: '纺机贸易', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: ret.data[i].businesscard.company, //公司
+            company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
             lableList: ret.data[i].tags,
 
             details: ret.data[i].introduce, //信息详情描述
@@ -280,13 +280,13 @@ Page({
           that.data.messageList.push({
             id: ret.data[i].itemid, //信息id
             mid: 88,
-            head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
+            head_portrait_icon: ret.user ? (ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png' ): '../../images/index/head_portrait.png', //头像，后面是默认头像
             icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
-            name: ret.data[i].businesscard.truename, //用户姓名
-            position: ret.data[i].businesscard.career, //职位
+            name: ret.data[i].businesscard?ret.data[i].businesscard.truename:"未知", //用户姓名
+            position: ret.data[i].businesscard?ret.data[i].businesscard.career:"", //职位
             demand: '纺机贸易', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: ret.data[i].businesscard.company, //公司
+            company: ret.data[i].businesscard?ret.data[i].businesscard.company:"", //公司
             lableList: ret.data[i].tags,
 
             details: ret.data[i].introduce, //信息详情描述
@@ -363,7 +363,7 @@ Page({
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      index: ''+e.detail.value
     })
   },
   /**
@@ -373,7 +373,7 @@ Page({
     that = this;
     var index = options.index
     that.setData({
-      index: index ? index : 0
+      index: ''+(index ? index : 0)
     })
     console.log(33333333333, index,that.data.index);
   },

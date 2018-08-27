@@ -53,63 +53,95 @@
 </view>
 
 <block wx:else>
-<view  class='hint' wx:if="{{messageList.length<1}}">
-未找到结果
-</view>
-<view wx:if='{{messageList.length>0}}'>
-  <!--具体信息-->
-  <view class='message' wx:for='{{messageList}}' wx:for-index='id'>
-    <view class='messageCss' data-id='{{item.id}}'>
-      <view class='head_portrait'>
-        <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
-        <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix' />
-      </view>
-
-      <view class='The_specific_details'>
-        <view class='The_specific_details_one'>
-          <text class='datails_name'>{{item.name}}</text>
-          <text class='position'>{{item.position}}</text>
-          <text wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>供应</text></text>
-          <text wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>求购</text></text>
-          <text wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>纺机</text></text>
-          <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix' />
-        </view>
-        <view class='company'>{{item.company}}</view>
-        <view class='lable'>
-          <view wx:for='{{item.lableList}}' wx:for-index='index'>
-            <text class='lable_three' wx:if='{{index==0}}'>{{item.tagname}}</text>
-            <text class='lable_four' wx:if='{{index==1}}'>{{item.tagname}}</text>
-            <text class='lable_five' wx:if='{{index==2}}'>{{item.tagname}}</text>
-          </view>
-        </view>
-        <view class='details'>{{item.details}}</view>
-
-        <view class='message_Img'>
-          <view class='message_Image' wx:for='{{item.message_Img}}'>
-            <image class='message_Image_Css' src='{{item.message_Image}}' />
-          </view>
+  <view class='hint' wx:if="{{messageList.length<1}}">
+    未找到结果
+  </view>
+  <view wx:if='{{messageList.length>0 && index!=4}}'>
+    <!--具体信息-->
+    <view class='message' wx:for='{{messageList}}' wx:for-index='id'>
+      <view class='messageCss' data-id='{{item.id}}'>
+        <view class='head_portrait'>
+          <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
+          <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix' />
         </view>
 
-        <view class='time'>{{item.time}}</view>
-        <view class='address_css'>
-          <image class='icon_map' src='../../images/index/icon_map.png' />
-          <text class='address'>存放地：{{item.address}}</text>
-        </view>
-        <view class='eye_dianzan'>
-          <view class='eye_Css'>
-            <image class='eye' src='../../images/index/eye.png' />
-            <text class='view'>{{item.page_view}}</text>
+        <view class='The_specific_details'>
+          <view class='The_specific_details_one'>
+            <text class='datails_name'>{{item.name}}</text>
+            <text class='position'>{{item.position}}</text>
+            <text wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>供应</text></text>
+            <text wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>求购</text></text>
+            <text wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>纺机</text></text>
+            <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix' />
           </view>
-          <view class='dianzan_Css'>
-            <image class='dianzan' src='../../images/index/dianzan.png' />
-            <text class='like'>{{item.like}}</text>
+          <view class='company'>{{item.company}}</view>
+          <view class='lable'>
+            <view wx:for='{{item.lableList}}' wx:for-index='index'>
+              <text class='lable_three' wx:if='{{index==0}}'>{{item.tagname}}</text>
+              <text class='lable_four' wx:if='{{index==1}}'>{{item.tagname}}</text>
+              <text class='lable_five' wx:if='{{index==2}}'>{{item.tagname}}</text>
+            </view>
           </view>
-          <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
+          <view class='details'>{{item.details}}</view>
+
+          <view class='message_Img'>
+            <view class='message_Image' wx:for='{{item.message_Img}}'>
+              <image class='message_Image_Css' src='{{item.message_Image}}' />
+            </view>
+          </view>
+
+          <view class='time'>{{item.time}}</view>
+          <view class='address_css'>
+            <image class='icon_map' src='../../images/index/icon_map.png' />
+            <text class='address'>存放地：{{item.address}}</text>
+          </view>
+          <view class='eye_dianzan'>
+            <view class='eye_Css'>
+              <image class='eye' src='../../images/index/eye.png' />
+              <text class='view'>{{item.page_view}}</text>
+            </view>
+            <view class='dianzan_Css'>
+              <image class='dianzan' src='../../images/index/dianzan.png' />
+              <text class='like'>{{item.like}}</text>
+            </view>
+            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
+          </view>
         </view>
       </view>
     </view>
+
+
   </view>
-
-
-</view>
 </block>
+
+<!-- 名片信息 -->
+<view wx:if='{{index == 4}}'>
+  <view class=' card_messageList' wx:for='{{messageList}}' data-id='{{item.id}}'>
+    <view class='card_messageListCss' data-id='{{item.id}}' bindtap='messageList_click'>
+      <view class='card_message'>
+        <image class='card_iconImg' src='{{item.head_portrait_icon}}'></image>
+        <view class='card_messageCss'>
+          <view class='card_employee_information'>
+            <view class='card_name'>{{item.name}}</view>
+            <view class='card_post'>{{item.position}}</view>
+            <image class='card_vip_Img' src='{{item.vip}}'></image>
+          </view>
+          <view class='card_companyName'>{{item.company}}</view>
+        </view>
+      </view>
+
+      <view class='card_enter_pageView'>
+        <view>
+          <text class='card_enter'>查看</text>
+        </view>
+        <view class='card_pageView'>
+          <image class='card_pageView_Img' src='../../images/index/eye.png'></image>
+          <text class='card_number'>{{item.bussinesscard.view}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='card_main_business'>
+      <view>主营：{{item.business}}</view>
+    </view>
+  </view>
+</view>

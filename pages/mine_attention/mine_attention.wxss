@@ -9,12 +9,13 @@ page{
   
 }
 .attention{
+  background: #fff;
   margin: auto;
-  line-height: 100rpx;
+  line-height: 90rpx;
   display: flex;
   justify-content: space-around;
-  font-size: 30rpx;
-  border-bottom: 1rpx solid #fff;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #f5f5f5;
 }
 .message{
   margin-bottom: 20rpx; 

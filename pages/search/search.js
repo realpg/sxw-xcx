@@ -125,13 +125,14 @@ Page({
   },
 
   seekClick: function() {
-    console.log('点击搜索',that.data.index)
+    console.log('点击搜索', that.data.index)
     that.data.messageList = [];
     switch (that.data.index) {
       case '0':
         that.SupplySearch();
         that.BuySearch();
         that.FrameSearch();
+        that.BussinessCardSearch();
         break;
 
       case '1':
@@ -144,8 +145,10 @@ Page({
 
       case '3':
         that.FrameSearch();
-
         break;
+      case '4':
+        that.BussinessCardSearch();
+        break
     }
     that.addHistory();
 
@@ -280,13 +283,13 @@ Page({
           that.data.messageList.push({
             id: ret.data[i].itemid, //信息id
             mid: 88,
-            head_portrait_icon: ret.user ? (ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png' ): '../../images/index/head_portrait.png', //头像，后面是默认头像
+            head_portrait_icon: ret.user ? (ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png') : '../../images/index/head_portrait.png', //头像，后面是默认头像
             icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
-            name: ret.data[i].businesscard?ret.data[i].businesscard.truename:"未知", //用户姓名
-            position: ret.data[i].businesscard?ret.data[i].businesscard.career:"", //职位
+            name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
+            position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
             demand: '纺机贸易', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: ret.data[i].businesscard?ret.data[i].businesscard.company:"", //公司
+            company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
             lableList: ret.data[i].tags,
 
             details: ret.data[i].introduce, //信息详情描述
@@ -307,6 +310,60 @@ Page({
             page_view: ret.data[i].hits, //浏览量
             like: ret.data[i].agree //点赞
           })
+        }
+      that.data.messageList = that.sort(that.data.messageList)
+      that.setData({
+        messageList: that.data.messageList
+      })
+    });
+  },
+
+  BussinessCardSearch: function() {
+    console.log('名片信息')
+    let param = {
+      userid: wx.getStorageSync('UserInfo').userid,
+      _token: wx.getStorageSync('UserInfo')._token,
+      keyword: that.data.seekInp
+    };
+    util.showLoading();
+    that.setData({
+      searching: true
+    })
+    util.BussinessCardSearch(param, function(ret) {
+      console.log('名片信息', ret)
+      // that.data.messageList.push(ret.data)
+      if (ret)
+        for (let i in ret.data) {
+          // that.data.messageList.push({
+          //   id: ret.data[i].itemid, //信息id
+          //   mid: 2,
+          //   head_portrait_icon: ret.user ? (ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png') : '../../images/index/head_portrait.png', //头像，后面是默认头像
+          //   icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          //   name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
+          //   position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
+          //   demand: '纺机贸易', //发布类别  ()
+          //   mobile: ret.data[i].mobile,
+          //   company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
+          //   lableList: ret.data[i].tags,
+
+          //   details: ret.data[i].introduce, //信息详情描述
+          //   message_Img: //详情图片  后续跟进
+          //     [{
+          //       message_Image: ret.data[i].thumb
+          //     },
+          //     {
+          //       message_Image: ret.data[i].thumb1
+          //     },
+          //     {
+          //       message_Image: ret.data[i].thumb2
+          //     }
+          //     ],
+          //   time: ret.data[i].adddate, //发布时间
+          //   addtime: ret.data[i].addtime, //发布详细时间
+          //   address: ret.data[i].address, //货物存放地
+          //   page_view: ret.data[i].hits, //浏览量
+          //   like: ret.data[i].agree //点赞
+          // })
         }
       that.data.messageList = that.sort(that.data.messageList)
       that.setData({
@@ -363,7 +420,7 @@ Page({
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: ''+e.detail.value
+      index: '' + e.detail.value
     })
   },
   /**
@@ -373,9 +430,9 @@ Page({
     that = this;
     var index = options.index
     that.setData({
-      index: ''+(index ? index : 0)
+      index: '' + (index ? index : 0)
     })
-    console.log(33333333333, index,that.data.index);
+    console.log(33333333333, index, that.data.index);
   },
 
   /**

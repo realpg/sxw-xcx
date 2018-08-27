@@ -313,6 +313,12 @@ function FrameSearch(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/fjmy/search', param, "POST", successCallback, errorCallback);
 }
 
+//名片搜索
+function BussinessCardSearch(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/businesscard/search', param, "POST", successCallback, errorCallback);
+}
+
+
 //我的发布_供应
 function sellList_mine(param, successCallback, errorCallback) {
   param.conditions = JSON.stringify({
@@ -873,6 +879,7 @@ module.exports = {
   SupplySearch: SupplySearch,
   BuySearch: BuySearch,
   FrameSearch: FrameSearch,
+  BussinessCardSearch: BussinessCardSearch,
   setLike: setLike,
   enshrine: enshrine,
   payVIP: payVIP,

@@ -185,7 +185,7 @@ Page({
   //搜索框跳转
   serchClick: function() {
     wx.navigateTo({
-      url: '../search/search',
+      url: '../search/search?index='+that.data.id,
     })
   },
   //信息栏选择

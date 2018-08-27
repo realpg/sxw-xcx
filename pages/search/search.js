@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ['全部', '供应', '求购', '纺机','名片'],
+    array: ['全部', '供应', '求购', '纺机', '名片'],
     objectArray: [{
         id: 0,
         name: '全部'
@@ -26,7 +26,7 @@ Page({
         name: '设备'
       },
       {
-        id:4,
+        id: 4,
         name: '名片'
       }
     ],
@@ -371,11 +371,11 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    that.data.index=options
+    var index = options.index
     that.setData({
-        index:options
-      })
-    console.log(33333333333,options);
+      index: index ? index : 0
+    })
+    console.log(33333333333, index,that.data.index);
   },
 
   /**

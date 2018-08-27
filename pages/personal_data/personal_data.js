@@ -168,37 +168,25 @@ Page({
 
   },
   // 图片预览
-  previewImClick_two: function(event) {
+  previewImClick_two: function(e) {
 
     // wx.previewImage({
     // current: '', // 当前显示图片的http链接
     // urls: [] // 需要预览的图片http链接列表
     // })
-    var id = event.currentTarget.dataset.id
+    var index = e.currentTarget.dataset.id
     var getArr = that.data.thumb;
-    for (var i in getArr) {
-      if (id == getArr[i].id) {
-        // that.setData({
-        // popupBc:'block',
-        // showPic: getArr[i].companyProduct
-        // })
-        // console.log(getArr[i])
-        wx.previewImage({
-          // current: getArr[i].id, // 当前显示图片的http链接
-          urls: [getArr[i]] // 需要预览的图片http链接列表
-        })
-
-      }
-    }
+    wx.previewImage({
+      // current: getArr[i].id, // 当前显示图片的http链接
+      urls: [getArr[index]] // 需要预览的图片http链接列表
+    })
   },
   //删除图片
   DelClick_two: function(e) {
+    var index = e.currentTarget.dataset.id
     let MIL = that.data.thumb;
-    for (let i in MIL) {
-      if (e.currentTarget.dataset.id == MIL[i].id) {
-        MIL.splice(i, 1)
-      }
-    }
+    MIL.splice(index, 1)
+
 
     that.setData({
       thumb: MIL
@@ -427,7 +415,7 @@ Page({
   },
 
   // >>获取验证码
-  getVerificationCode: function () {
+  getVerificationCode: function() {
 
     if (!util.phonenum_verify(that.data.businesscard.mobile)) {
       wx.showToast({
@@ -438,10 +426,10 @@ Page({
 
       util.sendVertifyCode({
         phonenum: that.data.businesscard.mobile
-      }, function (ret) {
+      }, function(ret) {
         console.log("发送读秒")
         var num = 61;
-        var timer = setInterval(function () {
+        var timer = setInterval(function() {
           num--;
           if (num <= 0) {
             clearInterval(timer);

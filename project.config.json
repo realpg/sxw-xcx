@@ -11,9 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "2.2.4",
 	"appid": "wx3c1f8dfde816c48f",
-	"projectname": "%E7%BA%B1%E7%BA%BF%E7%BD%91_%E4%BD%93%E9%AA%8C%E7%89%881.0",
+	"projectname": "%E7%BA%B1%E7%BA%BF%E7%BD%91%E6%AD%A3%E5%BC%8F%E7%89%88",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -24,102 +24,13 @@
 			"current": -1,
 			"list": []
 		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": 0,
-					"name": "详情页",
-					"pathName": "pages/mine/mine",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "名片",
-					"pathName": "pages/store/store",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "排行榜",
-					"pathName": "pages/ranking_list/ranking_list",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "发布供应",
-					"pathName": "pages/release_supply_information/release_supply_information",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "详情页",
-					"pathName": "pages/personal_data/personal_data",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "详情页",
-					"pathName": "pages/personal_data/personal_data",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/mine/mine",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "名片",
-					"pathName": "pages/store/store",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "邀请",
-					"pathName": "pages/invite_prize/invite_prize",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "购买广告位",
-					"pathName": "pages/mine_promotion/mine_promotion",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "资讯列表",
-					"pathName": "pages/information/information",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "名片详情",
-					"pathName": "pages/store_particulars/store_particulars",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "搜索",
-					"pathName": "pages/search/search",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "广告位",
-					"pathName": "pages/mine_promotion/mine_promotion",
-					"query": ""
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }

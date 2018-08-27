@@ -76,9 +76,9 @@
 <view class='AddImgList'>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{thumb}}' data-index='id'>
-      <image class='MessageImg' bindtap='previewImClick_two' data-id='{{item.id}}' src='{{item}}' mode='aspectFill' />
+      <image class='MessageImg' bindtap='previewImClick_two' data-id='{{index}}' src='{{item}}' mode='aspectFill' />
 
-      <image class='DelImg' bindtap='DelClick_two' data-id='{{item.id}}' src='../../images/index/del.png' />
+      <image class='DelImg' bindtap='DelClick_two' data-id='{{index}}' src='../../images/index/del.png' />
     </view>
 
     <view class='AddImgFunction' wx-if='{{thumb.length<6}}'>

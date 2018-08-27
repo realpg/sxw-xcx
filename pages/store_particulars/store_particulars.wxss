@@ -117,8 +117,8 @@ text-align: center;
   margin-left: 30rpx;
   color:white;
   font-size: 20rpx;
-  padding: 10.5rpx 5rpx;
-  border-radius: 35rpx;
+  padding: 14rpx 9rpx;
+  border-radius: 38rpx;
 }
 .company{
   font-size: 26rpx;

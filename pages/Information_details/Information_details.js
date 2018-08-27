@@ -9,9 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    messageTitle:'储备棉最新消息',
-    messageSource:'中国纱线网',
-    messageTime:'2018-7-20',
+    messageTitle:'',
+    messageSource:'',
+    messageTime:'',
     itemid:null
   },
 

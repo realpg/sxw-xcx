@@ -28,7 +28,9 @@ Page({
       { id: 0, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, 
       { id: 1, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' }, 
       { id: 2, iconImg: '../../images/index/head_portrait.png', name: '董晓珺', post: '销售总监', vip: '../../images/index/vip.png', companyName: '杭州精纱信息有限公司', number: '6666', main_business: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支' },
-      ]
+      ],
+
+      page:1
   },
 
   //搜索框跳转
@@ -77,13 +79,17 @@ Page({
 
 
   visitingCard:function(){
+    if (!that.data.page)
+      return;
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
+      page:that.data.page
     };
     util.visitingCard(param, function (ret) {
       console.log('名片列表',ret)
       that.setData({
+        page: ret.current_page < ret.last_page ? ret.current_page+1:null,
         messageList:ret.data
       })
     });
@@ -183,7 +189,5 @@ Page({
     console.log("触底加载")
     that.visitingCard();
   },
-
-  
 
 })

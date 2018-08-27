@@ -120,6 +120,7 @@
     <view class='card_messageListCss' data-id='{{item.id}}' bindtap='messageList_click'>
       <view class='card_message'>
         <image class='card_iconImg' src='{{item.head_portrait_icon}}'></image>
+          <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
         <view class='card_messageCss'>
           <view class='card_employee_information'>
             <view class='card_name'>{{item.name}}</view>

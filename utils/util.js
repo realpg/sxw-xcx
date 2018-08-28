@@ -296,7 +296,10 @@ function payVIP(param, successCallback, errorCallback) {
 function payAssign(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/ad/buy', param, "POST", successCallback, errorCallback);
 }
-
+//我的广告位
+function getMyAdplace(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/ad/my', param, "GET", successCallback, errorCallback);
+}
 
 //供应信息详情
 function SupplySearch(param, successCallback, errorCallback) {
@@ -886,6 +889,7 @@ module.exports = {
   myVIP: myVIP,
   vipTimeto: vipTimeto,
   payAssign: payAssign,
+  getMyAdplace: getMyAdplace,
 
   sellList_mine: sellList_mine,
   buyList_mine: buyList_mine,

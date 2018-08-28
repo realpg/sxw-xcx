@@ -1,6 +1,18 @@
 page{
   background: #f5f5f5;
 }
+
+.vip_position{
+  width: 95%;
+  margin: auto;
+  height: 320rpx;
+}
+.vip_position_css{
+  display: flex;
+  justify-content: center;
+}
+
+
 .advertising_position{
   width: 95%;
   margin: auto;
@@ -11,13 +23,40 @@ page{
   justify-content: center;
 }
 .title{
-
-  color: white;
+  color: black;
   font-size: 28rpx;
-  line-height: 80rpx;
+  line-height: 90rpx;
+  font-weight: 700;
   text-align: center;
 }
 .Img{
   width: 300rpx;
   height: 140rpx;
+}
+
+.time{
+margin-top: 20rpx;
+  font-size: 24rpx;
+  color:white;
+  text-align: center;
+}
+.useful_life{
+ font-size: 24rpx;
+ color:white;
+}
+.time_css{
+  margin-top: 30rpx;
+  font-size: 24rpx;
+  color: rgb(77, 74, 74);
+  text-align: center;
+}
+.useful_life_css{
+ font-size: 24rpx;
+ color:black;
+}
+
+.hint{
+font-size: 30rpx;
+line-height: 100rpx;
+text-align: center;
 }

@@ -1,11 +1,24 @@
+<!-- vip-->
+<view>
+  <view style='background:url({{item.bgImg}}) no-repeat;background-size:100% 100%;'
+  class='vip_position' wx:for='{{advertising_vip}}'>
+    <view class='vip_position_css'>
+      <image style='margin-top: 70rpx;' class='Img' src='{{item.Img}}'></image>
+    </view>
+<view class='time' wx:if='{{index<2}}'><text class='useful_life'>有效期: </text>{{item.time_begin}} — {{item.time_over}}</view>
+    <view class='time_css' wx:if='{{index>1}}' ><text class='useful_life_css'>有效期: </text>{{item.time_begin}} — {{item.time_over}}</view>
+  </view>
+</view>
+
+<view class='hint'>点击以下广告位选择发布</view>
 <!-- 我的广告位 -->
 <view>
   <view style='background:url({{item.bgImg}}) no-repeat;background-size:100% 100%;'
   class='advertising_position' wx:for='{{advertising_position}}' bindtap='selectClick'>
-    <view class='title' wx:if='{{index<2}}'>点击此处选择您想发的名片或信息</view>
-    <view class='title' style='color:black' wx:if='{{index>1}}'>点击此处选择您想发的名片或信息</view>
+    <view class='title' >首页轮播图位1</view>
     <view class='advertising_position_css'>
       <image class='Img' src='{{item.Img}}'></image>
     </view>
+    <view class='time_css'><text class='useful_life_css'>有效期: </text>{{item.time_begin}} — {{item.time_over}}</view>
   </view>
 </view>

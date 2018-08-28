@@ -169,7 +169,7 @@ text-align: center;
   line-height: 40rpx;
 }
 .lable{
-  display:-webkit-flex;
+  display:flex;
 }
 .lable_three{
   background: #E9F8F1;
@@ -179,7 +179,7 @@ text-align: center;
   font-weight: 400;
   border: 1rpx solid #E9F8F1;
   border-radius: 10rpx;
-  margin-right: 20rpx;
+  margin-right:20rpx 
 }
 
 .lable_four{
@@ -190,7 +190,7 @@ text-align: center;
   font-weight: 400;
   border: 1rpx solid  #FFE5C0;
   border-radius: 10rpx;
-   margin-right: 20rpx;
+ margin-right: 20rpx;
 }
 .lable_five{
   background: #E9F8F1;

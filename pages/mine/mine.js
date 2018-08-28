@@ -109,7 +109,7 @@ Page({
       },
     ],
 
-    gold_coin_get: '2'
+    gold_coin_get: '0'
   },
 
   //获取金币
@@ -259,9 +259,11 @@ Page({
         title: '金币+' + that.data.gold_coin_get,
         duration: 1500
       })
+      that.data.business_card.credit+= parseInt(that.data.gold_coin_get)
 
       that.setData({
-        sign_in_date: that.data.sign_in_date
+        sign_in_date: that.data.sign_in_date,
+        business_card: that.data.business_card
       })
     })
   },

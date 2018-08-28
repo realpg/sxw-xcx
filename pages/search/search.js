@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hint:'',
     array: ['全部', '供应', '求购', '纺机', '名片'],
     objectArray: [{
         id: 0,
@@ -72,7 +73,7 @@ Page({
     }, ],
 
     messageList: [],
-    searching: false
+    searching: false,
   },
 
   seekInput: function(e) {
@@ -203,7 +204,7 @@ Page({
         }
       that.data.messageList = that.sort(that.data.messageList)
       that.setData({
-        messageList: that.data.messageList
+        messageList: that.data.messageList,
       })
     });
   },
@@ -477,8 +478,27 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
+  onReachBottom: function(e) {
+    console.log("触底加载", that.data.index)
+    switch (that.data.index) {
+      case '0':
+        that.SupplySearch();
+        that.BuySearch();
+        that.FrameSearch();
+        break;
+      case '1':
+        that.SupplySearch();
+        break;
+      case '2':
+        that.BuySearch();
+        break;
+      case '3':
+        that.FrameSearch();
+        break;
+      case '4':
+        that.BussinessCardSearch();
+        break ;
+        }
   },
 
   /**

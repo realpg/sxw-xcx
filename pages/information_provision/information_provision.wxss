@@ -103,10 +103,9 @@ margin-left: 50rpx;
   font-weight: 400;
   border: 1rpx solid  #FFE5C0;
   border-radius: 10rpx;
-  margin-right: 20rpx;
+  margin-right: 30rpx;
 }
 .lable_five{
- 
   background: #E9F8F1;
   color: #01C46C;
   font-size: 22rpx;
@@ -114,7 +113,7 @@ margin-left: 50rpx;
   font-weight: 400;
   border: 1rpx solid #E9F8F1;
   border-radius: 10rpx;
-  margin-right: 20rpx;
+  margin-right: 30rpx;
 }
 .details{
   margin-top: 20rpx;
@@ -188,10 +187,10 @@ margin-left: 50rpx;
   height: 40rpx;
 }
 .dianzan{
-   width: 40rpx;
-  height: 40rpx;
+   width: 32rpx;
+  height: 32rpx;
 }
 .eye{
-  width: 40rpx;
-  height: 30rpx;
+  width: 35rpx;
+  height:22rpx;
 }

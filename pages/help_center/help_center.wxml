@@ -8,3 +8,6 @@
 <view class='question' wx:for='{{question}}' bindtap='answeringClick'>
   <view class='question_title'>{{index+1}}、{{item.title}}</view>
 </view>
+
+
+<view style='line-height:400rpx;text-align:center'>8-28 5:50</view>

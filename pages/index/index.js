@@ -123,6 +123,7 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].user.truename, //用户姓名
+              userid: ret.data[i].businesscard.userid,//userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile,//电话
               demand: ret.data[i].mid == 5 ? '供应' : ret.data[i].mid == 6 ? '求购' : ret.data[i].mid == 88 ? '纺机' : "未知", //发布类别  ()
@@ -179,6 +180,7 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].user.truename, //用户姓名
+              userid: ret.data[i].businesscard.userid,//userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile,//电话
               demand: '供应', //发布类别  ()
@@ -231,6 +233,7 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].businesscard.truename, //用户姓名
+              userid: ret.data[i].businesscard.userid,//userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile,//电话
               demand: '求购', //发布类别  ()
@@ -284,6 +287,7 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].businesscard.truename, //用户姓名
+              userid: ret.data[i].businesscard.userid,//userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile,//电话
               demand: '纺机', //发布类别  ()
@@ -648,6 +652,12 @@ Page({
       })
     }, null)
 
-  }
+  },
+  //点击头像查看名片
+  messageList_click: function (e) {
+    wx.navigateTo({
+      url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
+    })
+  },
 
 })

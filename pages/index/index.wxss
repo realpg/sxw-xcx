@@ -109,8 +109,8 @@ height: 100%;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-   font-size: 28rpx;
-   color: #626262;
+   font-size: 26rpx;
+   color: #999999;
 }
  .vvv{
  position: relative;
@@ -217,6 +217,7 @@ height: 100%;
   padding: 6rpx 20rpx;
   border-radius: 6rpx;
   align-items: center;
+
 }
 
 .information_classification{
@@ -237,7 +238,7 @@ height: 100%;
 }
 .messageCss{
   display: flex;
-  width: 90%;
+  width: 95%;
   margin: auto;
   padding: 20rpx 0rpx 0rpx 0rpx;
 }
@@ -290,7 +291,7 @@ text-align: center;
   font-weight: 400;
   border: 1rpx solid #E9F8F1;
   border-radius: 10rpx;
-  margin-right: 20rpx;
+  margin-right: 30rpx;
 }
 
 .lable_four{
@@ -301,7 +302,7 @@ text-align: center;
   font-weight: 400;
   border: 1rpx solid  #FFE5C0;
   border-radius: 10rpx;
-   margin-right: 20rpx;
+   margin-right: 30rpx;
 }
 .lable_five{
   background: #E9F8F1;
@@ -311,7 +312,7 @@ text-align: center;
   font-weight: 400;
   border: 1rpx solid #E9F8F1;
   border-radius: 10rpx;
-  margin-right: 20rpx;
+  margin-right: 30rpx;
 }
 .details{
   margin-top: 20rpx;
@@ -388,12 +389,12 @@ text-align: center;
   height: 40rpx;
 }
 .dianzan{
-   width: 40rpx;
-  height: 40rpx;
+   width: 32rpx;
+  height: 32rpx;
 }
 .eye{
-  width: 40rpx;
-  height: 30rpx;
+  width: 35rpx;
+  height:22rpx;
 }
 
 

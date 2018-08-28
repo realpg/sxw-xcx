@@ -30,13 +30,13 @@ page{
   border-radius: 46rpx;
   }
 .picker{
-    padding: 14rpx 20rpx;
+    padding: 12rpx 20rpx;
     background-color: #01C46C;
     display: flex;
     color: white;
     align-items: center;
     font-size: 28rpx;
-    border-radius: 46rpx 0  0 46rpx;
+    border-radius: 30rpx 0  0 30rpx;
 }
 .search_input{
   width: 400rpx;
@@ -277,12 +277,12 @@ text-align: center;
   height: 40rpx;
 }
 .dianzan{
-   width: 40rpx;
-  height: 40rpx;
+   width: 32rpx;
+  height: 32rpx;
 }
 .eye{
-  width: 40rpx;
-  height: 30rpx;
+  width: 35rpx;
+  height:22rpx;
 }
 
 

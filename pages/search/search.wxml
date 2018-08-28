@@ -53,7 +53,9 @@
 </view>
 
 <block wx:else>
-
+  <view class='hint' wx:if="{{messageList.length<1}}" >
+    未找到对应搜索结果
+  </view>
   <view wx:if='{{messageList.length>0 && index!=4}}'>
     <!--具体信息-->
     <view class='message' wx:for='{{messageList}}' wx:for-index='id'>
@@ -145,6 +147,3 @@
   </view>
 </view>
 
-  <view class='hint' wx:if="{{messageList.length<1}}" >
-    未找到对应搜索结果
-  </view>

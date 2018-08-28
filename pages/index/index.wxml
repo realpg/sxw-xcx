@@ -1,4 +1,4 @@
-
+<view catchtap='' catchtouchmove=''>
 <!--轮播图-->
 <view style='position: relative;'>
     <swiper class='slide-swiper' circular='true' autoplay='6000' duration="1000" indicator-dots='true' indicator-color='true' >
@@ -104,7 +104,7 @@
 <view class='message' wx:for='{{message}}' wx:for-index='id'>
   <view class='messageCss'    data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'/>
+      <image bindtap='messageList_click' data-id='{{item.userid}}' class='head_portrait_icon' src='{{item.head_portrait_icon}}'/>
       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 
@@ -117,6 +117,7 @@
           <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
           <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
         </view>
+        <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
         <view class='company'>{{item.company}}</view>
         <view class='lable'>
           <view wx:for='{{item.lableList}}' wx:for-index='index'>
@@ -142,7 +143,9 @@
           <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
             <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
             <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
-            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
+            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' >查看详情 >></view>
+
+            </view>
         </view>
     </view>
   </view>
@@ -150,3 +153,4 @@
 
 <!--客服-->
  <image bindtap='callClick' mode='aspectFill' class='servicer-image' src='../../images/index/service.png'/>
+ </view>

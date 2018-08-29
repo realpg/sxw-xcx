@@ -51,9 +51,10 @@ Page({
     }, ]
   },
 
-  selectClick: function() {
+  selectClick: function(e) {
+    console.log(e);
     wx.navigateTo({
-      url: '../select_issue/select_issue',
+      url: '../select_issue/select_issue?ad_id='+e.currentTarget.dataset.ad_id,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

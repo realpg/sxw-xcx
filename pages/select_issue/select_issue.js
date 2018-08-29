@@ -108,7 +108,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log(options);
+    var ad_id=options.ad_id
+    if(typeof(ad_id)=='undefined'){
+      wx.showToast({
+        title: '参数错误',
+        duration:2000
+      })
+      setTimeout(function(){
+        wx.navigateBack({
+        })
+      },2000)
+    }
   },
 
   /**

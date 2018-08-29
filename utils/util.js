@@ -381,6 +381,10 @@ function myMessage(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/member/message', param, "GET", successCallback, errorCallback);
 }
 
+//选择发布
+function selectIssue(param, successCallback, errorCallback){
+  wxRequest(SERVER_URL + '/api/ad/change', param, "POST", successCallback, errorCallback);
+}
 
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
@@ -899,6 +903,7 @@ module.exports = {
   sendVertifyCode: sendVertifyCode,
   myFavorite: myFavorite,
   myMessage: myMessage,
+  selectIssue: selectIssue,
 
   formatTime: formatTime,
   formatDate: formatDate,

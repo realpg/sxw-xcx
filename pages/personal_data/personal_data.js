@@ -378,7 +378,7 @@ Page({
       console.log(ret);
       app.globalData.userInfo.credit -= that.data.gold_coin_pay;
       wx.showToast({
-        title: ret,
+        title: "发布成功,等待审核",
         icon: "success",
         success: function() {
           setTimeout(function() {

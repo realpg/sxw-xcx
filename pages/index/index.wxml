@@ -1,4 +1,4 @@
-<view catchtap='' catchtouchmove=''>
+<view catchtap='' catchtouchmove='' style='width:100%;overflow-x:hidden;'>
 <!--轮播图-->
 <view style='position: relative;'>
     <swiper class='slide-swiper' circular='true' autoplay='6000' duration="1000" indicator-dots='true' indicator-color='true' >
@@ -139,13 +139,14 @@
           <image class='icon_map' src='../../images/index/icon_map.png'/>
           <text class='address'>存放地：{{item.address}}</text>
         </view>
+         </view>
         <view class='eye_dianzan'>
           <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
             <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
             <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
-            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' >查看详情 >></view>
+            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
 
-            </view>
+           
         </view>
     </view>
   </view>

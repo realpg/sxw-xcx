@@ -1,9 +1,9 @@
 <!-- vip-->
 <view>
 <view class='hint'>我的VIP</view>
-  <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg{{item.vip}}.png) no-repeat;background-size:100% 100%;' class='vip_position' wx:for='{{vip_now}}'>
+  <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg{{4-item.vip}}.png) no-repeat;background-size:100% 100%;' class='vip_position' wx:for='{{vip_now}}'>
     <view class='vip_position_css'>
-      <image style='margin-top: 70rpx;' class='Img' src='../../images/personal_center/vip{{item.vip}}.png'></image>
+      <image style='margin-top: 70rpx;' class='Img' src='../../images/personal_center/vip{{4-item.vip}}.png'></image>
     </view>
     <view class='time'>
       <text class='useful_life'>有效期: </text>{{item.time_begin}} — {{item.time_over}}</view>

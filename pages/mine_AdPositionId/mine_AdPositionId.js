@@ -8,47 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    advertising_vip:[{
-      id: 0,
-      bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg1.png',
-      Img: '../../images/personal_center/vip1.png',
-      time_begin: '2018-8-25',
-      time_over: '2018-9-25'
-   },
-     {
-        id: 0,
-        bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg2.png',
-        Img: '../../images/personal_center/vip2.png',
-        time_begin: '2018-8-25',
-        time_over: '2018-9-25'
-      }, {
-        id: 0,
-        bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png',
-        Img: '../../images/personal_center/vip3.png',
-        time_begin: '2018-8-25',
-        time_over: '2018-9-25'
-      }
-      ],
-
-    advertising_position: [{
-      id: 0,
-      bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png',
-      Img: '../../images/personal_center/carousel.png',
-      time_begin: '2018-8-25',
-      time_over: '2018-9-25'
-    }, {
-      id: 1,
-      bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png',
-        Img: '../../images/personal_center/carousel.png',
-      time_begin: '2018-8-25',
-      time_over: '2018-9-25'
-    }, {
-      id: 2,
-      bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg3.png',
-        Img: '../../images/personal_center/carousel.png',
-      time_begin: '2018-8-25',
-      time_over: '2018-9-25'
-    }, ]
+    
+    advertising_position: []
   },
 
   selectClick: function() {
@@ -118,6 +79,9 @@ that.load();
   getMyVIP:function(){
     util.myVIP({},function(ret){
       console.log("我的vip",ret)
+      if(typeof(ret)=='undefined'){
+        reutrn;
+      }
       var vip_now = ret[3] ? ret[3] : [];
       var vip_later = ret[0] ? ret[0] : [];
       var vip_earlier = ret[2] ? ret[2] : [];
@@ -138,7 +102,7 @@ that.load();
   getMyAdplace: function () {
     util.getMyAdplace({}, function (ret) {
       console.log("我的广告位", ret)
-      var ads=ret;
+      var ads=ret?ret:[];
       for (var i in ads){
         ads[i].time_begin = util.formatDate(new Date(ads[i].addtime * 1000));
         ads[i].time_over = util.formatDate(new Date(ads[i].totime * 1000));

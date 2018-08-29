@@ -9,7 +9,7 @@ page{
 }
 .slide-swiper_css{
 width: 49%;
-height: 350rpx;
+height: 340rpx;
 }
 .slide-swiper{
   width: 100%;
@@ -139,7 +139,7 @@ height: 100%;
   width: 100%;
   margin: auto;
   background: #fff;
-  height: 330rpx;
+  height: 320rpx;
 }
 
 .store_name {
@@ -199,7 +199,7 @@ height: 100%;
   display: -webkit-box; 
   align-items: center;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 
@@ -321,7 +321,7 @@ text-align: center;
   display: -webkit-box; 
   align-items: center;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 .message_Img{

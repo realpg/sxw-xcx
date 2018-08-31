@@ -220,7 +220,7 @@ Page({
     if (content.catid && content.address
       && content.content
       && content.tags.length > 0
-      && content.thumbs.length > 0
+      // && content.thumbs.length > 0
       && that.data.gold_coin_balance >= that.data.gold_coin_pay
       && app.globalData.userInfo.groupid == '6'
       // && app.globalData.userInfo.mobile

@@ -86,6 +86,9 @@ Page({
           druation: 3000,
           icon: 'success'
         })
+        // var pages = getCurrentPages();
+        // var my_page = pages[pages.length - 3];
+        // my_page.refresh()
         setTimeout(function() {
           wx.navigateBack()
         }, 3000)

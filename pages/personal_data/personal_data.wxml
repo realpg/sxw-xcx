@@ -21,7 +21,9 @@
       <text class='sort' decode='emsp'>姓  名：</text>
       <input class='name_input' type='text' placeholder='请输入姓名' value="{{businesscard.truename}}" bindblur="changeBusinesscard" data-key="truename" />
     </view>
-    <view class='name'>手机号：
+    <view class='name'>
+    <text class='prompt'>* </text>
+    <text class='sort' decode='emsp'>手  机：</text>
       <input class='name_input' type='number' placeholder='请输入手机号' value="{{businesscard.mobile}}" bindblur="changeBusinesscard" data-key="mobile" bindchange='changeMobile'  />
     </view>
     <view class='name' wx:if='{{verification_code}}'>验证码：

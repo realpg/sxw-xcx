@@ -388,7 +388,7 @@ function selectIssue(param, successCallback, errorCallback){
 
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
-    url: 'http://xcx.hzmuji.com/api/uploadImage',
+    url: SERVER_URL+'/api/uploadImage',
     filePath: param.file,
     name: 'file',
     formData: {
@@ -415,7 +415,11 @@ function uploadImage(param, successCallback, errorCallback) {
     },
     fail: function (err) {
       // console.log("wxRequest fail:" + JSON.stringify(err))
-
+      wx.showToast({
+        title: ret.data.message ? ret.data.message : "上传失败",
+        icon: 'none',
+        duration: 2000
+      })
     },
     complete: function () {
       // hideLoading()

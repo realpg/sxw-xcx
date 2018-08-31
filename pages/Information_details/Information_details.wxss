@@ -18,10 +18,10 @@
   height: 76rpx;
   font-size: 32rpx;
   font-weight: bold;
-   display: -webkit-box;
+   /* display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden;
+  overflow: hidden; */
 }
 .messageDescribe{
   display: flex;

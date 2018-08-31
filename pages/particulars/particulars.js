@@ -239,6 +239,7 @@ Page({
       that.data.message.push({
         id: ret.itemid, //信息id
         mid: 5,
+        userid: ret.businesscard.userid,//userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
         icon_vip: ret.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
@@ -293,6 +294,7 @@ Page({
       that.data.message.push({
         id: ret.itemid, //信息id
         mid: 6,
+        userid: ret.businesscard.userid,//userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
         icon_vip: ret.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
@@ -349,6 +351,7 @@ Page({
       that.data.message.push({
         id: ret.itemid, //信息id
         mid: 88,
+        userid: ret.businesscard.userid,//userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
         icon_vip: ret.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
@@ -394,6 +397,7 @@ Page({
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 5,
+          userid: ret.data[i].businesscard.userid,//userid
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
           icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
@@ -446,6 +450,7 @@ Page({
           id: ret.data[i].itemid, //信息id
           mobile: ret.data[i].mobile,
           mid: 6,
+          userid: ret.data[i].businesscard.userid,//userid
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
           icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
@@ -495,6 +500,7 @@ Page({
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 88,
+          userid: ret.data[i].businesscard.userid,//userid
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
           icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
@@ -653,5 +659,12 @@ Page({
         // 转发失败
       }
     }
-  }
+  },
+  //点击头像查看名片
+  messageList_click: function (e) {
+    wx.navigateTo({
+      url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
+    })
+  },
+
 })

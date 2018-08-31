@@ -2,11 +2,17 @@ page{
   background: #f5f5f5;
   border-top: 1rpx solid #f5f5f5
 }
+.head_portrait{
+  display: flex;
+  position: relative;
+}
 .icon_vip{
-  margin-left:-5rpx;
-  margin-top:66rpx;
-  width: 25rpx;
-  height: 25rpx;
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 70rpx;
+  right: 10rpx;
+  z-index: 999;
 }
 .hint{
   font-size: 28rpx;
@@ -16,7 +22,7 @@ page{
 }
 .search{
   background: #fff;
-  padding:20rpx 0 20rpx 0 ;
+  padding:30rpx 0 ;
 }
 .searchs{
   padding:0 0  10rpx 0 ;
@@ -27,10 +33,10 @@ page{
   display: flex;
   background: #f5f5f5;
   align-items: center;
-  border-radius: 46rpx;
+  border-radius: 34rpx;
   }
 .picker{
-    padding: 12rpx 20rpx;
+    padding: 13.7rpx 20rpx;
     background-color: #01C46C;
     display: flex;
     color: white;
@@ -126,7 +132,7 @@ margin-top: 40rpx;
 }
 .messageCss{
   display: flex;
-  width: 90%;
+  width: 95%;
   margin: auto;
   padding: 20rpx 0rpx 0rpx 0rpx;
 }
@@ -135,7 +141,7 @@ margin-top: 40rpx;
 }
 .The_specific_details{
   margin-left: 10rpx;
-  width: 80%;
+  width: 83%;
 }
 .datails_name{
   font-size: 30rpx;
@@ -152,16 +158,16 @@ margin-top: 40rpx;
 }
 .demand{
 background:#9accf7;
-font-size:22rpx;
+font-size:21rpx;
 color:white;
-width: 60rpx;
-height: 60rpx;
+width: 55rpx;
+height: 55rpx;
 border-radius:50%;
 display: inline-block;
 text-align: center;
 }
 .demand_css{
-  line-height: 60rpx;
+  line-height: 55rpx;
 }
 .company{
   font-size: 26rpx;
@@ -252,7 +258,7 @@ text-align: center;
   height:100rpx;
   border-radius: 50%;
 }
-.icon_vip{
+.icon_vi_css{
   margin-left:-5rpx;
   margin-top:66rpx;
   width: 25rpx;
@@ -265,7 +271,7 @@ text-align: center;
   float: right;
 }
 .message_Image_Css{
-  width: 170rpx;
+  width: 180rpx;
   height:170rpx;
 }
 .address_css{
@@ -273,8 +279,8 @@ text-align: center;
   align-items: center;
 }
 .icon_map {
-   width: 28rpx;
-  height: 40rpx;
+   width: 24rpx;
+  height: 36rpx;
 }
 .dianzan{
    width: 32rpx;
@@ -303,6 +309,7 @@ padding-bottom: 3%;
 .card_message{
   display: flex;
    line-height: 50rpx;
+   position: relative;
 }
 .card_messageCss{
   margin-left: 20rpx;
@@ -348,9 +355,18 @@ padding-bottom: 3%;
   font-size: 24rpx;
 }
 .card_iconImg{
+
 width: 100rpx;
 height: 100rpx;
 border-radius: 50%;
+}
+.icon_vip_css{
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 70rpx;
+  left: 67rpx;
+  z-index: 999;
 }
 .card_pageView_Img{
   width: 30rpx;

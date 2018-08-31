@@ -1,7 +1,7 @@
 <!--具体详情-->
 <view class='message' wx:for='{{message}}'>
   <view class='messageCss' data-id='{{item.id}}'>
-    <view class='head_portrait'>
+    <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
       <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'></image>
        <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
@@ -113,17 +113,17 @@
       <image class='headImg' src='{{business_card.avatarUrl}}'></image>
     </view>
 
-    <view>
-      <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
+    <view class='itemscenter'>
+      <image class='iconImg_dianhua' src='../../images/store/btn_dianhua.png'></image>
       <text>{{business_card.mobile}} </text>
     </view>
-    <view>
-      <image class='iconImg' src='../../images/store/company.png'></image>
+    <view class='itemscenter'>
+      <image class='iconImg_company' src='../../images/store/company.png'></image>
       <text>{{business_card.company}} </text>
     </view>
-    <view>
-      <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{business_card.address}} </text>
+    <view class='itemscenter'>
+      <image class='iconImg_map' src='../../images/store/map.png'></image>
+      <text style='margin-left:4rpx'>{{business_card.address}} </text>
       <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
     </view>
 
@@ -135,7 +135,7 @@
 
 <view class='message' wx-if="{{item.id!=id&&item.mid!=mid}}" wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
-    <view class='head_portrait'>
+    <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
       <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
        <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
@@ -151,6 +151,8 @@
 
         <image bindtap='phoneClick' bindtap='making_call_click' class='btn_dianhua' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix' />
       </view>
+
+      <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
       <view class='company'>{{item.company}}</view>
       <view>
         <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
@@ -159,7 +161,7 @@
       </view>
       <view class='details'>{{item.details}}</view>
 
-      <view class='message_Img'>
+      <view class='message_Img' >
         <view class='message_Image' wx:for='{{item.message_Img}}'>
           <image class='message_Image_Css' src='{{item.message_Image}}' />
         </view>
@@ -169,6 +171,7 @@
       <view class='address_css'>
         <image class='icon_map' src='../../images/index/icon_map.png' />
         <text class='address'>存放地：{{item.address}}</text>
+      </view>
       </view>
       <view class='eye_dianzan'>
         <view class='eye_Css'>
@@ -180,6 +183,7 @@
         <view class='see_details' data-id='{{item.id}}' data-mid='{{item.mid}}' bindtap='see_details_click'>查看详情 >></view>
       </view>
     </view>
+    
   </view>
 </view>
 

@@ -49,17 +49,39 @@ page {
   border-radius: 50%;
 }
 
-.iconImg {
+.iconImg_dianhua{
   margin-right: 20rpx;
-  width: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.iconImg_company{
+ margin-right: 20rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.iconImg_map{
+   margin-left: 3rpx;
+margin-right: 20rpx;
+  width: 24rpx;
   height: 34rpx;
 }
 
 .options {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
+.dianzan{
+  margin-right: 10rpx;
+   width: 32rpx;
+  height: 32rpx;
+}
+.eye{
+   margin-right: 10rpx;
+  width: 35rpx;
+  height:22rpx;
+}
 .optionsImg {
   width: 32rpx;
   margin-right: 10rpx;
@@ -71,13 +93,13 @@ page {
   margin: auto;
   margin-top: 30rpx;
   line-height: 180rpx;
-  padding-bottom: 10rpx;
+  padding-bottom: 16rpx;
 }
 
 .sign_in_css {
   display: flex;
   justify-content: space-around;
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 
 .singIn {
@@ -100,7 +122,7 @@ page {
 .sign_in_date {
   display: flex;
   line-height: 50rpx;
-  font-size: 26rpx;
+  font-size: 28rpx;
   justify-content: space-around;
   text-align: center;
 }
@@ -113,7 +135,7 @@ page {
 .each_column {
   margin-top: 20rpx;
   background: #fff;
-  font-size: 28rpx;
+  font-size: 29rpx;
 }
 
 .mine_item {
@@ -121,7 +143,7 @@ page {
   width: 90%;
   margin: auto;
   align-items: center;
-  line-height: 90rpx;
+  line-height: 100rpx;
   border-bottom: 1rpx solid #f5f5f5;
   position: relative;
 }
@@ -132,7 +154,7 @@ width: 22%;
 }
 .describe{
  margin-left: 30rpx; 
- color: #D0D0D0;
+ color: #999999;
  font-size: 26rpx;
 }
 .icon_Img {
@@ -170,7 +192,7 @@ width: 22%;
 }
 .service_content{
  margin-left: 40rpx; 
- color: #D0D0D0;
+ color: #999999;
  font-size: 26rpx;
 }
 .kefu_Img{

@@ -16,7 +16,6 @@ Page({
   },
 
   setInfo:function(){
-
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
@@ -53,14 +52,14 @@ Page({
     that.setData({
       itemid: options.itemid
     })
+    that.setInfo();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
-    that.setInfo();
+   
     /**
       * 加载产品信息
       * */

@@ -70,7 +70,7 @@ height: 100%;
 }
 .ciName{
   margin-top: 10rpx;
-  font-size: 26rpx;
+  font-size: 28rpx;
 }
 
 
@@ -109,7 +109,7 @@ height: 100%;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-   font-size: 26rpx;
+   font-size: 28rpx;
    color: #999999;
 }
  .vvv{
@@ -225,8 +225,8 @@ height: 100%;
   display: flex;
   justify-content: space-around;
   line-height: 90rpx;
-  font-size: 28rpx;
-  color:  #9B9B9B; 
+  font-size: 30rpx;
+  color:  #999999; 
 }
 .all{
   color:#01C46C;
@@ -242,12 +242,10 @@ height: 100%;
   margin: auto;
   padding: 20rpx 0rpx 0rpx 0rpx;
 }
-.head_portrait{
-  display: flex;
-}
+
 .The_specific_details{
   margin-left: 10rpx;
-  width: 80%;
+  width: 83%;
 }
 .datails_name{
   font-size: 30rpx;
@@ -264,16 +262,16 @@ height: 100%;
 }
 .demand{
 background:#9accf7;
-font-size:22rpx;
+font-size:21rpx;
 color:white;
-width: 60rpx;
-height: 60rpx;
+width: 55rpx;
+height: 55rpx;
 border-radius:50%;
 display: inline-block;
 text-align: center;
 }
 .demand_css{
-  line-height: 60rpx;
+  line-height: 55rpx;
 }
 .company{
   font-size: 26rpx;
@@ -364,11 +362,18 @@ text-align: center;
   height:100rpx;
   border-radius: 50%;
 }
+
+.head_portrait{
+  display: flex;
+  position: relative;
+}
 .icon_vip{
-  margin-left:-5rpx;
-  margin-top:66rpx;
-  width: 25rpx;
-  height: 25rpx;
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 70rpx;
+  right: 10rpx;
+  z-index: 999;
 }
 .btn_dianhua{
   margin-top: 10rpx;
@@ -377,7 +382,7 @@ text-align: center;
   float: right;
 }
 .message_Image_Css{
-  width: 170rpx;
+  width: 180rpx;
   height:170rpx;
 }
 .address_css{
@@ -385,8 +390,8 @@ text-align: center;
   align-items: center;
 }
 .icon_map {
-   width: 28rpx;
-  height: 40rpx;
+   width: 24rpx;
+  height: 36rpx;
 }
 .dianzan{
    width: 32rpx;

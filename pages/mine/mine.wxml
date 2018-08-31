@@ -8,17 +8,17 @@
     </view>
 
     <view class='itemscenter'>
-      <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
+      <image class='iconImg_dianhua.png' src='../../images/store/btn_dianhua.png'></image>
       <text>{{business_card.businesscard.mobile}} </text>
     </view>
     <view class='itemscenter' >
-      <image class='iconImg' src='../../images/store/company.png'></image>
+      <image class='iconImg_company' src='../../images/store/company.png'></image>
       <text>{{business_card.company}} </text>
     </view>
-    <view class='redactList'>
+    <view class='redactList itemscenter'>
     <view class='redact' >
-      <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{business_card.companyInfo.address}} </text>
+      <image class='iconImg_map'  src='../../images/store/map.png'></image>
+      <text style='margin-left:3rpx' >  {{business_card.companyInfo.address}} </text>
       </view>
       <view>
        <text bindtap='redactClick' class='redactInfo' >编辑资料</text>
@@ -29,11 +29,11 @@
     <view class='The_main'>主营：{{business_card.companyInfo.business}}</view>
     <view class='options'>
       <view class='browse'>
-        <image class='optionsImg' src='../../images/store/eye.png' mode='widthFix'></image>
+        <image class='eye' src='../../images/store/eye.png' ></image>
         <text class='number'>{{business_card.businesscard.view}}                  </text>
       </view>
       <view class='browse'>
-        <image class='optionsImg' src='../../images/store/dianzan.png' mode='widthFix'></image>
+        <image class='dianzan' src='../../images/store/dianzan.png' ></image>
         <text class='number'>{{business_card.businesscard.agree}}                  </text>
       </view>
       <view class='browse'>
@@ -42,7 +42,7 @@
       </view>
       <view class='browse'>
        <button open-type='share'><image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-        <text class='number'>转发</text></button>
+        <text class='number'>分享</text></button>
       </view>
     </view>
   </view>
@@ -50,7 +50,7 @@
 
 <view wx:else='{{business_card.groupid==5}}' class='business_card'>
   <view bindtap='redactClick' class='business_card_css redactuserinfo'>
-   <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo' >请完善个人信息</text></button> 
+   <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>请完善个人信息</text></button> 
   </view>
   </view>
 

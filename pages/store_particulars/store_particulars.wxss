@@ -29,17 +29,41 @@ page{
   border-top: 1rpx solid #f5f5f5;
   line-height: 46rpx;
 }
+.itemscenter{
+  display: flex;
+  align-items: center;
+}
 
-
+.dianzan_css{
+  margin-right: 10rpx;
+   width: 32rpx;
+  height: 32rpx;
+}
+.eye_css{
+   margin-right: 10rpx;
+  width: 35rpx;
+  height:22rpx;
+}
 .headImg{
   width: 130rpx;
   height: 130rpx;
   float: right;
   border-radius: 50%;
 }
-.iconImg{
+.iconImg_dianhua{
   margin-right: 20rpx;
-  width: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.iconImg_company{
+ margin-right: 20rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.iconImg_map{
+   margin-left: 3rpx;
+margin-right: 20rpx;
+  width: 24rpx;
   height: 34rpx;
 }
 .options{
@@ -92,7 +116,7 @@ text-align: center;
 }
 .messageCss{
   display: flex;
-  width: 90%;
+  width: 95%;
   margin: auto;
   padding: 20rpx 0rpx 0rpx 0rpx;
 }
@@ -101,7 +125,7 @@ text-align: center;
 }
 .The_specific_details{
   margin-left: 10rpx;
-  width: 80%；
+  width: 83%
 }
 .datails_name{
   font-size: 30rpx;
@@ -113,12 +137,18 @@ text-align: center;
   font-size: 26rpx;
 }
 .demand{
-  background: #9ACCF7;
-  margin-left: 30rpx;
-  color:white;
-  font-size: 20rpx;
-  padding: 14.6rpx 9rpx;
-  border-radius: 38rpx;
+background:#9accf7;
+font-size:21rpx;
+color:white;
+width: 55rpx;
+height: 55rpx;
+border-radius:50%;
+display: inline-block;
+text-align: center;
+margin-left: 50rpx;
+}
+.demand_css{
+  line-height: 55rpx;
 }
 .company{
   font-size: 26rpx;
@@ -207,11 +237,17 @@ text-align: center;
   height:100rpx;
   border-radius: 50%;                
 }
+.head_portrait{
+  display: flex;
+  position: relative;
+}
 .icon_vip{
-  margin-left:-5rpx;
-  margin-top:66rpx;
-  width: 25rpx;
-  height: 25rpx;
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 70rpx;
+  right: 10rpx;
+  z-index: 1;
 }
 .btn_dianhua{
   margin-top: 10rpx;
@@ -220,20 +256,20 @@ text-align: center;
   float: right;
 }
 .message_Image_Css{
-  width: 170rpx;
+  width: 180rpx;
   height:170rpx;
 }
 .icon_map {
-   width: 28rpx;
-  height: 40rpx;
+   width: 24rpx;
+  height: 36rpx;
 }
 .dianzan{
-   width: 40rpx;
-  height: 40rpx;
+   width: 32rpx;
+  height: 32rpx;
 }
 .eye{
-  width: 40rpx;
-  height: 30rpx;
+  width: 35rpx;
+  height:22rpx;
 }
 
 
@@ -249,6 +285,7 @@ text-align: center;
   align-items: center;
   color: #666;
   padding: 15rpx 40rpx;
+  z-index: 999;
 }
 .tab_select_css{
   display: flex;

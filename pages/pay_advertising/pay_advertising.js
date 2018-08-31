@@ -52,6 +52,8 @@ Page({
       title: '提示',
       content: '是否确认购买？',
       cancelColor: 'red',
+      confirmText: "确定",
+      cancelText: "取消",
       success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')

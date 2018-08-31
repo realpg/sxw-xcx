@@ -7,27 +7,27 @@
       <image class='headImg' src='{{business_card.avatarUrl}}'></image>
     </view>
 
-    <view>
-      <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
+    <view class='itemscenter'>
+      <image class='iconImg_dianhua' src='../../images/store/btn_dianhua.png'></image>
       <text>{{business_card.mobile}} </text>
-    </view>
-    <view>
-      <image class='iconImg' src='../../images/store/company.png'></image>
+    </view >
+    <view class='itemscenter'>
+      <image class='iconImg_company' src='../../images/store/company.png'></image>
       <text>{{business_card.company}} </text>
     </view>
-    <view>
-      <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{business_card.address}} </text>
+    <view class='itemscenter'>
+      <image class='iconImg_map' src='../../images/store/map.png'></image>
+      <text style='margin-left:4rpx'>  {{business_card.address}} </text>
     </view>
 
     <view class='The_main'>主营：{{business_card.business}}</view>
     <view class='options'>
       <view class='browse'>
-        <image class='optionsImg' src='../../images/store/eye.png' mode='widthFix'></image>
+        <image class='eye_css' src='../../images/store/eye.png'></image>
         <text class='number'>{{business_card.view}}                  </text>
       </view>
       <view class='browse'>
-        <image class='optionsImg' src='../../images/store/dianzan.png' mode='widthFix'></image>
+        <image class='dianzan_css' src='../../images/store/dianzan.png' ></image>
         <text class='number'>{{business_card.agree}}                  </text>
       </view>
       <view class='browse'>
@@ -70,6 +70,8 @@
           <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
           <image bindtap='phoneClick' bindtap='making_call_click' class='btn_dianhua' data-mobile='{{item.mobile}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
         </view>
+
+        <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
         <view class='company'>{{item.company}}</view>
         <view>
           <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
@@ -89,6 +91,7 @@
           <image class='icon_map' src='../../images/index/icon_map.png'/>
           <text class='address'>存放地：{{item.address}}</text>
         </view>
+       </view> 
         <view class='eye_dianzan'>
           <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
             <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'><image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>

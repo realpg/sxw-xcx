@@ -59,8 +59,8 @@ page{
   display: flex;
   justify-content: space-around;
   line-height: 90rpx;
-  font-size: 28rpx;
-  color:  #9B9B9B; 
+  font-size: 30rpx;
+  color:  #9B9B9B;
 }
 .all{
   color:#01C46C;

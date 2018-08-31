@@ -60,7 +60,7 @@
     <!--具体信息-->
     <view class='message' wx:for='{{messageList}}' wx:for-index='id'>
       <view class='messageCss' data-id='{{item.id}}'>
-        <view class='head_portrait'>
+        <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
           <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
           <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix' />
         </view>
@@ -74,6 +74,8 @@
             <text wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>纺机</text></text>
             <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix' />
           </view>
+
+          <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
           <view class='company'>{{item.company}}</view>
           <view class='lable'>
             <view wx:for='{{item.lableList}}' wx:for-index='index'>
@@ -95,6 +97,7 @@
             <image class='icon_map' src='../../images/index/icon_map.png' />
             <text class='address'>存放地：{{item.address}}</text>
           </view>
+          </view>
           <view class='eye_dianzan'>
             <view class='eye_Css'>
               <image class='eye' src='../../images/index/eye.png' />
@@ -106,6 +109,7 @@
             </view>
             <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
           </view>
+        
         </view>
       </view>
     </view>
@@ -120,7 +124,7 @@
     <view class='card_messageListCss' data-id='{{item.id}}' bindtap='messageList_click'>
       <view class='card_message'>
         <image class='card_iconImg' src='{{item.head_portrait_icon}}'></image>
-          <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
+          <image class='icon_vip_css' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
         <view class='card_messageCss'>
           <view class='card_employee_information'>
             <view class='card_name'>{{item.name}}</view>

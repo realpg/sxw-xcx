@@ -61,7 +61,6 @@ Page({
 
   AddImgClick_one: function() {
     let b = [];
-
     if (that.data.avatar.length < 1) {
       count = 1 - that.data.avatar.length;
       console.log('当前展示的图片数' + that.data.avatar.length);
@@ -374,6 +373,14 @@ Page({
       avatarUrl: that.data.avatar[0],
       wxqr: that.data.wxqr[0]
     }
+
+    if (!(param.company && param.career && param.address && param.introduce && param.introduce && param.business && param.mobile && param.vertify_code && param.truename && param.ywlb_ids && param.thumb)){
+      wx.showToast({
+        title: '请填写完整信息！',
+        icon:'none'
+      })
+      return;
+    }
     util.editInfo_post(param, function(ret) {
       console.log(ret);
       app.globalData.userInfo.credit -= that.data.gold_coin_pay;
@@ -382,9 +389,7 @@ Page({
         icon: "success",
         success: function() {
           setTimeout(function() {
-            wx.reLaunch({
-              url: "../index/index",
-            })
+          wx.navigateBack()
           }, 2000)
         }
       })

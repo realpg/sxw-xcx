@@ -32,6 +32,8 @@ page{
   line-height: 60rpx;
 }
 .hint_context{
+  width: 90%;
+  margin: auto;
   color: #9C9C9C;
   font-size: 24rpx;
 }

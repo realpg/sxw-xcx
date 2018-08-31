@@ -17,7 +17,7 @@ page{
 .picker{
   margin-top: 15rpx;
   background: #fff;
-  padding: 15rpx 30rpx;
+  padding: 20rpx 30rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,12 +26,12 @@ page{
 .picker_css{
   display: flex;
   align-items: center;
-  font-size: 26rpx;
+  font-size: 30rpx;
 }
 .sort{
   margin: auto;
   font-size: 30rpx;
-  font-weight: 650;
+
 }
 .sort_css{
   width: 130rpx;
@@ -42,7 +42,7 @@ page{
 }
 .address{
   background: #fff;
-  padding: 15rpx 30rpx;
+  padding: 20rpx 30rpx;
   display: flex;
   align-items: center;
 }
@@ -52,10 +52,10 @@ page{
   margin-top: 15rpx;
 }
 .content_description_title{
-  margin-left: 50rpx;
+  margin-left: 28rpx;
   line-height: 100rpx;
-  font-size: 32rpx;
-  font-weight: 650;
+  font-size: 30rpx;
+
 }
 .content_description_frame_css{
   width: 85%;
@@ -84,7 +84,7 @@ border-bottom:2rpx solid  #F5F5F5;
 .lable_border{
   border:1rpx solid #E1E1E1;
   border-radius: 25rpx;
-  height: 45rpx;
+  height: 46rpx;
   width: 150rpx;
   margin: auto;
   color: #666666;
@@ -93,7 +93,7 @@ border-bottom:2rpx solid  #F5F5F5;
   border:1rpx solid #01C46C;
   background: #01C46C;
   border-radius: 25rpx;
-  height: 45rpx;
+  height: 46rpx;
   width: 150rpx;
   margin: auto;
   color: #fff;
@@ -101,7 +101,7 @@ border-bottom:2rpx solid  #F5F5F5;
 .lable_css{
  
   font-size: 26rpx;
-  line-height: 45rpx;
+  line-height: 46rpx;
   text-align: center;
 }
 
@@ -151,9 +151,9 @@ background: #fff;
   margin-top: 20rpx;
   display: flex;
   justify-content: space-between;
-  line-height: 80rpx;
+  line-height: 90rpx;
   font-size: 30rpx;
-  font-weight: 650;
+  
 }
 .generalize{
   margin-top: 15rpx;

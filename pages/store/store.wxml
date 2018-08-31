@@ -109,7 +109,7 @@
   <view class='messageListCss' data-id='{{item.userid}}' bindtap='messageList_click'>
     <view class='message'>
       <image class='iconImg' src='{{item.avatarUrl}}'></image>
-          <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
+          <image class='icon_vip_css' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
       <view class='messageCss'>
         <view class='employee_information'>
           <view class='name'>{{item.bussinesscard.truename}}</view>

@@ -374,7 +374,7 @@ Page({
       wxqr: that.data.wxqr[0]
     }
 
-    if (!(param.company && param.career && param.address && param.introduce && param.introduce && param.business && param.mobile && param.vertify_code && param.truename && param.ywlb_ids && param.thumb)){
+    if (!(param.company && param.career && param.address && param.introduce && param.introduce && param.business && param.mobile  && param.truename && param.ywlb_ids && param.thumb)){
       wx.showToast({
         title: '请填写完整信息！',
         icon:'none'
@@ -385,7 +385,7 @@ Page({
       console.log(ret);
       app.globalData.userInfo.credit -= that.data.gold_coin_pay;
       wx.showToast({
-        title: "发布成功,等待审核",
+        title: "请等待审核",
         icon: "success",
         success: function() {
           setTimeout(function() {

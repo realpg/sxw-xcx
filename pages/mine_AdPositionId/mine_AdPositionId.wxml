@@ -14,6 +14,7 @@
 <!-- 我的广告位 -->
 <view>
   <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg3.png)  no-repeat;background-size:100% 100%;' class='advertising_position' wx:for='{{advertising_position}}' bindtap='selectClick' data-ad_id='{{item.ad.itemid}}'>
+
     <view class='title'>{{item.ad.desc}}</view>
     <view class='advertising_position_css'>
       <image class='Img' src='{{item.adplace.icon_path}}'></image>

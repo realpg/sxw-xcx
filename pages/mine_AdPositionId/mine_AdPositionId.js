@@ -12,13 +12,14 @@ Page({
     advertising_position: []
   },
 
-  selectClick: function (e) {
+  selectClick: function(e) {
     console.log(e);
     wx.navigateTo({
-      url: '../select_issue/select_issue?ad_id=' + e.currentTarget.dataset.ad_id,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+      url: '../select_issue/select_issue?ad_id='+e.currentTarget.dataset.ad_id,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+
     })
   },
   /**

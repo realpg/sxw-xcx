@@ -119,6 +119,7 @@ Page({
     that.setData({
       scroll_width: scroll_width
     })
+    console.log("scroll_width",scroll_width);
   },
 
   /**
@@ -134,6 +135,7 @@ Page({
       var recommend_store = that.data.recommend_store;
 
       for (var i in ret) {
+
         recommend_store.push({
           userid: ret[i].businesscard.userid,
           name: ret[i].businesscard.truename,
@@ -141,16 +143,17 @@ Page({
           phone: ret[i].businesscard.mobile,
           headImg: ret[i].businesscard.avatarUrl,
           company: ret[i].businesscard.company,
-          address: ret[i].businesscard.address.length > 15 ? ret[i].businesscard.address.substring(0, 15) + "..." : ret[i].businesscard.address,
-          The_main: ret[i].businesscard.introduce.length > 13? ret[i].businesscard.introduce.substring(0, 13) + "..." : ret[i].businesscard.introduce,
+          address: ret[i].businesscard.address,
+          The_main: ret[i].businesscard.introduce,
         })
       }
       that.setData({
         recommend_store: recommend_store,
       })
-      setTimeout(function() {
+      setTimeout(function () {
         that.nextScroll()
-      }, 2000)
+      }, 3000)
+      
     })
   },
 
@@ -158,14 +161,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    setTimeout(function () {
+      that.nextScroll()
+    }, 3000)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    if (that.data.timer) {
+      clearTimeout(that.data.timer);
+      console.log("销毁计时器")
+    }
   },
 
   /**
@@ -210,30 +218,29 @@ Page({
     var timer = setTimeout(function() {
       console.log("自动滚动")
       that.nextScroll()
-    }, 2000)
-    var scroll_index = parseInt(e.detail.scrollLeft / that.data.scroll_width);
+    }, 3000)
+    var scroll_index = that.data.scroll_index
+    if (scroll_index!=that.data.recommend_store.length-1)
+    scroll_index = parseInt(e.detail.scrollLeft / that.data.scroll_width);
     console.log("index:",scroll_index);
-    if (scroll_index <= that.data.recommend_store.length - 1) {
-      that.setData({
-        scroll_index: scroll_index
-      })
-    }
     that.setData({
       scrollLeft_real: e.detail.scrollLeft,
-
-      timer: timer
+      scroll_index: scroll_index,
+      timer: timer,
+      scroll_all_width: e.detail.scrollWidth,
+      scroll_width: e.detail.scrollWidth / that.data.recommend_store.length,
     })
   },
 
   nextScroll: function() { //有用
-    var index = that.data.scroll_index + 1;
-    var scrollLeft = (index) * that.data.scroll_width
-    if (that.data.scroll_index >= that.data.recommend_store.length)
+    var index = (that.data.scroll_index ? that.data.scroll_index:0) + 1;
+    var scrollLeft = index* that.data.scroll_width
+    if (index >= that.data.recommend_store.length)
       scrollLeft = 0
-    console.log("下一条", index)
+    console.log("下一条", index, that.data.recommend_store.length, scrollLeft)
     this.setData({
       scrollLeft: scrollLeft,
-      scroll_index: that.data.scroll_index
+      scroll_index: index
     })
 
   },

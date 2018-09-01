@@ -403,7 +403,7 @@ Page({
       console.log(ret);
       app.globalData.userInfo.credit -= that.data.gold_coin_pay;
       wx.showToast({
-        title: "成功,请等待审核",
+        title: "请等待审核",
         icon: "success",
         success: function() {
           setTimeout(function() {

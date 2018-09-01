@@ -35,8 +35,8 @@
         <text class='number'>{{business_card.favorite}}                  </text>
       </view>
       <view class='browse'>
-        <image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-        <text class='number'>分享 </text>
+        <button open-type='share'><image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
+<text class='number'>分享</text></button>
       </view>
     </view>
   </view>
@@ -114,7 +114,7 @@
       <image class='tab_paihangbang_img' src='../../images/store/tab_paihangbang.png'></image>
       <view >排行榜</view>
     </view>
-    <view class='tab_paihangbang'>
+    <view class='tab_paihangbang_css' >
       <button  open-type="share" class='shareBtn'>
       <image class='tab_paihangbang_img' src='../../images/store/tab_share.png'></image>
      <view >分享</view></button>

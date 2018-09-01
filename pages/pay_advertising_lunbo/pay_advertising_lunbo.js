@@ -57,7 +57,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '是否确认购买？',
-      cancelColor: 'red',
+      cancelColor: '#E40b18',
       confirmText: "确定",
       cancelText: "取消",
       success: function (res) {

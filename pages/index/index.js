@@ -5,7 +5,19 @@ const util = require('../../utils/util.js');
 var that;
 Page({
   data: {},
-
+//纺机头条
+  noticeCLick: function () {
+    console.log(88888888888888)
+    wx.switchTab({
+      url: '../information/information',
+      success: function (res) {
+      },
+      fail: function (res) {
+      },
+      complete: function (res) {
+      },
+    })
+  },
   //搜索框跳转
   serchClick: function () {
     wx.navigateTo({
@@ -25,6 +37,59 @@ Page({
     })
   },
 
+//关注 取消
+  enshrineClick: function (e) {
+    const that = this;
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    for (let i in that.data.message) {
+      if (that.data.message[i].id == e.currentTarget.dataset.id) {
+        if (that.data.message[i].I_favortie == false) {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id
+          };
+          util.enshrine(param, function (res) {
+            console.log('收藏', res);
+            wx.showToast({
+              title: '关注成功',
+              icon:'none',
+              duration: 2000
+            })
+            that.data.message[i].I_favortie = true;
+            that.setData({
+              message: that.data.message
+            })
+          }, null)
+        } else {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id,
+            cancle: 'false'
+          };
+          util.enshrine(param, function (res) {
+            console.log('取消收藏', res);
+            that.data.message[i].I_favortie = false;
+            wx.showToast({
+              title: '取消成功',
+              icon: 'none',
+              duration: 2000
+            })
+            that.setData({
+              message: that.data.message
+            })
+          }, null)
+        }
+        that.setData({
+          message: that.data.message
+        })
+
+      }
+    }
+  },
   setLikeClick: function (e) {
 
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
@@ -68,6 +133,12 @@ Page({
   onLoad: function (options) {
     that = this;
 
+    var scroll_width = parseInt(app.globalData.SystemInfo.windowWidth * 471 / 750);
+    that.setData({
+      scroll_width: scroll_width
+    })
+    console.log("scroll_width", scroll_width);
+
     var scene = decodeURIComponent(options.scene)
     if (options.userid) {
       that.setData({
@@ -93,7 +164,7 @@ Page({
         })
         break;
       case 3:
-      
+
         break;
       case 4:
 
@@ -104,7 +175,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-   
+
   },
   getAllList: function () {
     console.log("加载全部信息中")
@@ -147,7 +218,9 @@ Page({
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
+              favorite: ret.data[i].favorite,//收藏
               like: ret.data[i].agree //点赞
+            
             })
         }
         console.log('排序前', messageALL)
@@ -204,6 +277,7 @@ Page({
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
+              favorite: ret.data[i].favorite,//收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -257,6 +331,7 @@ Page({
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
+              favorite: ret.data[i].favorite,//收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -311,6 +386,7 @@ Page({
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
+              favorite: ret.data[i].favorite,//收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -494,7 +570,7 @@ Page({
     console.log('下拉刷新');
   },
 
-//触底加载
+  //触底加载
   onReachBottom: function (e) {
     console.log("触底加载", that.data.nn)
     switch (that.data.nn) {
@@ -517,7 +593,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-       title: '我分享纱线网小程序',
+      title: '我分享纱线网小程序',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功
@@ -531,7 +607,7 @@ Page({
       }
     }
   },
-  reload:function(){
+  reload: function () {
 
     //初始数据
     that.setData({
@@ -608,19 +684,21 @@ Page({
       console.log(222222, ret);
       var recommend_store = that.data.recommend_store;
       for (var i in ret) {
-          console.log(1314, ret)
-          recommend_store.push({
-            id: ret[i].info.itemid, //信息id
-            store_name: ret[i].info.company,
-            mid: ret[i].item_mid,
-            lableList: ret[i].info.tags,
-            store_info: ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
-          })
-        } 
+        console.log(1314, ret)
+        recommend_store.push({
+          id: ret[i].info.itemid, //信息id
+          store_name: ret[i].info.company,
+          mid: ret[i].item_mid,
+          lableList: ret[i].info.tags,
+          store_info: ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
+        })
+      }
       that.setData({
         recommend_store: recommend_store,
-      
       })
+      setTimeout(function () {
+        that.nextScroll()
+      }, 5000)
     })
 
     //首页轮播图
@@ -649,4 +727,60 @@ Page({
     })
   },
 
+  scroll: function (e) { //有用
+    console.log(e)
+
+    if (that.data.timer) {
+      clearTimeout(that.data.timer);
+      console.log("销毁计时器")
+    }
+
+
+    var timer = setTimeout(function () {
+      console.log("自动滚动")
+      that.nextScroll()
+    }, 5000)
+    var scroll_index = that.data.scroll_index
+    if (scroll_index != that.data.recommend_store.length - 1)
+      scroll_index = parseInt(e.detail.scrollLeft / that.data.scroll_width);
+    console.log("index:", scroll_index);
+    that.setData({
+      scrollLeft_real: e.detail.scrollLeft,
+      scroll_index: scroll_index,
+      timer: timer,
+      scroll_all_width: e.detail.scrollWidth,
+      scroll_width: e.detail.scrollWidth / that.data.recommend_store.length,
+    })
+  },
+
+  nextScroll: function () { //有用
+    var index = (that.data.scroll_index ? that.data.scroll_index : 0) + 1;
+    var scrollLeft = index * that.data.scroll_width
+    if (index >= that.data.recommend_store.length)
+      scrollLeft = 0
+    console.log("下一条", index, that.data.recommend_store.length, scrollLeft)
+    this.setData({
+      scrollLeft: scrollLeft,
+      scroll_index: index
+    })
+
+  },
+  /**
+     * 生命周期函数--监听页面显示
+     */
+  onShow: function () {
+    setTimeout(function () {
+      that.nextScroll()
+    }, 5000)
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    if (that.data.timer) {
+      clearTimeout(that.data.timer);
+      console.log("销毁计时器")
+    }
+  },
 })

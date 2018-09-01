@@ -27,21 +27,21 @@
 </view>
 
 <!--纺织头条-->
- <view class='notice'>
+ <view class='notice' bindtap='noticeCLick' >
   <image class='notImg' src='../../images/index/headline.png' mode='widthFix'/>
   <swiper class='notT' autoplay="true" circular="true" vertical='true'>
-  <block wx:for="{{noticesr}}" bindtap='clickNotlice'>
+  <block wx:for="{{noticesr}}" >
      <swiper-item class='vvv' >
      <view class='noticeText'>{{item.title}}</view>
      </swiper-item>
   </block>
 </swiper>
- <image class='notImg_one' src='../../images/index/jiantou_two.png' mode='widthFix'/>
+ <image  class='notImg_one' src='../../images/index/jiantou_right.png' />
 </view>
 
 
 <!-- 滑块轮播 -->
-<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" bindscrolltoupper='scrollToLeft' bindscrolltolower="scrollToRight" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
+<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
   <block wx:for='{{recommend_store}}'>
    
             <view class='recommend_store_css scroll-view-item_H' data-id='{{item.id}}'data-mid='{{item.mid}}' bindtap='see_details_click' > 
@@ -119,7 +119,7 @@
 
             <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
           <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
-          <text class='like'>9</text>
+          <text class='like'>{{item.favorite}}</text>
         </view> 
 
             <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情  

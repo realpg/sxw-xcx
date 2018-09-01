@@ -12,6 +12,7 @@ Page({
     id: null,
     mid: null,
     messageList: [],
+    UserInfo: [],
     message: [
       // { id: '0', head_portrait_icon: '../../images/index/head_portrait.png', icon_vip: '../../images/index/vip.png', name: '董晓珺', position: '销售总监', demand: '供应', company: '董南通金源纺织科技有限公司', lable_three: '混纺纱', lable_four: '纺织用纱', lable_five: '混纺纱', details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支', message_Img: [{ message_Image: '../../images/index/Image_details1.png' }, { message_Image: '../../images/index/Image_details2.png' }, { message_Image: '../../images/index/Image_details3.png' }], release_time: '2018-6-28 14:25', turnover_time: '2018-7-18 14:25', address: '南通、柳橙、诸暨', page_view: '867', like: '128' ,star:'324',share:'126'}, 
     ],
@@ -143,6 +144,28 @@ Page({
     });
   },
 
+  sendwriteBackClick: function (e) {
+    let param = {
+      itemid: e.currentTarget.dataset.itemid,
+      reply: that.data.writeBackValue
+    };
+    util.sendwriteBack(param, function (ret) {
+      console.log('发送回复', ret)
+      for (let i in that.data.leave_word_details) {
+        if (e.currentTarget.dataset.itemid == that.data.leave_word_details[i].itemid) {
+          that.data.leave_word_details[i].reply = that.data.writeBackValue;
+          that.data.leave_word_details[i].replyer = that.data.UserInfo.truename;
+        }
+      }
+      that.setData({
+        leave_word_details: that.data.leave_word_details,
+        writeBackChoose: !that.data.writeBackChoose,
+        writeBackValue: ''
+      })
+
+    });
+  },
+
 
 
   //查看更多留言
@@ -259,6 +282,8 @@ Page({
           itemid: ret.comments[i].itemid,
           truename: ret.comments[i].businesscard.truename,
           iconImg: ret.comments[i].businesscard.avatarUrl,
+          reply: ret.comments[i].reply,
+          replyer: ret.comments[i].replyer,
         })
       }
 
@@ -316,6 +341,8 @@ Page({
           itemid: ret.comments[i].itemid,
           truename: ret.comments[i].businesscard.truename,
           iconImg: ret.comments[i].businesscard.avatarUrl,
+          reply: ret.comments[i].reply,
+          replyer: ret.comments[i].replyer,
         })
       }
 
@@ -372,6 +399,8 @@ Page({
           itemid: ret.comments[i].itemid,
           truename: ret.comments[i].businesscard.truename,
           iconImg: ret.comments[i].businesscard.avatarUrl,
+          reply: ret.comments[i].reply,
+          replyer: ret.comments[i].replyer,
         })
       }
       console.log(arr)
@@ -616,6 +645,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
+    that.setData({
+      UserInfo: wx.getStorageSync('UserInfo')
+    })
 
     switch (that.data.mid) {
       case '5':

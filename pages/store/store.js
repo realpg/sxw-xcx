@@ -153,7 +153,7 @@ Page({
       })
       setTimeout(function () {
         that.nextScroll()
-      }, 3000)
+      }, 5000)
       
     })
   },
@@ -164,7 +164,7 @@ Page({
   onShow: function() {
     setTimeout(function () {
       that.nextScroll()
-    }, 3000)
+    }, 5000)
   },
 
   /**
@@ -219,7 +219,7 @@ Page({
     var timer = setTimeout(function() {
       console.log("自动滚动")
       that.nextScroll()
-    }, 3000)
+    }, 5000)
     var scroll_index = that.data.scroll_index
     if (scroll_index!=that.data.recommend_store.length-1)
     scroll_index = parseInt(e.detail.scrollLeft / that.data.scroll_width);

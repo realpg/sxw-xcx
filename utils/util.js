@@ -385,6 +385,10 @@ function myMessage(param, successCallback, errorCallback) {
 function selectIssue(param, successCallback, errorCallback){
   wxRequest(SERVER_URL + '/api/ad/change', param, "POST", successCallback, errorCallback);
 }
+//回复
+function sendwriteBack(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/comment/reply', param, "POST", successCallback, errorCallback);
+}
 
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
@@ -908,6 +912,7 @@ module.exports = {
   myFavorite: myFavorite,
   myMessage: myMessage,
   selectIssue: selectIssue,
+  sendwriteBack: sendwriteBack,
 
   formatTime: formatTime,
   formatDate: formatDate,

@@ -32,7 +32,7 @@
 
 
 <!-- 滑块轮播 -->
-<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" bindscrolltoupper='scrollToLeft' bindscrolltolower="scrollToRight" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
+<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
   <block wx:for='{{recommend_store}}'>
     <view class='recommend_store_css scroll-view-item_H' bindtap='messageList_click' data-id='{{item.userid}}'>
       <view class='business_card_css'>

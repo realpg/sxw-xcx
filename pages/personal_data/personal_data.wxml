@@ -53,7 +53,7 @@
   </view>
   <view class='business_name' bindtap='addressClick'>
     <text class='prompt'>*</text>详细地址：
-    <input class='input_business' type='text' placeholder='请选择详细地址' value="{{businesscard.address}}" />
+    <input class='input_business' type='text' placeholder='请选择详细地址' value="{{businesscard.address}}" bindblur="changeBusinesscard" data-key="address" />
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png' />
   </view>
 </view>

@@ -109,8 +109,8 @@ height: 100%;
 }
 .notImg_one{
   margin-top: 10rpx;
-  height: 15rpx;
-  width: 34rpx;
+  height:28rpx;
+  width: 16rpx;
 }
 .noticeText{
    position: relative;

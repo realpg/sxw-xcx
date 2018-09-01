@@ -1,6 +1,17 @@
 page{
   background: #f5f5f5;
 }
+button {
+margin: 0;
+padding: 0;
+font-size: 22rpx;
+color: #666;
+background: #fff;
+line-height:30rpx;
+}
+button::after{
+border-style:none;
+}
 .Css{
    border:15rpx solid #f5f5f5; 
 }
@@ -69,6 +80,7 @@ margin-right: 20rpx;
 .options{
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .optionsImg{
   width: 32rpx;
@@ -302,6 +314,9 @@ margin-left: 50rpx;
 }
 .tab_paihangbang{
   margin-left: 30rpx;
+}
+.tab_paihangbang_css{
+ margin-left: 50rpx;
 }
 .tab_paihangbang_img{
   width: 40rpx;

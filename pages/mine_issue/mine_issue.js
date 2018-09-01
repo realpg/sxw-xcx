@@ -137,7 +137,8 @@ Page({
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               like: ret.data[i].agree, //点赞
-              favorite: ret.data[i].favorite
+              favorite: ret.data[i].favorite,
+              status: ret.data[i].status,
             })
         }
         that.setData({
@@ -184,7 +185,8 @@ Page({
             address: ret.data[i].address, //货物存放地
             page_view: ret.data[i].hits, //浏览量
             like: ret.data[i].agree, //点赞
-            favorite: ret.data[i].favorite
+            favorite: ret.data[i].favorite,
+            status: ret.data[i].status,
           })
       }
       that.setData({
@@ -228,7 +230,8 @@ Page({
             address: ret.data[i].address, //货物存放地
             page_view: ret.data[i].hits, //浏览量
             like: ret.data[i].agree, //点赞
-            favorite: ret.data[i].favorite
+            favorite: ret.data[i].favorite,
+            status: ret.data[i].status,
           })
       }
       that.setData({

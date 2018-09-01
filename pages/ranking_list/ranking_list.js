@@ -8,10 +8,10 @@ let that;
     * 页面的初始数据
     */
    data: {
+     hint:'提示：排名依据第一优先级为广告推广，其次依据点赞数量',
      todayList:[],//日榜存储
      weekList: [],//周榜存储
      monthList: [],//月榜存储
-
      classify: [
        { id: 1, name: '日排行', setchoose: true, },
        { id: 2, name: '周排行', setchoose: false, },

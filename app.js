@@ -4,7 +4,14 @@ const util = require('/utils/util.js');
 App({
   onLaunch: function () {
     // 展示本地存储能力
-
+    //获取设备信息
+    var app=this
+    wx.getSystemInfo({
+      success: function (res) {
+        app.globalData.SystemInfo = res
+      },
+    })
+    console.log("设备信息", app.globalData.SystemInfo)
 
     this.globalData.userInfo = wx.getStorageSync('UserInfo') || []
 

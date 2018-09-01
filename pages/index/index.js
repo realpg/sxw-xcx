@@ -564,7 +564,7 @@ Page({
 
       //店铺轮播图
 
-      recommend_store_one: [],
+      recommend_store: [],
 
       recommend_store_two: [],
 
@@ -606,31 +606,20 @@ Page({
     //首页推荐
     util.homepage_recommend({}, function (ret) {
       console.log(222222, ret);
-      var recommend_store_one = that.data.recommend_store_one;
-      var recommend_store_two = that.data.recommend_store_two;
+      var recommend_store = that.data.recommend_store;
       for (var i in ret) {
-        if (ret[i].listorder % 2 == 0) {
           console.log(1314, ret)
-          recommend_store_one.push({
+          recommend_store.push({
             id: ret[i].info.itemid, //信息id
             store_name: ret[i].info.company,
             mid: ret[i].item_mid,
             lableList: ret[i].info.tags,
             store_info: ret[i].info.introduce,
           })
-        } else {
-          recommend_store_two.push({
-            id: ret[i].info.itemid, //信息id
-            store_name: ret[i].info.company,
-            mid: ret[i].item_mid,
-            lableList: ret[i].info.tags,
-            store_info: ret[i].info.introduce,
-          })
-        }
-      }
+        } 
       that.setData({
-        recommend_store_one: recommend_store_one,
-        recommend_store_two: recommend_store_two,
+        recommend_store: recommend_store,
+      
       })
     })
 

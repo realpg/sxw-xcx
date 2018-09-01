@@ -8,7 +8,7 @@
     </view>
 
     <view class='itemscenter'>
-      <image class='iconImg_dianhua.png' src='../../images/store/btn_dianhua.png'></image>
+      <image class='iconImg_dianhua' src='../../images/store/btn_dianhua.png'></image>
       <text>{{business_card.businesscard.mobile}} </text>
     </view>
     <view class='itemscenter' >

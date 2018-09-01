@@ -39,13 +39,12 @@
  <image class='notImg_one' src='../../images/index/jiantou_two.png' mode='widthFix'/>
 </view>
 
-<!-- 轮播图 -->
-<view class='CSS'>
-    <swiper class='slide-swiper_css' circular='true' autoplay='6000' duration="1000" indicator-color='true'>
-      <block wx:for='{{recommend_store_one}}'>
-        <swiper-item>
-          <view>
-            <view class='recommend_store_css' data-id='{{item.id}}'data-mid='{{item.mid}}' bindtap='see_details_click' > 
+
+<!-- 滑块轮播 -->
+<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" bindscrolltoupper='scrollToLeft' bindscrolltolower="scrollToRight" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
+  <block wx:for='{{recommend_store}}'>
+   
+            <view class='recommend_store_css scroll-view-item_H' data-id='{{item.id}}'data-mid='{{item.mid}}' bindtap='see_details_click' > 
               <view class='store_name'>{{item.store_name}}</view>
               <view class='store_lable'>
                 <view wx:if="{{item.mid =='5'}}" class='store_type'>供应</view>
@@ -58,39 +57,11 @@
               </view>
               <view class='store_info'>{{item.store_info}}</view>
               <view class='Enter_store'>
-                <text class='Enter_store_css'   >查看详情</text>
+                <text class='Enter_store_css'>查看详情</text>
               </view>
             </view>
-          </view>
-         
-        </swiper-item>
-      </block>
-    </swiper>
-    <swiper class='slide-swiper_css' circular='true' autoplay='6000' duration="1000" indicator-color='true'>
-      <block wx:for='{{recommend_store_two}}'>
-        <swiper-item>
-          <view>
-            <view class='recommend_store_css' data-id='{{item.id}}'bindtap='store_particulars_click'>
-              <view class='store_name'>{{item.store_name}}</view>
-              <view class='store_lable'>
-                <view wx:if="{{item.mid =='5'}}" class='store_type'><text>供应</text></view>
-                <view wx:if="{{item.mid =='6'}}" class='store_type' style='background:#F7CF9A'><text>求购</text></view>
-                <view wx:if="{{item.mid=='88'}}" class='store_type' style='background:#9A9CF7'><text>纺机</text></view>
-                <view wx:for='{{item.lableList}}' wx:for-index='index'>
-                   <view class='lable_one' wx:if='{{index==0}}'>{{item.tagname}}</view>
-                  <view class='lable_two' wx:if='{{index==1}}'>{{item.tagname}}</view>
-                </view>
-              </view>
-              <view class='store_info'>{{item.store_info}}</view>
-              <view class='Enter_store'>
-                <text class='Enter_store_css' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情</text>
-              </view>
-            </view>
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
+  </block>
+</scroll-view>
 
 <!--分类-->
 <view class='information_classification'>
@@ -144,6 +115,12 @@
           <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
             <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
             <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
+
+            <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+          <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
+          <text class='like'>9</text>
+        </view> 
+
             <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
 
            

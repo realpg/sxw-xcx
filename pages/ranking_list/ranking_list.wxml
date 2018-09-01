@@ -4,7 +4,7 @@
   <view class='{{item.setchoose?"all":"allhide"}}' wx:for='{{classify}}' data-id='{{item.id}}' bindtap='selectClick'>{{item.name}}</view>
 </view>
 
-
+<view class='hint'>{{hint}}</view>
 <!--前三名片 -->
 
 
@@ -17,17 +17,17 @@
         <image class='headImg' src='{{item.businesscard.avatarUrl}}'></image>
       </view>
 
-      <view>
-        <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
+      <view class='itemscenter'>
+        <image class='iconImg_dianhua' src='../../images/store/btn_dianhua.png'></image>
         <text>{{item.businesscard.mobile}} </text>
       </view>
-      <view>
-        <image class='iconImg' src='../../images/store/company.png'></image>
+      <view class='itemscenter'>
+        <image class='iconImg_company' src='../../images/store/company.png'></image>
         <text>{{item.businesscard.company}} </text>
       </view>
-      <view>
-        <image class='iconImg' src='../../images/store/map.png'></image>
-        <text>{{item.businesscard.address}} </text>
+      <view class='itemscenter'>
+        <image class='iconImg_map' src='../../images/store/map.png'></image>
+        <text style='margin-left:4rpx'>{{item.businesscard.address}} </text>
       </view>
 
       <view class='The_main'>主营：{{item.businesscard.business}}</view>

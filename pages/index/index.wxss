@@ -1,3 +1,18 @@
+.scroll-view_H{
+  white-space: nowrap;
+}
+.scroll-view-item{
+  height: 200px;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  width: 450rpx;
+  height: 280rpx;
+  background: #fff;
+  font-size: 25rpx;
+  margin: 24rpx 10rpx;
+}
+
 page{
   background: #F7F9F8;
 }
@@ -122,7 +137,6 @@ height: 100%;
   will-change:'transform';
 }
 
-
 .RS_list {
   font-size: 26rpx;
 }
@@ -133,13 +147,6 @@ height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.recommend_store_css {
-  width: 100%;
-  margin: auto;
-  background: #fff;
-  height: 320rpx;
 }
 
 .store_name {
@@ -166,7 +173,7 @@ height: 100%;
 
 .store_type {
   background: #9accf7;
-  padding: 16rpx 10rpx;
+  padding: 14rpx 8rpx;
   line-height: 30rpx;
   font-size: 22rpx;
   color: white;
@@ -196,7 +203,7 @@ height: 100%;
   font-size: 26rpx;
   color: #666;
   line-height: 36rpx;
-  display: -webkit-box; 
+  display: -webkit-flex; 
   align-items: center;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -412,7 +419,10 @@ text-align: center;
   float: right;
 }
 
-
+.dianzan_Css{
+    display: flex;
+  align-items: center;
+}
 
 .button-hover{
   background: none;

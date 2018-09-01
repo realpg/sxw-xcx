@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "广告位",
-					"pathName": "pages/issue/issue",
+					"pathName": "pages/mine/mine",
 					"query": ""
 				}
 			]

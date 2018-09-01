@@ -1,3 +1,46 @@
+.scroll-view_H{
+  white-space: nowrap;
+}
+.scroll-view-item{
+  height: 200px;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  width: 450rpx;
+  height: 280rpx;
+  background: #fff;
+  font-size: 25rpx;
+  margin: 24rpx 10rpx;
+  border-radius: 16rpx 16rpx;
+}
+.bc_green{
+  background: green;
+}
+
+/* 名片推荐 */
+.itemscenter{
+  display: flex;
+  align-items: center;
+  line-height: 52rpx;
+}
+.iconImg_dianhua{
+  margin-right: 16rpx;
+  width: 30rpx;
+  height: 32rpx;
+}
+.iconImg_company{
+ margin-right: 16rpx;
+  width: 32rpx;
+  height: 34rpx;
+}
+.iconImg_map{
+   margin-left: 4rpx;
+margin-right: 16rpx;
+  width: 24rpx;
+  height: 34rpx;
+}
+
+
 page {
   background: #f5f5f5;
 }
@@ -84,32 +127,24 @@ page {
   display: flex;
   justify-content: space-between;
 }
-.recommend_store_css {
-  width: 100%;
-  margin: auto;
-  background: #fff;
-  line-height: 40rpx;
-}
-
 .business_card_css{
-  padding: 3% 3% 5% 3%;
+  padding: 3% 3% 3% 3%;
   color: #666;
-  height:300rpx;
 }
 .name_css{
-  font-size: 26rpx;
+  font-size: 28rpx;
   font-weight: 700;
   color: black;
   margin-bottom: 10rpx;
 }
 .post_css{
-  font-size: 22rpx;
-  color: #666;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #7c7b7b;
 }
 .The_main_css{
-  margin-bottom: 10rpx;
+  margin-top:10rpx;
   display: -webkit-box; 
-   align-items: center;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;

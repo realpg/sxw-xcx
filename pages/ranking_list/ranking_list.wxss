@@ -1,27 +1,32 @@
 page{
   background: #f5f5f5;
 }
-
+.hint{
+  font-size: 26rpx;
+  color: #999999;
+  margin-top: 20rpx;
+  text-align: center;
+}
 .information_classification{
   background: #fff;
   display: flex;
   justify-content: space-around;
   line-height: 90rpx;
-  font-size: 28rpx;
-  color:  #9B9B9B; 
+  font-size: 30rpx;
+  color:  #999999; 
 }
 .all{
   color:#01C46C;
 }
 allhide{
-  color: #9B9B9B;
+  color: #999999;
 }
 
 
 .icon_first{
   width: 45rpx;
-  height: 55rpx;
-  margin-bottom:-14rpx; 
+  height: 50rpx;
+  margin-bottom:-10rpx; 
 }
 .card_details{
   margin-left: 50rpx;
@@ -69,6 +74,28 @@ allhide{
   margin-right: 30rpx;
   border-radius: 50%;
 }
+
+.itemscenter{
+  display: flex;
+  align-items: center;
+}
+.iconImg_dianhua{
+  margin-right: 20rpx;
+  width: 30rpx;
+  height: 32rpx;
+}
+.iconImg_company{
+ margin-right: 20rpx;
+  width: 32rpx;
+  height: 34rpx;
+}
+.iconImg_map{
+   margin-left: 3rpx;
+   margin-right: 20rpx;
+   width: 24rpx;
+   height: 34rpx;
+}
+
 .iconImg{
   margin-right: 20rpx;
   width: 28rpx;

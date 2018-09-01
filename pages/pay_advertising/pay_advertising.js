@@ -23,7 +23,7 @@ Page({
     paying: false
   },
 
-  radioChange: function(e) {
+  radioChange: function (e) {
     console.log("id", that.data.advertisingVIP[e.detail.value].id)
     var index = null;
     if (parseInt(e.detail.value) == 2) {
@@ -46,53 +46,33 @@ Page({
 
   },
 
-  payClick: function() {
+  payClick: function () {
     that = this
-    wx.showModal({
-      title: '提示',
-      content: '是否确认购买？',
-      cancelColor: 'red',
-      confirmText: "确定",
-      cancelText: "取消",
-      success: function(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-          that.confirm();
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-
-  },
-
-  confirm: function() {
     if (that.data.index !== null) {
-      that.setData({
-        paying: true
+
+      wx.showModal({
+        title: '提示',
+        content: '是否确认购买？',
+        cancelColor: 'red',
+        confirmText: "确定",
+        cancelText: "取消",
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            if (that.data.userinfo.groupid != 5) {
+              that.confirm();
+            } else {
+              wx.showToast({
+                title: "个人会员无法购买广告位",
+                druation: 3000,
+                icon: 'none'
+              })
+            }
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
       })
-      var param = {
-        userid: app.globalData.userInfo.userid.userid,
-        _token: app.globalData.userInfo._token,
-        id: that.data.advertisingVIP[that.data.index].id
-      };
-      util.payVIP(param, function(res) {
-        console.log('vip广告位', res);
-        // that.setData({
-        //   advertisingAssign: res
-        // })
-        wx.showToast({
-          title: "购买成功",
-          druation: 3000,
-          icon: 'success'
-        })
-        // var pages = getCurrentPages();
-        // var my_page = pages[pages.length - 3];
-        // my_page.refresh()
-        setTimeout(function() {
-          wx.navigateBack()
-        }, 3000)
-      }, null)
     } else {
       wx.showToast({
         title: "请选择一项",
@@ -103,20 +83,50 @@ Page({
     }
   },
 
+  confirm: function () {
+
+    that.setData({
+      paying: true
+    })
+    var param = {
+      userid: app.globalData.userInfo.userid.userid,
+      _token: app.globalData.userInfo._token,
+      id: that.data.advertisingVIP[that.data.index].id
+    };
+    util.payVIP(param, function (res) {
+      console.log('vip广告位', res);
+      // that.setData({
+      //   advertisingAssign: res
+      // })
+      wx.showToast({
+        title: "购买成功",
+        druation: 3000,
+        icon: 'success'
+      })
+      // var pages = getCurrentPages();
+      // var my_page = pages[pages.length - 3];
+      // my_page.refresh()
+      setTimeout(function () {
+        wx.navigateBack()
+      }, 3000)
+    }, null)
+
+  },
+
   // 获取金币
-  gain_goldClick: function() {
+  gain_goldClick: function () {
     wx.navigateTo({
       url: '../recharge/recharge',
     })
   },
 
-  GetAdvertisingInfo: function() {
+  GetAdvertisingInfo: function () {
     var param = {
       userid: app.globalData.userInfo.userid.userid,
       _token: app.globalData.userInfo._token,
       pid: that.data.pid
     };
-    util.GetAdvertisingInfo(param, function(res) {
+    util.GetAdvertisingInfo(param, function (res) {
       console.log('广告位', res);
       // that.setData({
       //   advertisingAssign: res
@@ -127,13 +137,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     that = this;
 
     that.setData({
       vip_to: new Date().getTime()
     })
-    util.vipTimeto({}, function(ret) {
+    util.vipTimeto({}, function (ret) {
       that.data.hint_time = parseInt(ret);
       var date = new Date(that.data.hint_time * 1000);
       that.setData({
@@ -166,49 +176,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     console.log(util.formatTime(new Date(1535126400 * 1000)))
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

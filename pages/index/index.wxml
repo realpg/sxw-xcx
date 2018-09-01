@@ -53,6 +53,7 @@
                <view wx:for='{{item.lableList}}' wx:for-index='index'>
                    <view class='lable_one' wx:if='{{index==0}}'>{{item.tagname}}</view>
                   <view class='lable_two' wx:if='{{index==1}}'>{{item.tagname}}</view>
+                   <view class='lable_one' wx:if='{{index==2}}'>{{item.tagname}}</view>
                 </view>
               </view>
               <view class='store_info'>{{item.store_info}}</view>
@@ -121,9 +122,8 @@
           <text class='like'>9</text>
         </view> 
 
-            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
-
-           
+            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情  
+  <image class='jiantou_img' src='../../images/index/jiantou.png'></image></view>     
         </view>
     </view>
   </view>

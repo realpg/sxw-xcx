@@ -5,6 +5,14 @@ page {
 .Css {
   border: 15rpx solid #f5f5f5;
 }
+.redactInfo_css{
+  background: #00C862;
+  padding: 8rpx 14rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+  margin-right: 16rpx;
+}
 .redactInfo{
   background: #00C862;
   padding: 8rpx 14rpx;

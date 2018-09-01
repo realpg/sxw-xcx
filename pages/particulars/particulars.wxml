@@ -89,9 +89,17 @@
       </view>
       <view class='leave_word_time'>{{items.addtime}}</view>
     </view>
-    <view wx:if="{{items.itemid}}">
+    <view class='leaveMessage' wx:if="{{items.itemid}}">
       <view class='leave_word_content'> {{items.content}}</view>
+      <!-- 回复当前留言 -->
+      <text bindtap='writeBackClick' data-itemid='{{items.itemid}}' class='leave_word writeBack'>回复</text>
     </view>
+
+    <!--回复框  -->
+  <view class='commentBox' wx:if='{{writeBackChoose&&writeBackId==items.itemid}}'>
+    <input class='commentInput' bindinput='exawriteBackClick' value='{{writeBackValue}}'></input>
+    <text class='send' catchtap='sendClick' data-id='{{item.itemid}}'>发送 </text>
+  </view>
     <!-- <view wx:if="{{item.itemid !=''}}">
       <view class='leave_word_content'>回复 {{item.leave_word_name}}：{{item.content}}</view>
     </view> -->
@@ -123,7 +131,7 @@
     </view>
     <view class='itemscenter'>
       <image class='iconImg_map' src='../../images/store/map.png'></image>
-      <text style='margin-left:4rpx'>{{business_card.address}} </text>
+      <text style='margin-left:4rpx;width:72%'>{{business_card.address}} </text>
       <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
     </view>
 

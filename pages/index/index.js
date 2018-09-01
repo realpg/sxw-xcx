@@ -614,7 +614,7 @@ Page({
             store_name: ret[i].info.company,
             mid: ret[i].item_mid,
             lableList: ret[i].info.tags,
-            store_info: ret[i].info.introduce,
+            store_info: ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
           })
         } 
       that.setData({

@@ -389,3 +389,13 @@ button{
   margin-left: 20rpx;
   border-radius: 5rpx;
 }
+
+.leaveMessage{
+  display: flex;
+  justify-content: space-between;
+}
+
+.writeBack{
+  font-size: 22rpx;
+  padding:10rpx 20rpx;
+}

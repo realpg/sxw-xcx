@@ -140,8 +140,8 @@ page{
 }
  .state_css{
    line-height: 50rpx;
-   background: red;
-   border: red;
+   background: gray;
+   border: gray;
    color:#fff;
    padding: 5rpx 12rpx;
    border-radius: 6rpx;

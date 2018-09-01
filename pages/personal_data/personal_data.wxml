@@ -75,7 +75,7 @@
 <!--上传图片-->
 
 <view class='AddImgList'>
-<view style='font-size:30rpx;line-height:60rpx'>上传公司照片<text style='font-size:26rpx;'>(最多上传六张)</text></view>
+<view style='font-size:29rpx;line-height:70rpx'>上传公司照片<text style='font-size:26rpx;'>(最多上传六张)</text></view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{thumb}}' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick_two' data-id='{{index}}' src='{{item}}' mode='aspectFill' />
@@ -95,6 +95,7 @@
 <!--上传二维码-->
 
 <view class='AddImgList'>
+<view style='font-size:29rpx;line-height:70rpx'>上传二维码</view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{wxqr}}' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick_three' data-id='{{item.id}}' src='{{item}}' mode='aspectFill' />

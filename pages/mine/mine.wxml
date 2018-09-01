@@ -18,10 +18,10 @@
     <view class='redactList itemscenter'>
     <view class='redact' >
       <image class='iconImg_map'  src='../../images/store/map.png'></image>
-      <text style='margin-left:3rpx' >  {{business_card.companyInfo.address}} </text>
+      <text style="margin-left:4rpx; width:92%" >  {{business_card.companyInfo.address}} </text>
       </view>
       <view wx:if="{{business_card.updating}}">
-       <text class='redactInfo' style='background:gray'>审核中</text>
+       <text class='redactInfo_css' style='background:gray'>审核中</text>
       </view>
 <view wx:else="">
        <text bindtap='redactClick' class='redactInfo' >编辑资料</text>

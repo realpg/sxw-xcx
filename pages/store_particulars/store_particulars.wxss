@@ -90,15 +90,16 @@ margin-right: 20rpx;
 .specific_css{
    color: #666;
     line-height: 40rpx;
-   font-size: 24rpx;
+   font-size: 26rpx;
     display: -webkit-box; 
    align-items: center;
    -webkit-box-orient: vertical;
-   -webkit-line-clamp: 4;
+   -webkit-line-clamp: 5;
    overflow: hidden;
 }
 .view_details{ 
-  margin-top: 60rpx;
+margin-top: 60rpx;
+font-size: 26rpx;
 text-align: center;  
 }
 .view_details_css{

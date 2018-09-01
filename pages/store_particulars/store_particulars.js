@@ -9,12 +9,13 @@ Page({
    */
   data: {
 
-    id:null,
-    business_card:[],
-    
+    id: null,
+    business_card: [],
+    introduceShow: false,
+
     specific: '宁纺集团棉纺分公司，1987年新上一万枚纱锭，从而使企业结束了有织，无染，无纺的历史，形成了从纺纱、织布、染整一条龙生产格局。经过近几年的发展，目前棉纺分公司拥有细纱机53台，粗纱机11台，并条机24台，梳棉机44台，精简机10台，清',
 
-    messageList:[],
+    messageList: [],
 
     message: [{ id: '0', head_portrait_icon: '../../images/index/head_portrait.png', icon_vip: '../../images/index/vip.png', name: '董晓珺', position: '销售总监', demand: '供应', company: '董南通金源纺织科技有限公司', lable_three: '混纺纱', lable_four: '纺织用纱', lable_five: '混纺纱', details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支', message_Img: [{ message_Image: '../../images/index/Image_details1.png' }, { message_Image: '../../images/index/Image_details2.png' }, { message_Image: '../../images/index/Image_details3.png' }], time: '2018-6-28 14:25', address: '南通、柳橙、诸暨', page_view: '888', like: '888' }, { id: '1', head_portrait_icon: '../../images/index/head_portrait.png', icon_vip: '../../images/index/vip.png', name: '董晓珺', position: '销售总监', demand: '供应', company: '董南通金源纺织科技有限公司', lable_three: '混纺纱', lable_four: '纺织用纱', lable_five: '混纺纱', details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支', message_Img: [{ message_Image: '../../images/index/Image_details1.png' }, { message_Image: '../../images/index/Image_details2.png' }, { message_Image: '../../images/index/Image_details3.png' }], time: '2018-6-28 14:25', address: '南通、柳橙、诸暨', page_view: '888', like: '888' }, { id: '2', head_portrait_icon: '../../images/index/head_portrait.png', icon_vip: '../../images/index/vip.png', name: '董晓珺', position: '销售总监', demand: '供应', company: '董南通金源纺织科技有限公司', lable_three: '混纺纱', lable_four: '纺织用纱', lable_five: '混纺纱', details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支', message_Img: [{ message_Image: '../../images/index/Image_details1.png' }, { message_Image: '../../images/index/Image_details2.png' }, { message_Image: '../../images/index/Image_details3.png' }], time: '2018-6-28 14:25', address: '南通、柳橙、诸暨', page_view: '888', like: '888' },]
   },
@@ -24,19 +25,33 @@ Page({
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
-      user_id:that.data.id
+      user_id: that.data.id
     };
     util.visitingCardInfo(param, function (ret) {
       console.log('userinfo', ret)
       that.setData({
         business_card: ret
       })
+
+      var query = wx.createSelectorQuery();
+      //选择id
+      query.select('.specific_css').boundingClientRect(function (rect) {
+        console.log('获取高度', rect.height)
+
+        if (rect.height >= 90) {
+          that.setData({
+            introduceShow: true,
+          })
+        }
+
+      }).exec();
+
     });
   },
 
   //供应信息
   supplyByUserid: function () {
-    var conditions = JSON.stringify({ key: ['userid', 'status'], value: [that.data.id,'3'] });
+    var conditions = JSON.stringify({ key: ['userid', 'status'], value: [that.data.id, '3'] });
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
@@ -145,7 +160,7 @@ Page({
     };
     util.tradeByUserid(param, function (ret) {
       console.log('纺织贸易', ret)
-      for(let i in ret.data){
+      for (let i in ret.data) {
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 88,
@@ -181,7 +196,7 @@ Page({
       that.setData({
         messageList: that.data.messageList
       })
-      
+
     });
   },
 
@@ -218,7 +233,7 @@ Page({
 
 
   //查看详情
-  view_details_click:function(e){
+  view_details_click: function (e) {
     wx.navigateTo({
       url: '../shops_intro/shops_intro?introduce=' + e.currentTarget.dataset.introduce,
     })
@@ -232,7 +247,7 @@ Page({
     })
   },
 
-//返回首页
+  //返回首页
   back_homepage_click: function () {
     wx.switchTab({
       url: '../index/index',
@@ -241,8 +256,8 @@ Page({
 
   //拨打电话
   making_call_click: function () {
-  wx.makePhoneCall({
-    phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
+    wx.makePhoneCall({
+      phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
     })
   },
 
@@ -256,10 +271,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that=this;
-    if (options.id){
+    that = this;
+    if (options.id) {
       that.setData({
-        id:options.id
+        id: options.id
       })
     }
   },
@@ -278,35 +293,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
@@ -315,7 +330,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '我分享了' + that.data.business_card.truename + '的名片',
-      path: 'pages/store_particulars/store_particulars?id=' + that.data.id ,
+      path: 'pages/store_particulars/store_particulars?id=' + that.data.id,
       success: function (res) {
         // 转发成功
         wx.showToast({
@@ -342,7 +357,7 @@ Page({
       for (let i in that.data.messageList) {
         if (that.data.messageList[i].id == res.itemid) {
           that.data.messageList[i].I_agree = true;
-          that.data.messageList[i].like=res.agree;
+          that.data.messageList[i].like = res.agree;
         }
       }
       that.setData({

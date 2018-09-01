@@ -47,8 +47,8 @@
 <!-- 具体描述 -->
 <view class='specific'>
   <view class='specific_css'>{{business_card.introduce}}</view>
-  <view class='view_details' data-introduce='{{business_card.introduce}}' bindtap='view_details_click'>
-    <text class='view_details_css'>查看详情</text>
+  <view wx-if='{{introduceShow}}' class='view_details' data-introduce='{{business_card.introduce}}' bindtap='view_details_click'>
+    <text  class='view_details_css'>查看详情</text>
   </view>
 </view>
 

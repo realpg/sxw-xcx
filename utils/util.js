@@ -74,7 +74,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
 
     },
     complete: function (ret) {
-      console.log("ret:" + JSON.stringify(ret))
+      // console.log("ret:" + JSON.stringify(ret))
       setTimeout(function () {
         hideLoading()
       }, 1500)

@@ -51,7 +51,7 @@ Page({
 
   },
 
-  payClick: function() {
+  payClick: function () {
 
     that = this
     wx.showModal({
@@ -60,10 +60,18 @@ Page({
       cancelColor: 'red',
       confirmText: "确定",
       cancelText: "取消",
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          that.confirm();
+          if (that.data.userinfo.groupid != 5) {
+            that.confirm();
+          } else {
+            wx.showToast({
+              title: "个人会员无法购买广告位",
+              druation: 3000,
+              icon: 'none'
+            })
+          }
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

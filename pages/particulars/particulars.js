@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    message_number:2,
+    message_number: 2,
     id: null,
     mid: null,
     messageList: [],
@@ -24,6 +24,9 @@ Page({
     business_card: [],
     sendTranspondChoose: false,
     MyTranspondValue: '',
+    writeBackChoose: false,
+    writeBackValue: '',
+    writeBackId: null,
 
   },
 
@@ -72,6 +75,7 @@ Page({
     })
   },
 
+  //评论触发
   leaveWordClick: function (e) {
     const that = this;
     that.setData({
@@ -79,11 +83,35 @@ Page({
     })
   },
 
+  writeBackClick: function (e) {
+    const that = this;
+    if (e.currentTarget.dataset.itemid != that.data.writeBackId && that.data.writeBackId != null && that.data.writeBackChoose == true) {
+      that.setData({
+        writeBackValue: '',
+        writeBackChoose: !that.data.writeBackChoose,
+      })
+    }
+    console.log(e.currentTarget.dataset.itemid)
+    that.setData({
+      writeBackChoose: !that.data.writeBackChoose,
+      writeBackId: e.currentTarget.dataset.itemid
+    })
+    console.log(that.data.writeBackId)
+  },
+
   // 获取评论信息
   exacommentClick: function (e) {
     const that = this;
     that.setData({
       MyTranspondValue: e.detail.value
+    })
+  },
+
+  // 获取评论信息
+  exawriteBackClick: function (e) {
+    const that = this;
+    that.setData({
+      writeBackValue: e.detail.value
     })
   },
 
@@ -100,10 +128,10 @@ Page({
       console.log('发送留言', ret)
       that.data.leave_word_details.push({
         iconImg: ret.businesscard.avatarUrl,
-        truename:ret.businesscard.truename,
+        truename: ret.businesscard.truename ? ret.businesscard.truename : that.data.UserInfo.nickName,
         addtime: util.formatTime(new Date(ret.addtime * 1000)),
         content: ret.content,
-        itemid:ret.itemid
+        itemid: ret.itemid
 
       })
       that.setData({
@@ -145,17 +173,17 @@ Page({
     };
     util.setLike(param, function (res) {
       console.log('点击点赞', res);
-      if (e.currentTarget.dataset.id == that.data.id && e.currentTarget.dataset.mid==that.data.mid){
-      for (let i in that.data.message) {
-        if (that.data.message[i].id == res.itemid) {
-          that.data.message[i].I_agree = true;
-          that.data.message[i].like++;
+      if (e.currentTarget.dataset.id == that.data.id && e.currentTarget.dataset.mid == that.data.mid) {
+        for (let i in that.data.message) {
+          if (that.data.message[i].id == res.itemid) {
+            that.data.message[i].I_agree = true;
+            that.data.message[i].like++;
+          }
         }
-      }
-      that.setData({
-        message: that.data.message
-      })
-      }else{
+        that.setData({
+          message: that.data.message
+        })
+      } else {
         for (let i in that.data.messageList) {
           if (that.data.messageList[i].id == res.itemid) {
             that.data.messageList[i].I_agree = true;
@@ -173,27 +201,27 @@ Page({
   enshrineClick: function (e) {
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    if (that.data.message[0].I_favortie == false){
-    var param = {
-      // userid: wx.getStorageSync('UserInfo').userid.userid,
-      // _token: wx.getStorageSync('UserInfo')._token,
-      mid: e.currentTarget.dataset.mid,
-      tid: e.currentTarget.dataset.id
-    };
-    util.enshrine(param, function (res) {
-      console.log('收藏', res);
-      that.data.message[0].I_favortie = true;
-      that.setData({
-        message: that.data.message
-      })
-    }, null)
-    }else{
+    if (that.data.message[0].I_favortie == false) {
+      var param = {
+        // userid: wx.getStorageSync('UserInfo').userid.userid,
+        // _token: wx.getStorageSync('UserInfo')._token,
+        mid: e.currentTarget.dataset.mid,
+        tid: e.currentTarget.dataset.id
+      };
+      util.enshrine(param, function (res) {
+        console.log('收藏', res);
+        that.data.message[0].I_favortie = true;
+        that.setData({
+          message: that.data.message
+        })
+      }, null)
+    } else {
       var param = {
         // userid: wx.getStorageSync('UserInfo').userid.userid,
         // _token: wx.getStorageSync('UserInfo')._token,
         mid: e.currentTarget.dataset.mid,
         tid: e.currentTarget.dataset.id,
-        cancle:'false'
+        cancle: 'false'
       };
       util.enshrine(param, function (res) {
         console.log('取消收藏', res);
@@ -628,7 +656,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-   
+
   },
 
   /**

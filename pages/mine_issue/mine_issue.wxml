@@ -59,7 +59,9 @@
             <text class='lable_two' wx:if='{{index==1}}' >{{item.tagname}}</text>
             <text class='lable_three' wx:if='{{index==2}}' >{{item.tagname}}</text>
           </view>
-        </view>
+          <view class='state' wx:if='{{item.status!=3}}'><text class='state_css'>审核中</text></view>
+           <view class='state' wx:if='{{item.status == 3}}'><text class='state_css_two'>已展示</text></view>
+    </view>
     <view class='content'>{{item.details}}</view>
     <view class='time'>发布时间：{{item.time}}</view>
     <view class='menu'>

@@ -45,7 +45,7 @@
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "color": "#999999",
+    "color": "#3f3f3f",
     "selectedColor": "#01C46C",
     "list": [
       {

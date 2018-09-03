@@ -1,0 +1,11 @@
+<!--pages/goldList/goldList.wxml-->
+<view class='goldList' wx:for='{{goldList}}'>
+  <view class='goldListLeft'>
+     <view class='title'>{{item.reason}}</view>
+     <view class='time'>{{item.addtime}}</view>
+  </view>
+  <view class='goldListRight'>
+     <view class="{{item.amount>0?'goldnum':'goldnum_css'}}">{{item.amount}}</view>
+     <view class='goldnum'>={{item.balance}}</view>
+  </view>
+</view>

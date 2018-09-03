@@ -29,6 +29,7 @@ page{
 }
 .head_portrait{
   display: flex;
+   position: relative;
 }
 
 .The_specific_details{
@@ -48,19 +49,20 @@ page{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 24rpx;
 }
 .demand{
 background:#9accf7;
-font-size:22rpx;
+font-size:21rpx;
 color:white;
-width: 60rpx;
-height: 60rpx;
+width: 55rpx;
+height: 55rpx;
 border-radius:50%;
 display: inline-block;
 text-align: center;
 }
 .demand_css{
-  line-height: 60rpx;
+  line-height: 55rpx;
 }
 .company{
   font-size: 26rpx;
@@ -151,12 +153,7 @@ text-align: center;
   height:100rpx;
   border-radius: 50%;
 }
-.icon_vip{
-  margin-left:-5rpx;
-  margin-top:66rpx;
-  width: 25rpx;
-  height: 25rpx;
-}
+
 .btn_dianhua{
   margin-top: 10rpx;
   width: 40rpx;
@@ -182,4 +179,27 @@ text-align: center;
 .eye{
   width: 35rpx;
   height:22rpx;
+}
+.jiantou_img{
+ margin-left: 5rpx;
+ width:14rpx;
+ height:26rpx;
+}
+.see_details{
+ color: #01C46C;
+ font-size: 28rpx;
+display: flex;
+ align-items: center;
+}
+.icon_vip{
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top:70rpx;
+  right: 10rpx;
+  z-index: 999;
+}
+.dianzan_Css {
+display: flex;
+align-items:center;
 }

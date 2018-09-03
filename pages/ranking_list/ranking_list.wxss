@@ -68,8 +68,8 @@ allhide{
   overflow: hidden;
 }
 .headImg{
-  width: 130rpx;
-  height: 130rpx;
+  width: 120rpx;
+  height: 120rpx;
   float: right;
   margin-right: 30rpx;
   border-radius: 50%;

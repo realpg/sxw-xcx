@@ -111,7 +111,12 @@ Page({
 
     gold_coin_get: '0'
   },
-
+  //金币明细
+  goldListClick: function () {
+    wx.navigateTo({
+      url: '../goldList/goldList',
+    })
+  },
   //获取金币
   gainClick: function() {
     wx.navigateTo({
@@ -145,9 +150,25 @@ Page({
         url: '../mine_AdPositionId/mine_AdPositionId',
       })
     } else if (e.currentTarget.dataset.id == 4) {
+      if (that.data.business_card.groupid == 6){
       wx.navigateTo({
         url: '../mine_issue/mine_issue',
-      })
+        })
+      }
+      else{
+        if (that.data.business_card.updating){
+          wx.showToast({
+            title: '请等待信息审核完成',
+            icon:"none"
+          })
+        }else{
+          wx.showToast({
+            title: '请完善信息',
+            icon: "none"
+          })
+        }
+
+      }
     } else if (e.currentTarget.dataset.id == 5) {
       wx.navigateTo({
         url: '../mine_message/mine_message',

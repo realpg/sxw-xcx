@@ -4,7 +4,9 @@ var app = getApp();
 const util = require('../../utils/util.js');
 var that;
 Page({
-  data: {},
+  data: {
+    information_list:[]
+  },
 //纺机头条
   noticeCLick: function () {
     console.log(88888888888888)
@@ -150,9 +152,11 @@ Page({
         userid: options.userid
       })
       that.Loading();
+
     }
 
     that.reload();
+
   },
 
   slideshowClick: function (e) {
@@ -180,8 +184,24 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    that=this
+    that.Textile_headlines();
   },
+
+  Textile_headlines:function(){  
+    util.InfoList({}, function (res) {
+      console.log('根据条件查询资讯列表', res);
+      for (let i in res.data) {
+        that.data.information_list.push({
+          title: res.data[i].title,
+        })
+      }
+      that.setData({
+        information_list: that.data.information_list
+      })
+    }, null)
+  },
+
   getAllList: function () {
     console.log("加载全部信息中")
 
@@ -708,7 +728,7 @@ Page({
 
     //首页轮播图
     util.getBanner({}, function (ret) {
-      console.log(ret);
+      // console.log(ret);
       var slideshow = that.data.slideshow;
       for (var i in ret) {
         slideshow.push({
@@ -737,18 +757,18 @@ Page({
 
     if (that.data.timer) {
       clearTimeout(that.data.timer);
-      console.log("销毁计时器")
+      // console.log("销毁计时器")
     }
 
 
     var timer = setTimeout(function () {
-      console.log("自动滚动")
+      // console.log("自动滚动")
       that.nextScroll()
     }, 5000)
     var scroll_index = that.data.scroll_index
     if (scroll_index != that.data.recommend_store.length - 1)
       scroll_index = parseInt(e.detail.scrollLeft / that.data.scroll_width);
-    console.log("index:", scroll_index);
+    // console.log("index:", scroll_index);
     that.setData({
       scrollLeft_real: e.detail.scrollLeft,
       scroll_index: scroll_index,
@@ -759,11 +779,12 @@ Page({
   },
 
   nextScroll: function () { //有用
+    
     var index = (that.data.scroll_index ? that.data.scroll_index : 0) + 1;
     var scrollLeft = index * that.data.scroll_width
     if (index >= that.data.recommend_store.length)
       scrollLeft = 0
-    console.log("下一条", index, that.data.recommend_store.length, scrollLeft)
+    // console.log("下一条", index, that.data.recommend_store.length, scrollLeft)
     this.setData({
       scrollLeft: scrollLeft,
       scroll_index: index
@@ -774,6 +795,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
   onShow: function () {
+    if (that.data.recommend_store.length > 0)
     setTimeout(function () {
       that.nextScroll()
     }, 5000)

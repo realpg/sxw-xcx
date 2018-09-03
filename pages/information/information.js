@@ -10,8 +10,11 @@ Page({
   data: {
     slideshow: [],
 
-    classify: [],
-
+    classify: [{
+      catid: 0,
+      catname: "全部",
+      setchoose: true ,
+    }],
     information_list: []
   },
 
@@ -24,42 +27,55 @@ Page({
   },
   //信息栏选择
   selectClick: function (e) {
-    for (let i in that.data.classify) {
-      if (that.data.classify[i].catid == e.currentTarget.dataset.id) {
-        that.data.classify[i].setchoose = true;
-        var conditions = JSON.stringify({ key: ['catid'], value: [that.data.classify[i].catid] });
-        let param = {
-          userid: wx.getStorageSync('UserInfo').userid,
-          _token: wx.getStorageSync('UserInfo')._token,
-          conditions: conditions
-        };
-        util.InfoListByCondition(param, function (res) {
-          console.log('根据条件查询资讯列表', res);
-          that.data.information_list = [];
-          for (let i in res.data) {
-            that.data.information_list.push({
-              addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
-              itemid: res.data[i].itemid,
-              title: res.data[i].title,
-              thumb: res.data[i].thumb
-            })
-          }
-          that.setData({
-            information_list: that.data.information_list
-          })
-
-        }, null)
-
-      }
-      if (that.data.classify[i].catid != e.currentTarget.dataset.id) {
-        that.data.classify[i].setchoose = false
-      }
-    }
-    that.setData({
-      classify: that.data.classify
-    })
-
+    that.getByCatid(e.currentTarget.dataset.id);
   },
+  getByCatid:function(catid){
+    {
+      for (let i in that.data.classify) {
+        if (that.data.classify[i].catid == catid) {
+          that.data.classify[i].setchoose = true;
+          var conditions = JSON.stringify({ key: ['catid'], value: [that.data.classify[i].catid] });
+          var func;
+          if (catid != 0) {
+            func = util.InfoListByCondition;
+          }
+          else {
+            func = util.InfoList;
+          }
+          let param = {
+            userid: wx.getStorageSync('UserInfo').userid,
+            _token: wx.getStorageSync('UserInfo')._token,
+            conditions: conditions
+          };
+          func(param, function (res) {
+            console.log('根据条件查询资讯列表', res);
+            that.data.information_list = [];
+            for (let i in res.data) {
+              that.data.information_list.push({
+                addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
+                itemid: res.data[i].itemid,
+                title: res.data[i].title,
+                thumb: res.data[i].thumb
+              })
+            }
+            that.setData({
+              information_list: that.data.information_list
+            })
+
+          }, null)
+
+        }
+        if (that.data.classify[i].catid != catid) {
+          that.data.classify[i].setchoose = false
+        }
+      }
+      that.setData({
+        classify: that.data.classify
+      })
+
+    }
+  },
+  
 
   getBanner: function () {
     util.getBanner({}, function (ret) {
@@ -82,6 +98,9 @@ Page({
       _token: wx.getStorageSync('UserInfo')._token,
       mid: 21
     };
+
+    that.getByCatid(0);
+
     util.setClassify(param, function (res) {
       console.log('分类列表', res);
       for (let i in res) {
@@ -89,7 +108,7 @@ Page({
         that.data.classify.push({
           catid: res[i].catid,
           catname: res[i].catname,
-          setchoose: i == 0 ? true : false
+          setchoose:false
         })
       }
       that.setData({

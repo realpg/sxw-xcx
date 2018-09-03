@@ -1,0 +1,36 @@
+/* pages/goldList/goldList.wxss */
+page{
+  background: #f2f2f2;
+}
+.goldList{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #f2f2f2;
+  align-items: center;
+}
+
+.title{
+  font-size: 30rpx;
+}
+.time{
+  font-size: 28rpx;
+  color: #b2b2b2;
+  margin-top: 10rpx;
+}
+.balance{
+  font-size: 28rpx;
+}
+.goldnum{
+  text-align: right;
+  color: #01C46C;
+  font-size: 32rpx;
+  padding-right: 30rpx;
+}
+.goldnum_css{
+ text-align: right;
+  color:#E40b18;
+  font-size: 32rpx;
+  padding-right: 30rpx;
+}

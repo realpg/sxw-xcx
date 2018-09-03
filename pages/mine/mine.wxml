@@ -62,8 +62,8 @@
 
 <!-- 签到 -->
 <view class='sign_in'>
-  <view class='sign_in_css'>
-    <view>金币：
+  <view class='sign_in_css' >
+    <view bindtap='goldListClick'>金币：
       <text class='gold'>{{business_card.credit}}</text>
     </view>
     <view>

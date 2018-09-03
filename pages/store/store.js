@@ -162,7 +162,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    setTimeout(function () {
+
+    if (that.data.recommend_store.length > 0)
+    setTimeout(function () {    
       that.nextScroll()
     }, 5000)
   },

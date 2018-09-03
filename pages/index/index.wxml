@@ -30,7 +30,7 @@
  <view class='notice' bindtap='noticeCLick' >
   <image class='notImg' src='../../images/index/headline.png' mode='widthFix'/>
   <swiper class='notT' autoplay="true" circular="true" vertical='true'>
-  <block wx:for="{{noticesr}}" >
+  <block wx:for="{{information_list}}" >
      <swiper-item class='vvv' >
      <view class='noticeText'>{{item.title}}</view>
      </swiper-item>

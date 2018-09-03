@@ -18,8 +18,23 @@ Page({
     ],
 
     //留言
-    leave_word_details: [{ id: '0', iconImg: '../../images/store/pic_tou_second.png', name: '董晓珺', time: '1天前', leave_word_name: '', content: '您好！请问这个价格如何?' },
-    { id: '2', iconImg: '../../images/store/pic_tou_second.png', name: '程晓燕', time: '1天前', leave_word_name: '董晓珺', content: '您需要购买多少呢?' },],
+    leave_word_details: [{
+        id: '0',
+        iconImg: '../../images/store/pic_tou_second.png',
+        name: '董晓珺',
+        time: '1天前',
+        leave_word_name: '',
+        content: '您好！请问这个价格如何?'
+      },
+      {
+        id: '2',
+        iconImg: '../../images/store/pic_tou_second.png',
+        name: '程晓燕',
+        time: '1天前',
+        leave_word_name: '董晓珺',
+        content: '您需要购买多少呢?'
+      },
+    ],
 
     //名片
     business_card: [],
@@ -29,10 +44,13 @@ Page({
     writeBackValue: '',
     writeBackId: null,
 
+    supplyPage: 1,
+    buyPage: 1,
+    fjmyPage: 1,
   },
 
   //预览图片
-  previewImClick: function (e) {
+  previewImClick: function(e) {
     console.log(123456, e.currentTarget.dataset.id)
     var that = this;
     var id = e.currentTarget.dataset.id
@@ -49,13 +67,13 @@ Page({
     }
   },
   //名片详情
-  view_card_click: function (e) {
+  view_card_click: function(e) {
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
   },
   //查看详情
-  see_details_click: function (e) {
+  see_details_click: function(e) {
 
     console.log(e.currentTarget.dataset.id)
 
@@ -64,27 +82,27 @@ Page({
     })
   },
   //返回首页
-  back_homepage_click: function () {
+  back_homepage_click: function() {
     wx.switchTab({
       url: '../index/index',
     })
   },
   //拨打电话
-  making_call_click: function () {
+  making_call_click: function() {
     wx.makePhoneCall({
       phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
     })
   },
 
   //评论触发
-  leaveWordClick: function (e) {
+  leaveWordClick: function(e) {
     const that = this;
     that.setData({
       sendTranspondChoose: !that.data.sendTranspondChoose
     })
   },
 
-  writeBackClick: function (e) {
+  writeBackClick: function(e) {
     const that = this;
     if (e.currentTarget.dataset.itemid != that.data.writeBackId && that.data.writeBackId != null && that.data.writeBackChoose == true) {
       that.setData({
@@ -101,7 +119,7 @@ Page({
   },
 
   // 获取评论信息
-  exacommentClick: function (e) {
+  exacommentClick: function(e) {
     const that = this;
     that.setData({
       MyTranspondValue: e.detail.value
@@ -109,7 +127,7 @@ Page({
   },
 
   // 获取评论信息
-  exawriteBackClick: function (e) {
+  exawriteBackClick: function(e) {
     const that = this;
     that.setData({
       writeBackValue: e.detail.value
@@ -117,7 +135,7 @@ Page({
   },
 
   //发送留言
-  sendClick: function () {
+  sendClick: function() {
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
@@ -125,7 +143,7 @@ Page({
       item_id: that.data.id,
       content: that.data.MyTranspondValue
     };
-    util.leaveWord(param, function (ret) {
+    util.leaveWord(param, function(ret) {
       console.log('发送留言', ret)
       that.data.leave_word_details.push({
         iconImg: ret.businesscard.avatarUrl,
@@ -144,12 +162,12 @@ Page({
     });
   },
 
-  sendwriteBackClick: function (e) {
+  sendwriteBackClick: function(e) {
     let param = {
       itemid: e.currentTarget.dataset.itemid,
       reply: that.data.writeBackValue
     };
-    util.sendwriteBack(param, function (ret) {
+    util.sendwriteBack(param, function(ret) {
       console.log('发送回复', ret)
       for (let i in that.data.leave_word_details) {
         if (e.currentTarget.dataset.itemid == that.data.leave_word_details[i].itemid) {
@@ -169,7 +187,7 @@ Page({
 
 
   //查看更多留言
-  view_more_click: function () {
+  view_more_click: function() {
     const that = this
     var message_number = that.data.message_number + 10
     that.setData({
@@ -177,7 +195,7 @@ Page({
     })
   },
   //关闭更多留言
-  view_more_click_css: function () {
+  view_more_click_css: function() {
     const that = this
     var message_number = 2
     that.setData({
@@ -185,7 +203,7 @@ Page({
     })
   },
 
-  setLikeClick: function (e) {
+  setLikeClick: function(e) {
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
@@ -194,7 +212,7 @@ Page({
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
-    util.setLike(param, function (res) {
+    util.setLike(param, function(res) {
       console.log('点击点赞', res);
       if (e.currentTarget.dataset.id == that.data.id && e.currentTarget.dataset.mid == that.data.mid) {
         for (let i in that.data.message) {
@@ -221,48 +239,116 @@ Page({
 
   },
 
-  enshrineClick: function (e) {
+  //关注 取消
+  enshrineClick: function(e) {
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    if (that.data.message[0].I_favortie == false) {
-      var param = {
-        // userid: wx.getStorageSync('UserInfo').userid.userid,
-        // _token: wx.getStorageSync('UserInfo')._token,
-        mid: e.currentTarget.dataset.mid,
-        tid: e.currentTarget.dataset.id
-      };
-      util.enshrine(param, function (res) {
-        console.log('收藏', res);
-        that.data.message[0].I_favortie = true;
+    for (let i in that.data.message) {
+      if (that.data.message[i].id == e.currentTarget.dataset.id) {
+        if (that.data.message[i].I_favortie == false) {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id
+          };
+          util.enshrine(param, function(res) {
+            console.log('收藏', res);
+            wx.showToast({
+              title: '关注成功',
+              icon: 'none',
+              duration: 2000
+            })
+            that.data.message[i].I_favortie = true;
+            that.setData({
+              message: that.data.message
+            })
+          }, null)
+        } else {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id,
+            cancle: 'false'
+          };
+          util.enshrine(param, function(res) {
+            console.log('取消收藏', res);
+            that.data.message[i].I_favortie = false;
+            wx.showToast({
+              title: '取消成功',
+              icon: 'none',
+              duration: 2000
+            })
+            that.setData({
+              message: that.data.message
+            })
+          }, null)
+        }
         that.setData({
           message: that.data.message
         })
-      }, null)
-    } else {
-      var param = {
-        // userid: wx.getStorageSync('UserInfo').userid.userid,
-        // _token: wx.getStorageSync('UserInfo')._token,
-        mid: e.currentTarget.dataset.mid,
-        tid: e.currentTarget.dataset.id,
-        cancle: 'false'
-      };
-      util.enshrine(param, function (res) {
-        console.log('取消收藏', res);
-        that.data.message[0].I_favortie = false;
-        that.setData({
-          message: that.data.message
-        })
-      }, null)
+
+      }
     }
+  },
 
-    that.setData({
-      message: that.data.message
-    })
+  //关注 取消
+  enshrineClick_css: function(e) {
+    const that = this;
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    for (let i in that.data.messageList) {
+      if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
+        if (that.data.messageList[i].I_favortie == false) {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id
+          };
+          util.enshrine(param, function(res) {
+            console.log('收藏', res);
+            wx.showToast({
+              title: '关注成功',
+              icon: 'none',
+              duration: 2000
+            })
+            that.data.messageList[i].I_favortie = true;
+            that.setData({
+              messageList: that.data.messageList
+            })
+          }, null)
+        } else {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id,
+            cancle: 'false'
+          };
+          util.enshrine(param, function(res) {
+            console.log('取消收藏', res);
+            that.data.messageList[i].I_favortie = false;
+            wx.showToast({
+              title: '取消成功',
+              icon: 'none',
+              duration: 2000
+            })
+            that.setData({
+              messageList: that.data.messageList
+            })
+          }, null)
+        }
+        that.setData({
+          messageList: that.data.messageList
+        })
 
+      }
+    }
   },
 
   //供应
-  sellInfoDetails: function () {
+  sellInfoDetails: function() {
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
@@ -270,7 +356,7 @@ Page({
     };
 
 
-    util.sellInfoDetails(param, function (ret) {
+    util.sellInfoDetails(param, function(ret) {
       console.log('sellInfoDetails', ret)
 
       let arr = [];
@@ -292,7 +378,7 @@ Page({
       that.data.message.push({
         id: ret.itemid, //信息id
         mid: 5,
-        userid: ret.businesscard.userid,//userid
+        userid: ret.businesscard.userid, //userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
         icon_vip: ret.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
@@ -310,7 +396,8 @@ Page({
         edittime: util.formatTime(new Date(ret.edittime * 1000)),
         address: ret.address, //货物存放地
         page_view: ret.hits, //浏览量
-        like: ret.agree //点赞
+        like: ret.agree, //点赞
+        favorite: ret.favorite, //收藏
       })
       that.setData({
         message: that.data.message,
@@ -324,13 +411,13 @@ Page({
   },
 
   //求购
-  buyInfoDetails: function () {
+  buyInfoDetails: function() {
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       itemid: that.data.id
     };
-    util.buyInfoDetails(param, function (ret) {
+    util.buyInfoDetails(param, function(ret) {
       console.log('buyInfoDetails', ret)
       let arr = [];
       for (let i in ret.comments) {
@@ -349,7 +436,7 @@ Page({
       that.data.message.push({
         id: ret.itemid, //信息id
         mid: 6,
-        userid: ret.businesscard.userid,//userid
+        userid: ret.businesscard.userid, //userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
         icon_vip: ret.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
@@ -367,7 +454,9 @@ Page({
         edittime: util.formatTime(new Date(ret.edittime * 1000)),
         address: ret.address, //货物存放地
         page_view: ret.hits, //浏览量
+        favorite: ret.favorite, //收藏
         like: ret.agree //点赞
+
       })
       that.setData({
         message: that.data.message,
@@ -382,13 +471,13 @@ Page({
 
 
   //纺机
-  tradeInfoDetails: function () {
+  tradeInfoDetails: function() {
     let param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       itemid: that.data.id
     };
-    util.tradeInfoDetails(param, function (ret) {
+    util.tradeInfoDetails(param, function(ret) {
       console.log('tradeInfoDetails', ret)
       let arr = [];
       for (let i in ret.comments) {
@@ -408,7 +497,7 @@ Page({
       that.data.message.push({
         id: ret.itemid, //信息id
         mid: 88,
-        userid: ret.businesscard.userid,//userid
+        userid: ret.businesscard.userid, //userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
         icon_vip: ret.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
@@ -426,7 +515,8 @@ Page({
         edittime: util.formatTime(new Date(ret.edittime * 1000)),
         address: ret.address, //货物存放地
         page_view: ret.hits, //浏览量
-        like: ret.agree //点赞
+        like: ret.agree, //点赞
+        favorite: ret.favorite, //收藏
       })
       that.setData({
         message: that.data.message,
@@ -440,21 +530,28 @@ Page({
   },
 
   //供应信息
-  supplyByUserid: function () {
-    var conditions = JSON.stringify({ key: ['userid', 'status'], value: [that.data.business_card.userid, '3'] });
+  supplyByUserid: function() {
+    if (!that.data.supplyPage)
+      return;
+    var conditions = JSON.stringify({
+      key: ['userid', 'status'],
+      value: [that.data.business_card.userid, '3']
+    });
+
     let param = {
+      page: that.data.supplyPage,
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       conditions: conditions
     };
-    util.supplyByUserid(param, function (ret) {
+    util.supplyByUserid(param, function(ret) {
       console.log('供应信息', ret)
       // that.data.messageList.push(ret.data)
       for (let i in ret.data) {
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 5,
-          userid: ret.data[i].businesscard.userid,//userid
+          userid: ret.data[i].businesscard.userid, //userid
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
           icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
@@ -468,38 +565,47 @@ Page({
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
             [{
-              message_Image: ret.data[i].thumb
-            },
-            {
-              message_Image: ret.data[i].thumb1
-            },
-            {
-              message_Image: ret.data[i].thumb2
-            }
+                message_Image: ret.data[i].thumb
+              },
+              {
+                message_Image: ret.data[i].thumb1
+              },
+              {
+                message_Image: ret.data[i].thumb2
+              }
             ],
           time: ret.data[i].adddate, //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
+          favorite: ret.data[i].favorite, //收藏
           like: ret.data[i].agree //点赞
+
         })
       }
-      that.data.messageList = that.sort(that.data.messageList)
+      var messageList = that.sort(that.data.messageList)
       that.setData({
-        messageList: that.data.messageList
+        supplyPage: ret.current_page < ret.last_page ? ret.current_page + 1 : null,
+        messageList: messageList
       })
     });
   },
 
   //求购信息
-  PurchaseByUserid: function () {
-    var conditions = JSON.stringify({ key: ['userid', 'status'], value: [that.data.business_card.userid, '3'] });
+  PurchaseByUserid: function() {
+    if (!that.data.buyPage)
+      return;
+    var conditions = JSON.stringify({
+      key: ['userid', 'status'],
+      value: [that.data.business_card.userid, '3']
+    });
     let param = {
+      page: that.data.buyPage,
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       conditions: conditions
     };
-    util.PurchaseByUserid(param, function (ret) {
+    util.PurchaseByUserid(param, function(ret) {
       console.log('求购信息', ret)
       // that.data.messageList.push(ret.data)
       for (let i in ret.data) {
@@ -507,7 +613,7 @@ Page({
           id: ret.data[i].itemid, //信息id
           mobile: ret.data[i].mobile,
           mid: 6,
-          userid: ret.data[i].businesscard.userid,//userid
+          userid: ret.data[i].businesscard.userid, //userid
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
           icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
@@ -520,44 +626,52 @@ Page({
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
             [{
-              message_Image: ret.data[i].thumb
-            },
-            {
-              message_Image: ret.data[i].thumb1
-            },
-            {
-              message_Image: ret.data[i].thumb2
-            }
+                message_Image: ret.data[i].thumb
+              },
+              {
+                message_Image: ret.data[i].thumb1
+              },
+              {
+                message_Image: ret.data[i].thumb2
+              }
             ],
           time: ret.data[i].adddate, //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
+          favorite: ret.data[i].favorite, //收藏
           like: ret.data[i].agree //点赞
         })
       }
-      that.data.messageList = that.sort(that.data.messageList)
+      var messageList = that.sort(that.data.messageList)
       that.setData({
-        messageList: that.data.messageList
+        buyPage: ret.current_page < ret.last_page ? ret.current_page + 1 : null,
+        messageList: messageList
       })
     });
   },
 
   //纺织贸易
-  tradeByUserid: function () {
-    var conditions = JSON.stringify({ key: ['userid', 'status'], value: [that.data.business_card.userid, '3'] });
+  tradeByUserid: function() {
+    if (!that.data.fjmyPage)
+      return;
+    var conditions = JSON.stringify({
+      key: ['userid', 'status'],
+      value: [that.data.business_card.userid, '3']
+    });
     let param = {
+      page: that.data.fjmyPage,
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       conditions: conditions
     };
-    util.tradeByUserid(param, function (ret) {
+    util.tradeByUserid(param, function(ret) {
       console.log('纺织贸易', ret)
       for (let i in ret.data) {
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 88,
-          userid: ret.data[i].businesscard.userid,//userid
+          userid: ret.data[i].businesscard.userid, //userid
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
           icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
@@ -571,32 +685,34 @@ Page({
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
             [{
-              message_Image: ret.data[i].thumb
-            },
-            {
-              message_Image: ret.data[i].thumb1
-            },
-            {
-              message_Image: ret.data[i].thumb2
-            }
+                message_Image: ret.data[i].thumb
+              },
+              {
+                message_Image: ret.data[i].thumb1
+              },
+              {
+                message_Image: ret.data[i].thumb2
+              }
             ],
           time: ret.data[i].adddate, //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
+          favorite: ret.data[i].favorite, //收藏
           like: ret.data[i].agree //点赞
         })
       }
-      that.data.messageList = that.sort(that.data.messageList)
+      var messageList = that.sort(that.data.messageList)
       that.setData({
-        messageList: that.data.messageList
+        fjmyPage: ret.current_page < ret.last_page ? ret.current_page + 1 : null,
+        messageList: messageList
       })
 
     });
   },
 
   //排序
-  sort: function (messageALL) {
+  sort: function(messageALL) {
     var that = this;
     var arr = messageALL;
     console.log("排序", arr);
@@ -610,26 +726,13 @@ Page({
         }
       }
 
-    for (var i = 0; i < arr.length; i++) {
-      for (var u = i + 1; u < arr.length; u++) {
-        if (arr[i].icon_vip < arr[u].icon_vip) {
-          //如果 array[i] > <array[u] ，就声明一个缓存遍历 num 存放大的数据，然后把两个数据的下标进行更换，达到升序排序的效果。
-          var num = arr[i];
-          arr[i] = arr[u];
-          arr[u] = num;
-        }
-
-      }
-
-    }
-
     return arr;
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
 
     if (options.id && options.mid) {
@@ -644,7 +747,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
     that.setData({
       UserInfo: wx.getStorageSync('UserInfo')
@@ -667,35 +770,35 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     console.log('触底刷新')
     that.supplyByUserid();
     that.PurchaseByUserid();
@@ -705,24 +808,24 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '我分享了' + that.data.business_card.truename + '的' + that.data.message[0].demand + '信息',
       path: 'pages/particulars/particulars?id=' + that.data.id + '&mid=' + that.data.mid,
-      success: function (res) {
+      success: function(res) {
         // 转发成功
         wx.showToast({
           title: '分享成功',
           duration: 1500
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         // 转发失败
       }
     }
   },
   //点击头像查看名片
-  messageList_click: function (e) {
+  messageList_click: function(e) {
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })

@@ -389,6 +389,10 @@ function selectIssue(param, successCallback, errorCallback){
 function sendwriteBack(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/comment/reply', param, "POST", successCallback, errorCallback);
 }
+//金币明细
+function goldListClick(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/creidt/getRecord', param, "GET", successCallback, errorCallback);
+}
 
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
@@ -913,7 +917,8 @@ module.exports = {
   myMessage: myMessage,
   selectIssue: selectIssue,
   sendwriteBack: sendwriteBack,
-
+  goldListClick: goldListClick,
+  
   formatTime: formatTime,
   formatDate: formatDate,
   showLoading: showLoading,

@@ -34,7 +34,8 @@
     "pages/select_issue/select_issue",
     "pages/search/search",
     "pages/question_answering/question_answering",
-     "pages/class_of_business/class_of_business"
+     "pages/class_of_business/class_of_business",
+     "pages/goldList/goldList"
 
   ],
   "window": {

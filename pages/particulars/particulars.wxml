@@ -131,7 +131,7 @@
     </view>
     <view class='itemscenter'>
       <image class='iconImg_map' src='../../images/store/map.png'></image>
-      <text style='margin-left:4rpx'>{{business_card.address}} </text>
+      <text style='margin-left:4rpx;width:72%'>{{business_card.address}} </text>
       <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
     </view>
 

@@ -77,7 +77,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
       // console.log("ret:" + JSON.stringify(ret))
       setTimeout(function () {
         hideLoading()
-      }, 1500)
+      }, 1000)
     }
   });
 }

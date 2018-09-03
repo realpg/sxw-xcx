@@ -74,6 +74,10 @@ margin-right: 20rpx;
   height: 34rpx;
 }
 
+.browse{
+display: flex;
+align-items: center;
+}
 .options {
   display: flex;
   justify-content: space-around;

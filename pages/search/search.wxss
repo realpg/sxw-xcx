@@ -377,3 +377,8 @@ border-radius: 50%;
   width: 26rpx;
   height: 26rpx;
 }
+
+.dianzan_Css{
+display: flex;
+align-items: center;
+}

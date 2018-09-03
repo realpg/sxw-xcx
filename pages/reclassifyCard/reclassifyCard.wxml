@@ -4,11 +4,11 @@
   <view class='messageListCss' data-id='{{item.userid}}' bindtap='messageList_click'>
     <view class='message'>
       <image class='iconImg' src='{{item.avatarUrl}}'></image>
+          <image class='icon_vip_css' src='{{item.bussinesscard.vip!=0?"../../images/index/vip.png":""}}' mode='widthFix' />
       <view class='messageCss'>
         <view class='employee_information'>
           <view class='name'>{{item.bussinesscard.truename}}</view>
           <view class='post'>{{item.career}}</view>
-          <image class='vip_Img' src='{{item.vip}}'></image>
         </view>
         <view class='companyName'>{{item.company}}</view>
       </view>

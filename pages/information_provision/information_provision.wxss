@@ -214,3 +214,7 @@ margin-left: 50rpx;
   width: 35rpx;
   height:22rpx;
 }
+.dianzan_Css{
+display: flex;
+align-items: center;
+}

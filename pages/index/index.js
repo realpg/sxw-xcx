@@ -101,6 +101,11 @@ Page({
     };
     util.setLike(param, function (res) {
       console.log('点击点赞', res);
+      wx.showToast({
+        title: '点赞成功',
+        icon:'none',
+        duration:2000
+      })
       for (let i in that.data.message) {
         if (that.data.message[i].id == res.itemid) {
           that.data.message[i].I_agree = true;

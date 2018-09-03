@@ -426,8 +426,8 @@ display: flex;
  height:26rpx;
 }
 .dianzan_Css{
-    display: flex;
-  align-items: center;
+display: flex;
+align-items: center;
 }
 
 .button-hover{

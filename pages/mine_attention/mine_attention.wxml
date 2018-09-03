@@ -8,11 +8,11 @@
 
 <view class='hint' wx:if='{{message.length<1}}'>您还未关注该类信息</view>
 
-<!--信息-->
+<!--具体信息-->
 <view class='message' wx:for='{{message}}' wx:for-index='id'>
   <view class='messageCss'    data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
+      <image bindtap='messageList_click' data-id='{{item.userid}}' class='head_portrait_icon' src='{{item.head_portrait_icon}}'/>
       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
     </view>
 
@@ -25,6 +25,7 @@
           <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
           <image bindtap='phoneClick' class='btn_dianhua' data-mobile='{{item.mobile}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
         </view>
+        <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
         <view class='company'>{{item.company}}</view>
         <view class='lable'>
           <view wx:for='{{item.lableList}}' wx:for-index='index'>
@@ -46,10 +47,19 @@
           <image class='icon_map' src='../../images/index/icon_map.png'/>
           <text class='address'>存放地：{{item.address}}</text>
         </view>
+         </view>
         <view class='eye_dianzan'>
           <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
-            <view class='dianzan_Css'><image class='dianzan'  src='../../images/index/dianzan.png'/> <text class='like'>{{item.like}}</text></view>
-            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
+            <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+            <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
+
+            <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+          <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
+          <text class='like'>{{item.favorite}}</text>
+        </view> 
+
+            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情  
+  <image class='jiantou_img' src='../../images/index/jiantou.png'></image></view>     
         </view>
     </view>
   </view>

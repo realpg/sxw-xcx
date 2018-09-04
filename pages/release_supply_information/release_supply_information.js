@@ -2,7 +2,7 @@
 const app = getApp();
 
 const util = require('../../utils/util.js');
-let count;
+var count;
 
 Page({
 
@@ -101,8 +101,8 @@ Page({
     // console.log(e.currentTarget.dataset.id)
     var content = this.data.content;
     content.tags = []
-    let arr = that.data.lable;
-    for (let i in arr) {
+    var arr = that.data.lable;
+    for (var i in arr) {
       if (e.currentTarget.dataset.id == arr[i].id) {
         arr[i].setlableChoose = !arr[i].setlableChoose;
       }
@@ -122,7 +122,7 @@ Page({
 
   AddImgClick: function() {
     const that = this;
-    let b = [];
+    var b = [];
     if (that.data.MessageImgList.length < 9) {
       count = 9 - that.data.MessageImgList.length;
       console.log('当前展示的图片数' + that.data.MessageImgList.length);
@@ -134,7 +134,7 @@ Page({
         success: function(res) {
           console.log(res, typeof(res.tempFiles[0]));
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          for (let i in res.tempFilePaths) {
+          for (var i in res.tempFilePaths) {
             util.uploadImage({
               file: res.tempFilePaths[i]
             }, function(ret) {
@@ -185,8 +185,8 @@ Page({
   //删除图片
   DelClick: function(e) {
     const that = this;
-    let MIL = that.data.MessageImgList;
-    for (let i in MIL) {
+    var MIL = that.data.MessageImgList;
+    for (var i in MIL) {
       if (e.currentTarget.dataset.id == MIL[i].id) {
         MIL.splice(i, 1)
       }

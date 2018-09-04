@@ -66,8 +66,8 @@ Page({
           sellList: sellList,
           sell_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
-        let id = that.data.id;
-        let e = null;
+        var id = that.data.id;
+        var e = null;
 
         that.setTab()
       }, null)
@@ -118,8 +118,8 @@ Page({
           buyList: buyList,
           buy_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
-        let id = that.data.id;
-        let e = null;
+        var id = that.data.id;
+        var e = null;
 
         that.setTab()
       }, null)
@@ -171,8 +171,8 @@ Page({
           fjmyList: fjmyList,
           fjmy_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
-        let id = that.data.id;
-        let e = null;
+        var id = that.data.id;
+        var e = null;
 
         that.setTab()
       }, null)
@@ -303,12 +303,6 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
 
   /**
    * 页面上拉触底事件的处理函数

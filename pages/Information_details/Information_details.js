@@ -2,7 +2,7 @@
 const app = getApp();
 const util = require('../../utils/util.js')
 var WxParse = require('../../wxParse/wxParse.js');
-let that;
+var that;
 Page({
 
   /**
@@ -16,14 +16,14 @@ Page({
   },
 
   setInfo:function(){
-    let param = {
+    var param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       itemid: that.data.itemid,
     };
     util.setInfo(param, function (res) {
       console.log('根据itemid查询资讯详情', res);
-      // for (let i in res.data) {
+      // for (var i in res.data) {
         // that.data.information_list.push({
         //   addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
         //   itemid: res.data[i].itemid,
@@ -36,7 +36,7 @@ Page({
         messageSource: res.copyfrom,
         messageTitle:res.title,
       })
-      let article = res.data.content;
+      var article = res.data.content;
         if (article) {
           WxParse.wxParse('article', 'html', article, that, 5);
         }
@@ -75,7 +75,7 @@ Page({
     //   method: 'POST',
     //   success: function (res) {
     //     console.log(res.data)
-    //     // for (let i in res.data) {
+    //     // for (var i in res.data) {
     //     that.setData({
     //       id: res.data[0].id,
     //       messageIconImg: res.data[0].images,
@@ -84,7 +84,7 @@ Page({
     //       messageTime: u.formatTime(new Date(res.data[0].gmtconfig)),
     //       article: res.data[0].informationdetail,
     //     })
-    //     let article = res.data[0].informationdetail;
+    //     var article = res.data[0].informationdetail;
     //     if (article) {
     //       WxParse.wxParse('article', 'html', article, that, 5);
     //     }
@@ -94,7 +94,7 @@ Page({
 
     //   },
     //   fail: function (res) { },
-    //   omplete: function (res) { },
+    //   ompvare: function (res) { },
     // })
   },
 

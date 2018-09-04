@@ -1,5 +1,5 @@
 //测试标识
-var TESTMODE = false;
+var TESTMODE = true;
 //服务器地址
 var SERVER_URL = "https://dt.chinayarn.com/xcx/public";
 var DEBUG_URL = "http://xcx.hzmuji.com";
@@ -11,7 +11,11 @@ var requesting = false;
 
 function wxRequest(url, param, method, successCallback, errorCallback, loading) {
   if (typeof(loading) == 'undefined') {
-    loading = false
+
+    if (method == 'GET') {
+      loading = true
+    } else
+      loading = false
   }
   queue.push({
     url: url,
@@ -119,12 +123,84 @@ function getImgRealUrl(key_v) {
 
 //获取用户的OpenId
 function getOpenId(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/getOpenid', param, "GET", successCallback, errorCallback);
+  wx.request({
+    url: SERVER_URL + '/api/getOpenid',
+    data: param,
+    header: {
+      "content-Type": "application/json"
+    },
+    // header: { 'content-type': 'application/x-www-form-urlencoded' },
+    method: "GET",
+    success: function(ret) {
+      var time_end = new Date().getTime();
+      // console.log("获取OPENID时间", time_end - time_start);
+      if (ret.data.result)
+        successCallback(ret.data.ret);
+      else {
+        if (ret.data.code == '102') {
+          setTimeout(function() {
+            wxRequest(url, param, method, successCallback, errorCallback);
+          }, 500)
+        } else wx.showToast({
+          title: ret.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    },
+    fail: function(err) {
+      // console.log("wxRequest fail:" + JSON.stringify(err))
+      // "请求错误"
+      // wxRequest(url, param, method, successCallback, errorCallback)
+    },
+    complete: function(ret) {
+      // // console.log("ret:" + JSON.stringify(ret))
+      // if (loading)
+      //   hideLoading()
+      // requestqueue()
+    }
+  })
 }
 
 //登录
 function login(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/login', param, "POST", successCallback, errorCallback);
+  wx.request({
+    url: SERVER_URL + '/api/user/login',
+    data: param,
+    header: {
+      "content-Type": "application/json"
+    },
+    // header: { 'content-type': 'application/x-www-form-urlencoded' },
+    method: "POST",
+    success: function(ret) {
+      var time_end = new Date().getTime();
+      // console.log("登录时间", time_end - time_start);
+      if (ret.data.result)
+        successCallback(ret.data.ret);
+      else {
+        if (ret.data.code == '102') {
+          setTimeout(function() {
+            wxRequest(url, param, method, successCallback, errorCallback);
+          }, 500)
+        } else wx.showToast({
+          title: ret.data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    },
+    fail: function(err) {
+      // console.log("wxRequest fail:" + JSON.stringify(err))
+      // "请求错误"
+      // wxRequest(url, param, method, successCallback, errorCallback)
+    },
+    complete: function(ret) {
+      // // console.log("ret:" + JSON.stringify(ret))
+      // if (loading)
+      //   hideLoading()
+      // requestqueue()
+    }
+  })
 }
 
 //登录
@@ -140,16 +216,25 @@ function getAllList(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/info/getList', param, "GET", successCallback, errorCallback, true);
 }
 
-function getSellList(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/sell/getList', param, "GET", successCallback, errorCallback);
+function getSellList(param, successCallback, errorCallback, loading) {
+  // if (typeof(loading) == 'undefined') {
+  //   loading = false
+  // }
+  wxRequest(SERVER_URL + '/api/sell/getList', param, "GET", successCallback, errorCallback, loading);
 }
 
-function getFJMYList(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/fjmy/getList', param, "GET", successCallback, errorCallback);
+function getFJMYList(param, successCallback, errorCallback, loading) {
+  // if (typeof(loading) == 'undefined') {
+  //   loading = false
+  // }
+  wxRequest(SERVER_URL + '/api/fjmy/getList', param, "GET", successCallback, errorCallback, loading);
 }
 
-function getBuyList(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/buy/getList', param, "GET", successCallback, errorCallback);
+function getBuyList(param, successCallback, errorCallback, loading) {
+  // if (typeof(loading) == 'undefined') {
+  //   loading = false
+  // }
+  wxRequest(SERVER_URL + '/api/buy/getList', param, "GET", successCallback, errorCallback, loading);
 }
 
 function sellEdit_get(param, successCallback, errorCallback) {
@@ -230,12 +315,12 @@ function GetAdvertisingInfo(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/ad/getByPid', param, "GET", successCallback, errorCallback);
 }
 
-//VIP广告位
+//VIP
 function GetAdvertisingVIP(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/vip/selling', param, "GET", successCallback, errorCallback);
 }
 
-//VIP广告位
+//我的VIP
 function myVIP(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/vip/my', param, "GET", successCallback, errorCallback);
 }
@@ -546,6 +631,7 @@ function showLoading(msg) {
   }
   wx.showLoading({
     title: msg,
+    mask: true
   })
 }
 

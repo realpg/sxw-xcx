@@ -2,7 +2,7 @@
 const app = getApp()
 const util = require('../../utils/util.js');
 var that;
-let count=1;
+var count=1;
 Page({
 
   /**
@@ -14,14 +14,14 @@ Page({
   },
 
   loading:function(){
-    let param = {
+    var param = {
       page: count,
     };
 
     util.goldListClick(param, function (ret) {
       console.log('00', ret);
       
-      for (let i in ret.data) {
+      for (var i in ret.data) {
         that.data.goldList.push({
           itemid: ret.data[i].itemid,
           amount: ret.data[i].amount > 0 ? "+" + ret.data[i].amount : ret.data[i].amount,
@@ -77,11 +77,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
     console.log('下拉刷新')
     count = 1; 
     that.data.goldList=[];   
     that.onReady();
-    wx.stopPullDownRefresh();
+
   },
 
   /**

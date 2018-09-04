@@ -1,7 +1,7 @@
 // pages/reclassifyCard/reclassifyCard.js
 const app = getApp();
 const util = require('../../utils/util.js');
-let that;
+var that;
 Page({
 
   /**
@@ -14,7 +14,7 @@ Page({
   },
 
   visitingCard: function () {
-    let param = {
+    var param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       ywlb_id:that.data.id

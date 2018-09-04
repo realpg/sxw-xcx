@@ -5,45 +5,39 @@ const util = require('../../utils/util.js');
 var that;
 Page({
   data: {
-    information_list:[]
+    information_list: []
   },
-//纺机头条
-  noticeCLick: function () {
+  //纺机头条
+  noticeCLick: function() {
     console.log(88888888888888)
     wx.switchTab({
       url: '../information/information',
-      success: function (res) {
-      },
-      fail: function (res) {
-      },
-      complete: function (res) {
-      },
+      success: function(res) {},
+      fail: function(res) {},
+      compvare: function(res) {},
     })
   },
   //搜索框跳转
-  serchClick: function () {
+  serchClick: function() {
     wx.navigateTo({
       url: '../search/search',
-      success: function (res) {
-      },
-      fail: function (res) {
-      },
-      complete: function (res) {
-      },
+      success: function(res) {},
+      fail: function(res) {},
+      compvare: function(res) {},
     })
   },
   //事件处理函数
-  bindViewTap: function () {
+  bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
 
-//关注 取消
-  enshrineClick: function (e) {
+  //关注 取消
+  enshrineClick: function(e) {
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    for (let i in that.data.message) {
+    for (var i in that.data.message) {
       if (that.data.message[i].id == e.currentTarget.dataset.id) {
         if (that.data.message[i].I_favortie == false) {
           var param = {
@@ -52,11 +46,11 @@ Page({
             mid: e.currentTarget.dataset.mid,
             tid: e.currentTarget.dataset.id
           };
-          util.enshrine(param, function (res) {
+          util.enshrine(param, function(res) {
             console.log('收藏', res);
             wx.showToast({
               title: '关注成功',
-              icon:'none',
+              icon: 'none',
               duration: 2000
             })
             that.data.message[i].I_favortie = true;
@@ -72,7 +66,7 @@ Page({
             tid: e.currentTarget.dataset.id,
             cancle: 'false'
           };
-          util.enshrine(param, function (res) {
+          util.enshrine(param, function(res) {
             console.log('取消收藏', res);
             that.data.message[i].I_favortie = false;
             wx.showToast({
@@ -92,7 +86,7 @@ Page({
       }
     }
   },
-  setLikeClick: function (e) {
+  setLikeClick: function(e) {
 
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
@@ -101,14 +95,14 @@ Page({
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
-    util.setLike(param, function (res) {
+    util.setLike(param, function(res) {
       console.log('点击点赞', res);
       wx.showToast({
         title: '点赞成功',
-        icon:'none',
-        duration:2000
+        icon: 'none',
+        duration: 2000
       })
-      for (let i in that.data.message) {
+      for (var i in that.data.message) {
         if (that.data.message[i].id == res.itemid) {
           that.data.message[i].I_agree = true;
           that.data.message[i].like++;
@@ -121,14 +115,14 @@ Page({
 
   },
 
-  Loading: function () {
+  Loading: function() {
 
     var param = {
       userid: wx.getStorageSync('UserInfo').userid.userid,
       _token: wx.getStorageSync('UserInfo')._token,
       inviter_userid: that.data.userid
     };
-    util.getBuyInvited(param, function (res) {
+    util.getBuyInvited(param, function(res) {
       console.log('邀请', res);
     }, null)
 
@@ -137,7 +131,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
 
     var scroll_width = parseInt(app.globalData.SystemInfo.windowWidth * 471 / 750);
@@ -159,7 +153,7 @@ Page({
 
   },
 
-  slideshowClick: function (e) {
+  slideshowClick: function(e) {
     console.log(e.currentTarget.dataset.id, e.currentTarget.dataset.mid, e.currentTarget.dataset.userid, e.currentTarget.dataset.linktype);
     switch (e.currentTarget.dataset.linktype) {
       case 1:
@@ -183,15 +177,15 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    that=this
+  onReady: function() {
+    that = this
     that.Textile_headlines();
   },
 
-  Textile_headlines:function(){  
-    util.InfoList({}, function (res) {
+  Textile_headlines: function() {
+    util.InfoList({}, function(res) {
       console.log('根据条件查询资讯列表', res);
-      for (let i in res.data) {
+      for (var i in res.data) {
         that.data.information_list.push({
           title: res.data[i].title,
         })
@@ -202,13 +196,13 @@ Page({
     }, null)
   },
 
-  getAllList: function () {
+  getAllList: function() {
     console.log("加载全部信息中")
 
     if (that.data.all_next_page)
       util.getAllList({
         page: that.data.all_next_page
-      }, function (ret) {
+      }, function(ret) {
         console.log("全部列表", ret);
         var messageALL = [];
         for (var i in ret.data) {
@@ -219,9 +213,9 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].user.truename, //用户姓名
-              userid: ret.data[i].businesscard.userid,//userid
+              userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
-              mobile: ret.data[i].businesscard.mobile,//电话
+              mobile: ret.data[i].businesscard.mobile, //电话
               demand: ret.data[i].mid == 5 ? '供应' : ret.data[i].mid == 6 ? '求购' : ret.data[i].mid == 88 ? '纺机' : "未知", //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
               lableList: ret.data[i].tags,
@@ -230,22 +224,22 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                    message_Image: ret.data[i].thumb
+                  },
+                  {
+                    message_Image: ret.data[i].thumb1
+                  },
+                  {
+                    message_Image: ret.data[i].thumb2
+                  }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
-              favorite: ret.data[i].favorite,//收藏
+              favorite: ret.data[i].favorite, //收藏
               like: ret.data[i].agree //点赞
-            
+
             })
         }
         console.log('排序前', messageALL)
@@ -262,12 +256,12 @@ Page({
       }, null)
   },
 
-  getSellList: function () {
+  getSellList: function() {
 
     if (that.data.sell_next_page)
       util.getSellList({
         page: that.data.sell_next_page
-      }, function (ret) {
+      }, function(ret) {
         console.log("供应列表", ret);
         var sellList = [];
         for (var i in ret.data) {
@@ -278,9 +272,9 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].user.truename, //用户姓名
-              userid: ret.data[i].businesscard.userid,//userid
+              userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
-              mobile: ret.data[i].businesscard.mobile,//电话
+              mobile: ret.data[i].businesscard.mobile, //电话
               demand: '供应', //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
               lableList: ret.data[i].tags,
@@ -289,20 +283,20 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                    message_Image: ret.data[i].thumb
+                  },
+                  {
+                    message_Image: ret.data[i].thumb1
+                  },
+                  {
+                    message_Image: ret.data[i].thumb2
+                  }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
-              favorite: ret.data[i].favorite,//收藏
+              favorite: ret.data[i].favorite, //收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -313,15 +307,15 @@ Page({
           sell_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
         that.changeMessage();
-      }, null)
+        }, null, that.data.sellList.length>0)
   },
 
-  getBuyList: function () {
+  getBuyList: function() {
 
     if (that.data.buy_next_page)
       util.getBuyList({
         page: that.data.buy_next_page
-      }, function (ret) {
+      }, function(ret) {
         console.log("求购列表", ret);
         var buyList = [];
         for (var i in ret.data) {
@@ -332,9 +326,9 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].businesscard.truename, //用户姓名
-              userid: ret.data[i].businesscard.userid,//userid
+              userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
-              mobile: ret.data[i].businesscard.mobile,//电话
+              mobile: ret.data[i].businesscard.mobile, //电话
               demand: '求购', //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
               lableList: ret.data[i].tags,
@@ -343,20 +337,20 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                    message_Image: ret.data[i].thumb
+                  },
+                  {
+                    message_Image: ret.data[i].thumb1
+                  },
+                  {
+                    message_Image: ret.data[i].thumb2
+                  }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
-              favorite: ret.data[i].favorite,//收藏
+              favorite: ret.data[i].favorite, //收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -368,15 +362,15 @@ Page({
         })
 
         that.changeMessage();
-      }, null)
+        }, null, that.data.buyList.length > 0)
   },
 
-  getFJMYList: function () {
+  getFJMYList: function() {
 
     if (that.data.fjmy_next_page)
       util.getFJMYList({
         page: that.data.fjmy_next_page
-      }, function (ret) {
+      }, function(ret) {
         console.log("纺机列表", ret);
         var fjmyList = [];
         for (var i in ret.data) {
@@ -387,9 +381,9 @@ Page({
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
               icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
               name: ret.data[i].businesscard.truename, //用户姓名
-              userid: ret.data[i].businesscard.userid,//userid
+              userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
-              mobile: ret.data[i].businesscard.mobile,//电话
+              mobile: ret.data[i].businesscard.mobile, //电话
               demand: '纺机', //发布类别  ()
               company: ret.data[i].businesscard.company, //公司
               lableList: ret.data[i].tags,
@@ -398,20 +392,20 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                    message_Image: ret.data[i].thumb
+                  },
+                  {
+                    message_Image: ret.data[i].thumb1
+                  },
+                  {
+                    message_Image: ret.data[i].thumb2
+                  }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
-              favorite: ret.data[i].favorite,//收藏
+              favorite: ret.data[i].favorite, //收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -424,10 +418,10 @@ Page({
         })
 
         that.changeMessage();
-      }, null)
+        }, null, that.data.fjmyList.length > 0)
   },
 
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     console.log(e)
     app.globalData.wx_userInfo = e.detail.userInfo
     app.login(app);
@@ -437,7 +431,7 @@ Page({
     })
   },
 
-  classifyClick: function (e) {
+  classifyClick: function(e) {
 
     console.log(e.currentTarget.dataset.id);
     for (var i in that.data.classify) {
@@ -448,7 +442,7 @@ Page({
   },
 
   // 供应信息 采购大厅 二手设备 签到
-  classifyClick: function (e) {
+  classifyClick: function(e) {
 
     if (e.currentTarget.dataset.id != 4) {
       wx.navigateTo({
@@ -456,11 +450,11 @@ Page({
       })
     } else {
       if (wx.getStorageSync('UserInfo')) {
-        let param = {
+        var param = {
           userid: wx.getStorageSync('UserInfo').userid,
           _token: wx.getStorageSync('UserInfo')._token,
         };
-        util.signIn(param, function (ret) {
+        util.signIn(param, function(ret) {
           console.log(ret)
           wx.showToast({
             title: '签到成功',
@@ -478,23 +472,23 @@ Page({
   },
 
   //联系客服
-  callClick: function () {
+  callClick: function() {
     wx.makePhoneCall({
       phoneNumber: '1340000' //仅为示例，并非真实的电话号码
     })
   },
 
   //联系商家
-  phoneClick: function (e) {
+  phoneClick: function(e) {
 
     // var phoneNumber =e.currentTarget.dataset.mobile
     // console.log(888, phoneNumber )
     wx.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.mobile  //仅为示例，并非真实的电话号码
+      phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
     })
   },
   //排序
-  sort: function (messageALL) {
+  sort: function(messageALL) {
     var arr = messageALL;
     console.log("排序", arr);
     for (var i = 0; i < arr.length; i++)
@@ -524,7 +518,7 @@ Page({
   },
 
   //信息栏选择
-  selectClick: function (e) {
+  selectClick: function(e) {
     that.setData({
       nn: e.target.dataset.nn
     })
@@ -533,7 +527,7 @@ Page({
   },
 
   //根据that.data.nn改变展示内容
-  changeMessage: function () {
+  changeMessage: function() {
     if (that.data.nn == 1) {
       var messageALL = that.data.messageALL;
 
@@ -581,26 +575,25 @@ Page({
   },
 
   //查看详情
-  see_details_click: function (e) {
+  see_details_click: function(e) {
     wx.navigateTo({
       url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
     })
   },
 
   /**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-  onPullDownRefresh: function () {
-    var page=1;
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+      wx.stopPullDownRefresh();
+    var page = 1;
     that.reload()
     console.log('下拉刷新');
-    app.showLodView();
-    this.requestNetAllData(page,1);
-    wx.stopPullDownRefresh();
+    this.requestNetAllData(page, 1);
   },
 
   //触底加载
-  onReachBottom: function (e) {
+  onReachBottom: function(e) {
     console.log("触底加载", that.data.nn)
     switch (that.data.nn) {
       case '1':
@@ -620,23 +613,23 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '我分享纱线网小程序',
       path: 'pages/index/index',
-      success: function (res) {
+      success: function(res) {
         // 转发成功
         wx.showToast({
           title: '分享成功',
           duration: 1500
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         // 转发失败
       }
     }
   },
-  reload: function () {
+  reload: function() {
 
     //初始数据
     that.setData({
@@ -691,25 +684,13 @@ Page({
       nn: '1'
     });
 
-    //获取
-    that.getAllList();
-    setTimeout(function () {
-      that.getSellList();
-    }, 300)
-    setTimeout(function () {
-      that.getBuyList();
-    }, 500)
-    setTimeout(function () {
-      that.getFJMYList();
-    }, 700)
-
-
+    
     app = getApp();
 
 
     // that.Loading();
     //首页推荐
-    util.homepage_recommend({}, function (ret) {
+    util.homepage_recommend({}, function(ret) {
       console.log(222222, ret);
       var recommend_store = that.data.recommend_store;
       for (var i in ret) {
@@ -725,13 +706,13 @@ Page({
       that.setData({
         recommend_store: recommend_store,
       })
-      setTimeout(function () {
+      setTimeout(function() {
         that.nextScroll()
       }, 5000)
     })
 
     //首页轮播图
-    util.getBanner({}, function (ret) {
+    util.getBanner({}, function(ret) {
       // console.log(ret);
       var slideshow = that.data.slideshow;
       for (var i in ret) {
@@ -747,16 +728,22 @@ Page({
         slideshow: slideshow
       })
     }, null)
+    
+    //获取
+    that.getAllList();
+    that.getSellList();
+    that.getBuyList();
+    that.getFJMYList();
 
   },
   //点击头像查看名片
-  messageList_click: function (e) {
+  messageList_click: function(e) {
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
   },
 
-  scroll: function (e) { //有用
+  scroll: function(e) { //有用
     console.log(e)
 
     if (that.data.timer) {
@@ -765,7 +752,7 @@ Page({
     }
 
 
-    var timer = setTimeout(function () {
+    var timer = setTimeout(function() {
       // console.log("自动滚动")
       that.nextScroll()
     }, 5000)
@@ -782,8 +769,8 @@ Page({
     })
   },
 
-  nextScroll: function () { //有用
-    
+  nextScroll: function() { //有用
+
     var index = (that.data.scroll_index ? that.data.scroll_index : 0) + 1;
     var scrollLeft = index * that.data.scroll_width
     if (index >= that.data.recommend_store.length)
@@ -796,19 +783,19 @@ Page({
 
   },
   /**
-     * 生命周期函数--监听页面显示
-     */
-  onShow: function () {
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
     if (that.data.recommend_store.length > 0)
-    setTimeout(function () {
-      that.nextScroll()
-    }, 5000)
+      setTimeout(function() {
+        that.nextScroll()
+      }, 5000)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
     if (that.data.timer) {
       clearTimeout(that.data.timer);
       console.log("销毁计时器")

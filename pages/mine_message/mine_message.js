@@ -1,7 +1,7 @@
 const app = getApp();
 const util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
-let that;
+var that;
 Page({
 
   /**
@@ -38,7 +38,7 @@ Page({
       console.log(1111,ret);
     
       for (var i in ret) {
-        let article = ret[i].content;
+        var article = ret[i].content;
         if (article) {
             WxParse.wxParse('article', 'html', article, that, 5);
            message.push({

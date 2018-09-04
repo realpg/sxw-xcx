@@ -326,7 +326,6 @@ Page({
    */
   onReady: function() {
     that.refresh()
-
   },
 
   /**

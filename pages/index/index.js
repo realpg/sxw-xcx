@@ -591,8 +591,12 @@ Page({
  * 页面相关事件处理函数--监听用户下拉动作
  */
   onPullDownRefresh: function () {
+    var page=1;
     that.reload()
     console.log('下拉刷新');
+    app.showLodView();
+    this.requestNetAllData(page,1);
+    wx.stopPullDownRefresh();
   },
 
   //触底加载

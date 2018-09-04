@@ -36,6 +36,7 @@ page{
   width: 130rpx;
 }
 .jiantouImg{
+  margin-top: 5rpx;
   width: 18rpx;
   height: 28rpx;
 }
@@ -149,8 +150,9 @@ background: #fff;
   margin-top: 20rpx;
   display: flex;
   justify-content: space-between;
-  line-height: 90rpx;
+  height: 90rpx;
   font-size: 30rpx;
+  align-items: center;
 }
 .generalize{
   margin-top: 15rpx;
@@ -176,11 +178,19 @@ background: #fff;
   padding: 2rpx 10rpx;
 }
 
+.agreement_css{
+  margin-left: 5%;
+  display: flex;
+  height: 70rpx;
+  align-items: center
+}
+.agreement{
+  font-size: 26rpx;
+}
 .Release_notes{
   color: #01C46C;
-  margin-left: 5%;
-  line-height: 40rpx;
-  font-size: 30rpx;
+  line-height: 70rpx;
+  font-size: 26rpx;
 }
 
 .submit{

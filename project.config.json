@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "广告位",
-					"pathName": "pages/information/information",
+					"pathName": "pages/release_supply_information/release_supply_information",
 					"query": ""
 				}
 			]

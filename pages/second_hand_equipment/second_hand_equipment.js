@@ -18,7 +18,7 @@ Page({
       tags: [],
       thumbs: []
     },
-
+    fbxy: true,
     hint_details: '请认真发布信息，发布的内容尽可能描述完整。如支数、库存数量、关键指标的信息，切勿虚报乱写加入黑名单并通报全网。',
 
     objectArray: [],
@@ -208,7 +208,13 @@ Page({
     })
 
   },
-
+  fbxyClick: function () {
+    var that = this;
+    that.data.fbxy = !that.data.fbxy;
+    that.setData({
+      fbxy: that.data.fbxy
+    })
+  },
   submitClick: function() {
 
     var that = this
@@ -220,7 +226,15 @@ Page({
     that.setData({
       content: content
     })
-
+    if (!that.data.fbxy) {
+      console.log(55555555555555555555)
+      wx.showToast({
+        icon: 'none',
+        title: '未接受发布协议',
+        duration: 1500
+      })
+      return
+    }
     if (content.catid && content.address &&
       content.content &&
       content.tags.length > 0 &&

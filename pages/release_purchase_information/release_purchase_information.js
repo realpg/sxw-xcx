@@ -28,7 +28,8 @@ Page({
     gold_coin_balance: '5',
     gold_coin_pay: '1',
     lable_color: '',
-    lable_background: ''//#01C46C
+    lable_background: '',//#01C46C,
+    fbxy: true,
   },
 
   getEdit: function () {
@@ -204,7 +205,13 @@ Page({
     })
 
   },
-
+  fbxyClick: function () {
+    var that = this;
+    that.data.fbxy = !that.data.fbxy;
+    that.setData({
+      fbxy: that.data.fbxy
+    })
+  },
   submitClick: function () {
 
     var that = this
@@ -216,7 +223,15 @@ Page({
     that.setData({
       content: content
     })
-
+    if (!that.data.fbxy) {
+      console.log(55555555555555555555)
+      wx.showToast({
+        icon: 'none',
+        title: '未接受发布协议',
+        duration: 1500
+      })
+      return
+    }
     if (content.catid && content.address
       && content.content
       && content.tags.length > 0

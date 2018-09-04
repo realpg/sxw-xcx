@@ -39,7 +39,7 @@
 <view class='labelList'>
   <view class='lable' wx:for='{{lable}}'>
     <view class='{{item.setlableChoose?"lable_border1":"lable_border"}}' data-id='{{item.id}}' bindtap='lableClick'>
-      <view  class='lable_css'  data-id='{{item.id}}'>{{item.lable_Info}} </view>
+      <view class='lable_css' data-id='{{item.id}}'>{{item.lable_Info}} </view>
     </view>
   </view>
 </view>
@@ -66,28 +66,40 @@
 
 <!--个人信息 -->
 <view class='personal_data' bindtap='personal_data_click'>
-  <view class='personal'> <text style='color:red;'>*</text>个人信息详情</view>
-  <view>
-    <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
-  </view>
+  <view class='personal'>
+    <text style='color:red;'>*</text>个人信息详情</view>
+
+  <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
+
 </view>
 
 <!--我要推广 -->
 <view class='personal_data generalize' bindtap='personal_click'>
   <view class='personal'> 我要推广</view>
-  <view>
-    <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
-  </view>
+
+  <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
+
 </view>
 
 <!--金币-->
 <view class='gold_coin'>
-  <view class='gold_coin_balance'>我的余额：<text class='number' >{{gold_coin_balance}}</text></view>
-  <view class='gold_coin_balance'>本次扣除：<text class='number' >{{gold_coin_pay}}</text></view>
-  <view bindtap='acquireClick'><text class='acquire'>获取金币</text></view>
+  <view class='gold_coin_balance'>我的余额：
+    <text class='number'>{{gold_coin_balance}}</text>
+  </view>
+  <view class='gold_coin_balance'>本次扣除：
+    <text class='number'>{{gold_coin_pay}}</text>
+  </view>
+  <view bindtap='acquireClick'>
+    <text class='acquire'>获取金币</text>
+  </view>
 </view>
 
-<view class='Release_notes' bindtap='Release_notes_Click'>发布须知</view>
+<view class='agreement_css'>
+    <checkbox id="checkbox1" value="cb" bindtap='fbxyClick' checked="{{fbxy}}" style='zoom:80%'/>
+<!-- <label class="checkbox" for="checkbox1"></label> -->
+  <text class='agreement'>同意并接受</text> 
+  <text class='Release_notes' bindtap='Release_notes_Click'>《发布协议》</text>
 
+</view>
 <!--提交发布-->
 <view class='submit' bindtap='submitClick'>提交发布</view>

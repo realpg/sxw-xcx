@@ -67,17 +67,17 @@
 <!--个人信息 -->
 <view class='personal_data' bindtap='personal_data_click'>
   <view class='personal'> <text style='color:red;'>*</text>个人信息详情</view>
-  <view>
+
     <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
-  </view>
+  
 </view>
 
 <!--我要推广 -->
 <view class='personal_data generalize' bindtap='personal_click'>
   <view class='personal'> 我要推广</view>
-  <view>
+ 
     <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
-  </view>
+ 
 </view>
 
 <!--金币-->
@@ -87,7 +87,13 @@
   <view bindtap='acquireClick'><text class='acquire'>获取金币</text></view>
 </view>
 
-<view class='Release_notes' bindtap='Release_notes_Click'>发布须知</view>
+<view class='agreement_css'>
+    <checkbox id="checkbox1" value="cb" bindtap='fbxyClick' checked="{{fbxy}}" style='zoom:80%'/>
+<!-- <label class="checkbox" for="checkbox1"></label> -->
+  <text class='agreement'>同意并接受</text> 
+  <text class='Release_notes' bindtap='Release_notes_Click'>《发布协议》</text>
+
+</view>
 
 <!--提交发布-->
 <view class='submit' bindtap='submitClick'>提交发布</view>

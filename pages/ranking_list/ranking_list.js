@@ -72,9 +72,10 @@ let that;
      };
      util.todayranking(param, function (ret) {
        console.log('日排行榜', ret)
+        var list=ret?ret:[];
        that.setData({
-         business_card: ret,
-         todayList: ret
+         business_card: list,
+         todayList: list
        })
      });
 
@@ -106,9 +107,10 @@ let that;
      };
      util.todayranking(param, function (ret) {
        console.log('月排行榜', ret)
+       var list = ret?ret:[]
         that.setData({
-          // business_card: ret
-          monthList: ret
+         business_card: list,
+          monthList: list
         })
      });
 
@@ -127,7 +129,6 @@ let that;
     */
    onReady: function() {
      that.Loading();
-
      that.weekraking();
      that.monthraking();
    },

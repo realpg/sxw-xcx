@@ -29,7 +29,7 @@ Page({
     fjmyList: []
   },
   //信息栏选择
-  selectClick: function(e) {
+  selectClick: function (e) {
     var that = this;
     // console.log(e)
     if (e.target.dataset.nn == 1) {
@@ -71,42 +71,42 @@ Page({
   },
 
   //编辑
-  redactclick: function(e) {
-    console.log(1314, e.currentTarget.dataset)
+  redactclick: function (e) {
+    console.log("编辑", e.currentTarget.dataset)
     if (e.currentTarget.dataset.mid == 5) {
       console.log(51111111111111, e.currentTarget.dataset.mid)
       wx.navigateTo({
-        url: '../release_supply_information/release_supply_information?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
+        url: '../release_supply_information/release_supply_information?itemid=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
       })
     } else if (e.currentTarget.dataset.mid == 6) {
       console.log(61111111111111, e.currentTarget.dataset.mid)
       wx.navigateTo({
-        url: '../release_purchase_information/release_purchase_information?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.id,
+        url: '../release_purchase_information/release_purchase_information?itemid=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.id,
       })
     } else {
       console.log(88111111111111, e.currentTarget.dataset.mid)
       wx.navigateTo({
-        url: '../second_hand_equipment/second_hand_equipment?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
+        url: '../second_hand_equipment/second_hand_equipment?itemid=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
       })
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     that = this;
     that.setData({
       business_card: wx.getStorageSync('UserInfo')
     })
 
-    util.sellList_mine({}, function(ret) {
+    util.sellList_mine({}, function (ret) {
       console.log(11111111111111, ret);
       var sellList = that.data.sellList;
       for (var i in ret.data) {
@@ -124,14 +124,14 @@ Page({
             details: ret.data[i].introduce, //信息详情描述
             message_Img: //详情图片  后续跟进
               [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                message_Image: ret.data[i].thumb
+              },
+              {
+                message_Image: ret.data[i].thumb1
+              },
+              {
+                message_Image: ret.data[i].thumb2
+              }
               ],
             time: ret.data[i].adddate, //发布时间
             address: ret.data[i].address, //货物存放地
@@ -153,8 +153,8 @@ Page({
     that.getFJMYList();
 
   },
-  getBuyList: function() {
-    util.buyList_mine({}, function(ret) {
+  getBuyList: function () {
+    util.buyList_mine({}, function (ret) {
       console.log(11111111111111, ret);
       var buyList = that.data.buyList;
       for (var i in ret.data) {
@@ -172,14 +172,14 @@ Page({
             details: ret.data[i].introduce, //信息详情描述
             message_Img: //详情图片  后续跟进
               [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                message_Image: ret.data[i].thumb
+              },
+              {
+                message_Image: ret.data[i].thumb1
+              },
+              {
+                message_Image: ret.data[i].thumb2
+              }
               ],
             time: ret.data[i].adddate, //发布时间
             address: ret.data[i].address, //货物存放地
@@ -198,8 +198,8 @@ Page({
       })
     }, null)
   },
-  getFJMYList: function() {
-    util.fjmyList_mine({}, function(ret) {
+  getFJMYList: function () {
+    util.fjmyList_mine({}, function (ret) {
       console.log(11111111111111, ret);
       var fjmyList = that.data.fjmyList;
       for (var i in ret.data) {
@@ -217,14 +217,14 @@ Page({
             details: ret.data[i].introduce, //信息详情描述
             message_Img: //详情图片  后续跟进
               [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                message_Image: ret.data[i].thumb
+              },
+              {
+                message_Image: ret.data[i].thumb1
+              },
+              {
+                message_Image: ret.data[i].thumb2
+              }
               ],
             time: ret.data[i].adddate, //发布时间
             address: ret.data[i].address, //货物存放地
@@ -247,21 +247,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
@@ -269,25 +269,25 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: '我分享了' + that.data.business_card.truename + '的名片',
       path: 'pages/store_particulars/store_particulars?id=' + that.data.id,
-      success: function(res) {
+      success: function (res) {
         // 转发成功
         wx.showToast({
           title: '分享成功',
           duration: 1500
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 转发失败
       }
     }

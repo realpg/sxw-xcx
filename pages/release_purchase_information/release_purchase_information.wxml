@@ -5,11 +5,11 @@
 <!--类别 所在地-->
 <view class="section">
   <!--类别-->
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{objectArray}}" range-key="name">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{categories}}" range-key="name">
     <view class="picker">
       <view view class='picker_css'>
         <text class='sort sort_css' decode='emsp'>类&emsp;别:</text>
-        <input class='select_input' type='text' placeholder='请选择' value='{{objectArray[index].name}}' disabled='disabled'></input>
+        <input class='select_input' type='text' placeholder='请选择' value='{{categories[index].name}}' disabled='disabled'></input>
       </view>
       <view>
         <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
@@ -17,11 +17,15 @@
     </view>
   </picker>
 
+  <picker>
+  
+  </picker>
+
   <!--所在地-->
   <view class="address">
     <view view class='picker_css'>
       <text class='sort' decode='emsp'>所在地:&emsp;</text>
-      <input class='Address_input' type='text' placeholder='请输入地址' bindblur="changeAddress"></input>
+      <input class='Address_input' type='text' placeholder='请输入地址' bindblur="changeAddress" value='{{content.address}}'></input>
     </view>
   </view>
 </view>
@@ -30,7 +34,7 @@
 <view class='content_description'>
   <view class='content_description_title'>内容描述</view>
   <view class='content_description_frame'>
-    <textarea class='content_description_frame_css' maxlength='-1' placeholder-style='font-size:28rpx;line-height:50rpx;' placeholder='请输入您的信息,建议每天刷新已发布的信息,提高信息的曝光率。点击：我的—已发布信息—刷新。' bindblur="changeContent">
+    <textarea class='content_description_frame_css' maxlength='-1' placeholder-style='font-size:28rpx;line-height:50rpx;' placeholder='请输入您的信息,建议每天刷新已发布的信息,提高信息的曝光率。点击：我的—已发布信息—刷新。' bindblur="changeContent" value="{{content.content}}">
     </textarea>
   </view>
 </view>
@@ -39,7 +43,7 @@
 <view class='labelList'>
   <view class='lable' wx:for='{{lable}}'>
     <view class='{{item.setlableChoose?"lable_border1":"lable_border"}}' data-id='{{item.id}}' bindtap='lableClick'>
-      <view  class='lable_css'  data-id='{{item.id}}'>{{item.lable_Info}} </view>
+      <view class='lable_css' data-id='{{item.id}}'>{{item.lable_Info}} </view>
     </view>
   </view>
 </view>
@@ -49,13 +53,13 @@
 
 <view class='AddImgList'>
   <view class='ThatMessageImgList'>
-    <view class='ThatMessageImg' wx:for='{{MessageImgList}}' data-index='id'>
-      <image class='MessageImg' bindtap='previewImClick' data-id='{{item.id}}' src='{{item.MessageImg}}' mode='aspectFill'></image>
+    <view class='ThatMessageImg' wx:for='{{ImageList}}' wx:for-index='imgIndex' data-index='id'>
+      <image class='MessageImg' bindtap='previewImClick' src='{{item}}' mode='aspectFill'></image>
 
-      <image class='DelImg' bindtap='DelClick' data-id='{{item.id}}' src='../../images/index/del.png'></image>
+      <image class='DelImg' bindtap='DelClick' data-index='{{imgIndex}}' src='../../images/index/del.png'></image>
     </view>
 
-    <view class='AddImgFunction' wx-if='{{MessageImgList.length<9}}'>
+    <view class='AddImgFunction' wx-if='{{ImageList.length<9}}'>
       <view class='AddImgClick' bindtap='AddImgClick'>
         <image class='AddImg' src='../../images/index/add1.png' mode='widthFix'></image>
       </view>
@@ -66,25 +70,32 @@
 
 <!--个人信息 -->
 <view class='personal_data' bindtap='personal_data_click'>
-  <view class='personal'> <text style='color:red;'>*</text>个人信息详情</view>
+  <view class='personal'>
+    <text style='color:red;'>*</text>个人信息详情</view>
 
-    <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
-  
+  <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
+
 </view>
 
 <!--我要推广 -->
 <view class='personal_data generalize' bindtap='personal_click'>
   <view class='personal'> 我要推广</view>
- 
-    <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
- 
+
+  <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
+
 </view>
 
 <!--金币-->
 <view class='gold_coin'>
-  <view class='gold_coin_balance'>我的余额：<text class='number' >{{gold_coin_balance}}</text></view>
-  <view class='gold_coin_balance'>本次扣除：<text class='number' >{{gold_coin_pay}}</text></view>
-  <view bindtap='acquireClick'><text class='acquire'>获取金币</text></view>
+  <view class='gold_coin_balance'>我的余额：
+    <text class='number'>{{gold_coin_balance}}</text>
+  </view>
+  <view class='gold_coin_balance'>本次扣除：
+    <text class='number'>{{gold_coin_pay}}</text>
+  </view>
+  <view bindtap='acquireClick'>
+    <text class='acquire'>获取金币</text>
+  </view>
 </view>
 
 <view class='agreement_css'>
@@ -94,6 +105,5 @@
   <text class='Release_notes' bindtap='Release_notes_Click'>《发布协议》</text>
 
 </view>
-
 <!--提交发布-->
 <view class='submit' bindtap='submitClick'>提交发布</view>

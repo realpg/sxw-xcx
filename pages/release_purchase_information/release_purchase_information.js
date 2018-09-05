@@ -1,45 +1,48 @@
 // pages/release_supply_information/release_supply_information.js
 const app = getApp();
+
 const util = require('../../utils/util.js');
-let count;
+var count;
+var that;
+
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    content://页面内容
+    content: //页面内容
       {
         catid: null,
         address: null,
         content: null,
         tags: [],
-        thumbs: []
+        thumbs: [],
+
       },
+    fbxy: true,
 
     hint_details: '请认真发布信息，发布的内容尽可能描述完整。如支数、库存数量、关键指标的信息，切勿虚报乱写加入黑名单并通报全网。',
-
-    objectArray: [],
+    categories: [],
     index: '',
-
     lable: [],
-
-    MessageImgList: [],
-
+    ImageList: [],
     gold_coin_balance: '5',
     gold_coin_pay: '1',
-    lable_color: '',
-    lable_background: '',//#01C46C,
-    fbxy: true,
   },
 
   getEdit: function () {
     var that = this;
     //获得类别和标签
-    util.buyEdit_get({}, function (ret) {
+    var param = {}
+    if (that.data.itemid) {
+      param.itemid = that.data.itemid
+    }
+    util.buyEdit_get(param, function (ret) {
       console.log("求购编辑所需内容", ret);
-      var objectArray = [];
+      var categories = [];
       for (var i in ret.catids) {
-        objectArray.push({
+        categories.push({
           id: ret.catids[i].catid,
           name: ret.catids[i].catname
         })
@@ -54,12 +57,28 @@ Page({
       }
 
       that.setData({
-        objectArray: objectArray,
+        categories: categories,
         lable: lable
       })
+
+      if (typeof (ret.item) != 'undefined') {
+        that.setData({
+          content: //页面内容
+            {
+              catid: ret.item.catid,
+              address: ret.item.address,
+              content: ret.item.content,
+              tags: ret.item.tag.split(','),
+              thumbs: ret.item.thumbs,
+            }
+        })
+        that.sync();
+      }
     }, null)
 
-    util.getSystemKeyValue({ id: 4 }, function (ret) {
+    util.getSystemKeyValue({
+      id: 4
+    }, function (ret) {
       that.setData({
         gold_coin_pay: ret.value,
         gold_coin_balance: app.globalData.userInfo.credit
@@ -70,32 +89,28 @@ Page({
 
   //类别选择
   bindPickerChange: function (e) {
-
-
     var content = this.data.content;
-    content.catid = this.data.objectArray[e.detail.value].id
+    content.catid = this.data.categories[e.detail.value].id
     this.setData({
       index: e.detail.value,
       content: content
     })
-
   },
+  //地址
   changeAddress: function (e) {
-
     var content = this.data.content;
     content.address = e.detail.value
     this.setData({
       content: content
     })
   },
+  //内容
   changeContent: function (e) {
-
     var content = this.data.content;
     content.content = e.detail.value
     this.setData({
       content: content
     })
-
     console.log(content);
   },
 
@@ -105,9 +120,8 @@ Page({
     // console.log(e.currentTarget.dataset.id)
     var content = this.data.content;
     content.tags = []
-
-    let arr = that.data.lable;
-    for (let i in arr) {
+    var arr = that.data.lable;
+    for (var i in arr) {
       if (e.currentTarget.dataset.id == arr[i].id) {
         arr[i].setlableChoose = !arr[i].setlableChoose;
       }
@@ -120,7 +134,6 @@ Page({
       content: content
     })
     console.log(content, arr);
-
   },
   /**
    * 添加图片
@@ -128,13 +141,11 @@ Page({
 
   AddImgClick: function () {
     const that = this;
-    let b = [];
-
-    if (that.data.MessageImgList.length < 9) {
-      count = 9 - that.data.MessageImgList.length;
-      console.log('当前展示的图片数' + that.data.MessageImgList.length);
+    var b = [];
+    if (that.data.ImageList.length < 9) {
+      count = 9 - that.data.ImageList.length;
+      console.log('当前展示的图片数' + that.data.ImageList.length);
       console.log('还可添加的图片数' + count);
-
       wx.chooseImage({
         count: count, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -142,19 +153,14 @@ Page({
         success: function (res) {
           console.log(res, typeof (res.tempFiles[0]));
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          for (let i in res.tempFilePaths) {
+          for (var i in res.tempFilePaths) {
             util.uploadImage({
               file: res.tempFilePaths[i]
             }, function (ret) {
               console.log("上传成功", ret)
-              that.data.MessageImgList.push(
-                b = {
-                  id: that.data.MessageImgList[that.data.MessageImgList.length - 1] ? that.data.MessageImgList[that.data.MessageImgList.length - 1].id + 1 : 0,
-                  MessageImg: ret
-                }
-              );
+              that.data.ImageList.push(ret);
               that.setData({
-                MessageImgList: that.data.MessageImgList
+                ImageList: that.data.ImageList
               })
             }, null);
 
@@ -173,38 +179,26 @@ Page({
     // current: '', // 当前显示图片的http链接
     // urls: [] // 需要预览的图片http链接列表
     // })
-    var id = event.currentTarget.dataset.id
-    var getArr = that.data.MessageImgList;
-    for (var i in getArr) {
-      if (id == getArr[i].id) {
-        // that.setData({
-        // popupBc:'block',
-        // showPic: getArr[i].companyProduct
-        // })
-        // console.log(getArr[i])
-        wx.previewImage({
-          // current: getArr[i].id, // 当前显示图片的http链接
-          urls: [getArr[i].MessageImg] // 需要预览的图片http链接列表
-        })
-
-      }
-    }
+    var current = event.currentTarget.dataset.src
+    var urls = that.data.ImageList;
+    wx.previewImage({
+      current: current,
+      urls: urls // 需要预览的图片http链接列表
+    })
   },
   //删除图片
   DelClick: function (e) {
     const that = this;
-    let MIL = that.data.MessageImgList;
-    for (let i in MIL) {
-      if (e.currentTarget.dataset.id == MIL[i].id) {
-        MIL.splice(i, 1)
-      }
-    }
+    var MIL = that.data.ImageList;
+
+    MIL.splice(e.currentTarget.dataset.index, 1)
 
     that.setData({
-      MessageImgList: MIL
+      ImageList: MIL
     })
 
   },
+
   fbxyClick: function () {
     var that = this;
     that.data.fbxy = !that.data.fbxy;
@@ -213,12 +207,11 @@ Page({
     })
   },
   submitClick: function () {
-
-    var that = this
+    var that = this;
     var content = that.data.content;
     content.thumbs = ""
-    for (var i in that.data.MessageImgList) {
-      content.thumbs = content.thumbs + (that.data.MessageImgList[i].MessageImg) + ",";
+    for (var i in that.data.ImageList) {
+      content.thumbs = content.thumbs + (that.data.ImageList[i]) + ",";
     }
     that.setData({
       content: content
@@ -232,24 +225,27 @@ Page({
       })
       return
     }
-    if (content.catid && content.address
-      && content.content
-      && content.tags.length > 0
-      // && content.thumbs.length > 0
-      && that.data.gold_coin_balance >= that.data.gold_coin_pay
-      && app.globalData.userInfo.groupid == '6'
+    if (content.catid && content.address &&
+      content.content &&
+      content.tags.length > 0 &&
+      content.thumbs.length > 0 &&
+      that.data.gold_coin_balance >= that.data.gold_coin_pay &&
+      app.globalData.userInfo.groupid == '6'
       // && app.globalData.userInfo.mobile
     ) {
       var param = {
-        title: "求购信息",
+        title: "供应信息",
         introduce: content.content.length > 100 ? content.content.substring(0, 100) + "……" : content.content,
         catid: content.catid,
         content: content.content,
-        thumb: content.thumbs,
+        thumb: content.thumbs.replace(/^,+/, "").replace(/,+$/, ""),
         telephone: app.globalData.userInfo.mobile ? app.globalData.userInfo.mobile : "100000000",
         address: content.address,
         tag: content.tags.join(",")
       };
+      if (that.data.itemid) {
+        param.itemid = that.data.itemid
+      }
       console.log('验证通过', param);
       util.buyEdit_post(param, function (ret) {
         console.log(ret);
@@ -289,12 +285,11 @@ Page({
     })
   },
   //我要推广
-  personal_click:function(){
+  personal_click: function () {
     wx.navigateTo({
       url: '../mine_promotion/mine_promotion',
     })
   },
-
   //获取金币
   acquireClick: function () {
     wx.navigateTo({
@@ -311,7 +306,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    console.log('参数', options)
+    if (options.itemid) {
+      that.setData({
+        itemid: options.itemid
+      })
+    }
   },
 
   /**
@@ -320,8 +321,6 @@ Page({
   onReady: function () {
     const that = this;
     that.getEdit();
-
-
   },
 
   /**
@@ -345,7 +344,12 @@ Page({
 
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
 
+  },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -358,6 +362,31 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+  sync: function () {
+    var index = 0;
+    for (var i in that.data.categories) {
+      if (that.data.categories[i].id == that.data.content.catid) {
+        index = i
+      }
+    }
+
+    var lable = that.data.lable
+    for (var i in that.data.lable) {
+      for (var j in that.data.content.tags) {
+        if (that.data.lable[i].id == that.data.content.tags[j])
+          that.data.lable[i].setlableChoose = true
+      }
+    }
+
+    var ImageList = that.data.content.thumbs ? that.data.content.thumbs.replace(/^,+/, "").replace(/,+$/, "").split(',') : [];
+
+    that.setData({
+      index: index,
+      lable: that.data.lable,
+      ImageList: ImageList
+    })
 
   }
 })

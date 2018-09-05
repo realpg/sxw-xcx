@@ -3,6 +3,7 @@ const app = getApp();
 
 const util = require('../../utils/util.js');
 var count;
+var that;
 
 Page({
 
@@ -17,15 +18,15 @@ Page({
       content: null,
       tags: [],
       thumbs: [],
-      
+
     },
     fbxy: true,
 
     hint_details: '请认真发布信息，发布的内容尽可能描述完整。如支数、库存数量、关键指标的信息，切勿虚报乱写加入黑名单并通报全网。',
-    objectArray: [],
+    categories: [],
     index: '',
     lable: [],
-    MessageImgList: [],
+    ImageList: [],
     gold_coin_balance: '5',
     gold_coin_pay: '1',
   },
@@ -33,11 +34,15 @@ Page({
   getEdit: function() {
     var that = this;
     //获得类别和标签
-    util.sellEdit_get({}, function(ret) {
+    var param = {}
+    if (that.data.itemid) {
+      param.itemid = that.data.itemid
+    }
+    util.sellEdit_get(param, function(ret) {
       console.log("求购编辑所需内容", ret);
-      var objectArray = [];
+      var categories = [];
       for (var i in ret.catids) {
-        objectArray.push({
+        categories.push({
           id: ret.catids[i].catid,
           name: ret.catids[i].catname
         })
@@ -52,9 +57,23 @@ Page({
       }
 
       that.setData({
-        objectArray: objectArray,
+        categories: categories,
         lable: lable
       })
+
+      if (typeof(ret.item) != 'undefined') {
+        that.setData({
+          content: //页面内容
+          {
+            catid: ret.item.catid,
+            address: ret.item.address,
+            content: ret.item.content,
+            tags: ret.item.tag.split(','),
+            thumbs: ret.item.thumbs,
+          }
+        })
+        that.sync();
+      }
     }, null)
 
     util.getSystemKeyValue({
@@ -71,7 +90,7 @@ Page({
   //类别选择
   bindPickerChange: function(e) {
     var content = this.data.content;
-    content.catid = this.data.objectArray[e.detail.value].id
+    content.catid = this.data.categories[e.detail.value].id
     this.setData({
       index: e.detail.value,
       content: content
@@ -123,9 +142,9 @@ Page({
   AddImgClick: function() {
     const that = this;
     var b = [];
-    if (that.data.MessageImgList.length < 9) {
-      count = 9 - that.data.MessageImgList.length;
-      console.log('当前展示的图片数' + that.data.MessageImgList.length);
+    if (that.data.ImageList.length < 9) {
+      count = 9 - that.data.ImageList.length;
+      console.log('当前展示的图片数' + that.data.ImageList.length);
       console.log('还可添加的图片数' + count);
       wx.chooseImage({
         count: count, // 默认9
@@ -139,14 +158,9 @@ Page({
               file: res.tempFilePaths[i]
             }, function(ret) {
               console.log("上传成功", ret)
-              that.data.MessageImgList.push(
-                b = {
-                  id: that.data.MessageImgList[that.data.MessageImgList.length - 1] ? that.data.MessageImgList[that.data.MessageImgList.length - 1].id + 1 : 0,
-                  MessageImg: ret
-                }
-              );
+              that.data.ImageList.push(ret);
               that.setData({
-                MessageImgList: that.data.MessageImgList
+                ImageList: that.data.ImageList
               })
             }, null);
 
@@ -165,65 +179,52 @@ Page({
     // current: '', // 当前显示图片的http链接
     // urls: [] // 需要预览的图片http链接列表
     // })
-    var id = event.currentTarget.dataset.id
-    var getArr = that.data.MessageImgList;
-    for (var i in getArr) {
-      if (id == getArr[i].id) {
-        // that.setData({
-        // popupBc:'block',
-        // showPic: getArr[i].companyProduct
-        // })
-        // console.log(getArr[i])
-        wx.previewImage({
-          // current: getArr[i].id, // 当前显示图片的http链接
-          urls: [getArr[i].MessageImg] // 需要预览的图片http链接列表
-        })
-
-      }
-    }
+    var current = event.currentTarget.dataset.src
+    var urls = that.data.ImageList;
+    wx.previewImage({
+      current: current,
+      urls: urls // 需要预览的图片http链接列表
+    })
   },
   //删除图片
   DelClick: function(e) {
     const that = this;
-    var MIL = that.data.MessageImgList;
-    for (var i in MIL) {
-      if (e.currentTarget.dataset.id == MIL[i].id) {
-        MIL.splice(i, 1)
-      }
-    }
+    var MIL = that.data.ImageList;
+
+    MIL.splice(e.currentTarget.dataset.index, 1)
 
     that.setData({
-      MessageImgList: MIL
+      ImageList: MIL
     })
 
   },
 
-  fbxyClick:function(){
-   var that=this;
+  fbxyClick: function() {
+    var that = this;
     that.data.fbxy = !that.data.fbxy;
     that.setData({
-      fbxy:that.data.fbxy
+      fbxy: that.data.fbxy
     })
   },
   submitClick: function() {
     var that = this;
     var content = that.data.content;
     content.thumbs = ""
-    for (var i in that.data.MessageImgList) {
-      content.thumbs = content.thumbs + (that.data.MessageImgList[i].MessageImg) + ",";
+    for (var i in that.data.ImageList) {
+      content.thumbs = content.thumbs + (that.data.ImageList[i]) + ",";
     }
     that.setData({
       content: content
     })
- if(!that.data.fbxy) {
-    console.log(55555555555555555555)
-    wx.showToast({
-      icon: 'none',
-      title: '未接受发布协议',
-      duration: 1500
-    })
-    return
-  }
+    if (!that.data.fbxy) {
+      console.log(55555555555555555555)
+      wx.showToast({
+        icon: 'none',
+        title: '未接受发布协议',
+        duration: 1500
+      })
+      return
+    }
     if (content.catid && content.address &&
       content.content &&
       content.tags.length > 0 &&
@@ -237,11 +238,14 @@ Page({
         introduce: content.content.length > 100 ? content.content.substring(0, 100) + "……" : content.content,
         catid: content.catid,
         content: content.content,
-        thumb: content.thumbs,
+        thumb: content.thumbs.replace(/^,+/, "").replace(/,+$/, ""),
         telephone: app.globalData.userInfo.mobile ? app.globalData.userInfo.mobile : "100000000",
         address: content.address,
         tag: content.tags.join(",")
       };
+      if(that.data.itemid){
+        param.itemid = that.data.itemid
+      }
       console.log('验证通过', param);
       util.sellEdit_post(param, function(ret) {
         console.log(ret);
@@ -258,8 +262,7 @@ Page({
           }
         })
       }, null)
-    } 
-    else
+    } else
       wx.showToast({
         title: "验证失败，请确保信息填写完整",
         icon: "none"
@@ -303,7 +306,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(123456, options)
+    that = this
+    console.log('参数', options)
+    if (options.itemid) {
+      that.setData({
+        itemid: options.itemid
+      })
+    }
   },
 
   /**
@@ -353,6 +362,31 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+
+  },
+  sync: function() {
+    var index = 0;
+    for (var i in that.data.categories) {
+      if (that.data.categories[i].id == that.data.content.catid) {
+        index = i
+      }
+    }
+
+    var lable = that.data.lable
+    for (var i in that.data.lable) {
+      for (var j in that.data.content.tags) {
+        if (that.data.lable[i].id == that.data.content.tags[j])
+          that.data.lable[i].setlableChoose = true
+      }
+    }
+
+    var ImageList = that.data.content.thumbs?that.data.content.thumbs.replace(/^,+/, "").replace(/,+$/, "").split(','):[];
+    
+    that.setData({
+      index: index,
+      lable: that.data.lable,
+      ImageList: ImageList
+    })
 
   }
 })

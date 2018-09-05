@@ -21,7 +21,7 @@ page{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom:2rpx solid  #F5F5F5;   
+  border-bottom:2rpx solid  #F5F5F5; 
 }
 .picker_css{
   display: flex;
@@ -150,8 +150,9 @@ background: #fff;
   margin-top: 20rpx;
   display: flex;
   justify-content: space-between;
-  line-height: 90rpx;
+  height: 90rpx;
   font-size: 30rpx;
+  align-items: center;
 }
 .generalize{
   margin-top: 15rpx;

@@ -43,6 +43,8 @@ Page({
               company: ret.data[i].businesscard.company, //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
+              I_agree: ret.data[i].I_agree,
+              I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
                     message_Image: ret.data[i].thumb
@@ -58,6 +60,7 @@ Page({
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
+              favorite: ret.data[i].favorite, //收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -95,6 +98,8 @@ Page({
               company: ret.data[i].businesscard.company, //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
+              I_agree: ret.data[i].I_agree,
+              I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
                     message_Image: ret.data[i].thumb
@@ -110,6 +115,7 @@ Page({
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
+              favorite: ret.data[i].favorite, //收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -147,6 +153,8 @@ Page({
               company: ret.data[i].businesscard.company, //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
+              I_agree: ret.data[i].I_agree,
+              I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
                     message_Image: ret.data[i].thumb
@@ -162,6 +170,7 @@ Page({
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
+              favorite: ret.data[i].favorite, //收藏
               like: ret.data[i].agree //点赞
             })
         }
@@ -176,6 +185,101 @@ Page({
 
         that.setTab()
       }, null)
+  },
+
+  //点赞
+  setLikeClick: function (e) {
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    var param = {
+      // userid: wx.getStorageSync('UserInfo').userid.userid,
+      // _token: wx.getStorageSync('UserInfo')._token,
+      item_mid: e.currentTarget.dataset.mid,
+      item_id: e.currentTarget.dataset.id
+    };
+    util.setLike(param, function (res) {
+      console.log('点击点赞', res);
+      wx.showToast({
+        title: '点赞成功',
+        icon: 'none',
+        duration: 2000
+      })
+      for (var i in that.data.message) {
+        if (that.data.message[i].id == res.itemid) {
+          that.data.message[i].I_agree = true;
+          that.data.message[i].like++;
+        }
+      }
+      that.setData({
+        message: that.data.message
+      })
+    }, null)
+
+  },
+
+  //关注 取消
+  enshrineClick: function (e) {
+    const that = this;
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    for (var i in that.data.message) {
+      if (that.data.message[i].id == e.currentTarget.dataset.id) {
+        if (that.data.message[i].I_favortie == false) {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id
+          };
+          util.enshrine(param, function (res) {
+            console.log('收藏', res, that.data.message[i]);
+            wx.showToast({
+              title: '关注成功',
+              icon: 'none',
+              duration: 2000
+            })
+            for (var i in that.data.message) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+                that.data.message[i].I_favortie = true;
+                that.data.message[i].favorite++;
+              }
+            }
+            that.setData({
+              message: that.data.message
+            })
+          }, null)
+        } else {
+          var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            mid: e.currentTarget.dataset.mid,
+            tid: e.currentTarget.dataset.id,
+            cancle: '1'
+          };
+          util.enshrine(param, function (res) {
+            console.log('取消收藏', res, that.data.message[i], that.data.message);
+
+            for (var i in that.data.message) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+                that.data.message[i].I_favortie = false;
+                that.data.message[i].favorite--;
+              }
+            }
+            that.setData({
+              message: that.data.message
+            })
+            wx.showToast({
+              title: '取消成功',
+              icon: 'none',
+              duration: 2000
+            })
+
+          }, null)
+        }
+        that.setData({
+          message: that.data.message
+        })
+
+      }
+    }
   },
 
   //查看详情

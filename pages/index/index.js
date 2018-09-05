@@ -47,13 +47,18 @@ Page({
             tid: e.currentTarget.dataset.id
           };
           util.enshrine(param, function(res) {
-            console.log('收藏', res);
+            console.log('收藏', res,that.data.message[i]);
             wx.showToast({
               title: '关注成功',
               icon: 'none',
               duration: 2000
             })
-            that.data.message[i].I_favortie = true;
+            for (var i in that.data.message) {
+              if(that.data.message[i].id == e.currentTarget.dataset.id) {
+                that.data.message[i].I_favortie = true;
+                that.data.message[i].favorite++;
+              }
+            }
             that.setData({
               message: that.data.message
             })
@@ -64,19 +69,26 @@ Page({
             // _token: wx.getStorageSync('UserInfo')._token,
             mid: e.currentTarget.dataset.mid,
             tid: e.currentTarget.dataset.id,
-            cancle: 'false'
+            cancle: '1'
           };
           util.enshrine(param, function(res) {
-            console.log('取消收藏', res);
-            that.data.message[i].I_favortie = false;
+            console.log('取消收藏', res, that.data.message[i], that.data.message);
+            
+            for (var i in that.data.message) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+                that.data.message[i].I_favortie = false;
+                that.data.message[i].favorite--;
+              }
+            }
+            that.setData({
+              message: that.data.message
+            })
             wx.showToast({
               title: '取消成功',
               icon: 'none',
               duration: 2000
             })
-            that.setData({
-              message: that.data.message
-            })
+            
           }, null)
         }
         that.setData({
@@ -307,7 +319,7 @@ Page({
           sell_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
         that.changeMessage();
-        }, null, that.data.sellList.length>0)
+        }, null)
   },
 
   getBuyList: function() {
@@ -362,7 +374,7 @@ Page({
         })
 
         that.changeMessage();
-        }, null, that.data.buyList.length > 0)
+        }, null)
   },
 
   getFJMYList: function() {
@@ -418,7 +430,7 @@ Page({
         })
 
         that.changeMessage();
-        }, null, that.data.fjmyList.length > 0)
+        }, null)
   },
 
   getUserInfo: function(e) {
@@ -731,9 +743,9 @@ Page({
     
     //获取
     that.getAllList();
-    that.getSellList();
-    that.getBuyList();
-    that.getFJMYList();
+    // that.getSellList();
+    // that.getBuyList();
+    // that.getFJMYList();
 
   },
   //点击头像查看名片

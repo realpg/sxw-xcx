@@ -57,7 +57,7 @@
       </view>
       <view class='pageView'>
         <image class='pageView_Img' src='../../images/index/eye.png'></image>
-        <text class='number'>{{item.businesscard.mobile}}</text>
+        <text class='number'>{{item.businesscard.view}}</text>
       </view>
     </view>
   </view>

@@ -240,10 +240,10 @@ Page({
   },
 
   //关注 取消
-  enshrineClick: function(e) {
+  enshrineClick: function (e) {
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    for (let i in that.data.message) {
+    for (var i in that.data.message) {
       if (that.data.message[i].id == e.currentTarget.dataset.id) {
         if (that.data.message[i].I_favortie == false) {
           var param = {
@@ -252,14 +252,19 @@ Page({
             mid: e.currentTarget.dataset.mid,
             tid: e.currentTarget.dataset.id
           };
-          util.enshrine(param, function(res) {
-            console.log('收藏', res);
+          util.enshrine(param, function (res) {
+            console.log('收藏', res, that.data.message[i]);
             wx.showToast({
               title: '关注成功',
               icon: 'none',
               duration: 2000
             })
-            that.data.message[i].I_favortie = true;
+            for (var i in that.data.message) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+                that.data.message[i].I_favortie = true;
+                that.data.message[i].favorite++;
+              }
+            }
             that.setData({
               message: that.data.message
             })
@@ -270,19 +275,26 @@ Page({
             // _token: wx.getStorageSync('UserInfo')._token,
             mid: e.currentTarget.dataset.mid,
             tid: e.currentTarget.dataset.id,
-            cancle: 'false'
+            cancle: '1'
           };
-          util.enshrine(param, function(res) {
-            console.log('取消收藏', res);
-            that.data.message[i].I_favortie = false;
+          util.enshrine(param, function (res) {
+            console.log('取消收藏', res, that.data.message[i], that.data.message);
+
+            for (var i in that.data.message) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+                that.data.message[i].I_favortie = false;
+                that.data.message[i].favorite--;
+              }
+            }
+            that.setData({
+              message: that.data.message
+            })
             wx.showToast({
               title: '取消成功',
               icon: 'none',
               duration: 2000
             })
-            that.setData({
-              message: that.data.message
-            })
+
           }, null)
         }
         that.setData({
@@ -313,7 +325,13 @@ Page({
               icon: 'none',
               duration: 2000
             })
-            that.data.messageList[i].I_favortie = true;
+
+            for (var i in that.data.messageList) {
+              if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
+                that.data.messageList[i].I_favortie = true;
+                that.data.messageList[i].favorite++;
+              }
+            }
             that.setData({
               messageList: that.data.messageList
             })
@@ -328,12 +346,18 @@ Page({
           };
           util.enshrine(param, function(res) {
             console.log('取消收藏', res);
-            that.data.messageList[i].I_favortie = false;
+            
             wx.showToast({
               title: '取消成功',
               icon: 'none',
               duration: 2000
             })
+            for (var i in that.data.messageList) {
+              if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
+                that.data.messageList[i].favorite--;
+                that.data.messageList[i].I_favortie = false;
+              }
+            }
             that.setData({
               messageList: that.data.messageList
             })

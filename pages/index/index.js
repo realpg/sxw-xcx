@@ -32,6 +32,34 @@ Page({
       url: '../logs/logs'
     })
   },
+  //点赞
+  setLikeClick: function (e) {
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    var param = {
+      // userid: wx.getStorageSync('UserInfo').userid.userid,
+      // _token: wx.getStorageSync('UserInfo')._token,
+      item_mid: e.currentTarget.dataset.mid,
+      item_id: e.currentTarget.dataset.id
+    };
+    util.setLike(param, function (res) {
+      console.log('点击点赞', res);
+      wx.showToast({
+        title: '点赞成功',
+        icon: 'none',
+        duration: 2000
+      })
+      for (let i in that.data.message) {
+        if (that.data.message[i].id == res.itemid) {
+          that.data.message[i].I_agree = true;
+          that.data.message[i].like++;
+        }
+      }
+      that.setData({
+        message: that.data.message
+      })
+    }, null)
+
+  },
 
   //关注 取消
   enshrineClick: function (e) {

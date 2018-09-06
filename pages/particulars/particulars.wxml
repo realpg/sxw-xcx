@@ -1,5 +1,5 @@
 <!--具体详情-->
-<view class='message' wx:for='{{message}}'>
+<view class='message' wx:for='{{message}}' wx:for-index="idx">
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
       <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'></image>
@@ -47,7 +47,7 @@
         </view>
         <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
             <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
-        <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+        <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
           <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
           <text class='like'>{{item.favorite}}</text>
         </view>
@@ -141,7 +141,7 @@
 
 <!--推荐信息-->
 
-<view class='message' wx-if="{{!(item.id==id && item.mid==mid)}}" wx:for='{{messageList}}'>
+<view class='message' wx-if="{{!(item.id==id && item.mid==mid)}}" wx:for='{{messageList}}' wx:for-index="idx">
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
       <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
@@ -189,7 +189,7 @@
         <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
             <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
 
-            <view bindtap='enshrineClick_css' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+            <view bindtap='enshrineClick_css' data-id='{{item.id}}' data-mid='{{item.mid}}'data-index="{{idx}}" class='dianzan_Css'>
           <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
           <text class='like'>{{item.favorite}}</text>
         </view> 

@@ -106,9 +106,9 @@ Page({
   },
 
   addHistory: function () {
-    let s = new Set();
-    let arrb = [];
-    let arr = wx.getStorageSync('history') ? wx.getStorageSync('history') : []
+    var s = new Set();
+    var arrb = [];
+    var arr = wx.getStorageSync('history') ? wx.getStorageSync('history') : []
     s = arr;
 
     arr.push(that.data.seekInp);
@@ -212,7 +212,7 @@ Page({
       for (var idx in rets) {
         var ret = rets[idx];
         if (ret) {
-          for (let i in ret.data)
+          for (var i in ret.data)
             if (ret.data[i].businesscard)
               messageList.push({
                 id: ret.data[i].itemid, //信息id
@@ -296,7 +296,7 @@ Page({
       for (var idx in rets) {
         var ret = rets[idx];
         if (ret) {
-          for (let i in ret.data)
+          for (var i in ret.data)
             if (ret.data[i].businesscard)
               messageList.push({
                 id: ret.data[i].itemid, //信息id
@@ -381,7 +381,7 @@ Page({
       for (var idx in rets) {
         var ret = rets[idx];
         if (ret) {
-          for (let i in ret.data)
+          for (var i in ret.data)
             if (ret.data[i].businesscard)
               messageList.push({
                 id: ret.data[i].itemid, //信息id
@@ -466,7 +466,7 @@ Page({
       for (var idx in rets) {
         var ret = rets[idx];
         if (ret) {
-          for (let i in ret.data)
+          for (var i in ret.data)
             if (ret.data[i].businesscard)
               messageList.push({
                 id: ret.data[i].itemid, //信息id
@@ -519,7 +519,7 @@ Page({
 
   BussinessCardSearch: function () {
     console.log('名片信息')
-    let param = {
+    var param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       keyword: that.data.seekInp
@@ -532,7 +532,7 @@ Page({
       console.log('名片信息', ret)
       // that.data.messageList.push(ret.data)
       if (ret)
-        for (let i in ret.data) {
+        for (var i in ret.data) {
           that.data.messageList.push({
             id: ret.data[i].businesscard.userid, //信息id
             //   mid: 2,
@@ -604,7 +604,7 @@ Page({
       id: 7
     }, function (ret) {
       console.log(ret)
-      let arrb = [];
+      var arrb = [];
       if (ret.value) {
         arrb = ret.value.split(",")
       }
@@ -741,69 +741,67 @@ Page({
 
   },
 
-  //关注 取消
-  enshrineClick: function (e) {
-    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    for (var i in that.data.messageList) {
-      if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
-        if (that.data.messageList[i].I_favortie == false) {
-          var param = {
-            // userid: wx.getStorageSync('UserInfo').userid.userid,
-            // _token: wx.getStorageSync('UserInfo')._token,
-            mid: e.currentTarget.dataset.mid,
-            tid: e.currentTarget.dataset.id
-          };
-          util.enshrine(param, function (res) {
-            console.log('收藏', res, that.data.messageList[i]);
-            wx.showToast({
-              title: '关注成功',
-              icon: 'none',
-              duration: 2000
-            })
-            for (var i in that.data.messageList) {
-              if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
-                that.data.messageList[i].I_favortie = true;
-                that.data.messageList[i].favorite++;
-              }
+    //关注 取消
+    enshrineClick: function (e) {
+        const that = this;
+        var index = e.currentTarget.dataset.index
+        console.log("改变收藏信息",index,that.data.messageList[index])
+        console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+
+        if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
+            if (that.data.messageList[index].I_favortie == false) {
+                var param = {
+                    // userid: wx.getStorageSync('UserInfo').userid.userid,
+                    // _token: wx.getStorageSync('UserInfo')._token,
+                    mid: e.currentTarget.dataset.mid,
+                    tid: e.currentTarget.dataset.id
+                };
+                util.enshrine(param, function (res) {
+                    console.log('收藏', res, that.data.messageList[index]);
+                    wx.showToast({
+                        title: '关注成功',
+                        icon: 'none',
+                        duration: 2000
+                    })
+                    that.data.messageList[index].I_favortie = true;
+                    that.data.messageList[index].favorite++;
+
+                    that.setData({
+                        messageList: that.data.messageList
+                    })
+                }, null)
+            } else {
+                var param = {
+                    // userid: wx.getStorageSync('UserInfo').userid.userid,
+                    // _token: wx.getStorageSync('UserInfo')._token,
+                    mid: e.currentTarget.dataset.mid,
+                    tid: e.currentTarget.dataset.id,
+                    cancle: '1'
+                };
+                util.enshrine(param, function (res) {
+                    console.log('取消收藏', res, that.data.messageList[index], that.data.messageList);
+
+                    that.data.messageList[index].I_favortie = false;
+                    that.data.messageList[index].favorite--;
+
+                    that.setData({
+                        messageList: that.data.messageList
+                    })
+                    wx.showToast({
+                        title: '取消成功',
+                        icon: 'none',
+                        duration: 2000
+                    })
+
+                }, null)
             }
             that.setData({
-              messageList: that.data.messageList
-            })
-          }, null)
-        } else {
-          var param = {
-            // userid: wx.getStorageSync('UserInfo').userid.userid,
-            // _token: wx.getStorageSync('UserInfo')._token,
-            mid: e.currentTarget.dataset.mid,
-            tid: e.currentTarget.dataset.id,
-            cancle: '1'
-          };
-          util.enshrine(param, function (res) {
-            console.log('取消收藏', res, that.data.messageList[i], that.data.messageList);
-
-            for (var i in that.data.messageList) {
-              if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
-                that.data.messageList[i].I_favortie = false;
-                that.data.messageList[i].favorite--;
-              }
-            }
-            that.setData({
-              messageList: that.data.messageList
-            })
-            wx.showToast({
-              title: '取消成功',
-              icon: 'none',
-              duration: 2000
+                messageList: that.data.messageList
             })
 
-          }, null)
         }
-        that.setData({
-          messageList: that.data.messageList
-        })
-      }
-    }
-  },
+
+    },
 
 
   //查看详情

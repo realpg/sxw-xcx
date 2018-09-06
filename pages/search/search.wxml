@@ -58,7 +58,7 @@
   </view>
   <view wx:if='{{messageList.length>0 && index!=4}}'>
     <!--具体信息-->
-    <view class='message' wx:for='{{messageList}}' wx:for-index='id'>
+    <view class='message' wx:for='{{messageList}}' wx:for-index='idx'>
       <view class='messageCss' data-id='{{item.id}}'>
         <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
           <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
@@ -106,7 +106,7 @@
               <image class='dianzan' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}' />
               <text class='like'>{{item.like}}</text>
             </view>
-            <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+            <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
               <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
               <text class='like'>{{item.favorite}}</text>
             </view>

@@ -9,7 +9,7 @@
 <view class='hint' wx:if='{{message.length<1}}'>您还未关注该类信息</view>
 
 <!--具体信息-->
-<view class='message' wx:for='{{message}}' wx:for-index='id'>
+<view class='message' wx:for='{{message}}' wx:for-index='idx'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
       <image bindtap='messageList_click' data-id='{{item.userid}}' class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
@@ -53,7 +53,7 @@
           <image class='eye' src='../../images/index/eye.png' />
           <text class='view'>{{item.page_view}}</text>
         </view>
-        <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+        <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
           <image class='dianzan' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}' />
           <text class='like'>{{item.like}}</text>
         </view>

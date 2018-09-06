@@ -244,7 +244,7 @@ Page({
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     for (var i in that.data.message) {
-      if (that.data.message[i].id == e.currentTarget.dataset.id) {
+      if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
         if (that.data.message[i].I_favortie == false) {
           var param = {
             // userid: wx.getStorageSync('UserInfo').userid.userid,
@@ -260,7 +260,7 @@ Page({
               duration: 2000
             })
             for (var i in that.data.message) {
-              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
                 that.data.message[i].I_favortie = true;
                 that.data.message[i].favorite++;
               }
@@ -281,7 +281,7 @@ Page({
             console.log('取消收藏', res, that.data.message[i], that.data.message);
 
             for (var i in that.data.message) {
-              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
                 that.data.message[i].I_favortie = false;
                 that.data.message[i].favorite--;
               }
@@ -310,7 +310,7 @@ Page({
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     for (let i in that.data.messageList) {
-      if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
+      if (that.data.messageList[i].id == e.currentTarget.dataset.id && that.data.messageList[i].mid == e.currentTarget.dataset.mid) {
         if (that.data.messageList[i].I_favortie == false) {
           var param = {
             // userid: wx.getStorageSync('UserInfo').userid.userid,
@@ -327,7 +327,7 @@ Page({
             })
 
             for (var i in that.data.messageList) {
-              if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
+              if (that.data.messageList[i].id == e.currentTarget.dataset.id && that.data.messageList[i].mid == e.currentTarget.dataset.mid) {
                 that.data.messageList[i].I_favortie = true;
                 that.data.messageList[i].favorite++;
               }
@@ -353,7 +353,7 @@ Page({
               duration: 2000
             })
             for (var i in that.data.messageList) {
-              if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
+              if (that.data.messageList[i].id == e.currentTarget.dataset.id && that.data.messageList[i].mid == e.currentTarget.dataset.mid) {
                 that.data.messageList[i].favorite--;
                 that.data.messageList[i].I_favortie = false;
               }

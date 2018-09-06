@@ -166,6 +166,7 @@ Page({
       buyList: [],
       fjmyList: []
     })
+    
     util.myFavorite({}, function(ret) {
       console.log(12312324, ret);
       var sellList = that.data.sellList;

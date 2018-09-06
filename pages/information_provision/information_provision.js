@@ -3,7 +3,7 @@ const app = getApp()
 const util = require('../../utils/util.js');
 var that;
 Page({
-  /**
+  /** 
    * 页面的初始数据
    */
   data: {
@@ -221,7 +221,7 @@ Page({
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     for (var i in that.data.message) {
-      if (that.data.message[i].id == e.currentTarget.dataset.id) {
+      if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
         if (that.data.message[i].I_favortie == false) {
           var param = {
             // userid: wx.getStorageSync('UserInfo').userid.userid,
@@ -237,7 +237,7 @@ Page({
               duration: 2000
             })
             for (var i in that.data.message) {
-              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
                 that.data.message[i].I_favortie = true;
                 that.data.message[i].favorite++;
               }
@@ -258,7 +258,7 @@ Page({
             console.log('取消收藏', res, that.data.message[i], that.data.message);
 
             for (var i in that.data.message) {
-              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
                 that.data.message[i].I_favortie = false;
                 that.data.message[i].favorite--;
               }
@@ -408,12 +408,8 @@ Page({
   },
 
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
+  
 
-  },
 
   /**
    * 用户点击右上角分享
@@ -421,8 +417,10 @@ Page({
   onShareAppMessage: function() {
 
   },
-
-  onReachBottom: function (e) {
+/**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function (e){
     console.log("触底加载", that.data.id)
     switch (that.data.id) {
       case '1':

@@ -511,6 +511,20 @@ function goldListClick(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/creidt/getRecord', param, "GET", successCallback, errorCallback);
 }
 
+//我收藏的供应信息
+function getMySellList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
+}
+
+//我收藏的求购信息
+function getMyBuyList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
+}
+
+//我收藏的纺机信息
+function getMyFJMYList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
+}
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
     url: SERVER_URL + '/api/uploadImage',
@@ -1036,6 +1050,10 @@ module.exports = {
   selectIssue: selectIssue,
   sendwriteBack: sendwriteBack,
   goldListClick: goldListClick,
+
+  getMySellList: getMySellList,
+  getMyBuyList: getMyBuyList,
+  getMyFJMYList: getMyFJMYList,
 
   formatTime: formatTime,
   formatDate: formatDate,

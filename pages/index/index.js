@@ -38,7 +38,7 @@ Page({
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     for (var i in that.data.message) {
-      if (that.data.message[i].id == e.currentTarget.dataset.id) {
+      if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
         if (that.data.message[i].I_favortie == false) {
           var param = {
             // userid: wx.getStorageSync('UserInfo').userid.userid,
@@ -54,7 +54,7 @@ Page({
               duration: 2000
             })
             for (var i in that.data.message) {
-              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
                 that.data.message[i].I_favortie = true;
                 that.data.message[i].favorite++;
               }
@@ -75,7 +75,7 @@ Page({
             console.log('取消收藏', res, that.data.message[i], that.data.message);
 
             for (var i in that.data.message) {
-              if (that.data.message[i].id == e.currentTarget.dataset.id) {
+              if (that.data.message[i].id == e.currentTarget.dataset.id && that.data.message[i].mid == e.currentTarget.dataset.mid) {
                 that.data.message[i].I_favortie = false;
                 that.data.message[i].favorite--;
               }
@@ -97,36 +97,6 @@ Page({
 
       }
     }
-  },
-
-  //点赞
-  setLikeClick: function (e) {
-
-    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    var param = {
-      // userid: wx.getStorageSync('UserInfo').userid.userid,
-      // _token: wx.getStorageSync('UserInfo')._token,
-      item_mid: e.currentTarget.dataset.mid,
-      item_id: e.currentTarget.dataset.id
-    };
-    util.setLike(param, function (res) {
-      console.log('点击点赞', res);
-      wx.showToast({
-        title: '点赞成功',
-        icon: 'none',
-        duration: 2000
-      })
-      for (var i in that.data.message) {
-        if (that.data.message[i].id == res.itemid) {
-          that.data.message[i].I_agree = true;
-          that.data.message[i].like++;
-        }
-      }
-      that.setData({
-        message: that.data.message
-      })
-    }, null)
-
   },
 
   Loading: function () {

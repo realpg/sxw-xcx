@@ -33,12 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "广告位",
-					"pathName": "pages/search/search",
+					"pathName": "pages/mine_attention/mine_attention",
 					"query": ""
 				},
 				{

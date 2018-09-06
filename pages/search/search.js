@@ -729,7 +729,7 @@ Page({
         duration: 2000
       })
       for (var i in that.data.messageList) {
-        if (that.data.messageList[i].id == res.itemid) {
+        if (that.data.messageList[i].id == res.itemid&&that.data.message[i].mid == e.currentTarget.dataset.mid) {
           that.data.messageList[i].I_agree = true;
           that.data.messageList[i].like++;
         }

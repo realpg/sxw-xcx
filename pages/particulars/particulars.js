@@ -1,7 +1,7 @@
 // pages/particulars/particulars.js
 const app = getApp();
 const util = require('../../utils/util.js');
-let that;
+var that;
 Page({
 
   /**
@@ -136,7 +136,7 @@ Page({
 
   //发送留言
   sendClick: function() {
-    let param = {
+    var param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       item_mid: that.data.mid,
@@ -163,13 +163,13 @@ Page({
   },
 
   sendwriteBackClick: function(e) {
-    let param = {
+    var param = {
       itemid: e.currentTarget.dataset.itemid,
       reply: that.data.writeBackValue
     };
     util.sendwriteBack(param, function(ret) {
       console.log('发送回复', ret)
-      for (let i in that.data.leave_word_details) {
+      for (var i in that.data.leave_word_details) {
         if (e.currentTarget.dataset.itemid == that.data.leave_word_details[i].itemid) {
           that.data.leave_word_details[i].reply = that.data.writeBackValue;
           that.data.leave_word_details[i].replyer = that.data.UserInfo.truename;
@@ -215,7 +215,7 @@ Page({
     util.setLike(param, function(res) {
       console.log('点击点赞', res);
       if (e.currentTarget.dataset.id == that.data.id && e.currentTarget.dataset.mid == that.data.mid) {
-        for (let i in that.data.message) {
+        for (var i in that.data.message) {
           if (that.data.message[i].id == res.itemid) {
             that.data.message[i].I_agree = true;
             that.data.message[i].like++;
@@ -225,7 +225,7 @@ Page({
           message: that.data.message
         })
       } else {
-        for (let i in that.data.messageList) {
+        for (var i in that.data.messageList) {
           if (that.data.messageList[i].id == res.itemid) {
             that.data.messageList[i].I_agree = true;
             that.data.messageList[i].like++;
@@ -365,7 +365,7 @@ Page({
 
   //供应
   sellInfoDetails: function() {
-    let param = {
+    var param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       itemid: that.data.id
@@ -375,8 +375,8 @@ Page({
     util.sellInfoDetails(param, function(ret) {
       console.log('sellInfoDetails', ret)
 
-      let arr = [];
-      for (let i in ret.comments) {
+      var arr = [];
+      for (var i in ret.comments) {
 
         arr.push({
           addtime: util.formatTime(new Date(ret.comments[i].addtime * 1000)),
@@ -428,15 +428,15 @@ Page({
 
   //求购
   buyInfoDetails: function() {
-    let param = {
+    var param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       itemid: that.data.id
     };
     util.buyInfoDetails(param, function(ret) {
       console.log('buyInfoDetails', ret)
-      let arr = [];
-      for (let i in ret.comments) {
+      var arr = [];
+      for (var i in ret.comments) {
 
         arr.push({
           addtime: util.formatTime(new Date(ret.comments[i].addtime * 1000)),
@@ -488,15 +488,15 @@ Page({
 
   //纺机
   tradeInfoDetails: function() {
-    let param = {
+    var param = {
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
       itemid: that.data.id
     };
     util.tradeInfoDetails(param, function(ret) {
       console.log('tradeInfoDetails', ret)
-      let arr = [];
-      for (let i in ret.comments) {
+      var arr = [];
+      for (var i in ret.comments) {
 
         arr.push({
           addtime: util.formatTime(new Date(ret.comments[i].addtime * 1000)),
@@ -554,7 +554,7 @@ Page({
       value: [that.data.business_card.userid, '3']
     });
 
-    let param = {
+    var param = {
       page: that.data.supplyPage,
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
@@ -563,7 +563,7 @@ Page({
     util.supplyByUserid(param, function(ret) {
       console.log('供应信息', ret)
       // that.data.messageList.push(ret.data)
-      for (let i in ret.data) {
+      for (var i in ret.data) {
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 5,
@@ -615,7 +615,7 @@ Page({
       key: ['userid', 'status'],
       value: [that.data.business_card.userid, '3']
     });
-    let param = {
+    var param = {
       page: that.data.buyPage,
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
@@ -624,7 +624,7 @@ Page({
     util.PurchaseByUserid(param, function(ret) {
       console.log('求购信息', ret)
       // that.data.messageList.push(ret.data)
-      for (let i in ret.data) {
+      for (var i in ret.data) {
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mobile: ret.data[i].mobile,
@@ -675,7 +675,7 @@ Page({
       key: ['userid', 'status'],
       value: [that.data.business_card.userid, '3']
     });
-    let param = {
+    var param = {
       page: that.data.fjmyPage,
       userid: wx.getStorageSync('UserInfo').userid,
       _token: wx.getStorageSync('UserInfo')._token,
@@ -683,7 +683,7 @@ Page({
     };
     util.tradeByUserid(param, function(ret) {
       console.log('纺织贸易', ret)
-      for (let i in ret.data) {
+      for (var i in ret.data) {
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 88,

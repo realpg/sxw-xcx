@@ -204,7 +204,7 @@ Page({
         duration: 2000
       })
       for (var i in that.data.message) {
-        if (that.data.message[i].id == res.itemid) {
+        if (that.data.message[i].id == res.itemid&& that.data.message[i].mid == e.currentTarget.dataset.mid) {
           that.data.message[i].I_agree = true;
           that.data.message[i].like++;
         }

@@ -58,7 +58,7 @@
           <text class='like'>{{item.like}}</text>
         </view>
 
-        <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+        <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
           <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
           <text class='like'>{{item.favorite}}</text>
         </view>

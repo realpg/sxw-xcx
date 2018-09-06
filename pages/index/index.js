@@ -43,7 +43,7 @@ Page({
     enshrineClick: function (e) {
         const that = this;
         var index = e.currentTarget.dataset.index
-        console.log("改变收藏信息",index,that.data.message[index])
+        console.log("改变收藏信息", index, that.data.message[index])
         console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
 
         if (that.data.message[index].id == e.currentTarget.dataset.id && that.data.message[index].mid == e.currentTarget.dataset.mid) {
@@ -791,4 +791,32 @@ Page({
             console.log("销毁计时器")
         }
     },
+    setLikeClick: function (e) {
+        console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+        var param = {
+            // userid: wx.getStorageSync('UserInfo').userid.userid,
+            // _token: wx.getStorageSync('UserInfo')._token,
+            item_mid: e.currentTarget.dataset.mid,
+            item_id: e.currentTarget.dataset.id
+        };
+        util.setLike(param, function (res) {
+            console.log('点击点赞', res);
+            wx.showToast({
+                title: '点赞成功',
+                icon: 'none',
+                duration: 2000
+            })
+            for (var i in that.data.message) {
+                if (that.data.message[i].id == res.itemid && that.data.message[i].mid == e.currentTarget.dataset.mid) {
+                    that.data.message[i].I_agree = true;
+                    that.data.message[i].like++;
+                }
+            }
+            that.setData({
+                message: that.data.message
+            })
+        }, null)
+
+    },
+
 })

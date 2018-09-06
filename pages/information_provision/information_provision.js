@@ -305,6 +305,8 @@ Page({
     var id = that.data.id
     if (id == 1) {
       console.log('直接加载供应', that.data.sellList);
+      if (that.data.sellList.length == 0)
+        that.getSellList();
       that.setData({
         all_color: '#01C46C',
         supply_color: '#9B9B9B',
@@ -314,6 +316,8 @@ Page({
       })
     } else if (id == 2) {
       console.log('直接加载求购', that.data.buyList);
+      if(that.data.buyList.length==0)
+      that.getBuyList();
       that.setData({
         all_color: '#9B9B9B',
         supply_color: '#01C46C',
@@ -323,6 +327,8 @@ Page({
       })
     } else if (id == 3) {
       console.log('直接加载纺机', that.data.fjmyList);
+      if (that.data.fjmyList.length == 0)
+        that.getFJMYList();
       that.setData({
         all_color: '#9B9B9B',
         supply_color: '#9B9B9B',
@@ -351,29 +357,17 @@ Page({
     })
     console.log(110, that.data.id)
 
-    switch (that.data.id) {
-      case '1':
-        that.getSellList();
-        setTimeout(function () {
-          that.getBuyList();
-          that.getFJMYList();
-        }, 800)
-        break;
-      case '2':
-        that.getBuyList();
-        setTimeout(function () {
-          that.getSellList();
-          that.getFJMYList();
-        }, 800)
-        break;
-      case '3':
-        that.getFJMYList();
-        setTimeout(function () {
-          that.getSellList();
-          that.getBuyList();
-        }, 800)
-        break;
-    }
+    // switch (that.data.id) {
+    //   case '1':
+    //     that.getSellList();
+    //     break;
+    //   case '2':
+    //     that.getBuyList();
+    //     break;
+    //   case '3':
+    //     that.getFJMYList();
+    //     break;
+    // }
     that.setTab();
   },
 

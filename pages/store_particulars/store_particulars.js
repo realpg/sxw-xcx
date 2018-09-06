@@ -68,7 +68,8 @@ Page({
             address: '南通、柳橙、诸暨',
             page_view: '888',
             like: '888'
-        },]
+        },],
+        page:1
     },
 
     //用户名片
@@ -99,6 +100,56 @@ Page({
 
         });
     },
+  getInfoByUserid:function(){
+    var param={
+      item_userid: that.data.id,
+      page:that.data.page
+    }
+    if (that.data.page)
+    util.getInfoByUserid(param, function (ret) {
+      console.log('供应信息', ret)
+      // that.data.messageList.push(ret.data)
+      for (var i in ret.data) {
+        that.data.messageList.push({
+          id: ret.data[i].itemid, //信息id
+          mid: ret.data[i].mid,
+          head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
+          icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          name: ret.data[i].businesscard.truename, //用户姓名
+          position: ret.data[i].businesscard.career, //职位
+          demand: '供应', //发布类别  ()
+          mobile: ret.data[i].mobile,
+          company: ret.data[i].businesscard.company, //公司
+          lableList: ret.data[i].tags,
+
+          details: ret.data[i].introduce, //信息详情描述
+          message_Img: //详情图片  后续跟进
+            [{
+              message_Image: ret.data[i].thumb
+            },
+            {
+              message_Image: ret.data[i].thumb1
+            },
+            {
+              message_Image: ret.data[i].thumb2
+            }
+            ],
+          time: ret.data[i].adddate, //发布时间
+          addtime: ret.data[i].addtime, //发布详细时间
+          address: ret.data[i].address, //货物存放地
+          page_view: ret.data[i].hits, //浏览量
+          I_agree: ret.data[i].I_agree, //我点赞
+          like: ret.data[i].agree, //点赞
+        })
+      }
+      that.data.messageList = that.sort(that.data.messageList)
+      that.setData({
+        page: ret.next_page,
+        messageList: that.data.messageList
+      })
+    });
+
+  },
 
     //供应信息
     supplyByUserid: function () {
@@ -335,9 +386,10 @@ Page({
      */
     onReady: function () {
         that.visitingCardInfo();
-        that.supplyByUserid();
-        that.PurchaseByUserid();
-        that.tradeByUserid();
+        that.getInfoByUserid();
+        // that.supplyByUserid();
+        // that.PurchaseByUserid();
+        // that.tradeByUserid();
     },
 
     /**
@@ -372,7 +424,7 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+      that.getInfoByUserid()
     },
 
     /**

@@ -35,6 +35,7 @@ function wxRequest(url, param, method, successCallback, errorCallback, loading) 
 function requestqueue() {
   if (queue.length < 1) {
     requesting = false;
+    hideLoading()
     return;
   } else {
     requesting = true;
@@ -110,8 +111,6 @@ function requestqueue() {
     },
     complete: function(ret) {
       // console.log("ret:" + JSON.stringify(ret))
-      if (loading)
-        hideLoading()
       requestqueue()
     }
   });
@@ -362,6 +361,11 @@ function todayranking(param, successCallback, errorCallback) {
 //根据itemid获取资讯详情
 function setInfo(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/article/getById', param, "GET", successCallback, errorCallback);
+}
+
+//所有信息
+function getInfoByUserid(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/info/getByUserid', param, "GET", successCallback, errorCallback);
 }
 
 //供应
@@ -1020,6 +1024,7 @@ module.exports = {
   todayranking: todayranking,
   reclassifyCard: reclassifyCard,
   visitingCardInfo: visitingCardInfo,
+  getInfoByUserid: getInfoByUserid,
   supplyByUserid: supplyByUserid,
   PurchaseByUserid: PurchaseByUserid,
   tradeByUserid: tradeByUserid,

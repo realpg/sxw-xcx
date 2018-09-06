@@ -1,7 +1,8 @@
 <import src="../../wxParse/wxParse.wxml"/>
 
-<view class='message' wx:for='{{message}}'>
-   <view class='message_css' bindtap='openClick' data-id='{{item.id}}'>
+<view class='message' wx:for='{{message}}' >
+   <view class='message_css' bindtap='openClick' data-index='{{index}}'>
+   <text wx:if="{{item.isread==0}}" class='hint'></text>
   <view class='message_title' >{{item.title}} </view>
   <view class='message_time'>{{item.time}}</view>
   </view>

@@ -15,11 +15,16 @@ Page({
   openClick:function(e){
     const that = this;
     var message = that.data.message
-    var id = e.currentTarget.dataset.id 
-    that.data.message[id].state = !that.data.message[id].state    
+    var index = e.currentTarget.dataset.index 
+    that.data.message[index].state = !that.data.message[index].state    
     that.setData({
       message: message
     })
+    if (!that.data.message[index].state)
+    util.getMessageByID({ itemid: that.data.message[index].id},function(ret){
+      console.log("信息已读",ret)
+      that.data.message[index].isread=ret.isread;
+    },null)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -42,11 +47,12 @@ Page({
         if (article) {
             WxParse.wxParse('article', 'html', article, that, 5);
            message.push({
-             id:i,
+             id: ret[i].itemid,
              title: ret[i].title,
              state:true,
              content: article, 
-             time: util.formatTime(new Date(parseInt(ret[i].addtime) * 1000))
+             time: util.formatTime(new Date(parseInt(ret[i].addtime) * 1000)),
+             isread: ret[i].isread
            })
         }
      }

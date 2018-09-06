@@ -1,3 +1,5 @@
+
+
 page {
   background: #f5f5f5;
 }
@@ -253,4 +255,36 @@ button::after{
 } 
 .service_title{
   color:black;
+}
+
+
+/* .hint{
+display:inline-block;
+padding:3rpx 11rpx;
+border-radius:18px;
+background-color:#e64340;
+color:#fff;
+line-height:1.2;
+text-align:center;
+font-size:12px;
+vertical-align:middle;
+position: absolute;
+left: 210rpx;
+background:#e64340;
+} */
+
+.hint{
+  position: absolute;
+  left:210rpx;
+}
+.hint_css{
+  color:#fff;
+  background:#e64340;
+  font-size: 20rpx;
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  line-height: 40rpx;
+ text-align: center;
 }

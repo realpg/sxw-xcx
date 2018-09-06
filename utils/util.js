@@ -6,6 +6,7 @@ var DEBUG_URL = "http://xcx.hzmuji.com";
 var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 var queue = [];
 var requesting = false;
+var showloading=false
 
 //接口调用相关方法
 
@@ -35,7 +36,10 @@ function wxRequest(url, param, method, successCallback, errorCallback, loading) 
 function requestqueue() {
   if (queue.length < 1) {
     requesting = false;
+    if(showloading){
     hideLoading()
+      showloading=false
+    }
     return;
   } else {
     requesting = true;
@@ -75,8 +79,10 @@ function requestqueue() {
     }
     param._token = App.globalData.userInfo._token;
   }
-  if (loading)
+  if (loading && !showloading){
     showLoading();
+    showloading=true;
+  }
   var time_start = new Date().getTime();
   console.log("param：" + JSON.stringify(param))
   wx.request({
@@ -529,6 +535,11 @@ function getMyBuyList(param, successCallback, errorCallback) {
 function getMyFJMYList(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
 }
+
+function getMessageByID(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/member/message/getById', param, "GET", successCallback, errorCallback);
+}
+
 function uploadImage(param, successCallback, errorCallback) {
   wx.uploadFile({
     url: SERVER_URL + '/api/uploadImage',
@@ -1059,6 +1070,7 @@ module.exports = {
   getMySellList: getMySellList,
   getMyBuyList: getMyBuyList,
   getMyFJMYList: getMyFJMYList,
+  getMessageByID: getMessageByID,
 
   formatTime: formatTime,
   formatDate: formatDate,

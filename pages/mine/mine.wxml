@@ -79,6 +79,7 @@
       <image class='sign_in_Img' src='{{item.isSignin?"../../images/personal_center/oval_gold.png":"../../images/personal_center/gold.png"}}'></image>
   
       <view class='week'>{{item.week}}</view>
+      
     </view>
   </view>
 </view>
@@ -88,9 +89,10 @@
 <!-- 选项 -->
 
 <view class='each_column' >
-    <view class='mine_item' wx:for='{{mine_item}}' bindtap='mine_item_click' wx:for-index='id'  data-id='{{item.id}}'>
+    <view class='mine_item' wx:for='{{mine_item}}' bindtap='mine_item_click' wx:for-index='id'  data-id='{{item.id}}' style="position:relative">
       <image class='icon_Img' src='{{item.iconImg}}'></image>
       <view class='title'>{{item.title}}</view>
+      <text wx:if='{{item.id==5}}' class="hint" ><text wx:if="{{business_card.message>0}}" class='hint_css'>{{business_card.message}}</text></text>
       <view class='describe'>{{item.describe}}</view>
       <image class='jiantou' src='../../images/personal_center/jiantou.png'></image>
     </view>

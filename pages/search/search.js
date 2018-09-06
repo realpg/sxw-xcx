@@ -849,7 +849,6 @@ Page({
           that.requestInterfaces(interfaces, checkparam, callback, rets)
         });
 
-
     }
   }
 })

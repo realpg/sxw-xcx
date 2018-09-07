@@ -61,7 +61,7 @@
 
     <view class='AddImgFunction' wx-if='{{ImageList.length<9}}'>
       <view class='AddImgClick' bindtap='AddImgClick'>
-        <image class='AddImg' src='../../images/index/add1.png' mode='widthFix'></image>
+        <image class='AddImg' src='../../images/index/add1.png'></image>
       </view>
     </view>
   </view>

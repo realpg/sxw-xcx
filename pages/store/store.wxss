@@ -42,7 +42,7 @@ margin-right: 16rpx;
 
 
 page {
-  background: #f5f5f5;
+  background: #f1f4f6;
 }
 .icon_vip_css{
   width: 26rpx;

@@ -1,5 +1,5 @@
 page{
-  background: #F5F5F5;
+  background:#f1f4f6;
 }
 .slide-swiper{
   width: 100%;

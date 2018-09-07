@@ -21,7 +21,7 @@ page{
 }
 
 .cut_off_rule{
-  border:10rpx solid #F7F9F8;
+  border:10rpx solid #f1f4f6;
 }
 
 .information_publish{

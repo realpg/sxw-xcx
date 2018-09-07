@@ -1,13 +1,13 @@
 /* pages/goldList/goldList.wxss */
 page{
-  background: #f2f2f2;
+  background: #f1f4f6;
 }
 .goldList{
   display: flex;
   justify-content: space-between;
   padding: 20rpx;
   background: #fff;
-  border-bottom: 1rpx solid #f2f2f2;
+  border-bottom: 1rpx solid #f1f4f6;
   align-items: center;
 }
 

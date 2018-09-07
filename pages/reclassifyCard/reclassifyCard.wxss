@@ -1,6 +1,6 @@
 /* pages/reclassifyCard/reclassifyCard.wxss */
 page {
-  background: #f5f5f5;
+  background: #f1f4f6;
 }
 
 .messageList{

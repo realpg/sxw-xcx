@@ -2,6 +2,7 @@ page{
   background: #f1f4f6;
 }
 .UserInfo {
+  margin-top: 8rpx;
   display: flex;
   justify-content: space-around;
   background: #fff;
@@ -9,6 +10,10 @@ page{
 }
 .prompt{
   color: red;
+  text-align: center;
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  margin-left: 6rpx;
 }
 .iconImage {
   width: 180rpx;
@@ -21,6 +26,7 @@ page{
   line-height: 70rpx;
   align-items: center;
   width: 480rpx;
+  border-bottom: 1rpx solid #e6eaf2; 
 }
 .name_input{
   width: 300rpx;
@@ -34,22 +40,21 @@ page{
   border-radius: 10rpx;
   padding: 10rpx 10rpx;
 }
-
-
 .company{
   margin-top: 20rpx;
   background: #fff;
   padding: 0 5%;
+  margin-bottom: 20rpx;
 }
 .company_name{
   display: flex;
   line-height: 90rpx;
   font-size: 30rpx;
   align-items: center;
-  border-bottom:1rpx solid #f5f5f5;
+  border-bottom:1rpx solid #e6eaf2;
 }
 .business_name{
-
+  align-content: 1rpx solid #e6eaf2;
   line-height: 90rpx;
   font-size: 30rpx;
   display: flex;
@@ -63,10 +68,10 @@ page{
   }
 
 .input_company{
-  width: 460rpx;
+  width: 450rpx;
 }
 .input_business{
-  width: 500rpx;
+  width: 480rpx;
   display: -webkit-box; 
   align-items: center;
   -webkit-box-orient: vertical;
@@ -75,18 +80,22 @@ page{
 }
 .main_product{
   margin-top: 30rpx;
-  padding: 0 5% 3% 5%;
+  width: 100%;
+  margin: auto;
   background: #fff;
-   font-size: 30rpx;
+  font-size: 30rpx;
+  padding-bottom: 20rpx;
 }
 .main_product_title{
+  margin-left: 5%;
   line-height: 80rpx;
   font-size: 30rpx;
 }
 .main_product_info{
-  width: 100%;
+  width: 88%;
   height: 120rpx;
-  border:1rpx solid #f5f5f5;
+  margin: auto;
+  border:1rpx solid #e6eaf2;
   font-size: 30rpx;
   line-height: 50rpx;
   padding:12rpx;
@@ -94,18 +103,20 @@ page{
 
 .main_company_profile{
   margin-top: 20rpx;
-  padding: 0 5% 3% 5%;
   background: #fff;
   font-size: 30rpx;
+  padding-bottom: 20rpx;
 }
 .main_company_profile_info{
-  width: 100%;
+  width: 88%;
+  margin: auto;
+  border:1rpx solid #e6eaf2;
   height:260rpx;
-  border:1rpx solid #f5f5f5;
   font-size: 30rpx;
   line-height: 50rpx;
-  padding: 10rpx;
+  padding: 12rpx;
 }
+
 
 
 .AddImgList{
@@ -115,28 +126,18 @@ margin: auto;
 background: #fff;
 margin-top: 20rpx;
 }
-.ThatMessageImgList{
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
+
+
+
+
+
 .ThatMessageImg{
   width: 32%;
   margin-top: 10rpx;
-  margin-left: 1%;
+  margin-left: 2%;
 }
-.MessageImg{
-  width:100%;
-  height:160rpx;
-  position: relative;
-}
-.AddImg{
-  margin-top: 5rpx;
-  margin-left: 5%;
-  width: 160rpx;
-  height:160rpx;
-}
+
+
 
 .DelImg{
   position: absolute;
@@ -147,11 +148,11 @@ margin-top: 20rpx;
 }
 
 .submit{
-  width: 85%;
+  width: 90%;
   font-size: 32rpx;
   font-weight: bold;
   background:#01C46C;
-  border-radius: 50rpx;
+  border-radius: 10rpx;
   color: #fff;
   margin: auto;
   text-align: center;
@@ -184,7 +185,7 @@ margin-top: 20rpx;
   padding: 0;
   position: absolute;
   right:40rpx;
-  top: 170rpx;
+  top: 176rpx;
   color: #fff;
   width: 20%;
   font-size: 24rpx;
@@ -205,4 +206,39 @@ margin-top: 20rpx;
   height: 60rpx;
   line-height: 58rpx;
   background-color:#999999;
+}
+
+.AddImgList{
+width: 90%;
+padding: 5% 5%;
+margin: auto;
+background: #fff;
+}
+.ThatMessageImgList{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ThatMessageImg{
+  width: 30%;
+  margin-top: 10rpx;
+  margin-left: 2.5%;
+}
+.MessageImg{
+  width:100%;
+  height:200rpx;
+  position: relative;
+}
+.AddImg{
+  margin-top: 12rpx;
+  margin-left: 10%;
+  width: 200rpx;
+  height:200rpx;
+}
+.addImg{
+  margin-top: 12rpx;
+  margin-left: 5%;
+  width: 160rpx;
+  height:160rpx;
 }

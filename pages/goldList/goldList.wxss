@@ -2,12 +2,66 @@
 page{
   background: #f1f4f6;
 }
+.mine_gold{
+  position: relative;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.packet{
+  padding-top: 20rpx;
+  text-align: center;
+}
+.packet_Img{
+  width: 700rpx;
+  height: 388rpx;
+  }
+.gold{
+  position: absolute;
+  top: 180rpx;
+  color: #fff;
+  font-size: 40rpx;
+  width: 100%;
+  margin: auto;
+}
+.gold_num{
+ text-align: center;
+  color: #fff;
+  font-size: 46rpx;
+  font-weight: 700;
+}
+.gold_css{
+  margin-top: 10rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+}
+.recharge{
+ position: absolute;
+  left: 258rpx;
+  top: 318rpx;
+  width: 240rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.gold_detail{
+  background: #fff;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  border-bottom:1rpx solid #e6eaf2;
+  padding-left: 20rpx;
+  font-weight: 700;
+  }
 .goldList{
   display: flex;
   justify-content: space-between;
-  padding: 20rpx;
+  padding: 10rpx 20rpx;
   background: #fff;
-  border-bottom: 1rpx solid #f1f4f6;
+  border-bottom:1rpx solid #e6eaf2;
   align-items: center;
 }
 
@@ -15,7 +69,7 @@ page{
   font-size: 30rpx;
 }
 .time{
-  font-size: 28rpx;
+  font-size: 22rpx;
   color: #b2b2b2;
   margin-top: 10rpx;
 }
@@ -26,11 +80,9 @@ page{
   text-align: right;
   color: #01C46C;
   font-size: 32rpx;
-  padding-right: 30rpx;
 }
 .goldnum_css{
  text-align: right;
   color:#E40b18;
   font-size: 32rpx;
-  padding-right: 30rpx;
 }

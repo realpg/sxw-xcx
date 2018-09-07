@@ -60,8 +60,8 @@ Page({
       if (i == id) {
         console.log(344324, aasss[id]);
         wx.previewImage({
-          // current: getArr[i].id, // 当前显示图片的http链接
-          urls: [aasss[id]] // 需要预览的图片http链接列表
+          current: aasss[id], // 当前显示图片的http链接
+          urls: aasss // 需要预览的图片http链接列表
         })
       }
     }

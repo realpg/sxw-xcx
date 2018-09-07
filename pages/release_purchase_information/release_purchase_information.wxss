@@ -1,18 +1,18 @@
 page{
-  background:#f1f4f6;
-  border-top: 1rpx solid  #f1f4f6;
+  background: #f1f4f6;
+  border-top: 1rpx solid  #e6eaf2;
 }
 .hint{
   background: #fff;
 }
 .hint_details{
  padding: 15rpx 0;
-  width: 95%;
+  width: 92%;
   margin: auto;
   text-indent: 2em;
   font-size: 28rpx;
   color: #999999;
-  line-height: 50rpx;
+  line-height: 40rpx;
 }
 .picker{
   margin-top: 15rpx;
@@ -21,7 +21,7 @@ page{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom:2rpx solid  #F5F5F5; 
+  border-bottom:2rpx solid  #e6eaf2; 
 }
 .picker_css{
   display: flex;
@@ -59,7 +59,7 @@ page{
 .content_description_frame_css{
   width: 85%;
   margin: auto;
-  border:1rpx solid #999999;
+  border:1rpx solid #e6eaf2;
   font-size: 30rpx;
   line-height: 50rpx;
   padding: 15rpx 15rpx;
@@ -73,7 +73,7 @@ width: 90%;
 margin: auto;
 display:flex;
 flex-wrap:wrap;
-border-bottom:2rpx solid  #F5F5F5;
+border-bottom:8rpx solid  #f1f4f6;
 }
 .lable{
   width: 25%;
@@ -81,7 +81,7 @@ border-bottom:2rpx solid  #F5F5F5;
   margin-top: 20rpx;
 }
 .lable_border{
-  border:1rpx solid #E1E1E1;
+  border:1rpx solid #e6eaf2;
   border-radius: 25rpx;
   height: 46rpx;
   width: 150rpx;
@@ -142,6 +142,11 @@ background: #fff;
   opacity: 1;
 }
 
+.Add_Img{
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  margin-top: -6rpx;
+}
 .personal_data{
   background: #fff;
   width: 90%;
@@ -194,18 +199,17 @@ background: #fff;
 }
 
 .submit{
-  width: 85%;
+  width: 90%;
   font-size: 32rpx;
   font-weight: bold;
   background:#01C46C;
-  border-radius: 50rpx;
+  border-radius: 10rpx;
   color: #fff;
   margin: auto;
   text-align: center;
   height: 90rpx;
   line-height: 90rpx;
   margin-top: 20rpx;
-  margin-bottom: 50rpx;
 }
 
 .Address_input{

@@ -1,11 +1,20 @@
 <!--pages/goldList/goldList.wxml-->
+<view class='mine_gold'>
+<view class='packet'><image class='packet_Img' src='../../images/personal_center/packet.png'></image></view>
+<view class='gold'>
+<view class='gold_num'>{{credit}}</view>
+<view class='gold_css'>我的金币</view>
+</view>
+<view class='recharge' bindtap='recharge_click'><text>充值</text></view>
+</view>
+
+<view class='gold_detail'>金币明细</view>
 <view class='goldList' wx:for='{{goldList}}'>
   <view class='goldListLeft'>
      <view class='title'>{{item.reason}}</view>
-     <view class='time'>{{item.addtime}}</view>
   </view>
   <view class='goldListRight'>
-     <view class="{{item.amount>0?'goldnum':'goldnum_css'}}">{{item.amount}}</view>
-     <view class='goldnum'>={{item.balance}}</view>
+     <view class="{{item.amount>0?'goldnum':'goldnum_css'}}">{{item.amount}} 金币</view>
+      <view class='time'>{{item.addtime}}</view>
   </view>
 </view>

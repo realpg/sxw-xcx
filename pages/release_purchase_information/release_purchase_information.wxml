@@ -25,7 +25,7 @@
   <view class="address">
     <view view class='picker_css'>
       <text class='sort' decode='emsp'>所在地:&emsp;</text>
-      <input class='Address_input' type='text' placeholder='请输入地址' bindblur="changeAddress" value='{{content.address}}'></input>
+      <input class='Address_input' type='text' placeholder='请输入存货地址' bindblur="changeAddress" value='{{content.address}}'></input>
     </view>
   </view>
 </view>
@@ -52,16 +52,17 @@
 <!--上传图片-->
 
 <view class='AddImgList'>
+<view class='Add_Img'>上传照片</view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{ImageList}}' wx:for-index='imgIndex' data-index='id'>
-      <image class='MessageImg' bindtap='previewImClick' src='{{item}}' mode='aspectFill'></image>
+      <image class='MessageImg' bindtap='previewImClick' src='{{item}}' data-src="{{item}}" mode='aspectFill'></image>
 
       <image class='DelImg' bindtap='DelClick' data-index='{{imgIndex}}' src='../../images/index/del.png'></image>
     </view>
 
     <view class='AddImgFunction' wx-if='{{ImageList.length<9}}'>
       <view class='AddImgClick' bindtap='AddImgClick'>
-        <image class='AddImg' src='../../images/index/add1.png'></image>
+        <image class='AddImg' src='../../images/index/add1.png' ></image>
       </view>
     </view>
   </view>
@@ -71,7 +72,7 @@
 <!--个人信息 -->
 <view class='personal_data' bindtap='personal_data_click'>
   <view class='personal'>
-    <text style='color:red;'>*</text>个人信息详情</view>
+    个人信息详情<text style='color:red;font-size:40rpx;'>*</text></view>
 
   <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
 
@@ -107,3 +108,4 @@
 </view>
 <!--提交发布-->
 <view class='submit' bindtap='submitClick'>提交发布</view>
+<view style='width:100%;height:50rpx;'></view>

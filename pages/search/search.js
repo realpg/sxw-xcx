@@ -568,6 +568,7 @@ Page({
       that.setData({
         messageList: that.data.messageList
       })
+      wx.hideLoading();
     });
   },
 

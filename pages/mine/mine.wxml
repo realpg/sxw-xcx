@@ -1,4 +1,42 @@
-<!--名片 -->
+<!-- 名片 -->
+<view class='card'>
+  <view class='card_css' style='position:relative'>
+    <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+    <view class='truename'>{{business_card.truename}}</view>
+    <view class='career_css'>
+      <view class='career'>{{business_card.career}}</view>
+      <view class='state itemscenter'>
+        <view wx:if="{{business_card.updating}}">
+          <text class='redactInfo_css' style='background:gray'>审核中</text>
+        </view>
+        <view wx:else="">
+          <text bindtap='redactClick' class='redactInfo'>编辑资料</text>
+        </view>
+      </view>
+    </view>
+    <view class='card_company'>公司：{{business_card.company}}</view>
+    <view class='card_company'>地址：{{business_card.companyInfo.address}}</view>
+    <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> </view>
+    <view class='share'>
+      <button open-type='share' class='share_but'>
+        <image class='share_Img' src='../../images/store/share.png' mode='widthFix'></image>
+      </button>
+    </view>
+    <view class='card_business'>主营：{{business_card.companyInfo.business}}</view>
+  </view>
+
+  <view class='name_of_index'>
+    <view>
+      <text class='card_mobile'> {{business_card.businesscard.view}} </text> 人气</view>
+    <view>
+      <text class='card_mobile'> {{business_card.businesscard.agree}} </text> 点赞</view>
+    <view>
+      <text class='card_mobile'> {{business_card.businesscard.favorite}} </text> 关注</view>
+  </view>
+</view>
+
+
+<!-- 名片
 <view class='Css'></view>
 <view  wx:if='{{business_card.groupid==6}}' class='business_card'>
   <view class='business_card_css'>
@@ -58,28 +96,30 @@
   <view wx:else bindtap='redactClick' class='business_card_css redactuserinfo'>
    <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>请完善个人信息</text></button> 
   </view>
-  </view>
+  </view> -->
 
 <!-- 签到 -->
 <view class='sign_in'>
-  <view class='sign_in_css' >
+  <view class='sign_in_css'>
     <view bindtap='goldListClick'>金币：
       <text class='gold'>{{business_card.credit}}</text>
     </view>
     <view>
       <text bindtap='singInClick' class='singIn'>签到</text>
     </view>
-    <view>  
+    <view>
       <text class='gain' bindtap='gainClick'>获取金币</text>
     </view>
   </view>
 
-  <view class='sign_in_date'>
-    <view class='sign_in_date_css' wx:for='{{sign_in_date}}'>
+  <view class='sign_in_date' >
+    <view class='sign_in_date_css' wx:for='{{sign_in_date}}' style='position:relative'>
       <image class='sign_in_Img' src='{{item.isSignin?"../../images/personal_center/oval_gold.png":"../../images/personal_center/gold.png"}}'></image>
-  
-      <view class='week'>{{item.week}}</view>
-      
+
+      <view  wx:if="{{weekday==index+1||(weekday==0&&index==6)}}"><image  
+      class='icon_tick_Img' src='../../images/personal_center/icon_tick.png'></image></view>
+      <view class='week' style="color:red" wx:if="{{weekday==index+1||(weekday==0&&index==6)}}">{{item.week}}</view>
+      <view wx:else class='week'>{{item.week}}</view>
     </view>
   </view>
 </view>
@@ -87,8 +127,49 @@
 <!-- 
  { id: '8', iconImg: '../../images/personal_center/kefu.png', title: '联系客服', describe: '随时联系客服咨询和反馈', }, -->
 <!-- 选项 -->
+<view class='invite' bindtap='mine_item_click' data-id='0'>
+  <image class='yaoyue_Img' src='../../images/personal_center/yaoyue.png'></image>
+  <text class='context'>邀约赚金币</text>
+</view>
+<view class='answer' bindtap='mine_item_click' data-id='1'>
+  <image class='yaoyue_Img' src='../../images/personal_center/dati.png'></image>
+  <text class='context'>答题赚金币</text>
+</view>
 
-<view class='each_column' >
+<view class='The_column'>
+  <view class='The_column_css' bindtap='mine_item_click' data-id='2'>
+    <image class='yaoyue_Img' src='../../images/personal_center/wtuiguang.png'></image>
+    <view>我要推广</view>
+  </view>
+  <view class='The_column_css' bindtap='mine_item_click' data-id='3'>
+    <image class='yaoyue_Img' src='../../images/personal_center/guanggaowei.png'></image>
+    <view>我的广告位</view>
+  </view>
+  <view class='The_column_css' bindtap='mine_item_click' data-id='4'>
+    <image class='yaoyue_Img' src='../../images/personal_center/mine_issue.png'></image>
+    <view>我的发布</view>
+  </view>
+  <view class='The_column_css' bindtap='mine_item_click' data-id='5'>
+    <image class='yaoyue_Img' src='../../images/personal_center/xiaoxi.png'></image>
+    <view>我的消息</view>
+  </view>
+  <view class='The_column_css' bindtap='mine_item_click' data-id='6'>
+    <image class='yaoyue_Img' src='../../images/personal_center/guanzhu.png'></image>
+    <view>我的关注</view>
+  </view>
+  <view class='The_column_css' bindtap='mine_item_click' data-id='7'>
+    <image class='yaoyue_Img' src='../../images/personal_center/help.png'></image>
+    <view>帮助中心</view>
+  </view>
+  <view class='The_column_css'>
+    <button class='service_but' open-type="contact">
+      <image class='yaoyue_Img' src='../../images/personal_center/kefu.png'></image>
+      <view class=''>联系客服</view>
+    </button>
+  </view>
+</view>
+<view style='width:100%;height:80rpx;background:#fff'></view>
+<!-- <view class='each_column' >
     <view class='mine_item' wx:for='{{mine_item}}' bindtap='mine_item_click' wx:for-index='id'  data-id='{{item.id}}' style="position:relative">
       <image class='icon_Img' src='{{item.iconImg}}'></image>
       <view class='title'>{{item.title}}</view>
@@ -96,7 +177,7 @@
       <view class='describe'>{{item.describe}}</view>
       <image class='jiantou' src='../../images/personal_center/jiantou.png'></image>
     </view>
-</view>
+ </view> 
 
 <view class='service'>
     <button class='service_but' open-type="contact">
@@ -105,10 +186,4 @@
       <view class='service_content'>随时联系客服咨询和反馈</view>
       <image class='jiantou_Img' src='../../images/personal_center/jiantou.png'></image>
     </button>
-</view>
-
-
-
-
-
-
+</view> -->

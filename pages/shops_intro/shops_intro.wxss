@@ -2,7 +2,7 @@ page{
   background: #f1f4f6;
 }
 .shops_intro{
-  font-size: 28rpx;
+  font-size: 30rpx;
   background: #fff;
   padding: 5%;
   margin: auto;

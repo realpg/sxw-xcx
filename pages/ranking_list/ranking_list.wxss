@@ -73,6 +73,7 @@ allhide{
   float: right;
   margin-right: 30rpx;
   border-radius: 50%;
+  border: 1rpx solid #e6eaf2;
 }
 
 .itemscenter{

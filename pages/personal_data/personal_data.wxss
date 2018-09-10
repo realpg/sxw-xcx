@@ -95,10 +95,8 @@ page{
   width: 88%;
   height: 120rpx;
   margin: auto;
-  border:1rpx solid #e6eaf2;
   font-size: 30rpx;
   line-height: 50rpx;
-  padding:12rpx;
 }
 
 .main_company_profile{
@@ -110,11 +108,9 @@ page{
 .main_company_profile_info{
   width: 88%;
   margin: auto;
-  border:1rpx solid #e6eaf2;
   height:260rpx;
   font-size: 30rpx;
   line-height: 50rpx;
-  padding: 12rpx;
 }
 
 

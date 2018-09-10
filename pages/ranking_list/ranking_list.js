@@ -109,7 +109,7 @@ let that;
        console.log('月排行榜', ret)
        var list = ret?ret:[]
         that.setData({
-         business_card: list,
+        //  business_card: list,
           monthList: list
         })
      });

@@ -3,6 +3,108 @@
 page {
   background: #f1f4f6;
 }
+page {
+  background: #f1f4f6;
+}
+.share_but{
+  line-height: 36rpx;
+}
+.share{
+  position: absolute;
+  top: 260rpx;
+  right: 22rpx;
+}
+.share_Img {
+  width: 40rpx;
+  margin-right: 10rpx;
+}
+.card {
+  width: 100%;
+  margin: auto;
+  background: #fff;
+  padding: 2% 0  0 0;
+}
+
+.card_css {
+  width: 85%;
+  margin: auto;
+  background: #fff;
+  border: 3rpx solid #f1f4f6;
+  padding: 3% 3% 0 3%;
+  border-radius: 20rpx;
+  box-shadow: 3rpx 3rpx 3rpx 3rpx #e6eaf2;
+}
+
+.truename {
+  font-size: 38rpx;
+  line-height: 60rpx;
+}
+
+.career {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 60rpx;
+}
+.career_css{
+  display: flex;
+    line-height: 60rpx;
+    align-items: center
+  }
+.state{
+  margin-left: 30rpx;
+}
+.card_company {
+  font-size: 28rpx;
+  line-height: 60rpx;
+}
+
+.card_mobile {
+  color: #f7a821;
+}
+
+.card_business {
+  margin-top: 10rpx;
+  border-top: 1rpx solid #e6eaf2;
+  font-size: 28rpx;
+  line-height: 90rpx;
+  display: -webkit-box;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  height:90rpx;
+}
+
+.head_Img {
+  width: 120rpx;
+  height: 120rpx;
+  float: right;
+  border-radius: 50%;
+}
+
+.name_of_index {
+  width: 60%;
+  margin: auto;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-around;
+  height: 120rpx;
+  align-items: center;
+}
+
+
+.The_column{
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap:wrap;
+  background: #ffffff
+}
+.The_column_css{
+  padding: 5% 0 ;
+  width: 25%;
+  font-size: 28rpx;
+  text-align: center;
+}
 
 .Css {
   border: 15rpx solid #f1f4f6;
@@ -14,6 +116,7 @@ page {
   border-radius: 10rpx;
   font-size: 22rpx;
   margin-right: 16rpx;
+  line-height: 50rpx;
 }
 .redactInfo{
   background: #00C862;
@@ -105,7 +208,7 @@ align-items: center;
   background: #fff;
   width: 95;
   margin: auto;
-  margin-top: 30rpx;
+  margin-top: 20rpx;
   line-height: 180rpx;
   padding-bottom: 16rpx;
 }
@@ -117,11 +220,12 @@ align-items: center;
 }
 
 .singIn {
-  background: #ff9800;
+  background: #FED614;
   color: white;
-  padding: 30rpx 24rpx;
-  border-radius: 50%;
+  padding: 15rpx 58rpx;
+  border-radius: 40rpx;
   font-size: 26rpx;
+  margin-right: 20rpx;
 }
 
 .gold {
@@ -132,15 +236,25 @@ align-items: center;
 .gain {
   color: #ff9800;
 }
-
+.week{
+  font-size: 24rpx;
+  color: #999999;
+}
 .sign_in_date {
   display: flex;
   line-height: 50rpx;
   font-size: 28rpx;
   justify-content: space-around;
   text-align: center;
+  
 }
-
+.icon_tick_Img{
+  width:30rpx;
+  height:30rpx;
+ position: absolute;
+ top:55rpx;
+  right: -4px;
+}
 .sign_in_Img {
   width: 80rpx;
   height: 80rpx;
@@ -189,16 +303,14 @@ width: 22%;
   line-height: 90rpx;
 }
 .service_but{ 
-  display: flex;
   align-items: center;
   background: #FFFFFF;
   font-size:28rpx; 
-  line-height: 90rpx;
-  margin-left: 28rpx;
+  line-height: 40rpx;
+  color: #000000;
 }
 button::after{
   border: none;
-
 }
 .service_title{
 margin-left: 10rpx;
@@ -287,4 +399,28 @@ background:#e64340;
   border-radius: 50%;
   line-height: 40rpx;
  text-align: center;
+}
+
+.invite{
+  margin-top: 20rpx;
+  background: #fff;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #e6eaf2
+}
+.yaoyue_Img{
+  margin-left: 5%;
+  width: 50rpx;
+  height: 50rpx;
+}
+.context{
+margin-left: 20rpx;
+ font-size: 28rpx;
+}
+.answer{
+  background: #fff;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
 }

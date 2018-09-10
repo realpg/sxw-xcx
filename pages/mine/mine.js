@@ -112,7 +112,7 @@ Page({
     gold_coin_get: '0'
   },
   //金币明细
-  goldListClick: function () {
+  goldListClick: function() {
     wx.navigateTo({
       url: '../goldList/goldList',
     })
@@ -150,18 +150,17 @@ Page({
         url: '../mine_AdPositionId/mine_AdPositionId',
       })
     } else if (e.currentTarget.dataset.id == 4) {
-      if (that.data.business_card.groupid == 6){
-      wx.navigateTo({
-        url: '../mine_issue/mine_issue',
+      if (that.data.business_card.groupid == 6) {
+        wx.navigateTo({
+          url: '../mine_issue/mine_issue',
         })
-      }
-      else{
-        if (that.data.business_card.updating){
+      } else {
+        if (that.data.business_card.updating) {
           wx.showToast({
             title: '请等待信息审核完成',
-            icon:"none"
+            icon: "none"
           })
-        }else{
+        } else {
           wx.showToast({
             title: '请完善信息',
             icon: "none"
@@ -196,6 +195,8 @@ Page({
 
     //显示周一
     var MondayTime = nowTime - (day - 1) * oneDayTime;
+    if(day==0)
+      MondayTime = nowTime - 6 * oneDayTime;
     //显示周日
 
     var SundayTime = nowTime + (7 - day) * oneDayTime;
@@ -204,9 +205,10 @@ Page({
     var monday = new Date(MondayTime);
     var sunday = new Date(SundayTime);
 
-    //打印查看结果
 
-    console.log(monday);
+    //打印查看结果
+   
+    console.log("本周一", monday);
     console.log(sunday);
 
     let param = {
@@ -217,7 +219,7 @@ Page({
     };
 
     util.signInList(param, function(ret) {
-      console.log('00', ret);
+      console.log('签到记录', ret);
       for (let i in ret) {
         if (ret[i]) {
           that.data.sign_in_date[i].isSignin = true;
@@ -240,7 +242,7 @@ Page({
       _token: that.data.business_card._token,
     };
     util.signIn(param, function(ret) {
-      // console.log();
+      console.log("签到记录", ret, day);
 
       switch (day) {
         case 1:
@@ -280,7 +282,7 @@ Page({
         title: '金币+' + that.data.gold_coin_get,
         duration: 1500
       })
-      that.data.business_card.credit+= parseInt(that.data.gold_coin_get)
+      that.data.business_card.credit += parseInt(that.data.gold_coin_get)
 
       that.setData({
         sign_in_date: that.data.sign_in_date,
@@ -290,16 +292,20 @@ Page({
   },
 
   refresh: function() {
-    app.login(app,function(){
+    app.login(app, function() {
       that.setData({
         business_card: app.globalData.userInfo
       })
-      console.log("现在的userinfo",that.data.business_card)
+      console.log("现在的userinfo", that.data.business_card)
     });
 
     let date = new Date();
     let day = date.getDay();
-    
+    console.log("今天周" + day)
+    that.setData({
+      weekday: day
+    })
+
     console.log(888888, that.data.business_card)
 
     that.signInList();
@@ -384,8 +390,8 @@ Page({
       }
     }
   },
-getUserInfo: function (e) {
-    console.log("aaaa",e)
+  getUserInfo: function(e) {
+    console.log("aaaa", e)
     app.globalData.wx_userInfo = e.detail.userInfo
     app.login(app);
     this.setData({

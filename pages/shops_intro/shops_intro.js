@@ -49,7 +49,8 @@ Page({
   previewImClick_code:function(){
     var that=this
     wx.previewImage({
-      urls:'that.data.wxqr'
+      current: that.data.wxqr,
+      urls: [that.data.wxqr]
     })
   },
   /**

@@ -14,9 +14,9 @@ page {
   margin: auto;
   background: #fff;
   border: 3rpx solid #f1f4f6;
-  padding: 3%;
+  padding: 3% 3% 0% 3% ;
   border-radius: 20rpx;
-  box-shadow: 3rpx 3rpx 3rpx 3rpx #f1f4f6;
+  box-shadow: 3rpx 3rpx 3rpx 3rpx #e6eaf2;
 }
 
 .truename {
@@ -49,6 +49,7 @@ page {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  height:90rpx;
 }
 
 .head_Img {
@@ -99,7 +100,6 @@ page {
   font-size: 24rpx;
 }
 .share_button{
-  margin: 0;
   padding: 0;
   font-size: 24rpx;
   color:#3F3F3F;
@@ -119,8 +119,8 @@ page {
 
 
 .Shops {
-  font-size: 30rpx;
-  line-height: 80rpx;
+  font-size: 32rpx;
+  line-height: 90rpx;
   text-align: center;
 }
 
@@ -133,7 +133,7 @@ page {
 .specific_css {
   color: #666;
   line-height: 40rpx;
-  font-size: 26rpx;
+  font-size: 28rpx;
   display: -webkit-box;
   align-items: center;
   -webkit-box-orient: vertical;
@@ -148,7 +148,7 @@ page {
 }
 
 .view_details_css {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #01c46c;
   padding: 6rpx 30rpx;
   border: 1rpx solid #01c46c;

@@ -1,53 +1,48 @@
-<!--名片 -->
-<view class='Css'></view>
-<view class='business_card'>
-  <view class='business_card_css'>
-    <view class='name'>{{business_card.truename}}
-      <text class='post'>{{business_card.career}}</text>
-      <image class='headImg' src='{{business_card.avatarUrl}}'></image>
-    </view>
+<!-- 名片 -->
+<view class='card'>
+<view class='card_css'>
+<image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+ <view class='truename'>{{business_card.truename}}</view>
+ <view class='career'>{{business_card.career}}</view>
+ <view class='card_company'>公司：{{business_card.company}}</view>
+ <view class='card_company'>地址：{{business_card.address}}</view>
+ <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> </view>
+ <view class='card_business'>主营：{{business_card.business}}</view>
+ </view>
 
-    <view class='itemscenter'>
-      <image class='iconImg_dianhua' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{business_card.mobile}} </text>
-    </view >
-    <view class='itemscenter'>
-      <image class='iconImg_company' src='../../images/store/company.png'></image>
-      <text>{{business_card.company}} </text>
-    </view>
-    <view class='itemscenter'>
-      <image class='iconImg_map' src='../../images/store/map.png'></image>
-      <text style='margin-left:4rpx'>  {{business_card.address}} </text>
-    </view>
+ <view class='name_of_index'>
+  <view><text class='card_mobile'> {{business_card.view}} </text> 人气</view>
+  <view><text class='card_mobile'> {{business_card.agree}} </text> 点赞</view>
+  <view><text class='card_mobile'> {{business_card.favorite}} </text> 关注</view>
+ </view>
 
-    <view class='The_main'>主营：{{business_card.business}}</view>
-    <view class='options'>
-      <view class='browse'>
-        <image class='eye_css' src='../../images/store/eye.png'></image>
-        <text class='number'>{{business_card.view}}                  </text>
-      </view>
-      <view class='browse'>
-        <image class='dianzan_css' src='../../images/store/dianzan.png' ></image>
-        <text class='number'>{{business_card.agree}}                  </text>
-      </view>
-      <view class='browse'>
-        <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.favorite}}                  </text>
-      </view>
-      <view class='browse'>
-        <button open-type='share'><image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-<text class='number'>分享</text></button>
-      </view>
+  <view class='option'> 
+    <view class='option_css'>
+      <image class='icon' src='../../images/store/dianzan.png' ></image> 
+      <text>  点赞</text>
+    </view>
+    <view class='option_css'>
+      <image class='icon' src='../../images/store/star.png' ></image>
+       <text>  关注</text>
+    </view>
+    <view class='option_css'>
+      <button class='share_button' open-type='share'><image class='icon' src='../../images/store/share.png' ></image>
+       <text class='share_text'>  分享</text></button>
     </view>
   </view>
 </view>
 
-<view class='Shops'>商户简介</view>
+
+
+
 
 <!-- 具体描述 -->
 <view class='specific'>
+<view class='Shops'>商户简介</view>
   <view class='specific_css'>{{business_card.introduce}}</view>
-  <view wx-if='{{introduceShow}}' class='view_details' data-introduce='{{business_card.introduce}}' bindtap='view_details_click'>
+  <view  class='view_details' data-introduce='{{business_card.introduce}}' 
+  data-thumb='{{business_card.thumb}}'  
+  data-wxqr='{{business_card.wxqr}}' bindtap='view_details_click'>
     <text  class='view_details_css'>查看详情</text>
   </view>
 </view>
@@ -95,7 +90,14 @@
         <view class='eye_dianzan'>
           <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
             <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'><image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
-            <view class='see_details' data-id='{{item.id}}' data-mid='{{item.mid}}' bindtap='see_details_click'>查看详情 >></view>
+
+             <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
+          <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
+          <text class='like'>{{item.favorite}}</text>
+        </view> 
+            <view class='see_details' data-id='{{item.id}}' data-mid='{{item.mid}}' bindtap='see_details_click'>查看详情 
+            <image class='jiantou_img' src='../../images/index/jiantou.png'></image>
+        </view>
         </view>
     </view>
   </view>

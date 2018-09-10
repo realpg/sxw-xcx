@@ -110,8 +110,9 @@
               <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
               <text class='like'>{{item.favorite}}</text>
             </view>
-            <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情 >></view>
-          </view>
+           <view class='see_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情  
+  <image class='jiantou_img' src='../../images/index/jiantou.png'></image></view>     
+        </view>
 
         </view>
       </view>

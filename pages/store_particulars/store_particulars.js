@@ -140,6 +140,8 @@ Page({
           page_view: ret.data[i].hits, //浏览量
           I_agree: ret.data[i].I_agree, //我点赞
           like: ret.data[i].agree, //点赞
+         I_favortie: ret.data[i].I_favortie,
+          favorite: ret.data[i].favorite, //收藏
         })
       }
       that.data.messageList = that.sort(that.data.messageList)
@@ -193,6 +195,8 @@ Page({
                     page_view: ret.data[i].hits, //浏览量
                     I_agree: ret.data[i].I_agree, //我点赞
                     like: ret.data[i].agree, //点赞
+                    I_favortie: ret.data[i].I_favortie,
+                  favorite: ret.data[i].favorite, //收藏
                 })
             }
             that.data.messageList = that.sort(that.data.messageList)
@@ -242,7 +246,9 @@ Page({
                     address: ret.data[i].address, //货物存放地
                     page_view: ret.data[i].hits, //浏览量
                     I_agree: ret.data[i].I_agree, //我点赞
-                    like: ret.data[i].agree //点赞
+                    like: ret.data[i].agree, //点赞
+                     I_favortie: ret.data[i].I_favortie,
+                  favorite: ret.data[i].favorite, //收藏
                 })
             }
             that.data.messageList = that.sort(that.data.messageList)
@@ -291,7 +297,9 @@ Page({
                     address: ret.data[i].address, //货物存放地
                     page_view: ret.data[i].hits, //浏览量
                     I_agree: ret.data[i].I_agree, //我点赞
-                    like: ret.data[i].agree //点赞
+                    like: ret.data[i].agree, //点赞
+                    I_favortie: ret.data[i].I_favortie,
+                    favorite: ret.data[i].favorite, //收藏
                 })
             }
             that.data.messageList = that.sort(that.data.messageList)
@@ -333,11 +341,101 @@ Page({
         return arr;
     },
 
+//点赞
+  setLikeClick: function (e) {
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    var param = {
+      // userid: wx.getStorageSync('UserInfo').userid.userid,
+      // _token: wx.getStorageSync('UserInfo')._token,
+      item_mid: e.currentTarget.dataset.mid,
+      item_id: e.currentTarget.dataset.id
+    };
+    util.setLike(param, function (res) {
+      console.log('点击点赞', res);
+      wx.showToast({
+        title: '点赞成功',
+        icon: 'none',
+        duration: 2000
+      })
+      for (var i in that.data.messageList) {
+        if (that.data.messageList[i].id == res.itemid && that.data.messageList[i].mid == e.currentTarget.dataset.mid) {
+          that.data.messageList[i].I_agree = true;
+          that.data.messageList[i].like++;
+        }
+      }
+      that.setData({
+        messageList: that.data.messageList
+      })
+    }, null)
+
+  },
+  //关注 取消
+  enshrineClick: function (e) {
+    const that = this;
+    var index = e.currentTarget.dataset.index
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+
+    if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
+      if (that.data.messageList[index].I_favortie == false) {
+        var param = {
+          // userid: wx.getStorageSync('UserInfo').userid.userid,
+          // _token: wx.getStorageSync('UserInfo')._token,
+          mid: e.currentTarget.dataset.mid,
+          tid: e.currentTarget.dataset.id
+        };
+        util.enshrine(param, function (res) {
+          console.log('收藏', res, that.data.messageList[index]);
+          wx.showToast({
+            title: '关注成功',
+            icon: 'none',
+            duration: 2000
+          })
+          that.data.messageList[index].I_favortie = true;
+          that.data.messageList[index].favorite++;
+
+          that.setData({
+            messageList: that.data.messageList
+          })
+        }, null)
+      } else {
+        var param = {
+          // userid: wx.getStorageSync('UserInfo').userid.userid,
+          // _token: wx.getStorageSync('UserInfo')._token,
+          mid: e.currentTarget.dataset.mid,
+          tid: e.currentTarget.dataset.id,
+          cancle: '1'
+        };
+        util.enshrine(param, function (res) {
+          console.log('取消收藏', res, that.data.messageList[index], that.data.messageList);
+
+          that.data.messageList[index].I_favortie = false;
+          that.data.messageList[index].favorite--;
+
+          that.setData({
+            messageList: that.data.messageList
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none',
+            duration: 2000
+          })
+
+        }, null)
+      }
+      that.setData({
+        messageList: that.data.messageList
+      })
+
+    }
+
+  },
+
 
     //查看详情
     view_details_click: function (e) {
         wx.navigateTo({
-            url: '../shops_intro/shops_intro?introduce=' + e.currentTarget.dataset.introduce,
+          url: '../shops_intro/shops_intro?introduce=' + e.currentTarget.dataset.introduce + '&wxqr=' + e.currentTarget.dataset.wxqr + 
+          '&thumb='+ e.currentTarget.dataset.thumb,
         })
     },
 
@@ -445,28 +543,5 @@ Page({
                 // 转发失败
             }
         }
-    },
-    setLikeClick: function (e) {
-
-        console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-        var param = {
-            // userid: wx.getStorageSync('UserInfo').userid.userid,
-            // _token: wx.getStorageSync('UserInfo')._token,
-            item_mid: e.currentTarget.dataset.mid,
-            item_id: e.currentTarget.dataset.id
-        };
-        util.setLike(param, function (res) {
-            console.log('点击点赞', res, that.data.messageList);
-            for (var i in that.data.messageList) {
-                if (that.data.messageList[i].id == res.itemid && that.data.message[i].mid == e.currentTarget.dataset.mid) {
-                    that.data.messageList[i].I_agree = true;
-                    that.data.messageList[i].like = res.agree;
-                }
-            }
-            that.setData({
-                messageList: that.data.messageList
-            })
-        }, null)
-
     },
 })

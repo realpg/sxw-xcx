@@ -17,7 +17,7 @@ page{
 .picker{
   margin-top: 15rpx;
   background: #fff;
-  padding: 20rpx 30rpx;
+  padding: 25rpx 30rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,7 +42,7 @@ page{
 }
 .address{
   background: #fff;
-  padding: 20rpx 30rpx;
+  padding: 25rpx 30rpx;
   display: flex;
   align-items: center;
 }

@@ -1,4 +1,15 @@
+<view class='shops_intro'>
+  {{introduce}}</view>
 
-<view class='shops_intro'>{{introduce}}</view>
-
-
+<view class='company_photos'>公司照片:</view>
+<view class='hint_company' wx:if='{{thumb.length==0}}'>该公司没有上传照片</view>
+<view class='message_Img'>
+  <view class='message_Image' wx:for='{{thumb}}' wx:for-index='index'>
+    <image class='message_Image_Css' wx:if='{{item !=""}}' bindtap='previewImClick' data-id='{{index}}' src='{{item}}'></image>
+  </view>
+</view> 
+<view class='company_code'>公司二维码:</view>
+<view class='hint_code' wx:if='{{wxqr.length==0}}'>该公司没有上传二维码</view>
+<view class='code' >
+  <image  wx:if='{{wxqr.length!=0}}'  bindtap='previewImClick_code' class='code_img' mode="aspectFill" src='{{wxqr}}'></image>
+</view>

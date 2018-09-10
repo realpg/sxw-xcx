@@ -251,6 +251,8 @@ text-align: center;
 .see_details{
  color: #01C46C;
  font-size: 28rpx;
+display: flex;
+ align-items: center;
 }
 
 .head_portrait_icon{
@@ -381,4 +383,9 @@ border-radius: 50%;
 .dianzan_Css{
 display: flex;
 align-items: center;
+}
+.jiantou_img{
+ margin-left: 5rpx;
+ width:14rpx;
+ height:26rpx;
 }

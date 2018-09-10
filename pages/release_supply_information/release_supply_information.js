@@ -264,7 +264,7 @@ Page({
       }, null)
     } else
       wx.showToast({
-        title: "验证失败，请确保信息填写完整",
+        title: "发布失败，请确保信息填写完整",
         icon: "none"
       })
     //     console.log('aaaaa content.catid\n' + content.catid +

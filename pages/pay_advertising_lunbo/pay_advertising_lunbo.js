@@ -57,7 +57,6 @@ Page({
     wx.showModal({
       title: '提示',
       content: '是否确认购买？',
-      cancelColor: '#E40b18',
       confirmText: "确定",
       cancelText: "取消",
       success: function (res) {
@@ -133,7 +132,8 @@ Page({
     that = this;
     console.log(11236, app.globalData.userInfo)
     that.setData({
-      hint_time: util.formatTime(new Date())
+      hint_time: util.formatTime(new Date()),
+      gold_coin_balance: app.globalData.userInfo.credit
     })
     if (options.sellingADs) {
       console.log(JSON.parse(options.sellingADs))

@@ -352,9 +352,10 @@ text-align: center;
 .eye_dianzan{
   display: flex;
   justify-content: space-between;
-  line-height: 80rpx;
+  line-height: 90rpx;
   font-size: 26rpx;
   color: #9B9B9B;
+  align-items: center;
 }
 .view,.like{
   margin-left: 15rpx;
@@ -408,7 +409,7 @@ display: flex;
 }
 .eye{
   width: 35rpx;
-  height:22rpx;
+  height:30rpx;
 }
 
 

@@ -7,7 +7,7 @@
 .scroll-view-item_H{
   display: inline-block;
   width: 450rpx;
-  height: 280rpx;
+  height: 300rpx;
   background: #fff;
   font-size: 25rpx;
   margin: 24rpx 10rpx;
@@ -21,7 +21,7 @@
 .itemscenter{
   display: flex;
   align-items: center;
-  line-height: 52rpx;
+  line-height: 48rpx;
 }
 .iconImg_dianhua{
   margin-right: 16rpx;
@@ -138,12 +138,12 @@ page {
   margin-bottom: 10rpx;
 }
 .post_css{
-  margin-left: 20rpx;
   font-size: 24rpx;
-  color: #7c7b7b;
+  color: #999999;
 }
 .The_main_css{
-  margin-top:10rpx;
+  padding-top:10rpx;
+  border-top: 1rpx solid #e6eaf2;
   display: -webkit-box; 
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -162,6 +162,7 @@ page {
   height: 80rpx;
   float: right;
   border-radius: 50%;
+  margin-top: -50rpx;
 }
 .iconImg_css{
   width: 25rpx;
@@ -252,9 +253,13 @@ width: 100rpx;
 height: 100rpx;
 border-radius: 50%;
 }
+.pageView{
+display: flex;
+align-items: center;
+}
 .pageView_Img{
-  width: 30rpx;
-  height: 20rpx;
+  width: 35rpx;
+  height: 30rpx;
 }
 .vip_Img{
   margin-left: 15rpx;

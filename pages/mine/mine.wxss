@@ -11,11 +11,11 @@ page {
 }
 .share{
   position: absolute;
-  top: 260rpx;
+  top: 0rpx;
   right: 22rpx;
 }
-.share_Img {
-  width: 40rpx;
+.share_Img{
+  width: 50rpx;
   margin-right: 10rpx;
 }
 .card {
@@ -46,12 +46,12 @@ page {
   line-height: 60rpx;
 }
 .career_css{
-  display: flex;
-    line-height: 60rpx;
+    display: flex;
+    line-height: 50rpx;
     align-items: center
   }
 .state{
-  margin-left: 30rpx;
+  margin-left: 50rpx;
 }
 .card_company {
   font-size: 28rpx;
@@ -327,8 +327,8 @@ width: 22%;
     height: 56rpx;
 }
 .jiantou_Img{
-  width: 16rpx;
-  height: 26rpx;
+  width: 18rpx;
+  height: 28rpx;
   position: absolute;
   right: 5%;
 }
@@ -411,11 +411,16 @@ background:#e64340;
 }
 .yaoyue_Img{
   margin-left: 5%;
+  width: 60rpx;
+  
+}
+.yaoyue_Img_css{
+  margin-left: 5%;
   width: 50rpx;
-  height: 50rpx;
+  
 }
 .context{
-margin-left: 20rpx;
+ margin-left: 20rpx;
  font-size: 28rpx;
 }
 .answer{
@@ -423,4 +428,11 @@ margin-left: 20rpx;
   height: 100rpx;
   display: flex;
   align-items: center;
+}
+.logo{
+  padding: 8% 0%;
+  text-align: center;
+}
+.logo_Img{
+  width: 165rpx;
 }

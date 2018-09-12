@@ -90,6 +90,21 @@ Page({
       })
     }
   },
+
+//查看详情
+  see_details_click: function (e) {
+    if (e.currentTarget.dataset.status == 3){
+    wx.navigateTo({
+      url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
+    })
+    }else{
+      wx.showToast({
+        icon:'none',
+        title: '审核中',
+        duration: 1500
+      })   
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

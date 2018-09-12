@@ -52,7 +52,7 @@
 <!--上传图片-->
 
 <view class='AddImgList'>
-<view class='Add_Img'>上传照片</view>
+<view class='Add_Img'>上传照片<text style='font-size:28rpx;'>(最多上传9张)</text></view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{ImageList}}' wx:for-index='imgIndex' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick' src='{{item}}' data-src="{{item}}" mode='aspectFill'></image>

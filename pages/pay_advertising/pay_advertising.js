@@ -53,7 +53,6 @@ Page({
       wx.showModal({
         title: '提示',
         content: '是否确认购买？',
-        cancelColor: '#E40b18',
         confirmText: "确定",
         cancelText: "取消",
         success: function (res) {
@@ -141,7 +140,8 @@ Page({
     that = this;
 
     that.setData({
-      vip_to: new Date().getTime()
+      vip_to: new Date().getTime(),
+      gold_coin_balance: app.globalData.userInfo.credit
     })
     util.vipTimeto({}, function (ret) {
       that.data.hint_time = parseInt(ret);

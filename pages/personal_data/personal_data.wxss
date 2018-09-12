@@ -71,7 +71,7 @@ page{
   width: 450rpx;
 }
 .input_business{
-  width: 480rpx;
+  width: 455rpx;
   display: -webkit-box; 
   align-items: center;
   -webkit-box-orient: vertical;

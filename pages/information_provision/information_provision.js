@@ -18,7 +18,7 @@ Page({
     fjmyList: [],
     fjmy_next_page: 1,
   },
-
+  
 
   getSellList: function() {
   

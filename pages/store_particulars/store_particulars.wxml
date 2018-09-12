@@ -1,33 +1,38 @@
 <!-- 名片 -->
 <view class='card'>
-<view class='card_css'>
-<image class='head_Img' src='{{business_card.avatarUrl}}'></image>
- <view class='truename'>{{business_card.truename}}</view>
- <view class='career'>{{business_card.career}}</view>
- <view class='card_company'>公司：{{business_card.company}}</view>
- <view class='card_company'>地址：{{business_card.address}}</view>
- <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> </view>
- <view class='card_business'>主营：{{business_card.business}}</view>
- </view>
+  <view class='card_css'>
+    <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+    <view class='truename'>{{business_card.truename}}</view>
+    <view class='career'>{{business_card.career}}</view>
+    <view class='card_company'>公司：{{business_card.company}}</view>
+    <view class='card_company'>地址：{{business_card.address}}</view>
+    <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> </view>
+    <view class='card_business'>主营：{{business_card.business}}</view>
+  </view>
 
- <view class='name_of_index'>
-  <view><text class='card_mobile'> {{business_card.view}} </text> 人气</view>
-  <view><text class='card_mobile'> {{business_card.agree}} </text> 点赞</view>
-  <view><text class='card_mobile'> {{business_card.favorite}} </text> 关注</view>
- </view>
+  <view class='name_of_index'>
+    <view>
+      <text class='card_mobile'> {{business_card.view}} </text> 人气</view>
+    <view>
+      <text class='card_mobile'> {{business_card.agree}} </text> 点赞</view>
+    <view>
+      <text class='card_mobile'> {{business_card.favorite}} </text> 关注</view>
+  </view>
 
-  <view class='option'> 
+  <view class='option'>
     <view class='option_css'>
-      <image class='icon' src='../../images/store/dianzan.png' ></image> 
+      <image class='icon' src='../../images/store/dianzan.png'></image>
       <text>  点赞</text>
     </view>
     <view class='option_css'>
-      <image class='icon' src='../../images/store/star.png' ></image>
-       <text>  关注</text>
+      <image class='icon' src='../../images/store/star.png'></image>
+      <text>  关注</text>
     </view>
     <view class='option_css'>
-      <button class='share_button' open-type='share'><image class='icon' src='../../images/store/share.png' ></image>
-       <text class='share_text'>  分享</text></button>
+      <button class='share_button' open-type='share'>
+        <image class='icon' src='../../images/store/share.png'></image>
+        <text class='share_text'>  分享</text>
+      </button>
     </view>
   </view>
 </view>
@@ -38,12 +43,10 @@
 
 <!-- 具体描述 -->
 <view class='specific'>
-<view class='Shops'>商户简介</view>
+  <view class='Shops'>商户简介</view>
   <view class='specific_css'>{{business_card.introduce}}</view>
-  <view  class='view_details' data-introduce='{{business_card.introduce}}' 
-  data-thumb='{{business_card.thumb}}'  
-  data-wxqr='{{business_card.wxqr}}' bindtap='view_details_click'>
-    <text  class='view_details_css'>查看详情</text>
+  <view class='view_details' data-introduce='{{business_card.introduce}}' data-thumb='{{business_card.thumb}}' data-wxqr='{{business_card.wxqr}}' bindtap='view_details_click'>
+    <text class='view_details_css'>查看详情</text>
   </view>
 </view>
 
@@ -52,21 +55,21 @@
 <view class='message' wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'/>
-       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
+      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
+      <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix' />
     </view>
 
     <view class='The_specific_details'>
-        <view class='The_specific_details_one'>
-          <text class='datails_name'>{{item.name}}</text>
-          <text class='position'>{{item.position}}</text>
-          <text  wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
-          <text  wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
-          <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
-          <image bindtap='phoneClick' bindtap='making_call_click' class='btn_dianhua' data-mobile='{{item.mobile}}'src='../../images/index/btn_dianhua.png' mode='widthFix'/>
-        </view>
+      <view class='The_specific_details_one'>
+        <text class='datails_name'>{{item.name}}</text>
+        <text class='position'>{{item.position}}</text>
+        <text wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
+        <text wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
+        <text wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
+        <image bindtap='phoneClick' bindtap='making_call_click' class='btn_dianhua' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix' />
+      </view>
 
-        <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
+      <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
         <view class='company'>{{item.company}}</view>
         <view>
           <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
@@ -77,35 +80,41 @@
 
         <view class='message_Img'>
           <view class='message_Image' wx:for='{{item.message_Img}}'>
-          <image class='message_Image_Css' src='{{item.message_Image}}'/>
+            <image class='message_Image_Css' src='{{item.message_Image}}' />
           </view>
         </view>
 
         <view class='time'>{{item.time}}</view>
         <view class='address_css'>
-          <image class='icon_map' src='../../images/index/icon_map.png'/>
+          <image class='icon_map' src='../../images/index/icon_map.png' />
           <text class='address'>存放地：{{item.address}}</text>
         </view>
-       </view> 
-        <view class='eye_dianzan'>
-          <view class='eye_Css'><image class='eye' src='../../images/index/eye.png'/> <text class='view'>{{item.page_view}}</text></view>
-            <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'><image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
+      </view>
+      <view class='eye_dianzan'>
+        <view class='eye_Css'>
+          <image class='eye' src='../../images/index/eye.png' />
+          <text class='view'>{{item.page_view}}</text>
+        </view>
+        <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
+          <image class='dianzan' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}' />
+          <text class='like'>{{item.like}}</text>
+        </view>
 
-             <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
+        <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
           <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
           <text class='like'>{{item.favorite}}</text>
-        </view> 
-            <view class='see_details' data-id='{{item.id}}' data-mid='{{item.mid}}' bindtap='see_details_click'>查看详情 
-            <image class='jiantou_img' src='../../images/index/jiantou.png'></image>
         </view>
+        <view class='see_details' data-id='{{item.id}}' data-mid='{{item.mid}}' bindtap='see_details_click'>查看详情
+          <image class='jiantou_img' src='../../images/index/jiantou.png'></image>
         </view>
+      </view>
     </view>
   </view>
 </view>
 
 <view class='bottom'></view>
 
-<!-- 底部选择栏 -->
+<!-- 底部选择栏
 <view class='tab_select'>
   <view>
     <image class='tab_home_img' bindtap='back_homepage_click' src='../../images/store/tab_home.png'></image>
@@ -122,4 +131,27 @@
      <view >分享</view></button>
     </view>
   </view>
+</view> -->
+
+<!-- 底部导航栏 -->
+<view class='navigation_bar'>
+  <view class='navigation_bar_css'>
+    <view>
+      <image class='navigation_bar_Img' src='../../images/store/home.png'></image>
+      <view>返回首页</view>
+    </view>
+    <view>
+      <image  class='navigation_bar_Img'  src='../../images/store/tab_phone.png'></image>
+      <view>电话联系</view>
+    </view>
+    <view>
+      <image  class='navigation_bar_Img'  src='../../images/store/tab_paihangbang.png'></image>
+      <view>排行榜</view>
+    </view>
+  </view>
+
+ <view class='navigation_bar_share'>
+      <button open-type="share" class='shareBtn'>
+      <view>立即分享</view></button>
+    </view> 
 </view>

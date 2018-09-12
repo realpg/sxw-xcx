@@ -113,31 +113,42 @@
 </view>
 
 <!-- 名片 -->
-<view class='Css'></view>
+<view class='card'>
+  <view class='card_css'>
+    <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+    <view class='truename'>{{business_card.truename}}</view>
+    <view class='career'>{{business_card.career}}</view>
+    <view class='card_company'>公司：{{business_card.company}}</view>
+    <view class='card_company'>地址：{{business_card.address}}</view>
+    <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> 
+        <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
+      </view>
+    <view class='card_business'>主营：{{business_card.business}}</view>
+  </view>
+  </view>
+
+<!-- <view class='Css'></view>
 <view class='business_card'>
   <view class='business_card_css'>
-    <view class='name'>{{business_card.truename}}
-      <text class='post'>{{business_card.career}}</text>
+    <view class='name'>{{business_card.truename}}  </view>
       <image class='headImg' src='{{business_card.avatarUrl}}'></image>
-    </view>
-
-    <view class='itemscenter'>
-      <image class='iconImg_dianhua' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{business_card.mobile}} </text>
-    </view>
-    <view class='itemscenter'>
-      <image class='iconImg_company' src='../../images/store/company.png'></image>
+      <view class='post'>{{business_card.career}}</view>
+      <view class='itemscenter'>
+      公司：
       <text>{{business_card.company}} </text>
     </view>
-    <view class='itemscenter'>
-      <image class='iconImg_map' src='../../images/store/map.png'></image>
-      <text style='margin-left:4rpx;width:72%'>{{business_card.address}} </text>
+    <view >
+      地址：
+      <text>{{business_card.address}} </text>
+    </view>
+ <view class='itemscenter'>
+      电话：
+      <text style='color:#f7a821'>{{business_card.mobile}} </text>
       <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
     </view>
-
     <view class='The_main'>主营：{{business_card.business}}</view>
   </view>
-</view>
+</view> -->
 
 <!--推荐信息-->
 
@@ -205,7 +216,7 @@
 <!-- 底部导航栏 -->
 <view class='Bottom_navigation_bar'>
   <image bindtap='back_homepage_click' class='table_home_img' src='../../images/store/tab_home.png'></image>
-  <image bindtap='making_call_click' class='table_home_img' src='../../images/store/tab_phone.png'></image>
+  <image bindtap='making_call_click' class='table_home_img' src='../../images/store/tab_phone_css.png'></image>
   <button open-type="share">
     <image class='table_home_img' src='../../images/store/tab_share_u.png'></image>
   </button>

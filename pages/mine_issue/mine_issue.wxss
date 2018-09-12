@@ -1,6 +1,76 @@
 page{
   background: #f1f4f6;
 }
+
+.card {
+  width: 100%;
+  margin: auto;
+  background: #fff;
+  padding: 2% 0  0 0;
+}
+
+.card_css {
+  width: 85%;
+  margin: auto;
+  background: #fff;
+  border: 3rpx solid #f1f4f6;
+  padding: 3% 3% 0% 3% ;
+  border-radius: 20rpx;
+  box-shadow: 3rpx 3rpx 3rpx 3rpx #e6eaf2;
+}
+
+.truename {
+  font-size: 38rpx;
+  line-height: 60rpx;
+}
+
+.career {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 50rpx;
+}
+
+.card_company {
+  font-size: 28rpx;
+  line-height: 60rpx;
+}
+
+.card_mobile {
+  color: #f7a821;
+}
+
+.card_business {
+  margin-top: 10rpx;
+  border-top: 1rpx solid #e6eaf2;
+  font-size: 28rpx;
+  line-height: 90rpx;
+  display: -webkit-box;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  height:90rpx;
+}
+
+.head_Img {
+  width: 120rpx;
+  height: 120rpx;
+  float: right;
+  border-radius: 50%;
+}
+
+.name_of_index {
+  width: 60%;
+  margin: auto;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-around;
+  height: 120rpx;
+  align-items: center;
+  color: #333333;
+}
+
+
 .Css{
    border:15rpx solid #f1f4f6; 
 }
@@ -54,7 +124,8 @@ page{
 
 
 .information_classification{
-  margin-top: 30rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
   background: #fff;
   display: flex;
   justify-content: space-around;
@@ -69,13 +140,14 @@ page{
 
 
 .information{
-  width: 92%;
+  width: 100%;
   margin: auto;
+  
 }
 .information_css{
-  padding: 1% 5%;
+  padding: 1% 5% 2% 5%;
  font-size: 24rpx;
- margin-top: 20rpx;
+ margin-top: 10rpx;
   background: #fff;
   position: relative;
 }
@@ -102,6 +174,10 @@ page{
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+.dianzan_css{
+  display: flex;
+  align-items: center;
+}
 .time{
   line-height: 60rpx;
   font-size: 22rpx;
@@ -112,8 +188,8 @@ page{
   height: 30rpx;
 }
 .Img_eye{
-  width: 30rpx;
-  height: 20rpx;
+  width: 35rpx;
+  height: 30rpx;
 }
 .lable{
   line-height: 80rpx;

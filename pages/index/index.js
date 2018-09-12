@@ -631,7 +631,7 @@ Page({
             }, {
                 id: 2,
                 cimg: '../../images/index/icon_shop.png',
-                ciName: '采购大厅'
+                ciName: '求购大厅'
             }, {
                 id: 3,
                 cimg: '../../images/index/icon_ershou.png',
@@ -791,6 +791,7 @@ Page({
             console.log("销毁计时器")
         }
     },
+    //点赞
     setLikeClick: function (e) {
         console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
         var param = {
@@ -819,4 +820,21 @@ Page({
 
     },
 
+    //图片预览
+  previewImClick:function(e){
+    console.log(1111,e.currentTarget)
+      var that = this;
+    var idx = e.currentTarget.dataset.idx;
+    var index = e.currentTarget.dataset.index;
+    var urls=[];
+    for (var i in that.data.message[idx].message_Img){
+      urls.push(that.data.message[idx].message_Img[i].message_Image)
+    }
+    console.log(that.data.message[idx].message_Img[index],
+      that.data.message[idx].message_Img )
+      wx.previewImage({
+        current: that.data.message[idx].message_Img[index].message_Image,
+        urls: urls // 需要预览的图片http链接列表
+      })
+  }
 })

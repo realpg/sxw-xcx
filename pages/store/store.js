@@ -143,7 +143,7 @@ Page({
           phone: ret[i].businesscard.mobile,
           headImg: ret[i].businesscard.avatarUrl,
           company: ret[i].businesscard.company,
-          address: ret[i].businesscard.address.length > 16 ? ret[i].businesscard.address.substring(0, 16) + "..." : ret[i].businesscard.address,
+          address: ret[i].businesscard.address.length > 14 ? ret[i].businesscard.address.substring(0, 14) + "..." : ret[i].businesscard.address,
           The_main: ret[i].businesscard.introduce.length > 13 ? ret[i].businesscard.introduce.substring(0, 13) + "..." : ret[i].businesscard.introduce ,
          // ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
         })

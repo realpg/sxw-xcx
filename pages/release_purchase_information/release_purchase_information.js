@@ -27,7 +27,7 @@ Page({
     index: '',
     lable: [],
     ImageList: [],
-    gold_coin_balance: '5',
+    gold_coin_balance: '0',
     gold_coin_pay: '1',
   },
 
@@ -81,7 +81,6 @@ Page({
     }, function (ret) {
       that.setData({
         gold_coin_pay: ret.value,
-        gold_coin_balance: app.globalData.userInfo.credit
       })
     }, null)
   },
@@ -310,7 +309,8 @@ Page({
     console.log('参数', options)
     if (options.itemid) {
       that.setData({
-        itemid: options.itemid
+        itemid: options.itemid,
+        gold_coin_balance: app.globalData.userInfo.credit
       })
     }
   },

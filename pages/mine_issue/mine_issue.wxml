@@ -1,4 +1,23 @@
-<!--名片 -->
+<!-- 名片 -->
+<view class='card'>
+<view class='card_css'>
+<image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+ <view class='truename'>{{business_card.truename}}</view>
+ <view class='career'>{{business_card.career}}</view>
+ <view class='card_company'>公司：{{business_card.company}}</view>
+ <view class='card_company'>地址：{{business_card.companyInfo.address}}</view>
+ <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> </view>
+ <view class='card_business'>主营：{{business_card.companyInfo.business}}</view>
+ </view>
+
+ <view class='name_of_index'>
+  <view><text class='card_mobile'> {{business_card.businesscard.view}}   </text> 人气</view>
+  <view><text class='card_mobile'> {{business_card.businesscard.agree}} </text> 点赞</view>
+  <view><text class='card_mobile'> {{business_card.businesscard.favorite}} </text> 关注</view>
+ </view>
+</view>
+
+<!-- 名片
 <view class='Css'></view>
 <view class='business_card' >
   <view class='business_card_css'>
@@ -40,7 +59,7 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->
 
 <!--分类-->
 <view class='information_classification'>
@@ -52,31 +71,31 @@
 
 <!-- 信息 -->
 <view class='information'>
-  <view class='information_css' wx:for='{{information}}'>
+  <view class='information_css' wx:for='{{information}}' data-mid='{{item.mid}}' data-id='{{item.id}}' data-status='{{item.status}}' bindtap='see_details_click'>
     <view class='lable'>
           <view wx:for='{{item.lableList}}' wx:for-index='index'>
-            <text class='lable_one' wx:if='{{index==0}}' >{{item.tagname}}</text>
-            <text class='lable_two' wx:if='{{index==1}}' >{{item.tagname}}</text>
-            <text class='lable_three' wx:if='{{index==2}}' >{{item.tagname}}</text>
+          <text class='lable_one' wx:if='{{index==0}}' >{{item.tagname}}</text>
+          <text class='lable_two' wx:if='{{index==1}}' >{{item.tagname}}</text>
+          <text class='lable_three' wx:if='{{index==2}}'>{{item.tagname}}</text>
           </view>
           <view class='state' wx:if='{{item.status!=3}}'><text class='state_css'>审核中</text></view>
            <view class='state' wx:if='{{item.status == 3}}'><text class='state_css_two'>已展示</text></view>
     </view>
-    <view class='content'>{{item.details}}</view>
+    <view  class='content'>{{item.details}}</view>
     <view class='time'>发布时间：{{item.time}}</view>
     <view class='menu'>
-      <view class='redact' bindtap='redactclick' data-mid='{{item.mid}}' data-id='{{item.id}}'> 
+      <view class='redact' catchtap='redactclick' data-mid='{{item.mid}}' data-id='{{item.id}}'> 
         <image class='Img_edit' src='../../images/personal_center/edit.png'></image><text class='text_css'>编辑</text>
       </view>
       <view class='redact_css'>
-        <view>
-          <image class='Img_eye' src='../../images/store/eye.png'></image>
-          <text class='text_css'>{{item.page_view}}  </text>
+        <view class='dianzan_css'>
+          <image class='Img_eye' src='../../images/index/eye.png'></image>
+          <text class='text_css'>{{item.page_view}}</text>
         </view>
-        <view>
+        <view class='dianzan_css'>
           <image class='Img_edit' src='../../images/store/dianzan.png'></image>
-          <text class='text_css'>{{item.like}}  </text> </view>
-        <view>
+          <text class='text_css'>{{item.like}}</text> </view>
+        <view class='dianzan_css'>
           <image class='Img_edit' src='../../images/store/star.png'></image>
           <text class='text_css'>{{item.favorite}}</text>
         </view>

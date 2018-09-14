@@ -7,9 +7,9 @@ page{
   padding: 5%;
   margin: auto;
   border-top: 20rpx solid #f1f4f6;
-  text-indent: 2em;
+  /* text-indent: 2em; */
   line-height: 40rpx;
-  color: #999999
+  color: #333333
 }
 .company_photos{
   background: #fff;

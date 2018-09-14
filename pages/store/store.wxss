@@ -1,3 +1,11 @@
+.top{
+position: fixed;
+top:0;
+height: 124rpx;
+width: 100%;
+z-index: 999;
+background: #f1f4f6
+}
 .scroll-view_H{
   white-space: nowrap;
 }
@@ -50,7 +58,7 @@ page {
   position: absolute;
   top: 70rpx;
   left: 67rpx;
-  z-index: 999;
+  z-index:2;
 }
 .searchBox {
   width: 90%;
@@ -162,6 +170,7 @@ page {
   height: 80rpx;
   float: right;
   border-radius: 50%;
+  border: 1rpx solid #e6eaf2;
   margin-top: -50rpx;
 }
 .iconImg_css{
@@ -252,6 +261,7 @@ padding-bottom: 3%;
 width: 100rpx;
 height: 100rpx;
 border-radius: 50%;
+border:1rpx solid #e6eaf2;
 }
 .pageView{
 display: flex;

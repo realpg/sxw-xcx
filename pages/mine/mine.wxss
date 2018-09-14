@@ -26,6 +26,7 @@ page {
 }
 
 .card_css {
+  position: relative;
   width: 85%;
   margin: auto;
   background: #fff;
@@ -80,6 +81,16 @@ page {
   height: 120rpx;
   float: right;
   border-radius: 50%;
+  border:1rpx solid #e6eaf2;
+}
+.vip_Img {
+width:28rpx;
+height:32rpx;
+position:absolute;
+top:115rpx;
+right:40rpx;
+z-index:2;
+
 }
 
 .name_of_index {
@@ -107,7 +118,7 @@ page {
 }
 
 .Css {
-  border: 15rpx solid #f1f4f6;
+  margin-top: 20rpx;
 }
 .redactInfo_css{
   background: #00C862;

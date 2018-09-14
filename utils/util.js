@@ -999,6 +999,21 @@ function phonenum_verify(phone) {
   return true;
 }
 
+function get_string_bytes(str){
+  var bytesCount=0;
+  for (var i = 0; i < str.length; i++) {
+    var c = str.charAt(i);
+    if (/^[\u0000-\u00ff]$/.test(c)) //匹配双字节
+    {
+      bytesCount += 1;
+    }
+    else {
+      bytesCount += 2;
+    }
+  }
+  return bytesCount
+}
+
 module.exports = {
   getOpenId: getOpenId,
   login: login,
@@ -1081,5 +1096,6 @@ module.exports = {
   judgeIsAnyNullStr: judgeIsAnyNullStr,
   navigateToRegister: navigateToRegister, //跳转到注册页面
   getToday: getToday,
-  phonenum_verify: phonenum_verify
+  phonenum_verify: phonenum_verify,
+  get_string_bytes: get_string_bytes
 }

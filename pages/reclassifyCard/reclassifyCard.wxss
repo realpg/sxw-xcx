@@ -70,6 +70,7 @@ padding-bottom: 3%;
 width: 100rpx;
 height: 100rpx;
 border-radius: 50%;
+border:1rpx solid #e6eaf2;
 }
 .pageView_Img{
   width: 30rpx;

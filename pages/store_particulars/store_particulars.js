@@ -8,7 +8,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        thumb:{},
+         wxqr:'',
         id: null,
         business_card: [],
         introduceShow: false,
@@ -69,6 +70,41 @@ Page({
         page:1
     },
 
+  //联系商家
+  phoneClick: function (e) {
+
+    // var phoneNumber =e.currentTarget.dataset.mobile
+    // console.log(888, phoneNumber )
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
+    })
+  },
+  //预览图片
+  previewImClick: function (e) {
+    console.log(123456, e.currentTarget.dataset.id)
+    var that = this;
+    var id = e.currentTarget.dataset.id
+    var aasss = that.data.thumb;
+    console.log(66666, that.data.thumb)
+    for (var i in aasss) {
+      if (i == id) {
+        console.log(344324, aasss[id]);
+        wx.previewImage({
+          current: aasss[id], // 当前显示图片的http链接
+          urls: aasss // 需要预览的图片http链接列表
+        })
+      }
+    }
+  },
+
+  previewImClick_code: function () {
+    var that = this
+    wx.previewImage({
+      current: that.data.wxqr,
+      urls: [that.data.wxqr]
+    })
+  },
+
     //用户名片
     visitingCardInfo: function () {
         var param = {
@@ -78,8 +114,12 @@ Page({
         };
         util.visitingCardInfo(param, function (ret) {
             console.log('userinfo', ret)
+          let thumb = that.data.thumb
+          thumb = ret.thumb.split(','),
             that.setData({
-                business_card: ret
+                business_card: ret,
+                thumb: thumb,
+                wxqr: ret.wxqr
             })
 
             var query = wx.createSelectorQuery();

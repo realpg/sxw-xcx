@@ -1,7 +1,16 @@
+
+@import "../template/template.wxss";
 page{
   background: #f1f4f6;
 }
-
+.top{
+position: fixed;
+top:0;
+height: 124rpx;
+width: 100%;
+z-index: 999;
+background: #f1f4f6
+}
 .jiantou_img{
  margin-left: 5rpx;
  width:14rpx;
@@ -42,7 +51,6 @@ display: flex;
 
 
 .information_classification{
-  margin-top: 30rpx;
   background: #fff;
   display: flex;
   justify-content: space-around;
@@ -179,6 +187,7 @@ margin-left: 50rpx;
   width: 100rpx;
   height:100rpx;
   border-radius: 50%;
+  border:1rpx solid #e6eaf2;
 }
 .head_portrait{
   display: flex;

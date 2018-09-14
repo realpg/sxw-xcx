@@ -251,8 +251,8 @@ Page({
         console.log(ret);
         app.globalData.userInfo.credit -= that.data.gold_coin_pay;
         wx.showToast({
-          title: "提交成功",
-          icon: "success",
+          title: "已受理，3个工作日内完成审核",
+          icon: "none",
           success: function() {
             setTimeout(function() {
               wx.reLaunch({

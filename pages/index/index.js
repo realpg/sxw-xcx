@@ -118,6 +118,19 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
+      wx.createIntersectionObserver().relativeToViewport().observe('.information_classification', (res) => {
+        res.id // 目标节点 id
+        res.dataset // 目标节点 dataset
+        res.intersectionRatio // 相交区域占目标节点的布局区域的比例
+        res.intersectionRect // 相交区域
+        res.intersectionRect.left // 相交区域的左边界坐标
+        res.intersectionRect.top // 相交区域的上边界坐标
+        res.intersectionRect.width // 相交区域的宽度
+        res.intersectionRect.height // 相交区域的高度
+        console.log(343434,res.intersectionRect.height)
+      })
+    
         that = this;
 
         var scroll_width = parseInt(app.globalData.SystemInfo.windowWidth * 471 / 750);

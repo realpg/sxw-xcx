@@ -131,24 +131,35 @@ Page({
         if (e.target.dataset.nn == 1) {
             that.setData({
                 info_color: '#01C46C',
-                card_color: '',
+                qiugou_color: '',
                 fjmy_color: '',
+                card_color: '',
                 message: that.data.sellList
             })
         } else if (e.target.dataset.nn == 2) {
             that.setData({
                 info_color: '',
-                card_color: '#01C46C',
+                qiugou_color: '#01C46C',
                 fjmy_color: '',
+                card_color: '',
                 message: that.data.buyList
             })
-        } else {
+        } else if (e.target.dataset.nn == 3){
             that.setData({
                 info_color: '',
-                card_color: '',
+                qiugou_color: '',
                 fjmy_color: '#01C46C',
+                card_color:'',
                 message: that.data.fjmyList
             })
+        }
+        else if (e.target.dataset.nn == 4) {
+          that.setData({
+            info_color: '',
+            qiugou_color: '',
+            fjmy_color: '',
+            card_color:'#01C46C',
+          })
         }
     },
 

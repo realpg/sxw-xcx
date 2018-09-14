@@ -1,13 +1,155 @@
+@import "../template/template.wxss";
 page {
   background: #f1f4f6;
 }
+
+/* 修改后 */
+.revision{
+  margin-top: 10rpx;
+  width: 94%;
+  padding: 3%;
+  background: #ffffff;
+}
+.revision_head{
+  display: flex;
+}
+.revision_name{
+  margin-left: 10rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-right: 20rpx;
+}
+.revision_postion{
+  font-size: 26rpx;
+  color: #999999;
+  margin-right: 30rpx;
+}
+.revision_demand{
+  margin-right: 30rpx;
+  background: #FFD634;
+  padding: 5rpx 12rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  color: white;
+  text-align: center;
+  border-radius:6rpx;
+}
+.revision_company{
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  color: #3F3F3F;
+  line-height: 46rpx;
+}
+.revision_lable{
+  font-size: 30rpx;
+  color: #999999;
+  line-height: 42rpx;
+  margin-bottom: 10rpx;
+}
+.revision_lable_css{
+  display: flex;
+  margin-right: 20rpx;
+}
+.revision_context{
+  font-size: 30rpx;
+  line-height: 44rpx;
+  display: -webkit-box; 
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.revision_address{
+  font-size: 28rpx;
+  color: #9F9F9F;
+  line-height: 50rpx;
+}
+.revision_time{
+  font-size: 26rpx;
+  color: #9F9F9F;
+  line-height: 40rpx;
+}
+.revision_hint{
+  font-size: 26rpx;
+  color: #9F9F9F;
+  line-height: 40rpx;
+}
+.revision_bottom{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  margin-top: 10rpx;
+  justify-content: space-between;
+}
+.revision_eye{
+  display: flex;
+  align-items: center;
+}
+.revision_eye_num{
+  margin-left: 8rpx;
+  font-size: 26rpx;
+  color: #3F3F3F
+}
+.Check_the_details{
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #01C46C;
+}
+.revision_headImg{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  border:1rpx solid #e6eaf2;
+}
+.revision_vipImg{
+  width: 26rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 64rpx;
+  left: 64rpx;
+}
+.revision_phone{
+ width: 42rpx;
+ height: 42rpx;
+ position: absolute;
+ top: 20rpx;
+ right: 10rpx;
+}
+.revision_eye_Img{
+  width: 36rpx;
+  height: 36rpx;
+}
+.revision_jiantou_img{
+  margin-top: 6rpx;
+  margin-left: 6rpx;
+  width: 18rpx;
+  height: 26rpx;
+}
+.revision_message_Img{
+  width: 96%;
+  margin: auto;
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between
+}
+.revision_message_Image{
+  width: 31%;
+}
+.revision_message_Image_Css{
+  width: 210rpx;
+  height:210rpx;
+}
+
+
 .address_css{
   display: flex;
   align-items: center;
 }
 .message {
   background: #fff;
-  margin-top: 20rpx;
+  margin-top: 2rpx;
 }
 
 .messageCss {
@@ -135,6 +277,7 @@ margin-left: 50rpx;
 
 .view, .like {
   margin-left: 10rpx;
+  color: #333333;
 }
 
 .see_details {
@@ -180,8 +323,8 @@ margin-left: 50rpx;
 }
 
 .dianzan{
-   width: 32rpx;
-  height: 32rpx;
+   width: 34rpx;
+  height: 34rpx;
 }
 .eye{
   width: 35rpx;

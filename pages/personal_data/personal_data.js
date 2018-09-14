@@ -389,15 +389,22 @@ Page({
         return;
       }
     }
-    if (!(param.company && param.career && param.address && param.introduce && param.introduce && param.business && param.mobile && param.truename && param.ywlb_ids && param.thumb)){
-      
+    
+    var name_bytes = util.get_string_bytes(param.truename);
+    if (name_bytes>12){
+      wx.showToast({
+        title: "姓名长度在12字节以内！",
+        icon: 'none'
+      })
+      return;
     }
+
     util.editInfo_post(param, function(ret) {
       console.log(ret);
       app.globalData.userInfo.credit -= that.data.gold_coin_pay;
       wx.showToast({
-        title: "请等待审核",
-        icon: "success",
+        title: "已受理，3个工作日内完成审核",
+        icon: "none",
         success: function() {
           setTimeout(function() {
           wx.navigateBack()

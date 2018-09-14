@@ -1,5 +1,9 @@
+<import src="../template/template.wxml"/>
+
 <!-- 搜索框 -->
-<view class='search'>
+<view style='width:100%;height:122rpx;color:#ffffff'></view>
+<view  class='rve'>
+<view class='search css' >
   <view class='search_css'>
     <view class="section">
       <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
@@ -14,11 +18,11 @@
       <image bindtap='seekClick' class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
     </view>
   </view>
-
+</view>
 </view>
 
-<view wx:if='{{!searching}}'>
-  <view class='search searchs'>
+<view wx:if='{{!searching}}' >
+  <view class='search searchs' >
 
     <view class='search_history'>
       <view class='recently_history'>最近搜索</view>
@@ -57,7 +61,10 @@
     未找到对应搜索结果
   </view>
   <view wx:if='{{messageList.length>0 && index!=4}}'>
-    <!--具体信息-->
+
+<!-- 具体信息 -->
+  <template is='messageBox' data='{{message:messageList}}'></template>
+    <!-- 具体信息
     <view class='message' wx:for='{{messageList}}' wx:for-index='idx'>
       <view class='messageCss' data-id='{{item.id}}'>
         <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
@@ -116,7 +123,7 @@
 
         </view>
       </view>
-    </view>
+    </view> -->
 
 
   </view>
@@ -145,7 +152,7 @@
         </view>
         <view class='card_pageView'>
           <image class='card_pageView_Img' src='../../images/index/eye.png'></image>
-          <text class='card_number'>{{item.bussinesscard.view}}</text>
+          <text class='card_number'>{{item.businesscard.view}}</text>
         </view>
       </view>
     </view>

@@ -172,30 +172,24 @@ height: 100%;
 }
 
 .store_type {
-  background: #9accf7;
-  padding: 14rpx 8rpx;
+  background: #FFD634;
+  padding: 5rpx 12rpx;
   line-height: 30rpx;
   font-size: 22rpx;
   color: white;
-  border-radius: 50%;
   text-align: center;
+  border-radius:6rpx;
 }
 
 .lable_one {
-  background: #dfffef;
-  color: #40b792;
-  padding: 5rpx 10rpx;
   line-height: 30rpx;
-  font-size: 22rpx;
-  border-radius: 5rpx;
+  font-size: 26rpx;
+  color: #999999
 }
 .lable_two {
-  font-size: 22rpx;
-  background: #ffe5c0;
-  color: #ffa929;
-  padding: 5rpx 10rpx;
   line-height: 30rpx;
-  border-radius: 5rpx;
+  font-size: 26rpx;
+  color: #999999
 }
 .store_info{
   white-space: normal;
@@ -212,7 +206,7 @@ height: 100%;
 }
 
 .Enter_store{
-  height: 70rpx;
+  height: 80rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -330,13 +324,15 @@ text-align: center;
   overflow: hidden;
 }
 .message_Img{
+  width: 96%;
+  margin: auto;
   margin-top: 20rpx;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between
 }
 .message_Image{
-  width: 32%;
+  width: 31%;
 }
 .time{
   font-size: 26rpx;
@@ -392,8 +388,8 @@ display: flex;
   float: right;
 }
 .message_Image_Css{
-  width: 180rpx;
-  height:170rpx;
+  width: 210rpx;
+  height:210rpx;
 }
 .address_css{
   display: flex;
@@ -434,4 +430,122 @@ align-items: center;
 .button-hover{
   background: none;
   /* color: #FFFFFF; */
+}
+
+
+
+/* 修改后 */
+.revision{
+  margin-top: 10rpx;
+  width: 94%;
+  padding: 3%;
+  background: #ffffff;
+}
+.rev_head{
+  display: flex;
+}
+.rev_name{
+  margin-left: 10rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-right: 20rpx;
+}
+.rev_postion{
+  font-size: 26rpx;
+  color: #999999;
+  margin-right: 30rpx;
+}
+.rev_demand{
+  margin-right: 30rpx;
+  background: #FFD634;
+  padding: 5rpx 12rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  color: white;
+  text-align: center;
+  border-radius:6rpx;
+}
+.rev_company{
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  color: #3F3F3F;
+  line-height: 46rpx;
+}
+.rev_lable{
+  font-size: 30rpx;
+  color: #999999;
+  line-height: 42rpx;
+  margin-bottom: 10rpx;
+}
+.rev_lable_css{
+  display: flex;
+  margin-right: 20rpx;
+}
+.rev_context{
+  font-size: 30rpx;
+  line-height: 44rpx;
+  display: -webkit-box; 
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.rev_address{
+  font-size: 28rpx;
+  color: #9F9F9F;
+  line-height: 50rpx;
+}
+.rev_time{
+  font-size: 26rpx;
+  color: #9F9F9F;
+}
+.rev_bottom{
+  display: flex;
+  margin-top: 10rpx;
+  justify-content: space-between;
+}
+.rev_eye{
+  display: flex;
+  align-items: center;
+}
+.rev_eye_num{
+  margin-left: 8rpx;
+  font-size: 26rpx;
+  color: #3F3F3F
+}
+.Check_the_details{
+  padding-left: 10%;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #01C46C;
+}
+.rev_headImg{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  border:1rpx solid #e6eaf2;
+}
+.rev_vipImg{
+  width: 26rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 64rpx;
+  left: 64rpx;
+}
+.rev_phone{
+ width: 42rpx;
+ height: 42rpx;
+ position: absolute;
+ top: 20rpx;
+ right: 10rpx;
+}
+.rev_eye_Img{
+  width: 36rpx;
+  height: 36rpx;
+}
+.rev_jiantou_img{
+  margin-left: 6rpx;
+  width: 18rpx;
+  height: 26rpx;
 }

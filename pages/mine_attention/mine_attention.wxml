@@ -1,14 +1,21 @@
+ <import src="../template/template.wxml"/> 
+
 <view class='attention'>
   <view class='attention_info' style='color:{{info_color}}' bindtap='selectClick' data-nn='1'>供应信息</view>
-  <view class='attention_card' style='color:{{card_color}}' bindtap='selectClick' data-nn='2'>求购信息</view>
+  <view class='attention_card' style='color:{{qiugou_color}}' bindtap='selectClick' data-nn='2'>求购信息</view>
   <view class='attention_fjmy' style='color:{{fjmy_color}}' bindtap='selectClick' data-nn='3'>纺机贸易</view>
+  <view class='attention_fjmy' style='color:{{card_color}}' bindtap='selectClick' data-nn='4'>名片</view>
 </view>
 
 <view class=''></view>
 
 <view class='hint' wx:if='{{message.length<1}}'>您还未关注该类信息</view>
 
-<!--具体信息-->
+<!-- 具体信息 -->
+ <template is='messageBox' data='{{message}}'></template> 
+
+
+<!-- 具体信息
 <view class='message' wx:for='{{message}}' wx:for-index='idx'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
@@ -69,4 +76,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->

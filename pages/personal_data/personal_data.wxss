@@ -155,7 +155,6 @@ margin-top: 20rpx;
   height: 90rpx;
   line-height: 90rpx;
   margin-top: 50rpx;
-  margin-bottom: 50rpx;
 }
 
 .AddImgList_one{

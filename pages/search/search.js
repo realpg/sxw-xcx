@@ -97,6 +97,13 @@ Page({
     searching: false,
   },
 
+  //联系商家
+  phoneClick: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
+    })
+  },
+  
   seekInput: function (e) {
 
     that.setData({
@@ -222,7 +229,7 @@ Page({
                 icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
                 name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
                 position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
-                demand: '纺机贸易', //发布类别  ()
+                demand: '纺机', //发布类别  ()
                 mobile: ret.data[i].mobile,
                 company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
                 lableList: ret.data[i].tags,
@@ -306,7 +313,7 @@ Page({
                 icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
                 name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
                 position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
-                demand: '纺机贸易', //发布类别  ()
+                demand: '纺机', //发布类别  ()
                 mobile: ret.data[i].mobile,
                 company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
                 lableList: ret.data[i].tags,
@@ -391,7 +398,7 @@ Page({
                 icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
                 name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
                 position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
-                demand: '纺机贸易', //发布类别  ()
+                demand: '纺机', //发布类别  ()
                 mobile: ret.data[i].mobile,
                 company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
                 lableList: ret.data[i].tags,
@@ -433,7 +440,7 @@ Page({
   },
 
   FrameSearch: function () {
-    console.log('搜索纺机贸易')
+    console.log('搜索纺机')
     that.setData({
       searching: true
     })
@@ -458,7 +465,7 @@ Page({
         return false;
     }
     var callback = function (rets) {
-      console.log("纺机贸易获取完成", rets)
+      console.log("纺机获取完成", rets)
       wx.hideLoading()
       var messageList = []
       var fjmy_next_page = that.data.fjmy_next_page;
@@ -476,7 +483,7 @@ Page({
                 icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
                 name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
                 position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
-                demand: '纺机贸易', //发布类别  ()
+                demand: '纺机', //发布类别  ()
                 mobile: ret.data[i].mobile,
                 company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
                 lableList: ret.data[i].tags,
@@ -540,11 +547,12 @@ Page({
             //   icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
             name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
             position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
-            //   demand: '纺机贸易', //发布类别  ()
+            //   demand: '纺机', //发布类别  ()
             //   mobile: ret.data[i].mobile,
             company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
             //   lableList: ret.data[i].tags,
             business: ret.data[i].businesscard.business,
+            businesscard: ret.data[i].businesscard,
             //   details: ret.data[i].introduce, //信息详情描述
             //   message_Img: //详情图片  后续跟进
             //     [{

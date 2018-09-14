@@ -1,7 +1,8 @@
 <!-- 名片 -->
-<view class='card'>
+<view class='card' wx:if='{{business_card.groupid==6}}'>
   <view class='card_css' >
     <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+     <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}' ></image>
       <view class='career_css'>
     <view class='truename'>{{business_card.truename}}</view>
      <view class='state itemscenter'>
@@ -38,11 +39,21 @@
       <text class='card_mobile'> {{business_card.businesscard.favorite}} </text> 关注</view>
   </view>
 </view>
-
+<view wx:else='{{business_card.groupid==5}}' class='Css'>
+<view  class='business_card'>
+<view wx:if="{{business_card.updating}}"class='business_card_css redactuserinfo'>
+      <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>信息审核中，请等待</text></button> 
+      </view>
+  <view wx:else bindtap='redactClick' class='business_card_css redactuserinfo'>
+   <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>请完善个人信息</text></button> 
+  </view>
+  </view>
+</view>
 
 <!-- 名片
 <view class='Css'></view>
 <view  wx:if='{{business_card.groupid==6}}' class='business_card'>
+<view class='Css'></view>
   <view class='business_card_css'>
     <view class='name'>{{business_card.businesscard.truename}}
       <text class='post'>{{business_card.career}}</text>

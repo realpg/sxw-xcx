@@ -125,3 +125,5 @@
 
 <!--提交发布-->
 <view class='submit' bindtap='submitClick'>提交发布</view>
+
+<view style='width:100%;height:50rpx;'></view>

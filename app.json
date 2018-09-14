@@ -1,7 +1,5 @@
 {
   "pages": [
-
-    
     "pages/index/index",
     "pages/reclassifyCard/reclassifyCard",
     "pages/release_supply_information/release_supply_information",
@@ -26,7 +24,7 @@
     "pages/mine_message/mine_message",
     "pages/mine_attention/mine_attention",
     "pages/help_center/help_center",
-    "pages/customer_services/customer_services", 
+    "pages/customer_services/customer_services",
     "pages/recharge/recharge",
     "pages/pay_advertising/pay_advertising",
     "pages/pay_advertising_lunbo/pay_advertising_lunbo",
@@ -34,9 +32,8 @@
     "pages/select_issue/select_issue",
     "pages/search/search",
     "pages/question_answering/question_answering",
-     "pages/class_of_business/class_of_business",
-     "pages/goldList/goldList"
-
+    "pages/class_of_business/class_of_business",
+    "pages/goldList/goldList"
   ],
   "window": {
     "backgroundTextStyle": "light",

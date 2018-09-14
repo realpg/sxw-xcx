@@ -1,5 +1,17 @@
+@import "../template/template.wxss";
+
 page{
   background: #f1f4f6;
+
+}
+.rve{
+position: fixed;
+top:0;
+height: 62rpx;
+width: 100%;
+z-index: 999;
+}
+.css{
   border-top: 1rpx solid #f1f4f6
 }
 .head_portrait{
@@ -12,7 +24,7 @@ page{
   position: absolute;
   top: 70rpx;
   right: 10rpx;
-  z-index: 999;
+  z-index:2;
 }
 .hint{
   font-size: 28rpx;
@@ -368,7 +380,7 @@ border-radius: 50%;
   position: absolute;
   top: 70rpx;
   left: 67rpx;
-  z-index: 999;
+  z-index:2;
 }
 .card_pageView_Img{
   width: 30rpx;

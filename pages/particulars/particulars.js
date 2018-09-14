@@ -16,7 +16,7 @@ Page({
     message: [
       // { id: '0', head_portrait_icon: '../../images/index/head_portrait.png', icon_vip: '../../images/index/vip.png', name: '董晓珺', position: '销售总监', demand: '供应', company: '董南通金源纺织科技有限公司', lable_three: '混纺纱', lable_four: '纺织用纱', lable_five: '混纺纱', details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支', message_Img: [{ message_Image: '../../images/index/Image_details1.png' }, { message_Image: '../../images/index/Image_details2.png' }, { message_Image: '../../images/index/Image_details3.png' }], release_time: '2018-6-28 14:25', turnover_time: '2018-7-18 14:25', address: '南通、柳橙、诸暨', page_view: '867', like: '128' ,star:'324',share:'126'}, 
     ],
-
+    
     //留言
     leave_word_details: [{
         id: '0',
@@ -88,6 +88,10 @@ Page({
     })
   },
   //拨打电话
+  phoneClick:function(){
+    
+    that.making_call_click();
+  },
   making_call_click: function() {
     wx.makePhoneCall({
       phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
@@ -564,6 +568,7 @@ Page({
       console.log('供应信息', ret)
       // that.data.messageList.push(ret.data)
       for (var i in ret.data) {
+        if (that.data.mid != 5 || that.data.id != ret.data[i].itemid)
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 5,
@@ -625,6 +630,7 @@ Page({
       console.log('求购信息', ret)
       // that.data.messageList.push(ret.data)
       for (var i in ret.data) {
+        if (that.data.mid != 6 || that.data.id != ret.data[i].itemid)
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mobile: ret.data[i].mobile,
@@ -684,6 +690,7 @@ Page({
     util.tradeByUserid(param, function(ret) {
       console.log('纺织贸易', ret)
       for (var i in ret.data) {
+        if (that.data.mid != 88 || that.data.id != ret.data[i].itemid)
         that.data.messageList.push({
           id: ret.data[i].itemid, //信息id
           mid: 88,

@@ -1,8 +1,11 @@
+<view style='width:100%;height:122rpx;color:#ffffff'></view>
 <!--搜索框-->
+<view class='top'>
 <view class='searchBox' bindtap='serchClick'>
   <image class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
   <input class='searchInput' placeholder='请输入名称/品类/名片' maxlength='20' placeholder-style='color:#b2b2b2' disabled="disabled">
   </input>
+</view>
 </view>
 <!--分类-->
 

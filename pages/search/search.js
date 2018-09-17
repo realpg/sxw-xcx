@@ -19,38 +19,32 @@ Page({
       mid: 88,
       next_page: 1
     }],
-    all_next_page: [{
-      mid: 5,
+    all_next_page: {
+      mid: 0,
       next_page: 1
-    }, {
-      mid: 6,
-      next_page: 1
-    }, {
-      mid: 88,
-      next_page: 1
-    },],
+    },
     hint: '',
     array: ['全部', '供应', '求购', '纺机', '名片'],
     objectArray: [{
-      id: 0,
-      name: '全部'
-    },
-    {
-      id: 1,
-      name: '供应'
-    },
-    {
-      id: 2,
-      name: '求购'
-    },
-    {
-      id: 3,
-      name: '设备'
-    },
-    {
-      id: 4,
-      name: '名片'
-    }
+        id: 0,
+        name: '全部'
+      },
+      {
+        id: 1,
+        name: '供应'
+      },
+      {
+        id: 2,
+        name: '求购'
+      },
+      {
+        id: 3,
+        name: '设备'
+      },
+      {
+        id: 4,
+        name: '名片'
+      }
     ],
     index: '0',
     recently_history: [],
@@ -91,28 +85,27 @@ Page({
     }, {
       id: '11',
       lable_Info: '进口棉'
-    },],
+    }, ],
 
     messageList: [],
     searching: false,
   },
 
   //联系商家
-  phoneClick: function (e) {
+  phoneClick: function(e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
     })
   },
-  
-  seekInput: function (e) {
 
+  seekInput: function(e) {
     that.setData({
       seekInp: e.detail.value
     })
 
   },
 
-  addHistory: function () {
+  addHistory: function() {
     var s = new Set();
     var arrb = [];
     var arr = wx.getStorageSync('history') ? wx.getStorageSync('history') : []
@@ -120,7 +113,7 @@ Page({
 
     arr.push(that.data.seekInp);
 
-    s.forEach(function (data) {
+    s.forEach(function(data) {
       arrb.push(data)
     })
 
@@ -134,7 +127,7 @@ Page({
     })
   },
 
-  sethistoryClick: function (e) {
+  sethistoryClick: function(e) {
     that.data.seekInp = e.currentTarget.dataset.history;
     that.seekClick();
     that.setData({
@@ -143,7 +136,7 @@ Page({
   },
 
 
-  clear: function () {
+  clear: function() {
     that.setData({
       recently_history: []
     });
@@ -153,10 +146,26 @@ Page({
     })
   },
 
-  seekClick: function () {
+  seekClick: function() {
     console.log('点击搜索', that.data.index)
     that.setData({
-      messageList: []
+      messageList: [],
+      supply_next_page: [{
+        mid: 5,
+        next_page: 1
+      }],
+      buy_next_page: [{
+        mid: 6,
+        next_page: 1
+      }],
+      fjmy_next_page: [{
+        mid: 88,
+        next_page: 1
+      }],
+      all_next_page: {
+        mid: 0,
+        next_page: 1
+      },
     });
     switch (that.data.index) {
       case '0':
@@ -185,91 +194,89 @@ Page({
   },
 
   //查询全部 
-  ALLSearch: function () {
+
+  ALLSearch: function() {
     console.log('搜索全部')
     that.setData({
       searching: true
     })
-    var interfaces = [];
-    for (var i in that.data.all_next_page) {
-      interfaces.push({
-        param: {
-          keyword: that.data.seekInp,
-          page: that.data.all_next_page[i].next_page
-        },
-        func: that.data.all_next_page[i].mid == 5 ? util.SupplySearch : (
-          that.data.all_next_page[i].mid == 6 ? util.BuySearch : (
-            that.data.all_next_page[i].mid == 88 ? util.FrameSearch : null
-          )
-        )
-      })
-    }
-    var checkparam = function (Interface) {
-      if (Interface.param.page)
-        return true;
-      else
-        return false;
-    }
-    var callback = function (rets) {
-      console.log("全部列表获取完成", rets)
-      wx.hideLoading()
-      var messageList = []
-      var all_next_page = that.data.all_next_page;
+    if (that.data.all_next_page.next_page !== null) {
+      var param = {
+        page: that.data.all_next_page.next_page,
+        keyword: that.data.seekInp,
+      };
+      console.log(param)
 
-      for (var idx in rets) {
-        var ret = rets[idx];
-        if (ret) {
-          for (var i in ret.data)
-            if (ret.data[i].businesscard)
-              messageList.push({
-                id: ret.data[i].itemid, //信息id
-                mid: that.data.all_next_page[idx].mid,
-                userid: ret.data[i].businesscard.userid, //userid
-                head_portrait_icon: ret.data[i].businesscard ? (ret.data[i].businesscard.avatarUrl ? ret.data[i].businesscard.avatarUrl : '../../images/index/head_portrait.png') : '../../images/index/head_portrait.png', //头像，后面是默认头像
-                icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
-                name: ret.data[i].businesscard ? ret.data[i].businesscard.truename : "未知", //用户姓名
-                position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
-                demand: '纺机', //发布类别  ()
-                mobile: ret.data[i].mobile,
-                company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
-                lableList: ret.data[i].tags,
-                details: ret.data[i].introduce, //信息详情描述
-                I_agree: ret.data[i].I_agree,
-                I_favortie: ret.data[i].I_favortie,
-                message_Img: //详情图片  后续跟进
-                  [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
-                  ],
-                time: ret.data[i].adddate, //发布时间
-                addtime: ret.data[i].addtime, //发布详细时间
-                address: ret.data[i].address, //货物存放地
-                page_view: ret.data[i].hits, //浏览量
-                favorite: ret.data[i].favorite, //收藏
-                like: ret.data[i].agree //点赞
-              })
+      util.showLoading();
+      util.InfoSearch(param, function(datas) {
+        console.log("全部列表获取完成", datas)
+        wx.hideLoading()
+        if (typeof(datas) == 'undefined'){
+          that.data.all_next_page.next_page = null;
+          that.setData({
+            all_next_page: that.data.all_next_page,
+          })
+          return;
         }
-        all_next_page[idx].next_page = ret ? (ret.current_page < ret.last_page ? ret.current_page + 1 : null) : null
-      }
-      messageList = that.sort(messageList)
-      messageList = that.data.messageList.concat(messageList)
-      that.setData({
-        all_next_page: all_next_page,
-        messageList: messageList,
+        
+        var messageList = []
+        
+        that.data.all_next_page.next_page++;
+        if (datas.length < 1) {
+          that.data.all_next_page.next_page = null;
+        }
 
-      })
+        for (var idx in datas) {
+          var data = datas[idx];
+              if (data.businesscard)
+                messageList.push({
+                  id: data.itemid, //信息id
+                  mid: data.mid,
+                  userid: data.businesscard.userid, //userid
+                  head_portrait_icon: data.businesscard ? (data.businesscard.avatarUrl ? data.businesscard.avatarUrl : '../../images/index/head_portrait.png') : '../../images/index/head_portrait.png', //头像，后面是默认头像
+                  icon_vip: data.vip, //  0===非vip 1-3==vip  
+                  name: data.businesscard ? data.businesscard.truename : "未知", //用户姓名
+                  position: data.businesscard ? data.businesscard.career : "", //职位
+                  demand: '纺机', //发布类别  ()
+                  mobile: data.mobile,
+                  company: data.businesscard ? data.businesscard.company : "", //公司
+                  lableList: data.tags,
+                  details: data.introduce, //信息详情描述
+                  I_agree: data.I_agree,
+                  I_favortie: data.I_favortie,
+                  message_Img: //详情图片  后续跟进
+                    [{
+                      message_Image: data.thumb
+                      },
+                      {
+                        message_Image: data.thumb1
+                      },
+                      {
+                        message_Image: data.thumb2
+                      }
+                    ],
+                  time: data.adddate, //发布时间
+                  addtime: data.addtime, //发布详细时间
+                  address: data.address, //货物存放地
+                  page_view: data.hits, //浏览量
+                  favorite: data.favorite, //收藏
+                  like: data.agree //点赞
+                })
+          
+        }
+        messageList = that.sort(messageList)
+        messageList = that.data.messageList.concat(messageList)
+        that.setData({
+          all_next_page: that.data.all_next_page,
+          messageList: messageList,
 
+        })
+
+      }, null)
     }
-    util.showLoading();
-    that.requestInterfaces(interfaces, checkparam, callback)
   },
-  SupplySearch: function () {
+
+  SupplySearch: function() {
     console.log('搜索供应')
     that.setData({
       searching: true
@@ -288,13 +295,13 @@ Page({
         )
       })
     }
-    var checkparam = function (Interface) {
+    var checkparam = function(Interface) {
       if (Interface.param.page)
         return true;
       else
         return false;
     }
-    var callback = function (rets) {
+    var callback = function(rets) {
       console.log("供应列表获取完成", rets)
       wx.hideLoading()
       var messageList = []
@@ -322,14 +329,14 @@ Page({
                 I_favortie: ret.data[i].I_favortie,
                 message_Img: //详情图片  后续跟进
                   [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
+                      message_Image: ret.data[i].thumb
+                    },
+                    {
+                      message_Image: ret.data[i].thumb1
+                    },
+                    {
+                      message_Image: ret.data[i].thumb2
+                    }
                   ],
                 time: ret.data[i].adddate, //发布时间
                 addtime: ret.data[i].addtime, //发布详细时间
@@ -354,7 +361,8 @@ Page({
     that.requestInterfaces(interfaces, checkparam, callback)
   },
 
-  BuySearch: function () {
+
+  BuySearch: function() {
     console.log('搜索求购')
     that.setData({
       searching: true
@@ -373,13 +381,13 @@ Page({
         )
       })
     }
-    var checkparam = function (Interface) {
+    var checkparam = function(Interface) {
       if (Interface.param.page)
         return true;
       else
         return false;
     }
-    var callback = function (rets) {
+    var callback = function(rets) {
       console.log("求购列表获取完成", rets)
       wx.hideLoading()
       var messageList = []
@@ -407,14 +415,14 @@ Page({
                 I_favortie: ret.data[i].I_favortie,
                 message_Img: //详情图片  后续跟进
                   [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
+                      message_Image: ret.data[i].thumb
+                    },
+                    {
+                      message_Image: ret.data[i].thumb1
+                    },
+                    {
+                      message_Image: ret.data[i].thumb2
+                    }
                   ],
                 time: ret.data[i].adddate, //发布时间
                 addtime: ret.data[i].addtime, //发布详细时间
@@ -439,7 +447,7 @@ Page({
     that.requestInterfaces(interfaces, checkparam, callback)
   },
 
-  FrameSearch: function () {
+  FrameSearch: function() {
     console.log('搜索纺机')
     that.setData({
       searching: true
@@ -458,13 +466,13 @@ Page({
         )
       })
     }
-    var checkparam = function (Interface) {
+    var checkparam = function(Interface) {
       if (Interface.param.page)
         return true;
       else
         return false;
     }
-    var callback = function (rets) {
+    var callback = function(rets) {
       console.log("纺机获取完成", rets)
       wx.hideLoading()
       var messageList = []
@@ -492,14 +500,14 @@ Page({
                 I_favortie: ret.data[i].I_favortie,
                 message_Img: //详情图片  后续跟进
                   [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
+                      message_Image: ret.data[i].thumb
+                    },
+                    {
+                      message_Image: ret.data[i].thumb1
+                    },
+                    {
+                      message_Image: ret.data[i].thumb2
+                    }
                   ],
                 time: ret.data[i].adddate, //发布时间
                 addtime: ret.data[i].addtime, //发布详细时间
@@ -524,7 +532,7 @@ Page({
     that.requestInterfaces(interfaces, checkparam, callback)
   },
 
-  BussinessCardSearch: function () {
+  BussinessCardSearch: function() {
     console.log('名片信息')
     var param = {
       userid: wx.getStorageSync('UserInfo').userid,
@@ -535,7 +543,7 @@ Page({
     that.setData({
       searching: true
     })
-    util.BussinessCardSearch(param, function (ret) {
+    util.BussinessCardSearch(param, function(ret) {
       console.log('名片信息', ret)
       // that.data.messageList.push(ret.data)
       if (ret)
@@ -581,7 +589,7 @@ Page({
   },
 
   //排序
-  sort: function (messageALL) {
+  sort: function(messageALL) {
     var arr = messageALL;
     console.log("排序", arr);
     for (var i = 0; i < arr.length; i++)
@@ -608,10 +616,10 @@ Page({
     return arr;
   },
 
-  getSystemKeyValue: function () {
+  getSystemKeyValue: function() {
     util.getSystemKeyValue({
       id: 7
-    }, function (ret) {
+    }, function(ret) {
       console.log(ret)
       var arrb = [];
       if (ret.value) {
@@ -625,7 +633,7 @@ Page({
   },
 
   //选择
-  bindPickerChange: function (e) {
+  bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     that.setData({
       index: '' + e.detail.value,
@@ -635,7 +643,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
     var index = options.index
     that.setData({
@@ -647,7 +655,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     var history = wx.getStorageSync("history") ? wx.getStorageSync("history") : [];
     that.setData({
       recently_history: history
@@ -658,35 +666,35 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function (e) {
+  onReachBottom: function(e) {
     console.log("触底加载", that.data.index)
     switch (that.data.index) {
       case '0':
@@ -710,18 +718,18 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
   //查看
-  messageList_click: function (e) {
+  messageList_click: function(e) {
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
   },
   //点赞
-  setLikeClick: function (e) {
+  setLikeClick: function(e) {
 
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
@@ -730,7 +738,7 @@ Page({
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
-    util.setLike(param, function (res) {
+    util.setLike(param, function(res) {
       console.log('点击点赞', res);
       wx.showToast({
         title: '点赞成功',
@@ -738,7 +746,7 @@ Page({
         duration: 2000
       })
       for (var i in that.data.messageList) {
-        if (that.data.messageList[i].id == res.itemid&&that.data.message[i].mid == e.currentTarget.dataset.mid) {
+        if (that.data.messageList[i].id == res.itemid && that.data.message[i].mid == e.currentTarget.dataset.mid) {
           that.data.messageList[i].I_agree = true;
           that.data.messageList[i].like++;
         }
@@ -750,90 +758,91 @@ Page({
 
   },
 
-    //关注 取消
-    enshrineClick: function (e) {
-        const that = this;
-        var index = e.currentTarget.dataset.index
-        console.log("改变收藏信息",index,that.data.messageList[index])
-        console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+  //关注 取消
+  enshrineClick: function(e) {
+    const that = this;
+    var index = e.currentTarget.dataset.index
+    console.log("改变收藏信息", index, that.data.messageList[index])
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
 
-        if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
-            if (that.data.messageList[index].I_favortie == false) {
-                var param = {
-                    // userid: wx.getStorageSync('UserInfo').userid.userid,
-                    // _token: wx.getStorageSync('UserInfo')._token,
-                    mid: e.currentTarget.dataset.mid,
-                    tid: e.currentTarget.dataset.id
-                };
-                util.enshrine(param, function (res) {
-                    console.log('收藏', res, that.data.messageList[index]);
-                    wx.showToast({
-                        title: '关注成功',
-                        icon: 'none',
-                        duration: 2000
-                    })
-                    that.data.messageList[index].I_favortie = true;
-                    that.data.messageList[index].favorite++;
+    if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
+      if (that.data.messageList[index].I_favortie == false) {
+        var param = {
+          // userid: wx.getStorageSync('UserInfo').userid.userid,
+          // _token: wx.getStorageSync('UserInfo')._token,
+          mid: e.currentTarget.dataset.mid,
+          tid: e.currentTarget.dataset.id
+        };
+        util.enshrine(param, function(res) {
+          console.log('收藏', res, that.data.messageList[index]);
+          wx.showToast({
+            title: '关注成功',
+            icon: 'none',
+            duration: 2000
+          })
+          that.data.messageList[index].I_favortie = true;
+          that.data.messageList[index].favorite++;
 
-                    that.setData({
-                        messageList: that.data.messageList
-                    })
-                }, null)
-            } else {
-                var param = {
-                    // userid: wx.getStorageSync('UserInfo').userid.userid,
-                    // _token: wx.getStorageSync('UserInfo')._token,
-                    mid: e.currentTarget.dataset.mid,
-                    tid: e.currentTarget.dataset.id,
-                    cancle: '1'
-                };
-                util.enshrine(param, function (res) {
-                    console.log('取消收藏', res, that.data.messageList[index], that.data.messageList);
+          that.setData({
+            messageList: that.data.messageList
+          })
+        }, null)
+      } else {
+        var param = {
+          // userid: wx.getStorageSync('UserInfo').userid.userid,
+          // _token: wx.getStorageSync('UserInfo')._token,
+          mid: e.currentTarget.dataset.mid,
+          tid: e.currentTarget.dataset.id,
+          cancle: '1'
+        };
+        util.enshrine(param, function(res) {
+          console.log('取消收藏', res, that.data.messageList[index], that.data.messageList);
 
-                    that.data.messageList[index].I_favortie = false;
-                    that.data.messageList[index].favorite--;
+          that.data.messageList[index].I_favortie = false;
+          that.data.messageList[index].favorite--;
 
-                    that.setData({
-                        messageList: that.data.messageList
-                    })
-                    wx.showToast({
-                        title: '取消成功',
-                        icon: 'none',
-                        duration: 2000
-                    })
+          that.setData({
+            messageList: that.data.messageList
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none',
+            duration: 2000
+          })
 
-                }, null)
-            }
-            that.setData({
-                messageList: that.data.messageList
-            })
+        }, null)
+      }
+      that.setData({
+        messageList: that.data.messageList
+      })
 
-        }
+    }
 
-    },
+  },
 
 
   //查看详情
-  see_details_click: function (e) {
+  see_details_click: function(e) {
     wx.navigateTo({
       url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
     })
   },
-  searching: function () {
+  searching: function() {
     that.setData({
       searching: false
     })
   },
 
   //点击头像查看名片
-  messageList_click: function (e) {
+  messageList_click: function(e) {
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
   },
 
-  requestInterfaces: function (interfaces, checkparam, callback, rets) {
-    if (typeof (rets) == 'undefined') {
+  requestInterfaces: function(interfaces, checkparam, callback, rets) {
+    console.log("请求", interfaces, checkparam, callback, rets)
+    if (typeof(rets) == 'undefined') {
       rets = [];
       //默认返回数组为空
     }
@@ -849,11 +858,11 @@ Page({
         rets.push(null)
         that.requestInterfaces(interfaces, checkparam, callback, rets)
       } else IFC.func(IFC.param,
-        function (ret) {
+        function(ret) {
           rets.push(ret)
           that.requestInterfaces(interfaces, checkparam, callback, rets)
         },
-        function (ret) {
+        function(ret) {
           rets.push(null)
           that.requestInterfaces(interfaces, checkparam, callback, rets)
         });

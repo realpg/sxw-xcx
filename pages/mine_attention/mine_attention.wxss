@@ -205,3 +205,101 @@ display: flex;
 display: flex;
 align-items:center;
 }
+
+
+/* 名片 */
+
+/* pages/reclassifyCard/reclassifyCard.wxss */
+
+
+.messageList_rev{
+  background: #fff;
+  width:90%;
+  margin: auto;
+  padding:3% 5%; 
+  margin-top: 20rpx;
+   position: relative;
+}
+.messageListCss_rev{
+ display: flex;
+ border-bottom: 1rpx solid #f5f5f5;
+ justify-content: space-between;
+line-height: 50rpx;
+padding-bottom: 3%;
+}
+.message_rev{
+  display: flex;
+   line-height: 50rpx;
+}
+.messageCss_rev{
+  margin-left: 20rpx;
+}
+.employee_information_rev{
+  display: flex;
+  line-height: 50rpx;
+  align-items: center;
+}
+.name_rev{
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.post_rev{
+  margin-left: 15rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.companyName_rev{
+  color: #666;
+  font-size: 26rpx;
+}
+.main_business_rev{
+  margin-top: 10rpx;
+  line-height: 46rpx;
+  font-size: 28rpx;
+   display: -webkit-box; 
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.enter_rev{
+  background: #01C46C;
+  color: white;
+  font-size: 22rpx;
+  padding: 5rpx 25rpx;
+  border-radius: 6rpx;
+}
+.number_rev{
+  margin-left: 10rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.iconImg_rev{
+width: 100rpx;
+height: 100rpx;
+border-radius: 50%;
+border:1rpx solid #e6eaf2;
+}
+.pageView_rev{
+display: flex;
+align-items: center;
+}
+.pageView_Img_rev{
+  width: 32rpx;
+  height: 30rpx;
+}
+.vip_Img_rev{
+  margin-left: 15rpx;
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.icon_vip_css_rev{
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 90rpx;
+  left: 110rpx;
+  z-index: 999;
+  }

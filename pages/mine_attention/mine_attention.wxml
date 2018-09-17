@@ -9,12 +9,42 @@
 
 <view class=''></view>
 
-<view class='hint' wx:if='{{message.length<1}}'>您还未关注该类信息</view>
+<view class='hint' wx:if='{{message.length<1 && id!=4}}'>您还未收藏该类信息</view>
+<view class='hint' wx:if='{{cardList.length<1 && id==4}}'>您还未收藏名片</view>
 
-<!-- 具体信息 -->
+<!-- 收藏信息 -->
  <template is='messageBox' data='{{message}}'></template> 
+<!-- 收藏名片 -->
+<view wx:if='{{id==4}}'>
+<view class='messageList_rev'  wx:for='{{cardList}}'>
+  <view class='messageListCss_rev' data-id='{{item.userid}}' bindtap='messageList_click'>
+    <view class='message_rev'>
+      <image class='iconImg_rev' src='{{item.avatarUrl}}'></image>
+          <image class='icon_vip_css_rev' src='{{item.vip!=0?"../../images/index/vip.png":""}}' mode='widthFix' />
+      <view class='messageCss_rev'>
+        <view class='employee_information_rev'>
+          <view class='name_rev'>{{item.name}}</view>
+          <view class='post_rev'>{{item.career}}</view>
+        </view>
+        <view class='companyName_rev'>{{item.company}}</view>
+      </view>
+    </view>
 
-
+    <view class='enter_pageView_rev'>
+      <view class='enter_css_rev'>
+        <text class='enter_rev'>查看</text>
+      </view>
+      <view class='pageView_rev'>
+        <image class='pageView_Img_rev' src='../../images/index/eye.png'></image>
+        <text class='number_rev'>{{item.view}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='main_business_rev'>
+    <view>主营：{{item.business}}</view>
+  </view>
+</view>
+</view>
 <!-- 具体信息
 <view class='message' wx:for='{{message}}' wx:for-index='idx'>
   <view class='messageCss' data-id='{{item.id}}'>

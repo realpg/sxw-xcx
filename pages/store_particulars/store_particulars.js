@@ -105,6 +105,7 @@ Page({
     })
   },
 
+
     //用户名片
     visitingCardInfo: function () {
         var param = {
@@ -378,6 +379,31 @@ Page({
         return arr;
     },
 
+  //名片点赞
+  setLike_card_Click: function (e) {
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    var param = {
+      // userid: wx.getStorageSync('UserInfo').userid.userid,
+      // _token: wx.getStorageSync('UserInfo')._token,
+      item_mid: e.currentTarget.dataset.mid,
+      item_id: e.currentTarget.dataset.id
+    };
+    util.setLike(param, function (res) {
+      console.log('点击名片点赞', res);
+      wx.showToast({
+        title: '点赞成功',
+        icon: 'none',
+        duration: 2000
+      })
+
+      that.data.business_card.I_agree = true;
+      that.data.business_card.agree++;
+      that.setData({
+        business_card: that.data.business_card
+      })
+    }, null)
+  },
+
 //点赞
   setLikeClick: function (e) {
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
@@ -404,6 +430,63 @@ Page({
         messageList: that.data.messageList
       })
     }, null)
+  },
+
+  //名片 关注 取消
+  enshrine_card_Click: function (e) {
+    const that = this;
+    var index = e.currentTarget.dataset.index
+    console.log(111111, that.data.business_card.I_favorite)
+    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    if (that.data.business_card.I_favorite == false) {
+      console.log(32432432);
+        var param = {
+          mid: e.currentTarget.dataset.mid,
+          tid: e.currentTarget.dataset.id
+        };
+        util.enshrine(param, function (res) {
+          console.log('收藏', res, that.data.business_card);
+          wx.showToast({
+            title: '关注成功',
+            icon: 'none',
+            duration: 2000
+          })
+          that.data.business_card.I_favorite = true;
+          that.data.business_card.favorite++;
+
+          that.setData({
+            business_card: that.data.business_card
+          })
+        }, null)
+      } else {
+        var param = {
+          // userid: wx.getStorageSync('UserInfo').userid.userid,
+          // _token: wx.getStorageSync('UserInfo')._token,
+          mid: e.currentTarget.dataset.mid,
+          tid: e.currentTarget.dataset.id,
+          cancle: '1'
+        };
+        util.enshrine(param, function (res) {
+          console.log('取消收藏', res, that.data.business_card, that.data.business_card);
+
+          that.data.business_card.I_favorite = false;
+          that.data.business_card.favorite--;
+
+          that.setData({
+            business_card: that.data.business_card
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none',
+            duration: 2000
+          })
+
+        }, null)
+      }
+      that.setData({
+        business_card: that.data.business_card
+      })
+
 
   },
   //关注 取消
@@ -423,7 +506,7 @@ Page({
         util.enshrine(param, function (res) {
           console.log('收藏', res, that.data.messageList[index]);
           wx.showToast({
-            title: '关注成功',
+            title: '收藏成功',
             icon: 'none',
             duration: 2000
           })

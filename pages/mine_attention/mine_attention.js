@@ -15,7 +15,9 @@ Page({
         message: [],
         sellList: [],
         buyList: [],
-        fjmyList: []
+        fjmyList: [],
+        cardList:[],
+        id:'1'
     },
     //联系商家
     phoneClick: function (e) {
@@ -51,7 +53,7 @@ Page({
                 util.enshrine(param, function (res) {
                     console.log('收藏', res, that.data.message[index]);
                     wx.showToast({
-                        title: '关注成功',
+                        title: '收藏成功',
                         icon: 'none',
                         duration: 2000
                     })
@@ -127,38 +129,45 @@ Page({
     //选择
     selectClick: function (e) {
         var that = this;
+      var id = e.target.dataset.nn
         // console.log(e)
-        if (e.target.dataset.nn == 1) {
+        if (id == 1) {
             that.setData({
                 info_color: '#01C46C',
                 qiugou_color: '',
                 fjmy_color: '',
                 card_color: '',
-                message: that.data.sellList
+                message: that.data.sellList,
+                id:id
             })
-        } else if (e.target.dataset.nn == 2) {
+        } else if (id  == 2) {
             that.setData({
                 info_color: '',
                 qiugou_color: '#01C46C',
                 fjmy_color: '',
                 card_color: '',
-                message: that.data.buyList
+              message: that.data.buyList,
+              id: id
             })
-        } else if (e.target.dataset.nn == 3){
+        } else if (id  == 3){
             that.setData({
                 info_color: '',
                 qiugou_color: '',
                 fjmy_color: '#01C46C',
                 card_color:'',
-                message: that.data.fjmyList
+              message: that.data.fjmyList,
+              id: id
             })
         }
-        else if (e.target.dataset.nn == 4) {
+        else if (id  == 4) {
           that.setData({
             info_color: '',
             qiugou_color: '',
             fjmy_color: '',
             card_color:'#01C46C',
+            cardList: that.data.cardList,
+            message:'',
+            id: id
           })
         }
     },
@@ -179,7 +188,8 @@ Page({
             message: [],
             sellList: [],
             buyList: [],
-            fjmyList: []
+            fjmyList: [],
+            cardList:[]
         })
 
         util.myFavorite({}, function (ret) {
@@ -187,6 +197,7 @@ Page({
             var sellList = that.data.sellList;
             var buyList = that.data.buyList;
             var fjmyList = that.data.fjmyList;
+          var cardList =that.data.cardList;
             for (var i in ret.data) {
                 if (ret.data[i].mid == 5) {
                     console.log(1314, ret)
@@ -291,6 +302,42 @@ Page({
                         favorite: ret.data[i].item.favorite, //收藏
                         like: ret.data[i].item.agree //点赞
                     })
+                } else if (ret.data[i].mid == 2){
+                  console.log(777, ret)
+                 cardList.push({
+                   userid: ret.data[i].item.userid, //信息id
+                  mid: 2,
+                  avatarUrl: ret.data[i].item.avatarUrl, //头像，后面是默认头像
+                  icon_vip: ret.data[i].item.vip, //  0===非vip 1-3==vip
+                 name: ret.data[i].item.truename, //用户姓名
+                  //   userid: ret.data[i].item.businesscard.userid, //userid
+                   career: ret.data[i].item.career, //职位
+                  //   mobile: ret.data[i].item.businesscard.mobile, //电话
+                  //   demand: '求购', //发布类别  ()
+                  company: ret.data[i].item.company, //公司
+                   business: ret.data[i].item.business, //主营
+                  //   lableList: ret.data[i].item.tags,
+                  //   details: ret.data[i].item.introduce, //信息详情描述
+                  //   I_favortie: ret.data[i].item.I_favortie,
+                  //   I_agree: ret.data[i].item.I_agree,
+                  //   message_Img: //详情图片  后续跟进
+                  //     [{
+                  //       message_Image: ret.data[i].item.thumb
+                  //     },
+                  //     {
+                  //       message_Image: ret.data[i].item.thumb1
+                  //     },
+                  //     {
+                  //       message_Image: ret.data[i].item.thumb2
+                  //     }
+                  //     ],
+                  //   time: ret.data[i].item.adddate, //发布时间
+                  //   addtime: ret.data[i].item.addtime, //发布详细时间
+                  //   address: ret.data[i].item.address, //货物存放地
+                  view: ret.data[i].item.view, //浏览量
+                  //   like: ret.data[i].item.agree, //点赞
+                  //   favorite: ret.data[i].item.favorite, //收藏
+                   })
                 }
             }
             that.setData({
@@ -298,6 +345,7 @@ Page({
                 sellList: sellList,
                 buyList: buyList,
                 fjmyList: fjmyList,
+                cardList: cardList
             })
         },)
     },

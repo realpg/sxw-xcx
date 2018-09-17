@@ -1,3 +1,13 @@
+.top{
+position: fixed;
+top:0;
+height: 124rpx;
+width: 100%;
+z-index: 999;
+background: #f1f4f6
+}
+
+
 .scroll-view_H{
   white-space: nowrap;
 }
@@ -151,7 +161,8 @@ height: 100%;
 
 .store_name {
   line-height: 80rpx;
-  background: #d0dfff;
+  background: #2ACE84;
+  color: #ffffff;
   text-align: center;
   font-size: 28rpx;
   font-weight: 700;
@@ -512,6 +523,10 @@ align-items: center;
   margin-left: 8rpx;
   font-size: 26rpx;
   color: #3F3F3F
+}
+.rev_eyeImg{
+  width:34rpx;
+  height:30rpx;
 }
 .Check_the_details{
   padding-left: 10%;

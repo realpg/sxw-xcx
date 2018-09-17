@@ -32,7 +32,7 @@
     <view class='rev_time'>{{item.time}}</view>
     <view class='rev_bottom'>
       <view class='rev_eye'>
-        <image class='rev_eye_Img' src='../../images/index/eye.png'/> 
+        <image class='rev_eyeImg' src='../../images/index/eye.png'/> 
         <text  class='rev_eye_num'>{{item.page_view}}</text>
       </view>
        <view class='rev_eye' bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}'>

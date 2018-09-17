@@ -1,3 +1,19 @@
+<view style='display:{{display}}'>
+<import src="../template/template.wxml"/>
+
+<view style='width:100%;height:122rpx;color:#ffffff'></view>
+<!--搜索框-->
+<view class='top'>
+  <view class='searchBox' bindtap='serchClick' style='background:#ffffff;'>
+    <image class='searchIcon' src='../../images/index/icon_search.png'></image>
+    <input class='searchInput' placeholder='请输入名称/品类/名片' maxlength='20'  disabled="disabled">
+    </input>
+  </view>
+</view>
+</view>
+
+
+
 <view catchtap='' catchtouchmove='' style='width:100%;overflow-x:hidden;'>
 <!--轮播图-->
 <view style='position: relative;'>
@@ -105,7 +121,7 @@
     <view class='rev_time'>{{item.time}}</view>
     <view class='rev_bottom'>
       <view class='rev_eye'>
-        <image class='rev_eye_Img' src='../../images/index/eye.png'/> 
+        <image class='rev_eyeImg' src='../../images/index/eye.png'/> 
         <text  class='rev_eye_num'>{{item.page_view}}</text>
       </view>
        <view class='rev_eye' bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}'>

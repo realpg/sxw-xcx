@@ -207,6 +207,7 @@ Page({
     })
   },
 
+//点赞
   setLikeClick: function(e) {
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)

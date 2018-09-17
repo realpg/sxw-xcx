@@ -36,7 +36,7 @@
     <view>
       <text class='card_mobile'> {{business_card.businesscard.agree}} </text> 点赞</view>
     <view>
-      <text class='card_mobile'> {{business_card.businesscard.favorite}} </text> 关注</view>
+      <text class='card_mobile'> {{business_card.businesscard.favorite}} </text> 收藏</view>
   </view>
 </view>
 <view wx:else='{{business_card.groupid==5}}' class='Css'>
@@ -171,7 +171,7 @@
   </view>
   <view class='The_column_css' bindtap='mine_item_click' data-id='6'>
     <image class='yaoyue_Img' src='../../images/personal_center/guanzhu.png' mode='widthFix'></image>
-    <view>我的关注</view>
+    <view>我的收藏</view>
   </view>
   <view class='The_column_css' bindtap='mine_item_click' data-id='7'>
     <image class='yaoyue_Img' src='../../images/personal_center/help.png' mode='widthFix'></image>

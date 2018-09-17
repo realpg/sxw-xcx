@@ -72,9 +72,13 @@ height: 100rpx;
 border-radius: 50%;
 border:1rpx solid #e6eaf2;
 }
+.pageView{
+  display: flex;
+   align-items:center;
+}
 .pageView_Img{
-  width: 30rpx;
-  height: 20rpx;
+  width: 34rpx;
+  height: 30rpx;
 }
 .vip_Img{
   margin-left: 15rpx;

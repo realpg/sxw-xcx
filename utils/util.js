@@ -429,6 +429,11 @@ function getMyAdplace(param, successCallback, errorCallback) {
 }
 
 //供应信息详情
+function InfoSearch(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/info/search', param, "POST", successCallback, errorCallback);
+}
+
+//供应信息详情
 function SupplySearch(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/sell/search', param, "POST", successCallback, errorCallback);
 }
@@ -1058,6 +1063,7 @@ module.exports = {
   buyInfoDetails: buyInfoDetails,
   tradeInfoDetails: tradeInfoDetails,
   leaveWord: leaveWord,
+  InfoSearch: InfoSearch,
   SupplySearch: SupplySearch,
   BuySearch: BuySearch,
   FrameSearch: FrameSearch,

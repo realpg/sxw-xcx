@@ -5,7 +5,8 @@ const util = require('../../utils/util.js');
 var that;
 Page({
     data: {
-        information_list: []
+        information_list: [],
+       display:'none'
     },
     //纺机头条
     noticeCLick: function () {
@@ -39,7 +40,7 @@ Page({
         })
     },
 
-    //关注 取消
+    //收藏 取消
     enshrineClick: function (e) {
         const that = this;
         var index = e.currentTarget.dataset.index
@@ -57,7 +58,7 @@ Page({
                 util.enshrine(param, function (res) {
                     console.log('收藏', res, that.data.message[index]);
                     wx.showToast({
-                        title: '关注成功',
+                        title: '收藏成功',
                         icon: 'none',
                         duration: 2000
                     })
@@ -118,18 +119,21 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
-      wx.createIntersectionObserver().relativeToViewport().observe('.information_classification', (res) => {
-        res.id // 目标节点 id
-        res.dataset // 目标节点 dataset
-        res.intersectionRatio // 相交区域占目标节点的布局区域的比例
-        res.intersectionRect // 相交区域
-        res.intersectionRect.left // 相交区域的左边界坐标
-        res.intersectionRect.top // 相交区域的上边界坐标
-        res.intersectionRect.width // 相交区域的宽度
-        res.intersectionRect.height // 相交区域的高度
-        console.log(343434,res.intersectionRect.height)
-      })
+      // that= this
+      // let display = that.data.display;
+      // wx.createIntersectionObserver().relativeToViewport().observe('.information_classification', (res) => {
+      //   res.intersectionRect.height // 相交区域的高度
+      //   console.log(343434,res.intersectionRect.height)
+      //   if (res.intersectionRect.height>0){     
+      //     that.setData({
+      //       display:'none' 
+      //     }) 
+      //   }else{  
+      //     that.setData({
+      //       display:'block' 
+      //     }) 
+      //   }
+      // })
     
         that = this;
 

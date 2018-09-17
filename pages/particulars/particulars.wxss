@@ -47,7 +47,7 @@ page {
   margin-bottom: 10rpx;
 }
 .revision_lable_css{
-  display: flex;
+  display: -webkit-box;
   margin-right: 20rpx;
 }
 .revision_context{
@@ -140,6 +140,7 @@ page {
 .revision_message_Image_Css{
   width: 210rpx;
   height:210rpx;
+  margin-top: 10rpx;
 }
 
 

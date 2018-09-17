@@ -12,24 +12,24 @@
     <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> </view>
     <view class='card_business'>主营：{{business_card.business}}</view>
   </view>
-
+  
   <view class='name_of_index'>
     <view>
       <text class='card_mobile'> {{business_card.view}} </text> 人气</view>
     <view>
       <text class='card_mobile'> {{business_card.agree}} </text> 点赞</view>
     <view>
-      <text class='card_mobile'> {{business_card.favorite}} </text> 关注</view>
+      <text class='card_mobile'> {{business_card.favorite}} </text> 收藏</view>
   </view>
 
   <view class='option'>
-    <view class='option_css'>
-      <image class='icon' src='../../images/index/dianzan.png'></image>
-      <text>  点赞</text>
+    <view class='option_css' bindtap='setLike_card_Click' data-id='{{business_card.userid}}' data-mid='2'>
+      <image class='icon' src='{{business_card.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}' ></image>
+      <text> 点赞</text>
     </view>
-    <view class='option_css'>
-      <image class='icon' src='../../images/store/star.png'></image>
-      <text>  关注</text>
+    <view class='option_css' bindtap='enshrine_card_Click'data-id='{{business_card.userid}}' data-mid='2' data-index="{{idx}}">
+      <image class='icon' src='{{business_card.I_favorite?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
+      <text>  收藏</text>
     </view>
     <view class='option_css'>
       <button class='share_button' open-type='share'>

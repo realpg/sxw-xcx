@@ -35,7 +35,7 @@
         <image class='revision_eye_Img' src='../../images/index/eye.png'/> 
         <text  class='revision_eye_num'>{{item.page_view}}</text>
       </view>
-       <view class='revision_eye' bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}'>
+       <view class='revision_eye'  bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}'>
         <image class='revision_eye_Img' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> 
         <text  class='revision_eye_num'>{{item.like}}</text>
       </view>

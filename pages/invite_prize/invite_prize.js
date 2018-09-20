@@ -1,6 +1,6 @@
 // pages/invite_prize/invite_prize.js
 var app = getApp();
-let that;
+var that;
 Page({
   /**
    * 页面的初始数据
@@ -66,7 +66,7 @@ Page({
     const that = this;
     return {
       title: '我分享了纱线网小程序',
-      path: 'pages/index/index?userid=' + wx.getStorageSync('UserInfo').userid,
+      path: 'pages/index/index?userid=' + wx.getStorageSync('DTUserinfo').userid,
       success: function (res) {
         // 转发成功
         wx.showToast({

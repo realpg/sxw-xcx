@@ -70,6 +70,13 @@ Page({
     }
   },
 
+  redactclick_css:function(e){
+    wx.showToast({
+      icon: 'none',
+      title: '信息正在审核中',
+      duration: 1500
+    })   
+  },
   //编辑
   redactclick: function (e) {
     console.log("编辑", e.currentTarget.dataset)
@@ -100,7 +107,7 @@ Page({
     }else{
       wx.showToast({
         icon:'none',
-        title: '审核中',
+        title: '信息正在审核中',
         duration: 1500
       })   
     }
@@ -118,7 +125,7 @@ Page({
   onReady: function () {
     that = this;
     that.setData({
-      business_card: wx.getStorageSync('UserInfo')
+      business_card: wx.getStorageSync('DTUserInfo')
     })
 
     util.sellList_mine({}, function (ret) {

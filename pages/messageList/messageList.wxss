@@ -1,0 +1,39 @@
+page{
+  background: #f1f4f6
+}
+.introduction_information{
+  display: flex;
+  justify-content: space-between
+}
+.message{
+  background: #fff;
+  width: 96%;
+  padding:1% 2% ;
+  margin: auto;
+  margin-top: 2rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headImg_context{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+.context{
+  color: #999999;
+  font-size: 26rpx;
+}
+.time{
+  color: #999999;
+  font-size: 24rpx;
+}
+.head_img{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+.message_img{
+  width: 100rpx;
+  height: 100rpx;
+}

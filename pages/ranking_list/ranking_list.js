@@ -66,8 +66,8 @@ let that;
    Loading:function(){
 
      let param = {
-       userid: wx.getStorageSync('UserInfo').userid,
-       _token: wx.getStorageSync('UserInfo')._token,
+       userid: wx.getStorageSync('DTUserinfo').userid,
+       _token: wx.getStorageSync('DTUserinfo')._token,
        type:1,
      };
      util.todayranking(param, function (ret) {
@@ -84,8 +84,8 @@ let that;
    weekraking: function () {
 
      let param = {
-       userid: wx.getStorageSync('UserInfo').userid,
-       _token: wx.getStorageSync('UserInfo')._token,
+       userid: wx.getStorageSync('DTUserinfo').userid,
+       _token: wx.getStorageSync('DTUserinfo')._token,
        type: 2,
      };
      util.todayranking(param, function (ret) {
@@ -101,8 +101,8 @@ let that;
    monthraking: function () {
 
      let param = {
-       userid: wx.getStorageSync('UserInfo').userid,
-       _token: wx.getStorageSync('UserInfo')._token,
+       userid: wx.getStorageSync('DTUserinfo').userid,
+       _token: wx.getStorageSync('DTUserinfo')._token,
        type: 3,
      };
      util.todayranking(param, function (ret) {

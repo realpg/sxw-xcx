@@ -56,7 +56,7 @@ Page({
     that = this;
     var credit = that.data.credit;
     that.setData({
-      credit: app.globalData.userInfo.credit
+      credit: app.globalData.DTuserInfo.credit
     })
   },
 

@@ -84,7 +84,10 @@
     <view  class='content'>{{item.details}}</view>
     <view class='time'>发布时间：{{item.time}}</view>
     <view class='menu'>
-      <view class='redact' catchtap='redactclick' data-mid='{{item.mid}}' data-id='{{item.id}}'> 
+      <view class='redact' wx:if='{{item.status == 3}}' catchtap='redactclick' data-mid='{{item.mid}}' data-id='{{item.id}}'> 
+        <image class='Img_edit' src='../../images/personal_center/edit.png'></image><text class='text_css'>编辑</text>
+      </view>
+      <view class='redact' wx:else='' catchtap='redactclick_css' data-mid='{{item.mid}}' data-id='{{item.id}}'> 
         <image class='Img_edit' src='../../images/personal_center/edit.png'></image><text class='text_css'>编辑</text>
       </view>
       <view class='redact_css'>

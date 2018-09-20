@@ -24,7 +24,7 @@
     {{item.details}}
     </view>
      <view class='rev_message_Img'>
-          <view class='rev_message_Image' wx:for='{{item.message_Img}}'>
+          <view class='rev_message_Image' wx:for='{{item.message_Img}}'wx:if='{{item.message_Img[0].message_Image!=""}}'>
           <image data-id='{{message.id}}' data-mid='{{message.mid}}' data-idx='{{idx}}' data-index="{{index}}"catchtap='previewImClick'  class='rev_message_Image_Css' src='{{item.message_Image}}'/>
         </view>
      </view>

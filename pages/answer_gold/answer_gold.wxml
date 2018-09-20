@@ -1,2 +1,4 @@
-<view class='hint'>此功能暂未开放，敬请期待!</view>
 
+<view class='hint_css'>
+<view class='hint'>此功能暂未开放，敬请期待!</view><image class='icon_hint_Img' src='../../images/personal_center/icon_hint.png' ></image>
+</view>

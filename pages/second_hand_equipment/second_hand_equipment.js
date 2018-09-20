@@ -81,7 +81,7 @@ Page({
     }, function (ret) {
       that.setData({
         gold_coin_pay: ret.value,
-        gold_coin_balance: app.globalData.userInfo.credit
+        gold_coin_balance: app.globalData.DTuserInfo.credit
       })
     }, null)
   },
@@ -230,8 +230,8 @@ Page({
       content.tags.length > 0 &&
       content.thumbs.length > 0 &&
       that.data.gold_coin_balance >= that.data.gold_coin_pay &&
-      app.globalData.userInfo.groupid == '6'
-      // && app.globalData.userInfo.mobile
+      app.globalData.DTuserInfo.groupid == '6'
+      // && app.globalData.DTuserInfo.mobile
     ) {
       var param = {
         title: "供应信息",
@@ -239,7 +239,7 @@ Page({
         catid: content.catid,
         content: content.content,
         thumb: content.thumbs.replace(/^,+/, "").replace(/,+$/, ""),
-        telephone: app.globalData.userInfo.mobile ? app.globalData.userInfo.mobile : "100000000",
+        telephone: app.globalData.DTuserInfo.mobile ? app.globalData.DTuserInfo.mobile : "100000000",
         address: content.address,
         tag: content.tags.join(",")
       };
@@ -249,7 +249,7 @@ Page({
       console.log('验证通过', param);
       util.fjmyEdit_post(param, function (ret) {
         console.log(ret);
-        app.globalData.userInfo.credit -= that.data.gold_coin_pay;
+        app.globalData.DTuserInfo.credit -= that.data.gold_coin_pay;
         wx.showToast({
           title: "已受理，3个工作日内完成审核",
           icon: "none",
@@ -263,19 +263,44 @@ Page({
         })
       }, null)
     } else
-      wx.showToast({
-        title: "发布失败，请确保信息填写完整",
-        icon: "none"
-      })
+    {
+      var param = {
+        catid: content.catid,
+        address: content.address,
+        content: content.content,
+        tags: content.tags.length,
+        thumbs: content.thumbs.length,
+        gold_coin_balance: that.data.gold_coin_balance >= that.data.gold_coin_pay
+      }
+      var toast_content = {
+        catid: "请选择类别",
+        address: "请填写地址",
+        content: "请填写内容描述",
+        tags: "请选择标签",
+        thumbs: "请上传图片",
+        gold_coin_balance: "余额不足"
+      }
+
+
+      for (var i in toast_content) {
+        if (!param[i]) {
+          var title = toast_content[i] + '！'
+          wx.showToast({
+            title: title,
+            icon: 'none'
+          })
+          return;
+        }
+      }
     //     console.log('aaaaa content.catid\n' + content.catid +
     //         '            && content.address\n' + content.address +
     //         '            && content.content\n' + content.content +
     //         '            && content.tags\n' + (content.tags.length > 0) +
     //         '            && content.thumbs\n' + (content.thumbs.length > 0) +
     //         '            && this.data.gold_coin_balance >= this.data.gold_coin_pay\n' + (this.data.gold_coin_balance >= this.data.gold_coin_pay) +
-    //         '            && app.globalData.userInfo.groupid == \'5\'' + (app.globalData.userInfo.groupid == 5))
+    //         '            && app.globalData.DTuserInfo.groupid == \'5\'' + (app.globalData.DTuserInfo.groupid == 5))
     // console.log(content);
-
+    }
   },
 
   //个人信息详情
@@ -307,11 +332,13 @@ Page({
    */
   onLoad: function (options) {
     that = this
+    that.setData({
+      gold_coin_balance: app.globalData.DTuserInfo.credit
+    })
     console.log('参数', options)
     if (options.itemid) {
       that.setData({
         itemid: options.itemid,
-        gold_coin_balance: app.globalData.userInfo.credit
       })
     }
   },

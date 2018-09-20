@@ -146,7 +146,7 @@ z-index:2;
   color: #666;
   line-height: 60rpx;
   align-items: center;
-  box-shadow: 0 6rpx 6rpx #888;
+  box-shadow: 0 3rpx 3rpx #999999;
 }
 
 .name {
@@ -398,17 +398,17 @@ background:#e64340;
 
 .hint{
   position: absolute;
-  left:210rpx;
+  left:660rpx;
 }
 .hint_css{
   color:#fff;
   background:#e64340;
   font-size: 20rpx;
   display: inline-block;
-  width: 40rpx;
-  height: 40rpx;
+  width: 36rpx;
+  height: 36rpx;
   border-radius: 50%;
-  line-height: 40rpx;
+  line-height: 36rpx;
  text-align: center;
 }
 
@@ -441,9 +441,9 @@ background:#e64340;
   align-items: center;
 }
 .logo{
-  padding: 8% 0%;
+  padding: 10% 0%;
   text-align: center;
 }
 .logo_Img{
-  width: 165rpx;
+  width: 260rpx;
 }

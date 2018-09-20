@@ -109,8 +109,8 @@ Page({
     //用户名片
     visitingCardInfo: function () {
         var param = {
-            userid: wx.getStorageSync('UserInfo').userid,
-            _token: wx.getStorageSync('UserInfo')._token,
+            userid: wx.getStorageSync('DTUserinfo').userid,
+            _token: wx.getStorageSync('DTUserinfo')._token,
             user_id: that.data.id
         };
         util.visitingCardInfo(param, function (ret) {
@@ -195,8 +195,8 @@ Page({
     supplyByUserid: function () {
         var conditions = JSON.stringify({key: ['userid', 'status'], value: [that.data.id, '3']});
         var param = {
-            userid: wx.getStorageSync('UserInfo').userid,
-            _token: wx.getStorageSync('UserInfo')._token,
+            userid: wx.getStorageSync('DTUserinfo').userid,
+            _token: wx.getStorageSync('DTUserinfo')._token,
             conditions: conditions
         };
         util.supplyByUserid(param, function (ret) {
@@ -248,8 +248,8 @@ Page({
     PurchaseByUserid: function () {
         var conditions = JSON.stringify({key: ['userid', 'status'], value: [that.data.id, '3']});
         var param = {
-            userid: wx.getStorageSync('UserInfo').userid,
-            _token: wx.getStorageSync('UserInfo')._token,
+            userid: wx.getStorageSync('DTUserinfo').userid,
+            _token: wx.getStorageSync('DTUserinfo')._token,
             conditions: conditions
         };
         util.PurchaseByUserid(param, function (ret) {
@@ -300,8 +300,8 @@ Page({
     tradeByUserid: function () {
         var conditions = JSON.stringify({key: ['userid', 'status'], value: [that.data.id, '3']});
         var param = {
-            userid: wx.getStorageSync('UserInfo').userid,
-            _token: wx.getStorageSync('UserInfo')._token,
+            userid: wx.getStorageSync('DTUserinfo').userid,
+            _token: wx.getStorageSync('DTUserinfo')._token,
             conditions: conditions
         };
         util.tradeByUserid(param, function (ret) {
@@ -383,8 +383,8 @@ Page({
   setLike_card_Click: function (e) {
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
-      // userid: wx.getStorageSync('UserInfo').userid.userid,
-      // _token: wx.getStorageSync('UserInfo')._token,
+      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+      // _token: wx.getStorageSync('DTUserinfo')._token,
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
@@ -408,8 +408,8 @@ Page({
   setLikeClick: function (e) {
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
-      // userid: wx.getStorageSync('UserInfo').userid.userid,
-      // _token: wx.getStorageSync('UserInfo')._token,
+      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+      // _token: wx.getStorageSync('DTUserinfo')._token,
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
@@ -460,8 +460,8 @@ Page({
         }, null)
       } else {
         var param = {
-          // userid: wx.getStorageSync('UserInfo').userid.userid,
-          // _token: wx.getStorageSync('UserInfo')._token,
+          // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+          // _token: wx.getStorageSync('DTUserinfo')._token,
           mid: e.currentTarget.dataset.mid,
           tid: e.currentTarget.dataset.id,
           cancle: '1'
@@ -498,8 +498,8 @@ Page({
     if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
       if (that.data.messageList[index].I_favortie == false) {
         var param = {
-          // userid: wx.getStorageSync('UserInfo').userid.userid,
-          // _token: wx.getStorageSync('UserInfo')._token,
+          // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+          // _token: wx.getStorageSync('DTUserinfo')._token,
           mid: e.currentTarget.dataset.mid,
           tid: e.currentTarget.dataset.id
         };
@@ -519,8 +519,8 @@ Page({
         }, null)
       } else {
         var param = {
-          // userid: wx.getStorageSync('UserInfo').userid.userid,
-          // _token: wx.getStorageSync('UserInfo')._token,
+          // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+          // _token: wx.getStorageSync('DTUserinfo')._token,
           mid: e.currentTarget.dataset.mid,
           tid: e.currentTarget.dataset.id,
           cancle: '1'
@@ -635,7 +635,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+      wx.stopPullDownRefresh();
     },
 
     /**

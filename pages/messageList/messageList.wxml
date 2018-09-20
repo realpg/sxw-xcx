@@ -1,0 +1,18 @@
+<view>
+   <view class='introduction_information'>
+    <view>纱线大市场，致力于服务好中国纱线行业</view>
+    <image class='message_img'  src='../../images/index/Image_details1.png'></image>
+   </view>
+
+</view>
+
+<!-- <view class='message'>
+  <view class='headImg_context'>
+    <image class='head_img' src='../../images/index/head_portrait.png'></image>
+    <view>
+    <view class='context'>这个价格？</view>
+    <view class='time'>2018-8-10 8:8:28</view>
+    </view>
+  </view>
+  <image class='message_img' src='../../images/index/Image_details1.png'></image>
+</view> -->

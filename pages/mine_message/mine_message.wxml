@@ -1,12 +1,42 @@
-<import src="../../wxParse/wxParse.wxml"/>
+<!-- <view class='message_informs'>
+  <view class='system_informs'><text class='system_informs_css'>系统通知</text></view>
+  <view><text class='notify'>信息评论</text></view>
+  <view><text class='comments'>我的评论</text></view>
+</view> -->
+<view bindtap='view_click' data-id='1' class='xiaoxi_css' style='position: relative;'>
+  <image class='xiaoxi' src='../../images/personal_center/inform.png'></image>
+  <text>系统通知</text>
+   <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
+</view>
 
+<view bindtap='view_click' data-id='2' class='xiaoxi_css' style='position: relative;'>
+  <image class='xiaoxi' src='../../images/personal_center/leave_message.png'></image>
+  <text>收到留言</text>
+   <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
+</view>
+
+<view bindtap='view_click' data-id='3' class='xiaoxi_css' style='position: relative;'>
+  <image class='xiaoxi' src='../../images/personal_center/comment.png'></image>
+  <text>我的评论</text>
+   <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
+</view>
+
+<view class='logo'>
+<image class='logo_Img' src='../../images/store/logo.png' mode='widthFix'></image>
+</view>
+
+<!-- <import src="../../wxParse/wxParse.wxml"/>
+<view wx:if='{{message.length<1}}' class='hint_css'>
+<image class='icon_hint_Img' src='../../images/personal_center/icon_hint.png' ></image>
+<view class='hint'>还未收到消息通知!</view>
+</view>
 <view class='message' wx:for='{{message}}' >
    <view class='message_css' bindtap='openClick' data-index='{{index}}'>
-   <text wx:if="{{item.isread==0}}" class='hint'></text>
+   <text wx:if="{{item.isread==0}}" class='message_hint'></text>
   <view class='message_title' >{{item.title}} </view>
   <view class='message_time'>{{item.time}}</view>
   </view>
   <view class='{{item.state ? "message_content" : "message_content_css"}}'>
 <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>
-</view> 
+</view>  -->

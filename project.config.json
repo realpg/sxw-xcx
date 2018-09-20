@@ -11,9 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.4",
-	"appid": "wx3c1f8dfde816c48f",
-	"projectname": "%E7%BA%B1%E7%BA%BF%E7%BD%91%E6%AD%A3%E5%BC%8F%E7%89%88",
+	"libVersion": "2.2.2",
+	"appid": "wx8cd83ffdb4609f53",
+	"projectname": "%E7%BA%B1%E7%BA%BF%E5%A4%A7%E5%B8%82%E5%9C%BA",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -33,18 +33,18 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
-					"name": "广告位",
-					"pathName": "pages/store/store",
+					"name": "消息",
+					"pathName": "pages/messageList/messageList",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "wodefabu",
-					"pathName": "pages/mine_issue/mine_issue",
+					"name": "消息",
+					"pathName": "pages/mine/mine",
 					"query": ""
 				}
 			]

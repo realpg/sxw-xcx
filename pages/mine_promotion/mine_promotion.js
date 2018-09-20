@@ -47,8 +47,6 @@ Page({
 
   GetAdvertising:function(){
     var param = {
-      userid: wx.getStorageSync('UserInfo').userid.userid,
-      _token: wx.getStorageSync('UserInfo')._token,
     };
     util.GetAdvertising(param, function (res) {
       console.log('指定广告位', res);

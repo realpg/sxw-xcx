@@ -601,3 +601,46 @@ button{
 display: flex;
 align-items: center;
 }
+
+
+
+
+.navigation_bar{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  background: #fff;
+  z-index: 999;
+  border-top: 1rpx solid #e6eaf2; 
+}
+.navigation_bar_css{
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 18rpx;
+  text-align: center;
+  padding: 14rpx 0 8rpx 0 ;
+}
+.navigation_bar_Img{
+  width: 50rpx;
+  height: 50rpx;
+}
+.navigation_bar_share{
+  background: #01C46C;
+  border-top: 1rpx solid #01C46C;
+  width: 40%;
+  margin-left: 10%;
+}
+.shareBtn{
+  margin: 0;
+  padding: 0;
+  font-size: 32rpx;
+  color:#fff;
+  line-height: 100rpx;
+  background: #01C46C;
+  font-weight: 700;
+}
+shareBtn::after {
+  border-style: none;
+}

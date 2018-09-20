@@ -1,7 +1,62 @@
 @import "../../wxParse/wxParse.wxss";
+.xiaoxi_css{
+  margin-top: 1rpx;
+  margin-bottom: 10rpx;
+  background: #fff;
+  font-size: 30rpx;
+  line-height: 110rpx;
+  display: flex;
+  align-items: center;
+
+  }
+.xiaoxi{
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+}
+.jiantou_Img{
+  width: 18rpx;
+  height: 28rpx;
+  position: absolute;
+  right: 5%;
+}
+
+
 page{
   background:#f1f4f6
 }
+.message_informs{
+  border-top: 1rpx solid #e6eaf2;
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  padding: 15rpx 0 ;
+}
+.system_informs{
+  color: #01C46C;
+  border-bottom: 5rpx solid #01C46C
+}
+
+
+
+.hint_css{
+  text-align: center;
+  margin-top: 100rpx;
+}
+.hint{
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  line-height: 140rpx;
+}
+.icon_hint_Img{
+  width: 348rpx;
+  text-align: center;
+  height: 256rpx
+}
+
 .message_css{
   display: flex;
   justify-content:space-between;
@@ -37,7 +92,7 @@ color:#666
 .message_title{
   margin-left: 20rpx;
 }
-.hint{
+.message_hint{
   display: inline-block;
   width: 16rpx;
   height: 16rpx;
@@ -46,4 +101,16 @@ color:#666
   margin-top: 42rpx;
   position: absolute;
   left: 15rpx;
+}
+.inform{
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  line-height: 120rpx;
+}
+.logo{
+  padding: 20% 0%;
+  text-align: center;
+}
+.logo_Img{
+  width: 260rpx;
 }

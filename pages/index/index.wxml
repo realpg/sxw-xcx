@@ -1,10 +1,10 @@
-<view style='display:{{display}}'>
+<view style='display:{{display}};position:fixed;z-index:999;'>
 <import src="../template/template.wxml"/>
 
 <view style='width:100%;height:122rpx;color:#ffffff'></view>
 <!--搜索框-->
 <view class='top'>
-  <view class='searchBox' bindtap='serchClick' style='background:#ffffff;'>
+  <view class='searchBox'  bindtap='serchClick' style='background:#ffffff;'>
     <image class='searchIcon' src='../../images/index/icon_search.png'></image>
     <input class='searchInput' placeholder='请输入名称/品类/名片' maxlength='20'  disabled="disabled">
     </input>
@@ -82,15 +82,15 @@
 
 <!--分类-->
 <view class='information_classification'>
-  <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
-  <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>供应信息</view>
+  <view class='all' style='color:{{all_color}};' data-nn='1' bindtap='selectClick'>全部</view>
+  <view style='color:{{supply_color}};' data-nn='2' bindtap='selectClick'>供应信息</view>
   <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>求购信息</view>
   <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>纺机贸易</view>
 </view>
 
 
 <!--具体信息(修改) -->
-<view class='revision' wx:for='{{message}}' wx:for-index='idx'>
+<view class='revision'  wx:for='{{message}}' wx:for-index='idx'>
   <view class='rev_head'  style='position:relative'>
     <view class='headImg_vipImg'>
       <image class='rev_headImg' bindtap='messageList_click' data-id='{{item.userid}}'  src='{{item.head_portrait_icon}}'></image>
@@ -112,7 +112,7 @@
     <view class='rev_context'>
     {{item.details}}
     </view>
-     <view class='message_Img'>
+     <view class='message_Img' wx:if='{{item.message_Img[0].message_Image!=""}}'>
           <view class='message_Image' wx:for='{{item.message_Img}}'>
           <image data-id='{{message.id}}' data-mid='{{message.mid}}' data-idx='{{idx}}' data-index="{{index}}"catchtap='previewImClick'  class='message_Image_Css' src='{{item.message_Image}}'/>
         </view>

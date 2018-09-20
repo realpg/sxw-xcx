@@ -212,7 +212,7 @@ Page({
   onReady: function () {
     that = this;
     that.setData({
-      business_card: wx.getStorageSync('UserInfo')
+      business_card: wx.getStorageSync('DTUserinfo')
     })
     setTimeout(function () {
       util.sellList_mine({}, function (ret) {
@@ -287,7 +287,7 @@ Page({
   onReady: function () {
     that = this;
     that.setData({
-      business_card: wx.getStorageSync('UserInfo')
+      business_card: wx.getStorageSync('DTUserinfo')
     })
     that.getAllList();
   },

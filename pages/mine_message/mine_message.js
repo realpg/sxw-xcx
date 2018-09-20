@@ -11,6 +11,12 @@ Page({
     message: []
   },
 
+//查看
+  view_click:function(e){
+      wx.navigateTo({
+        url: '../messageList/messageList?id=' + e.target.dataset.id,
+      })
+  },
 //打开
   openClick:function(e){
     const that = this;
@@ -30,15 +36,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    that=this;
+    var data=wx.getStorageSync("data-mine_massage");
+    console.log("同步缓存数据",data)
+    if (typeof data.data != 'undefined')
+      that.setData(data.data)
+
+    // console.log(111);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    that=this;
-    var message = that.data.message
+    var message = []
+    // setTimeout(()=>{
     util.myMessage({}, function (ret) {
       console.log(1111,ret);
     
@@ -57,9 +69,11 @@ Page({
         }
      }
       that.setData({
-        message: that.data.message
+        message: message
       })
-    }, null)  
+      
+      }, null)
+    // }, 2000)
   },
 
   /**
@@ -80,7 +94,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    console.log("页面卸载")
+    wx.setStorageSync("data-mine_massage", that.data)
   },
 
   /**

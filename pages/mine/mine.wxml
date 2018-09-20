@@ -167,6 +167,7 @@
   </view>
   <view class='The_column_css' bindtap='mine_item_click' data-id='5'>
     <image class='yaoyue_Img' src='../../images/personal_center/xiaoxi.png' mode='widthFix'></image>
+    <text  class="hint" ><text wx:if="{{business_card.message>0}}" class='hint_css'>{{business_card.message}}</text></text>
     <view>我的消息</view>
   </view>
   <view class='The_column_css' bindtap='mine_item_click' data-id='6'>

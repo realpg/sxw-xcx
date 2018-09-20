@@ -15,8 +15,8 @@ Page({
 
   visitingCard: function () {
     var param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       ywlb_id:that.data.id
     };
     util.reclassifyCard(param, function (ret) {

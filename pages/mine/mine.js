@@ -292,9 +292,9 @@ Page({
   },
 
   refresh: function() {
-    app.login(app, function() {
+    app.getopenid(function() {
       that.setData({
-        business_card: app.globalData.userInfo
+        business_card: app.globalData.DTuserInfo
       })
       console.log("现在的userinfo", that.data.business_card)
     });
@@ -393,11 +393,18 @@ Page({
   getUserInfo: function(e) {
     console.log("aaaa", e)
     app.globalData.wx_userInfo = e.detail.userInfo
+    wx.setStorage({
+      key: 'wx_userInfo',
+      data: app.globalData.wx_userInfo,
+    })
     app.login(app);
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+    var pages=getCurrentPages();
+    console.log(pages);
+    pages[pages.length - 1].onPullDownRefresh()
   },
 
 })

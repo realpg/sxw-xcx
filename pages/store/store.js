@@ -79,8 +79,8 @@ Page({
 
   Loading: function() {
     let param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
     };
     util.varietyList(param, function(ret) {
       console.log('种类列表', ret)
@@ -95,8 +95,8 @@ Page({
     if (!that.data.page)
       return;
     let param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       page: that.data.page
     };
     util.visitingCard(param, function(ret) {

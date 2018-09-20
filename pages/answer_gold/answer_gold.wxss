@@ -1,8 +1,17 @@
 page{
   background: #f1f4f6;
 }
+.hint_css{
+  text-align: center;
+  margin-top: 100rpx;
+}
 .hint{
   margin-left: 20rpx;
   font-size: 28rpx;
   line-height: 140rpx;
+}
+.icon_hint_Img{
+  width: 348rpx;
+  text-align: center;
+  height: 256rpx
 }

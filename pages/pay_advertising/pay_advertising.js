@@ -62,10 +62,15 @@ Page({
               that.confirm();
             } else {
               wx.showToast({
-                title: "个人会员无法购买广告位",
-                druation: 3000,
+                title: "请先完善个人信息",
+                druation: 2000,
                 icon: 'none'
               })
+              setTimeout(function(){
+                wx.switchTab({
+                  url: "../mine/mine"
+                })
+              },2000)
             }
           } else if (res.cancel) {
             console.log('用户点击取消')
@@ -88,8 +93,8 @@ Page({
       paying: true
     })
     var param = {
-      userid: app.globalData.userInfo.userid.userid,
-      _token: app.globalData.userInfo._token,
+      userid: app.globalData.DTuserInfo.userid.userid,
+      _token: app.globalData.DTuserInfo._token,
       id: that.data.advertisingVIP[that.data.index].id
     };
     util.payVIP(param, function (res) {
@@ -121,8 +126,8 @@ Page({
 
   GetAdvertisingInfo: function () {
     var param = {
-      userid: app.globalData.userInfo.userid.userid,
-      _token: app.globalData.userInfo._token,
+      userid: app.globalData.DTuserInfo.userid.userid,
+      _token: app.globalData.DTuserInfo._token,
       pid: that.data.pid
     };
     util.GetAdvertisingInfo(param, function (res) {
@@ -141,7 +146,7 @@ Page({
 
     that.setData({
       vip_to: new Date().getTime(),
-      gold_coin_balance: app.globalData.userInfo.credit
+      gold_coin_balance: app.globalData.DTuserInfo.credit
     })
     util.vipTimeto({}, function (ret) {
       that.data.hint_time = parseInt(ret);
@@ -166,7 +171,7 @@ Page({
       }
       that.setData({
         advertisingVIP: that.data.advertisingVIP,
-        userinfo: app.globalData.userInfo
+        userinfo: app.globalData.DTuserInfo
       })
       console.log('vip', advertisingVIP, that.data.advertisingVIP);
     }

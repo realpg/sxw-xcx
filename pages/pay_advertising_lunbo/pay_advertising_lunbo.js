@@ -66,10 +66,15 @@ Page({
             that.confirm();
           } else {
             wx.showToast({
-              title: "个人会员无法购买广告位",
-              druation: 3000,
+              title: "请先完善个人信息",
+              druation: 2000,
               icon: 'none'
             })
+            setTimeout(function () {
+              wx.switchTab({
+                url: "../mine/mine"
+              })
+            }, 2000)
           }
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -113,8 +118,8 @@ Page({
 
   GetAdvertisingInfo: function() {
     var param = {
-      userid: app.globalData.userInfo.userid,
-      _token: app.globalData.userInfo._token,
+      userid: app.globalData.DTuserInfo.userid,
+      _token: app.globalData.DTuserInfo._token,
       pid: that.data.pid
     };
     util.GetAdvertisingInfo(param, function(res) {
@@ -130,10 +135,10 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    console.log(11236, app.globalData.userInfo)
+    console.log(11236, app.globalData.DTuserInfo)
     that.setData({
       hint_time: util.formatTime(new Date()),
-      gold_coin_balance: app.globalData.userInfo.credit
+      gold_coin_balance: app.globalData.DTuserInfo.credit
     })
     if (options.sellingADs) {
       console.log(JSON.parse(options.sellingADs))
@@ -156,7 +161,7 @@ Page({
       }
       that.setData({
         sellingADs: arrb,
-        userinfo: app.globalData.userInfo
+        userinfo: app.globalData.DTuserInfo
       })
       console.log(that.data.sellingADs[0].amount)
       wx.setNavigationBarTitle({
@@ -177,7 +182,7 @@ Page({
       }
       that.setData({
         advertisingVIP: that.data.advertisingVIP,
-        userinfo: app.globalData.userInfo
+        userinfo: app.globalData.DTuserInfo
       })
     }
 

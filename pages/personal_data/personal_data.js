@@ -331,7 +331,7 @@ Page({
       console.log("请求成功", ret, that.data)
       that.setData({
 
-        avatar: app.globalData.userInfo.avatarUrl ? [app.globalData.userInfo.avatarUrl] : [], //头像
+        avatar: app.globalData.DTuserInfo.avatarUrl ? [app.globalData.DTuserInfo.avatarUrl] : [], //头像
         ywlbs: ret.ywlb
       })
       if (ret.businesscard) {
@@ -378,6 +378,9 @@ Page({
       thumb: "公司照片",
       avatarUrl: "头像",
     }
+    if (that.data.verification_code){
+      toast_content.vertify_code="验证码"
+    }
 
     for (var i in toast_content){
       if(!param[i]){
@@ -401,7 +404,7 @@ Page({
 
     util.editInfo_post(param, function(ret) {
       console.log(ret);
-      app.globalData.userInfo.credit -= that.data.gold_coin_pay;
+      app.globalData.DTuserInfo.credit -= that.data.gold_coin_pay;
       wx.showToast({
         title: "已受理，3个工作日内完成审核",
         icon: "none",
@@ -491,7 +494,7 @@ Page({
     console.log('下拉刷新')
       wx.stopPullDownRefresh();
     that.setData({
-      avatar: app.globalData.userInfo.avatarUrl ? [app.globalData.userInfo.avatarUrl] : []
+      avatar: app.globalData.DTuserInfo.avatarUrl ? [app.globalData.DTuserInfo.avatarUrl] : []
     })
   },
 })

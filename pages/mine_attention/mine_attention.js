@@ -45,8 +45,8 @@ Page({
         if (that.data.message[index].id == e.currentTarget.dataset.id && that.data.message[index].mid == e.currentTarget.dataset.mid) {
             if (that.data.message[index].I_favortie == false) {
                 var param = {
-                    // userid: wx.getStorageSync('UserInfo').userid.userid,
-                    // _token: wx.getStorageSync('UserInfo')._token,
+                    // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+                    // _token: wx.getStorageSync('DTUserinfo')._token,
                     mid: e.currentTarget.dataset.mid,
                     tid: e.currentTarget.dataset.id
                 };
@@ -66,8 +66,8 @@ Page({
                 }, null)
             } else {
                 var param = {
-                    // userid: wx.getStorageSync('UserInfo').userid.userid,
-                    // _token: wx.getStorageSync('UserInfo')._token,
+                    // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+                    // _token: wx.getStorageSync('DTUserinfo')._token,
                     mid: e.currentTarget.dataset.mid,
                     tid: e.currentTarget.dataset.id,
                     cancle: '1'
@@ -101,8 +101,8 @@ Page({
     setLikeClick: function (e) {
         console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
         var param = {
-            // userid: wx.getStorageSync('UserInfo').userid.userid,
-            // _token: wx.getStorageSync('UserInfo')._token,
+            // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+            // _token: wx.getStorageSync('DTUserinfo')._token,
             item_mid: e.currentTarget.dataset.mid,
             item_id: e.currentTarget.dataset.id
         };

@@ -1,6 +1,6 @@
 
 <!--上传头像-->
-<view class='UserInfo'>
+<view class='DTUserinfo'>
   <view class='AddImgList_one'>
     <view class='ThatMessageImgList'>
       <view class='ThatMessageImg' wx:for='{{avatar}}' data-index='id'>

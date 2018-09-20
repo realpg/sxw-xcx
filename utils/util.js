@@ -26,6 +26,7 @@ function wxRequest(url, param, method, successCallback, errorCallback, loading) 
     errorCallback: errorCallback,
     loading: loading
   })
+  console.log(queue)
   if (!requesting) {
     requestqueue();
   }
@@ -62,22 +63,22 @@ function requestqueue() {
 
       return;
     }
-    if (judgeIsAnyNullStr(App.globalData.userInfo)) {
+    if (judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
 
       wxRequest(url, param, method, successCallback, errorCallback);
 
       return;
-    } else if (judgeIsAnyNullStr(App.globalData.userInfo._token)) {
+    } else if (judgeIsAnyNullStr(App.globalData.DTuserInfo._token)) {
       wxRequest(url, param, method, successCallback, errorCallback)
       return;
     }
   }
-  if (!judgeIsAnyNullStr(App.globalData.userInfo)) {
+  if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
     //user_id未设置
     if (judgeIsAnyNullStr(param.userid)) {
-      param.userid = App.globalData.userInfo.userid;
+      param.userid = App.globalData.DTuserInfo.userid;
     }
-    param._token = App.globalData.userInfo._token;
+    param._token = App.globalData.DTuserInfo._token;
   }
   if (loading && !showloading){
     showLoading();
@@ -100,6 +101,7 @@ function requestqueue() {
         successCallback(ret.data.ret);
       else {
         if (ret.data.code == '102') {
+          App.getopenid();
           setTimeout(function() {
             wxRequest(url, param, method, successCallback, errorCallback);
           }, 500)
@@ -458,7 +460,7 @@ function BussinessCardSearch(param, successCallback, errorCallback) {
 function sellList_mine(param, successCallback, errorCallback) {
   param.conditions = JSON.stringify({
     key: ["userid"],
-    value: [getApp().globalData.userInfo.userid]
+    value: [getApp().globalData.DTuserInfo.userid]
   })
   wxRequest(SERVER_URL + '/api/sell/getByCondition', param, "GET", successCallback, errorCallback);
 }
@@ -467,7 +469,7 @@ function sellList_mine(param, successCallback, errorCallback) {
 function buyList_mine(param, successCallback, errorCallback) {
   param.conditions = JSON.stringify({
     key: ["userid"],
-    value: [getApp().globalData.userInfo.userid]
+    value: [getApp().globalData.DTuserInfo.userid]
   })
   wxRequest(SERVER_URL + '/api/buy/getByCondition', param, "GET", successCallback, errorCallback);
 }
@@ -476,7 +478,7 @@ function buyList_mine(param, successCallback, errorCallback) {
 function fjmyList_mine(param, successCallback, errorCallback) {
   param.conditions = JSON.stringify({
     key: ["userid"],
-    value: [getApp().globalData.userInfo.userid]
+    value: [getApp().globalData.DTuserInfo.userid]
   })
   wxRequest(SERVER_URL + '/api/fjmy/getByCondition', param, "GET", successCallback, errorCallback);
 }
@@ -540,6 +542,10 @@ function getMyBuyList(param, successCallback, errorCallback) {
 function getMyFJMYList(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
 }
+//我收到的留言
+function get_Receive_message(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/comment/tome', param, "GET", successCallback, errorCallback);
+}
 
 function getMessageByID(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/member/message/getById', param, "GET", successCallback, errorCallback);
@@ -551,8 +557,8 @@ function uploadImage(param, successCallback, errorCallback) {
     filePath: param.file,
     name: 'file',
     formData: {
-      userid: getApp().globalData.userInfo.userid,
-      _token: getApp().globalData.userInfo._token
+      userid: getApp().globalData.DTuserInfo.userid,
+      _token: getApp().globalData.DTuserInfo._token
     },
     success: function(ret) {
       // console.log("ret:" + JSON.stringify(ret))
@@ -1092,7 +1098,7 @@ module.exports = {
   getMyBuyList: getMyBuyList,
   getMyFJMYList: getMyFJMYList,
   getMessageByID: getMessageByID,
-
+  get_Receive_message: get_Receive_message,
   formatTime: formatTime,
   formatDate: formatDate,
   showLoading: showLoading,

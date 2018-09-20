@@ -1,6 +1,6 @@
 
  <import src="../template/template.wxml"/> 
-
+<view catchtap='' catchtouchmove='' style='width:100%;overflow-x:hidden;'>
 <!-- 名片 -->
 <view class='card'>
   <view class='card_css'>
@@ -174,4 +174,5 @@
       <button open-type="share" class='shareBtn'>
       <view>立即分享</view></button>
     </view> 
+</view>
 </view>

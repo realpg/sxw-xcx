@@ -87,6 +87,12 @@ Page({
       url: '../index/index',
     })
   },
+  //排行榜
+  ranking_list_click: function () {
+    wx.navigateTo({
+      url: '../ranking_list/ranking_list',
+    })
+  },
   //拨打电话
   phoneClick:function(){
     
@@ -141,22 +147,25 @@ Page({
   //发送留言
   sendClick: function() {
     var param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       item_mid: that.data.mid,
       item_id: that.data.id,
       content: that.data.MyTranspondValue
     };
     util.leaveWord(param, function(ret) {
       console.log('发送留言', ret)
-      that.data.leave_word_details.push({
+      that.data.leave_word_details.unshift({
         iconImg: ret.businesscard.avatarUrl,
         truename: ret.businesscard.truename ? ret.businesscard.truename : that.data.UserInfo.nickName,
         addtime: util.formatTime(new Date(ret.addtime * 1000)),
         content: ret.content,
-        itemid: ret.itemid
+        itemid: ret.itemid,
+        reply:'',
 
       })
+
+
       that.setData({
         leave_word_details: that.data.leave_word_details,
         sendTranspondChoose: !that.data.sendTranspondChoose,
@@ -212,8 +221,8 @@ Page({
     const that = this;
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
-      // userid: wx.getStorageSync('UserInfo').userid.userid,
-      // _token: wx.getStorageSync('UserInfo')._token,
+      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+      // _token: wx.getStorageSync('DTUserinfo')._token,
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
@@ -254,8 +263,8 @@ Page({
         if (that.data.message[index].id == e.currentTarget.dataset.id && that.data.message[index].mid == e.currentTarget.dataset.mid) {
             if (that.data.message[index].I_favortie == false) {
                 var param = {
-                    // userid: wx.getStorageSync('UserInfo').userid.userid,
-                    // _token: wx.getStorageSync('UserInfo')._token,
+                    // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+                    // _token: wx.getStorageSync('DTUserinfo')._token,
                     mid: e.currentTarget.dataset.mid,
                     tid: e.currentTarget.dataset.id
                 };
@@ -275,8 +284,8 @@ Page({
                 }, null)
             } else {
                 var param = {
-                    // userid: wx.getStorageSync('UserInfo').userid.userid,
-                    // _token: wx.getStorageSync('UserInfo')._token,
+                    // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+                    // _token: wx.getStorageSync('DTUserinfo')._token,
                     mid: e.currentTarget.dataset.mid,
                     tid: e.currentTarget.dataset.id,
                     cancle: '1'
@@ -316,8 +325,8 @@ Page({
           if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
               if (that.data.messageList[index].I_favortie == false) {
                   var param = {
-                      // userid: wx.getStorageSync('UserInfo').userid.userid,
-                      // _token: wx.getStorageSync('UserInfo')._token,
+                      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+                      // _token: wx.getStorageSync('DTUserinfo')._token,
                       mid: e.currentTarget.dataset.mid,
                       tid: e.currentTarget.dataset.id
                   };
@@ -337,8 +346,8 @@ Page({
                   }, null)
               } else {
                   var param = {
-                      // userid: wx.getStorageSync('UserInfo').userid.userid,
-                      // _token: wx.getStorageSync('UserInfo')._token,
+                      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+                      // _token: wx.getStorageSync('DTUserinfo')._token,
                       mid: e.currentTarget.dataset.mid,
                       tid: e.currentTarget.dataset.id,
                       cancle: '1'
@@ -371,8 +380,8 @@ Page({
   //供应
   sellInfoDetails: function() {
     var param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       itemid: that.data.id
     };
 
@@ -434,8 +443,8 @@ Page({
   //求购
   buyInfoDetails: function() {
     var param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       itemid: that.data.id
     };
     util.buyInfoDetails(param, function(ret) {
@@ -494,8 +503,8 @@ Page({
   //纺机
   tradeInfoDetails: function() {
     var param = {
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       itemid: that.data.id
     };
     util.tradeInfoDetails(param, function(ret) {
@@ -561,8 +570,8 @@ Page({
 
     var param = {
       page: that.data.supplyPage,
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       conditions: conditions
     };
     util.supplyByUserid(param, function(ret) {
@@ -623,8 +632,8 @@ Page({
     });
     var param = {
       page: that.data.buyPage,
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       conditions: conditions
     };
     util.PurchaseByUserid(param, function(ret) {
@@ -684,8 +693,8 @@ Page({
     });
     var param = {
       page: that.data.fjmyPage,
-      userid: wx.getStorageSync('UserInfo').userid,
-      _token: wx.getStorageSync('UserInfo')._token,
+      userid: wx.getStorageSync('DTUserinfo').userid,
+      _token: wx.getStorageSync('DTUserinfo')._token,
       conditions: conditions
     };
     util.tradeByUserid(param, function(ret) {
@@ -772,9 +781,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    
     that.setData({
-      UserInfo: wx.getStorageSync('UserInfo')
+      UserInfo: app.globalData.DTuserInfo
     })
 
     switch (that.data.mid) {

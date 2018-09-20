@@ -24,16 +24,24 @@ Page({
         })
       }
       else {
-        if (that.data.business_card.updating) {
+        
+        if (app.globalData.DTuserInfo.updating) {
           wx.showToast({
             title: '请等待信息审核完成',
-            icon: "none"
+            icon: "none",
+            druation: 2000,
           })
         } else {
           wx.showToast({
             title: '请完善个人信息',
-            icon: "none"
+            icon: "none",
+             druation: 2000,
           })
+          setTimeout(function () {
+            wx.switchTab({
+              url: "../mine/mine"
+            })
+          }, 2000)
         }
       }
  
@@ -45,16 +53,23 @@ Page({
         })
       }
       else {
-        if (that.data.business_card.updating) {
+        if (app.globalData.DTuserInfo.updating) {
           wx.showToast({
             title: '请等待信息审核完成',
-            icon: "none"
+            icon: "none",
+            druation: 2000,
           })
         } else {
           wx.showToast({
             title: '请完善个人信息',
-            icon: "none"
+            icon: "none",
+            druation: 2000,
           })
+          setTimeout(function () {
+            wx.switchTab({
+              url: "../mine/mine"
+            })
+          }, 2000)
         }
       }
 
@@ -66,16 +81,23 @@ Page({
         })
       }
       else {
-        if (that.data.business_card.updating) {
+        if (app.globalData.DTuserInfo.updating) {
           wx.showToast({
             title: '请等待信息审核完成',
-            icon: "none"
+            icon: "none",
+            druation: 2000,
           })
         } else {
           wx.showToast({
             title: '请完善个人信息',
-            icon: "none"
+            icon: "none",
+            druation: 2000,
           })
+          setTimeout(function () {
+            wx.switchTab({
+              url: "../mine/mine"
+            })
+          }, 2000)
         }
       }
     }
@@ -94,7 +116,7 @@ Page({
     that=this;
     app.login(app, function () {
       that.setData({
-        business_card: app.globalData.userInfo
+        business_card: app.globalData.DTuserInfo
       })
       console.log("现在的userinfo", that.data.business_card)
     });

@@ -194,11 +194,11 @@ margin-top: 20rpx;
   padding: 0;
   position: absolute;
   right:40rpx;
-  top: 170rpx;
+  top: 179rpx;
   color: #fff;
   width: 20%;
   font-size: 24rpx;
-  height: 60rpx;
+  height: 58rpx;
   line-height: 58rpx;
   background-color:#999999;
 }

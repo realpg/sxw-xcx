@@ -17,33 +17,40 @@ Page({
   classifyClick: function(e){
     const that = this;
     console.log(e.currentTarget.dataset.id);
+    if (that.data.business_card.groupid != 6){
+
+      if (app.globalData.DTuserInfo.updating) {
+        wx.showModal({
+          title: '个人信息审核中',
+          content: '请等待审核完成',
+          showCancel: false
+        })
+      } else {
+        wx.showModal({
+          title: '完善个人信息后才能发布！',
+          content: '是否前往完善个人信息?',
+          showCancel: true,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.navigateTo({
+                url: "../personal_data/personal_data"
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+      return;
+    }
     if (e.currentTarget.dataset.id==1){
       if (that.data.business_card.groupid == 6) {
         wx.navigateTo({
           url: '../release_supply_information/release_supply_information',
         })
       }
-      else {
-        
-        if (app.globalData.DTuserInfo.updating) {
-          wx.showToast({
-            title: '请等待信息审核完成',
-            icon: "none",
-            druation: 2000,
-          })
-        } else {
-          wx.showToast({
-            title: '请完善个人信息',
-            icon: "none",
-             druation: 2000,
-          })
-          setTimeout(function () {
-            wx.switchTab({
-              url: "../mine/mine"
-            })
-          }, 2000)
-        }
-      }
+      else {}
  
     } else if (e.currentTarget.dataset.id==2){
      

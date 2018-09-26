@@ -21,11 +21,14 @@
     <view class='revision_context'>
     {{item.details}}
     </view> 
+
+<!-- 图片 -->
       <view class='revision_message_Img'>
        <view class='revision_message_Image' wx:for='{{item.message_Img}}' wx:for-index='index'>
-          <image  class='revision_message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick'  data-id='{{index}}' src='{{item}}'></image>
+          <image  class='revision_message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick'  mode='aspectFill' data-id='{{index}}' src='{{item}}'></image>
         </view>
       </view>
+
     <view class='revision_address'>存放地：{{item.address}}</view>
     <view class='revision_time'> 发布时间：{{item.addtime}}</view>
      <view class='revision_time'> 更新时间：{{item.edittime}}</view>
@@ -39,7 +42,7 @@
         <image class='revision_eye_Img' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> 
         <text  class='revision_eye_num'>{{item.like}}</text>
       </view>
-       <view class='revision_eye' bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}">
+       <view class='revision_eye' bindtap='enshrineClick_css' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}">
         <image class='revision_eye_Img'src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'/> 
         <text class='revision_eye_num'>{{item.favorite}}</text>
       </view>
@@ -131,7 +134,7 @@
 
   <!--评论框  -->
   <view class='commentBox' wx:if='{{sendTranspondChoose}}'>
-    <input class='commentInput' bindinput='exacommentClick' value='{{MyTranspondValue}}'></input>
+    <input placeholder='请输入留言内容~' placeholder-style='font-size:26rpx;' class='commentInput' bindinput='exacommentClick' value='{{MyTranspondValue}}'></input>
     <text class='send' catchtap='sendClick' data-id='{{item.id}}'>发送 </text>
   </view>
 

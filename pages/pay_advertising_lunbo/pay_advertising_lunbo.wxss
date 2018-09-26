@@ -70,7 +70,7 @@ page{
 
 .select_lunbo{
     font-size: 30rpx;
-    line-height: 70rpx;   
+    line-height: 90rpx;   
 }
   .select_lunbo_block{
     display: block;

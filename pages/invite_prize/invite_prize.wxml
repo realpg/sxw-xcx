@@ -1,15 +1,30 @@
-<view class='Small_program_code'>
+<canvas canvas-id='canvas' style='width:{{canvasW}}px;height:{{canvasH}}px'></canvas>
+
+
+ <!-- <view class='Small_program_code'>
   <view>买纱卖纱到中国纱线网</view>
   <view>
-    <image class='Img_code' bindtap='Img_codeClick' src='{{Img_code}}' mode='widthFix'></image>
+    <image class='Img_code' src='{{Img_code}}' mode='widthFix'></image>
   </view>
-  <view>点击放大长按识别进入小程序</view>
-</view>
+  <view>长按按识别进入小程序</view>
+</view> -->
 
+<!-- <view class='Small_program_code'>
+  <view>买纱卖纱到中国纱线网</view>
+  <view>
+    <image class='Img_code' src='{{Img_code}}' mode='widthFix'></image>
+  </view>
+  <view>长按按识别进入小程序</view>
+</view>
+-->
 <view class='invite'>
   <view>每次邀请成功都可以得5金币</view>
-  <button open-type="share">立即邀请好友</button>
-</view>
+  <view class='invite_save'>
+  <view><button open-type="share">微信邀请好友</button></view>
+  <view style=''>|</view>
+  <view bindtap='daochu'>保存二维码</view>
+  </view>
+</view> 
 
 <!--我的收益-->
 

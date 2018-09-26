@@ -1,5 +1,5 @@
-
 @import "../template/template.wxss";
+
 page {
   background: #f1f4f6;
 }
@@ -8,7 +8,7 @@ page {
   width: 100%;
   margin: auto;
   background: #fff;
-  padding: 2% 0  5% 0;
+  padding: 2% 0 5% 0;
 }
 
 .card_css {
@@ -16,7 +16,7 @@ page {
   margin: auto;
   background: #fff;
   border: 3rpx solid #f1f4f6;
-  padding: 3% 3% 0% 3% ;
+  padding: 3% 3% 0% 3%;
   border-radius: 20rpx;
   box-shadow: 3rpx 3rpx 3rpx 3rpx #e6eaf2;
 }
@@ -51,7 +51,7 @@ page {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-  height:90rpx;
+  height: 90rpx;
 }
 
 .head_Img {
@@ -70,7 +70,7 @@ page {
   justify-content: space-around;
   height: 120rpx;
   align-items: center;
-  color: #333333;
+  color: #333;
 }
 
 .option {
@@ -81,9 +81,10 @@ page {
   justify-content: space-between;
   height: 100rpx;
   align-items: center;
-  color: #3F3F3F;
+  color: #3f3f3f;
 }
-.option_css{
+
+.option_css {
   text-align: center;
   width: 160rpx;
   height: 60rpx;
@@ -93,33 +94,34 @@ page {
   align-items: center;
   font-size: 24rpx;
 }
+
 .icon {
   width: 32rpx;
   height: 32rpx;
   margin-left: 35rpx;
   margin-right: 10rpx;
 }
-.share_text{
+
+.share_text {
   font-size: 24rpx;
 }
-.share_button{
+
+.share_button {
   padding: 0;
   font-size: 24rpx;
-  color:#3F3F3F;
+  color: #3f3f3f;
   background: #fff;
-  line-height: 50rpx;  
+  line-height: 50rpx;
   display: flex;
   align-items: center;
   width: 150rpx;
- outline: none;
- border:0
+  outline: none;
+  border: 0;
 }
+
 .share_button::after {
   border-style: none;
 }
-
-
-
 
 .Shops {
   font-size: 34rpx;
@@ -134,14 +136,15 @@ page {
 }
 
 .specific_css {
-  color: #666666;
+  color: #666;
   line-height: 40rpx;
   font-size: 28rpx;
-  display: -webkit-box;
+  text-indent: 2em;
+  /* display: -webkit-box;
   align-items: center;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
 .view_details {
@@ -150,59 +153,68 @@ page {
   text-align: center;
 }
 
-.company_photos{
+.company_photos {
   margin-top: 30rpx;
   background: #fff;
   font-size: 30rpx;
-  line-height:50rpx; 
+  line-height: 50rpx;
 }
-.company_code{
+
+.company_code {
   background: #fff;
   font-size: 30rpx;
-  line-height:80rpx;
+  line-height: 80rpx;
 }
-.hint_company{
+
+.hint_company {
   background: #fff;
   font-size: 28rpx;
   padding-left: 40rpx;
-  line-height:60rpx;
-  color: #999999; 
+  line-height: 60rpx;
+  color: #999;
 }
-.company_code{
+
+.company_code {
   background: #fff;
   font-size: 28rpx;
-  line-height:50rpx;
-  color: #333333; 
+  line-height: 50rpx;
+  color: #333;
 }
-.hint_code{
+
+.hint_code {
   background: #fff;
   font-size: 28rpx;
   padding-left: 40rpx;
-  line-height:60rpx;
-  color: #999999; 
+  line-height: 60rpx;
+  color: #999;
   padding-bottom: 30rpx;
 }
-.code{
+
+.code {
   background: #fff;
   width: 90%;
   margin: auto;
-  padding:2% 5%;
+  padding: 2% 5%;
 }
-.code_img{
+
+.code_img {
   width: 200rpx;
-  height: 200rpx; 
+  height: 200rpx;
 }
+
 .message_Img {
   display: flex;
   flex-wrap: wrap;
   background: #fff;
   width: 100%;
   margin: auto;
-  padding:2% 5% ;
+  padding: 2% 5%;
 }
+
 .message_Image {
   width: 33%;
 }
+
 .message_Image_Css {
   width: 200rpx;
   height: 200rpx;
@@ -400,11 +412,13 @@ page {
   width: 32rpx;
   height: 32rpx;
 }
-.jiantou_img{
- margin-left: 5rpx;
- width:14rpx;
- height:26rpx;
+
+.jiantou_img {
+  margin-left: 5rpx;
+  width: 14rpx;
+  height: 26rpx;
 }
+
 .eye {
   width: 35rpx;
   height: 22rpx;
@@ -423,12 +437,14 @@ page {
   padding: 15rpx 40rpx;
   z-index: 999;
 }
-.see_details{
- color: #01C46C;
- font-size: 28rpx;
- display: flex;
- align-items: center;
+
+.see_details {
+  color: #01c46c;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
 }
+
 .tab_select_css {
   display: flex;
   margin-left: 90rpx;
@@ -473,42 +489,135 @@ button::after {
 }
 
 
-.navigation_bar{
+.navigation_bar {
   width: 100%;
   position: fixed;
   bottom: 0;
   display: flex;
   background: #fff;
   z-index: 999;
-  border-top: 1rpx solid #e6eaf2; 
+  border-top: 1rpx solid #e6eaf2;
 }
-.navigation_bar_css{
+
+.navigation_bar_css {
   width: 50%;
   display: flex;
   justify-content: space-around;
   font-size: 18rpx;
   text-align: center;
-  padding: 14rpx 0 8rpx 0 ;
+  padding: 14rpx 0 8rpx 0;
 }
-.navigation_bar_Img{
+
+.navigation_bar_Img {
   width: 50rpx;
   height: 50rpx;
 }
-.navigation_bar_share{
-  background: #01C46C;
-  border-top: 1rpx solid #01C46C;
+
+.navigation_bar_share {
+  background: #01c46c;
+  border-top: 1rpx solid #01c46c;
   width: 40%;
   margin-left: 10%;
 }
-.shareBtn{
+
+.shareBtn {
   margin: 0;
   padding: 0;
   font-size: 32rpx;
-  color:#fff;
+  color: #fff;
   line-height: 100rpx;
-  background: #01C46C;
+  background: #01c46c;
   font-weight: 700;
 }
+
 shareBtn::after {
   border-style: none;
+}
+
+
+
+
+
+
+
+.isRuleShow {
+  display: block;
+}
+
+.isRuleHide {
+  display: none;
+}
+
+.ruleZhezhao {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.ruleZhezhaoContent {
+  padding: 20rpx 0;
+  width: 80%;
+  background: #e1d2b1;
+  margin: 40% auto;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+.ruleZhezhaoText {
+  width: 80%;
+  font-size: 30rpx;
+  color: #856d5f;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 25rpx 0 25rpx 0;
+}
+
+.ruleZhezhaoText text:nth-child(1) {
+  color: #fff;
+  font-size: 40rpx;
+  height: 60rpx;
+  width: 60rpx;
+  background: #664a2c;
+  display: block;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  margin-right: 10rpx;
+}
+
+.ruleZhezhaoText text:nth-child(2) {
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.ruleHide {
+  height: 60rpx !important;
+  width: 60rpx !important;
+  position: absolute;
+  top: -20rpx;
+  right: -20rpx;
+}
+
+.rule {
+  display: block;
+  border: 1px solid #fff;
+  width: 100rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #fff;
+  height: 60rpx;
+  font-size: 30rpx;
+  border-radius: 30rpx;
+  position: absolute;
+  top: 10%;
+  right: 5%;
 }

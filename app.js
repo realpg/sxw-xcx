@@ -83,7 +83,7 @@ App({
   },
   getUserInfo: function(e) {
     // console.log(e)
-    this.globalData.DTuserInfo = e.detail.userInfo
+    this.globalData.WXuserInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true

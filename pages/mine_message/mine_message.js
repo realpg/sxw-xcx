@@ -13,9 +13,19 @@ Page({
 
 //查看
   view_click:function(e){
+    if (e.target.dataset.id == 1) {
       wx.navigateTo({
-        url: '../messageList/messageList?id=' + e.target.dataset.id,
+        url: '../messageList_system/messageList_system',
       })
+    }else if (e.target.dataset.id==2){
+      wx.navigateTo({
+        url: '../messageList/messageList',
+      })
+    } else if (e.target.dataset.id == 3) {
+      wx.navigateTo({
+        url: '../messageList_comments/messageList_comments',
+      })
+    }
   },
 //打开
   openClick:function(e){
@@ -32,17 +42,21 @@ Page({
       that.data.message[index].isread=ret.isread;
     },null)
   },
+
+  refresh: function () {
+    app.getopenid(function () {
+      that.setData({
+        business_card: app.globalData.DTuserInfo
+      })
+      console.log("现在的userinfo", that.data.business_card)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     that=this;
-    var data=wx.getStorageSync("data-mine_massage");
-    console.log("同步缓存数据",data)
-    if (typeof data.data != 'undefined')
-      that.setData(data.data)
-
-    // console.log(111);
+    that.refresh();
   },
 
   /**
@@ -80,7 +94,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    that.refresh()
   },
 
   /**

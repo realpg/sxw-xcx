@@ -1,6 +1,68 @@
 page{
   background: #f1f4f6;
 }
+.card {
+  width: 100%;
+  margin: auto;
+  background: #fff;
+  padding: 2% 0  4% 0;
+}
+
+.card_css {
+  width: 85%;
+  margin: auto;
+  background: #fff;
+  border: 3rpx solid #f1f4f6;
+  padding: 3% 3% 0% 3% ;
+  border-radius: 20rpx;
+  box-shadow: 3rpx 3rpx 3rpx 3rpx #e6eaf2;
+}
+.truename {
+  font-size: 38rpx;
+  line-height: 60rpx;
+}
+
+.career {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 50rpx;
+}
+
+.card_company {
+  font-size: 28rpx;
+  line-height: 60rpx;
+}
+
+.card_mobile {
+  color: #f7a821;
+}
+
+.card_business {
+  margin-top: 10rpx;
+  border-top: 1rpx solid #e6eaf2;
+  font-size: 28rpx;
+  line-height: 90rpx;
+  display: -webkit-box;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  height:90rpx;
+
+}
+
+.head_Img {
+  width: 120rpx;
+  height: 120rpx;
+  float: right;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  border: 1rpx solid #e6eaf2;
+}
+
+
+
+
 .Css{
    border:15rpx solid #f1f4f6; 
 }
@@ -66,7 +128,7 @@ page{
   
 }
 .type{
-  background: #9ACCF7;
+  background: #FFD634;
   padding: 5rpx 20rpx;
   color: white;
   font-size: 22rpx;
@@ -103,11 +165,12 @@ page{
   }
 
   .information_classification{
+  margin-top: 20rpx;
   background: #fff;
   display: flex;
   justify-content: space-around;
   line-height: 90rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
   color:  #9B9B9B; 
 }
 .all{

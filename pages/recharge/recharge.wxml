@@ -3,6 +3,7 @@
   <text class='confirm' bindtap='getJf'>确定</text>
 </view>
 <view wx:if="{{pay_amount>0}}"class='gold' style='font-size:40rpx'><strong>需支付{{pay_amount}} 元</strong></view>
+<view class='gold' wx:if="{{zsgold>0}}">测试期间所有支付统一为0.01元</view>
 <view class='gold' wx:if="{{zsgold>0}}">赠送{{zsgold}}个金币</view>
 
 <view class='package_instructions'>

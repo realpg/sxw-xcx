@@ -6,7 +6,6 @@ page{
  margin-top: 20rpx;
  font-size: 28rpx;
  padding-bottom:10rpx; 
-
 }
 .introduction_information_css{
   width: 95%;
@@ -56,38 +55,8 @@ page{
   height: 60rpx;
   margin-right: 10rpx;
   border-radius: 50%;
-  border: 1rpx solid #e6eaf2;
 }
 .message_img{
   width: 100rpx;
   height: 100rpx;
-}
-
-
-.commentBox{
-  width:90% ;
-  margin: auto;
- height: 100rpx;
-  margin-top: 10rpx;
-  display: flex;
-  align-items: center;
-}
-.commentInput{
-  width: 70%;
-  margin: auto;
-  height: 70%;
-  background: #f2f2f2;
-  font-size: 30rpx;
-  padding-left: 10rpx;
-}
-.send{
-  display: flex;
-  font-size: 28rpx;
-  background: #01c46c;
-  color: #ffffff;
-  height: 70%;
-  align-items: center;
-  padding: 0 20rpx;
-  margin-left: 20rpx;
-  border-radius: 5rpx;
 }

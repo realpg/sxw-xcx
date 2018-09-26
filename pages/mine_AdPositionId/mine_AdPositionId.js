@@ -15,7 +15,7 @@ Page({
   selectClick: function(e) {
     console.log(e);
     wx.navigateTo({
-      url: '../select_issue/select_issue?ad_id='+e.currentTarget.dataset.ad_id,
+      url: '../select_issue/select_issue?ad_id=' + e.currentTarget.dataset.ad_id + '&types='+e.currentTarget.dataset.types,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
@@ -57,7 +57,14 @@ Page({
   onUnload: function () {
 
   },
-
+  /**
+ * 页面相关事件处理函数--监听用户下拉动作
+ */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+    console.log('下拉刷新');
+    // this.requestNetAllData(page, 1);
+  },
   /**
    * 页面上拉触底事件的处理函数
    */

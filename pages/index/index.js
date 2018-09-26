@@ -9,33 +9,33 @@ Page({
     display: 'none'
   },
   //纺机头条
-  noticeCLick: function() {
+  noticeCLick: function () {
     console.log(88888888888888)
     wx.switchTab({
       url: '../information/information',
-      success: function(res) {},
-      fail: function(res) {},
-      compvare: function(res) {},
+      success: function (res) { },
+      fail: function (res) { },
+      compvare: function (res) { },
     })
   },
   //搜索框跳转
-  serchClick: function() {
+  serchClick: function () {
     wx.navigateTo({
       url: '../search/search',
-      success: function(res) {},
-      fail: function(res) {},
-      compvare: function(res) {},
+      success: function (res) { },
+      fail: function (res) { },
+      compvare: function (res) { },
     })
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
 
   //收藏 取消
-  enshrineClick: function(e) {
+  enshrineClick: function (e) {
     const that = this;
     var index = e.currentTarget.dataset.index
     console.log("改变收藏信息", index, that.data.message[index])
@@ -49,7 +49,7 @@ Page({
           mid: e.currentTarget.dataset.mid,
           tid: e.currentTarget.dataset.id
         };
-        util.enshrine(param, function(res) {
+        util.enshrine(param, function (res) {
           console.log('收藏', res, that.data.message[index]);
           wx.showToast({
             title: '收藏成功',
@@ -71,7 +71,7 @@ Page({
           tid: e.currentTarget.dataset.id,
           cancle: '1'
         };
-        util.enshrine(param, function(res) {
+        util.enshrine(param, function (res) {
           console.log('取消收藏', res, that.data.message[index], that.data.message);
 
           that.data.message[index].I_favortie = false;
@@ -96,14 +96,12 @@ Page({
 
   },
 
-  Loading: function() {
+  invited: function () {
 
     var param = {
-      userid: wx.getStorageSync('DTUserinfo').userid.userid,
-      _token: wx.getStorageSync('DTUserinfo')._token,
       inviter_userid: that.data.userid
     };
-    util.getBuyInvited(param, function(res) {
+    util.getInvited(param, function (res) {
       console.log('邀请', res);
     }, null)
 
@@ -112,7 +110,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
     that = this;
     var data = wx.getStorageSync("data-mine_index");
@@ -120,19 +118,19 @@ Page({
     if (typeof data.data != 'undefined')
       that.setData(data.data)
 
-    that= this
+    that = this
     let display = that.data.display;
     wx.createIntersectionObserver().relativeToViewport().observe('.notice', (res) => {
       res.intersectionRect.height // 相交区域的高度
-      console.log(343434,res.intersectionRect.height)
-      if (res.intersectionRect.height>0){     
+      console.log(343434, res.intersectionRect.height)
+      if (res.intersectionRect.height > 0) {
         that.setData({
-          display:'none' 
-        }) 
-      }else{  
+          display: 'none'
+        })
+      } else {
         that.setData({
-          display:'block' 
-        }) 
+          display: 'block'
+        })
       }
     })
 
@@ -143,25 +141,42 @@ Page({
     })
     console.log("scroll_width", scroll_width);
 
+    var timestamp = (new Date()).getTime() / 1000;
+    var addtime = app.globalData.DTuserInfo ? timestamp - app.globalData.DTuserInfo.regtime : 0;
+    console.log("当前时间戳", timestamp)
     var scene = decodeURIComponent(options.scene)
-    if (options.userid) {
-      that.setData({
-        userid: options.userid
-      })
-      that.Loading();
+    
+    // if (addtime<86400&&options.userid) {
+    var userid = scene?scene.userid:options.userid?options.userid:null;
+    console.log("scene", scene, userid)
 
+    if (userid) {
+      that.setData({
+        userid: userid,
+        scene:scene
+      })
+      wx.showModal({
+        title: '接受邀请',
+        content: '您即将接受用户[' + that.data.userid + ']的邀请，是否确认？',
+        showCancel: true,
+        success: function (res) {
+          if (res.confirm) {
+            that.invited(that.data.userid)
+          }
+        }
+      })
     }
 
     console.log(app.globalData)
     if (!app.globalData.DTuserInfo)
       return app.getopenid(that.reload);
-    else{
+    else {
       app.getopenid();
       that.reload();
     }
   },
 
-  slideshowClick: function(e) {
+  slideshowClick: function (e) {
     console.log(e.currentTarget.dataset.id, e.currentTarget.dataset.mid, e.currentTarget.dataset.userid, e.currentTarget.dataset.linktype);
     switch (e.currentTarget.dataset.linktype) {
       case 1:
@@ -185,12 +200,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     that = this
   },
 
-  Textile_headlines: function() {
-    util.InfoList({}, function(res) {
+  Textile_headlines: function () {
+    util.InfoList({}, function (res) {
       console.log('根据条件查询资讯列表', res);
       for (var i in res.data) {
         that.data.information_list.push({
@@ -203,13 +218,13 @@ Page({
     }, null)
   },
 
-  getAllList: function() {
+  getAllList: function () {
     console.log("加载全部信息中")
 
     if (that.data.all_next_page)
       util.getAllList({
         page: that.data.all_next_page
-      }, function(ret) {
+      }, function (ret) {
         console.log("全部列表", ret);
         var messageALL = [];
         for (var i in ret.data) {
@@ -231,14 +246,14 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
+                  message_Image: ret.data[i].thumb
+                },
+                {
+                  message_Image: ret.data[i].thumb1
+                },
+                {
+                  message_Image: ret.data[i].thumb2
+                }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
@@ -252,8 +267,8 @@ Page({
         console.log('排序前', messageALL)
         messageALL = that.sort(messageALL);
         console.log('排序后', messageALL)
-        if (that.data.all_next_page ==1)
-          that.data.messageALL=[];
+        if (that.data.all_next_page == 1)
+          that.data.messageALL = [];
         messageALL = that.data.messageALL.concat(messageALL);
         that.setData({
           messageALL: messageALL,
@@ -265,12 +280,12 @@ Page({
       }, null)
   },
 
-  getSellList: function() {
+  getSellList: function () {
 
     if (that.data.sell_next_page)
       util.getSellList({
         page: that.data.sell_next_page
-      }, function(ret) {
+      }, function (ret) {
         console.log("供应列表", ret);
         var sellList = [];
         for (var i in ret.data) {
@@ -292,14 +307,14 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
+                  message_Image: ret.data[i].thumb
+                },
+                {
+                  message_Image: ret.data[i].thumb1
+                },
+                {
+                  message_Image: ret.data[i].thumb2
+                }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
@@ -319,12 +334,12 @@ Page({
       }, null)
   },
 
-  getBuyList: function() {
+  getBuyList: function () {
 
     if (that.data.buy_next_page)
       util.getBuyList({
         page: that.data.buy_next_page
-      }, function(ret) {
+      }, function (ret) {
         console.log("求购列表", ret);
         var buyList = [];
         for (var i in ret.data) {
@@ -346,14 +361,14 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
+                  message_Image: ret.data[i].thumb
+                },
+                {
+                  message_Image: ret.data[i].thumb1
+                },
+                {
+                  message_Image: ret.data[i].thumb2
+                }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
@@ -374,12 +389,12 @@ Page({
       }, null)
   },
 
-  getFJMYList: function() {
+  getFJMYList: function () {
 
     if (that.data.fjmy_next_page)
       util.getFJMYList({
         page: that.data.fjmy_next_page
-      }, function(ret) {
+      }, function (ret) {
         console.log("纺机列表", ret);
         var fjmyList = [];
         for (var i in ret.data) {
@@ -401,14 +416,14 @@ Page({
               I_favortie: ret.data[i].I_favortie,
               message_Img: //详情图片  后续跟进
                 [{
-                    message_Image: ret.data[i].thumb
-                  },
-                  {
-                    message_Image: ret.data[i].thumb1
-                  },
-                  {
-                    message_Image: ret.data[i].thumb2
-                  }
+                  message_Image: ret.data[i].thumb
+                },
+                {
+                  message_Image: ret.data[i].thumb1
+                },
+                {
+                  message_Image: ret.data[i].thumb2
+                }
                 ],
               time: ret.data[i].adddate, //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
@@ -430,7 +445,7 @@ Page({
       }, null)
   },
 
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.wx_userInfo = e.detail.userInfo
     app.login(app);
@@ -440,7 +455,7 @@ Page({
     })
   },
 
-  classifyClick: function(e) {
+  classifyClick: function (e) {
 
     console.log(e.currentTarget.dataset.id);
     for (var i in that.data.classify) {
@@ -451,7 +466,7 @@ Page({
   },
 
   // 供应信息 采购大厅 二手设备 签到
-  classifyClick: function(e) {
+  classifyClick: function (e) {
 
     if (e.currentTarget.dataset.id != 4) {
       wx.navigateTo({
@@ -462,7 +477,7 @@ Page({
         var param = {
 
         };
-        util.signIn(param, function(ret) {
+        util.signIn(param, function (ret) {
           console.log(ret)
           wx.showToast({
             title: '签到成功',
@@ -480,14 +495,14 @@ Page({
   },
 
   //联系客服
-  callClick: function() {
+  callClick: function () {
     wx.makePhoneCall({
       phoneNumber: '1340000' //仅为示例，并非真实的电话号码
     })
   },
 
   //联系商家
-  phoneClick: function(e) {
+  phoneClick: function (e) {
 
     // var phoneNumber =e.currentTarget.dataset.mobile
     // console.log(888, phoneNumber )
@@ -496,7 +511,7 @@ Page({
     })
   },
   //排序
-  sort: function(messageALL) {
+  sort: function (messageALL) {
     var arr = messageALL;
     console.log("排序", arr);
     for (var i = 0; i < arr.length; i++)
@@ -526,7 +541,7 @@ Page({
   },
 
   //信息栏选择
-  selectClick: function(e) {
+  selectClick: function (e) {
     that.setData({
       nn: e.target.dataset.nn
     })
@@ -535,7 +550,7 @@ Page({
   },
 
   //根据that.data.nn改变展示内容
-  changeMessage: function() {
+  changeMessage: function () {
     if (that.data.nn == 1) {
       var messageALL = that.data.messageALL;
 
@@ -587,7 +602,7 @@ Page({
   },
 
   //查看详情
-  see_details_click: function(e) {
+  see_details_click: function (e) {
     wx.navigateTo({
       url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
     })
@@ -596,7 +611,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh();
     var page = 1;
     that.reload()
@@ -605,7 +620,7 @@ Page({
   },
 
   //触底加载
-  onReachBottom: function(e) {
+  onReachBottom: function (e) {
     console.log("触底加载", that.data.nn)
     switch (that.data.nn) {
       case '1':
@@ -625,23 +640,23 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: '我分享纱线网小程序',
       path: 'pages/index/index',
-      success: function(res) {
+      success: function (res) {
         // 转发成功
         wx.showToast({
           title: '分享成功',
           duration: 1500
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 转发失败
       }
     }
   },
-  reload: function() {
+  reload: function () {
 
     //初始数据
     that.setData({
@@ -702,12 +717,13 @@ Page({
 
     // that.Loading();
     //首页推荐
-    util.homepage_recommend({}, function(ret) {
+    util.homepage_recommend({}, function (ret) {
       console.log(222222, ret);
       var recommend_store = that.data.recommend_store;
       for (var i in ret) {
-        console.log(1314, ret)
+        console.log("首页推荐", ret)
         recommend_store.push({
+          avatarUrl: ret[i].info.businesscard.avatarUrl, //头像
           id: ret[i].info.itemid, //信息id
           store_name: ret[i].info.company,
           mid: ret[i].item_mid,
@@ -718,13 +734,13 @@ Page({
       that.setData({
         recommend_store: recommend_store,
       })
-      setTimeout(function() {
+      setTimeout(function () {
         that.nextScroll()
       }, 5000)
     })
 
     //首页轮播图
-    util.getBanner({}, function(ret) {
+    util.getBanner({}, function (ret) {
       // console.log(ret);
       var slideshow = that.data.slideshow;
       for (var i in ret) {
@@ -741,7 +757,7 @@ Page({
       })
     }, null)
 
-//纺织头条
+    //纺织头条
     that.Textile_headlines();
 
     //获取
@@ -752,13 +768,13 @@ Page({
 
   },
   //点击头像查看名片
-  messageList_click: function(e) {
+  messageList_click: function (e) {
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
   },
 
-  scroll: function(e) { //有用
+  scroll: function (e) { //有用
     console.log(e)
 
     if (that.data.timer) {
@@ -767,7 +783,7 @@ Page({
     }
 
 
-    var timer = setTimeout(function() {
+    var timer = setTimeout(function () {
       // console.log("自动滚动")
       that.nextScroll()
     }, 5000)
@@ -784,7 +800,7 @@ Page({
     })
   },
 
-  nextScroll: function() { //有用
+  nextScroll: function () { //有用
 
     var index = (that.data.scroll_index ? that.data.scroll_index : 0) + 1;
     var scrollLeft = index * that.data.scroll_width
@@ -800,16 +816,16 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     if (that.data.recommend_store)
-    if (that.data.recommend_store.length > 0)
-      setTimeout(function() {
-        that.nextScroll()
-      }, 5000)
+      if (that.data.recommend_store.length > 0)
+        setTimeout(function () {
+          that.nextScroll()
+        }, 5000)
   },
   /**
-    * 生命周期函数--监听页面卸载
-    */
+   * 生命周期函数--监听页面卸载
+   */
   onUnload: function () {
     console.log("页面卸载")
     wx.setStorageSync("data-mine_index", that.data)
@@ -817,14 +833,14 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     if (that.data.timer) {
       clearTimeout(that.data.timer);
       console.log("销毁计时器")
     }
   },
   //点赞
-  setLikeClick: function(e) {
+  setLikeClick: function (e) {
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
       // userid: wx.getStorageSync('DTUserinfo').userid.userid,
@@ -832,7 +848,7 @@ Page({
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
-    util.setLike(param, function(res) {
+    util.setLike(param, function (res) {
       console.log('点击点赞', res);
       wx.showToast({
         title: '点赞成功',
@@ -853,7 +869,7 @@ Page({
   },
 
   //图片预览
-  previewImClick: function(e) {
+  previewImClick: function (e) {
     console.log(1111, e.currentTarget)
     var that = this;
     var idx = e.currentTarget.dataset.idx;

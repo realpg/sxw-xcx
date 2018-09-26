@@ -308,8 +308,8 @@ function editInfo_post(param, successCallback, errorCallback) {
 }
 
 //邀请
-function getBuyInvited(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/invited', param, "GET", successCallback, errorCallback);
+function getInvited(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/user/invited', param, "POST", successCallback, errorCallback);
 }
 
 //广告位
@@ -546,9 +546,17 @@ function getMyFJMYList(param, successCallback, errorCallback) {
 function get_Receive_message(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/comment/tome', param, "GET", successCallback, errorCallback);
 }
+//我发出的留言
+function get_Send_message(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/comment/mine', param, "GET", successCallback, errorCallback);
+}
 
 function getMessageByID(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/member/message/getById', param, "GET", successCallback, errorCallback);
+}
+
+function getInviteQR(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/getInviteQR', param, "GET", successCallback, errorCallback);
 }
 
 function uploadImage(param, successCallback, errorCallback) {
@@ -1049,7 +1057,7 @@ module.exports = {
   signInList: signInList,
   signIn: signIn,
   visitingCard: visitingCard,
-  getBuyInvited: getBuyInvited,
+  getInvited: getInvited,
   GetAdvertising: GetAdvertising,
   GetAdvertisingInfo: GetAdvertisingInfo,
   GetAdvertisingVIP: GetAdvertisingVIP,
@@ -1093,11 +1101,13 @@ module.exports = {
   selectIssue: selectIssue,
   sendwriteBack: sendwriteBack,
   goldListClick: goldListClick,
-
+  get_Send_message:get_Send_message,
+  
   getMySellList: getMySellList,
   getMyBuyList: getMyBuyList,
   getMyFJMYList: getMyFJMYList,
   getMessageByID: getMessageByID,
+  getInviteQR: getInviteQR,
   get_Receive_message: get_Receive_message,
   formatTime: formatTime,
   formatDate: formatDate,

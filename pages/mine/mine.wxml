@@ -42,9 +42,9 @@
 <view wx:else='{{business_card.groupid==5}}' class='Css'>
 <view  class='business_card'>
 <view wx:if="{{business_card.updating}}"class='business_card_css redactuserinfo'>
-      <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>信息审核中，请等待</text></button> 
+      <button open-type='getUserInfo' ><text class='redactuserinfo'  style='font-size:30rpx'>审核将于3个工作日之内完成，请耐心等待！</text></button> 
       </view>
-  <view wx:else bindtap='redactClick' class='business_card_css redactuserinfo'>
+  <view wx:else bindtap='' class='business_card_css redactuserinfo'>
    <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>请完善个人信息</text></button> 
   </view>
   </view>
@@ -128,11 +128,11 @@
 
   <view class='sign_in_date' >
     <view class='sign_in_date_css' wx:for='{{sign_in_date}}' style='position:relative'>
-      <image class='sign_in_Img' src='{{item.isSignin?"../../images/personal_center/oval_gold.png":"../../images/personal_center/gold.png"}}'></image>
+      <image class='sign_in_Img' bindtap='singInClick' src='{{item.isSignin?"../../images/personal_center/oval_gold.png":"../../images/personal_center/gold.png"}}'></image>
 
-      <view  wx:if="{{item.isSignin&&(weekday==index+1||(weekday==0&&index==6))}}"><image  
+      <view  wx:if="{{item.isSignin}}"><image  
       class='icon_tick_Img' src='../../images/personal_center/icon_tick.png'></image></view>
-      <view class='week' style="color:red" wx:if="{{item.isSignin&&(weekday==index+1||(weekday==0&&index==6))}}">{{item.week}}</view>
+      <view class='week' style="color:red" wx:if="{{item.isSignin}}">{{item.week}}</view>
       <view wx:else class='week'>{{item.week}}</view>
     </view>
   </view>

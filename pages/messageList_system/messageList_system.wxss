@@ -1,0 +1,49 @@
+@import "../../wxParse/wxParse.wxss";
+page{
+  background:#f1f4f6
+}
+.message_css{
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
+  background: #fff;
+  height: 100rpx;
+  font-size: 28rpx;
+  margin-top: 15rpx;
+  padding: 0 20rpx;
+}
+.message_time{
+  color: #666;
+  font-size: 26rpx;
+}
+
+.message_content{
+border-top: 1rpx #f1f4f6 solid;
+background: #fff;
+line-height: 46rpx;
+font-size: 28rpx;
+padding: 0 20rpx;
+display:none;
+color: #666
+}
+.message_content_css{
+border-top: 1rpx #f1f4f6 solid;
+background: #fff;
+line-height: 46rpx;
+font-size: 26rpx;
+padding: 0 40rpx;
+display:block;
+color:#666
+}
+.message_title{
+  margin-left: 10rpx;
+}
+.hint{
+  display: inline-block;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background:#e64340;
+  position: absolute;
+  left: 10rpx;
+}

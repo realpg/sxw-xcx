@@ -147,6 +147,7 @@ z-index:2;
   line-height: 60rpx;
   align-items: center;
   box-shadow: 0 3rpx 3rpx #999999;
+  border-radius: 10rpx;
 }
 
 .name {

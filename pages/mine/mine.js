@@ -377,7 +377,7 @@ Page({
   onShareAppMessage: function() {
     return {
       title: '我分享了' + that.data.business_card.truename + '的名片',
-      path: 'pages/store_particulars/store_particulars?id=' + that.data.id,
+      path: 'pages/store_particulars/store_particulars?id=' + app.globalData.DTuserInfo.userid,
       success: function(res) {
         // 转发成功
         wx.showToast({
@@ -402,9 +402,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-    var pages=getCurrentPages();
-    console.log(pages);
-    pages[pages.length - 1].onPullDownRefresh()
+    // var pages=getCurrentPages();
+    // console.log(pages);
+    // pages[pages.length - 1].onPullDownRefresh()
+    that.redactClick()
   },
 
 })

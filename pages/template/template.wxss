@@ -124,7 +124,7 @@
   margin-top: 20rpx;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between
+  justify-content: space-between;
 }
 .rev_message_Image{
   width: 31%;

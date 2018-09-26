@@ -4,6 +4,7 @@
   <view><text class='comments'>我的评论</text></view>
 </view> -->
 <view bindtap='view_click' data-id='1' class='xiaoxi_css' style='position: relative;'>
+  <text  class="hint" ><text wx:if="{{business_card.message>0}}" class='hint_css'>{{business_card.message}}</text></text>
   <image class='xiaoxi' src='../../images/personal_center/inform.png'></image>
   <text>系统通知</text>
    <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>

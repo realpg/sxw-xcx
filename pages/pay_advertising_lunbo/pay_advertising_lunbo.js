@@ -140,9 +140,12 @@ Page({
       hint_time: util.formatTime(new Date()),
       gold_coin_balance: app.globalData.DTuserInfo.credit
     })
-    if (options.sellingADs) {
-      console.log(JSON.parse(options.sellingADs))
-      let arr = JSON.parse(options.sellingADs)
+    if (options.data_index) {
+      console.log("index:",options.data_index);
+      var pages = getCurrentPages();
+      var prepage=pages[pages.length-2];
+      console.log(prepage.data, prepage.data.advertisingAssign)
+      let arr = JSON.parse(prepage.data.advertisingAssign[options.data_index].item)
       let arrb = [];
       for (let i in arr) {
         arrb.push({

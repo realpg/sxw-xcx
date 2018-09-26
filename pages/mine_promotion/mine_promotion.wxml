@@ -44,8 +44,8 @@
   </view>
 
   <!-- 广告位——>指定 -->
-  <view class='advertisingAssign' style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg3.png) no-repeat;background-size:100% 100%;'  wx:for='{{advertisingAssign}}'  data-sellingADs='{{item.item}}' bindtap='AssignClick'>
-  <image class='Img imgcss' src='../../images/personal_center/carousel.png'></image>
+  <view class='advertisingAssign' style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg3.png) no-repeat;background-size:100% 100%;'  wx:for='{{advertisingAssign}}' wx:for-key="key" data-sellingADs='{{item.item}}' data-index='{{index}}' bindtap='AssignClick'>
+  <image class='Img imgcss' src='{{item.icon_path}}'></image>
   <view class='gold_type'style='color:black'>
     <view class='text'>{{item.name}}</view>
     <view class='text'>剩余数量：{{item.sellingADs.length}}</view>

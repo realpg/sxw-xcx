@@ -33,8 +33,9 @@ Page({
   AssignClick: function(e) {
     console.log(e.currentTarget.dataset.sellingads)
     if (e.currentTarget.dataset.sellingads != '[]'){
+      // console.log(e);
     wx.navigateTo({
-      url: '../pay_advertising_lunbo/pay_advertising_lunbo?sellingADs=' + e.currentTarget.dataset.sellingads,
+      url: '../pay_advertising_lunbo/pay_advertising_lunbo?data_index=' + e.currentTarget.dataset.index,
     })
     }else{
       wx.showToast({
@@ -64,7 +65,7 @@ Page({
       that.setData({
         advertisingAssign: that.data.advertisingAssign
       })
-      console.log(that.data.advertisingAssign)
+      console.log("广告",that.data.advertisingAssign)
     }, null)
 
     util.GetAdvertisingVIP(param, function (res) {
@@ -122,6 +123,14 @@ Page({
   
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+    console.log('下拉刷新');
+    // this.requestNetAllData(page, 1);
+  },
   /**
    * 页面上拉触底事件的处理函数
    */

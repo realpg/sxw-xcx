@@ -11,18 +11,23 @@ Page({
     messageList:[],
     name:null,
     id:null,
+    page: 1
   },
 
   visitingCard: function () {
+    if (!that.data.page)
+      return;
     var param = {
-      userid: wx.getStorageSync('DTUserinfo').userid,
-      _token: wx.getStorageSync('DTUserinfo')._token,
-      ywlb_id:that.data.id
+      ywlb_id:that.data.id,
+      page: that.data.page
     };
     util.reclassifyCard(param, function (ret) {
       console.log('分类名片列表', ret)
+      var messageList = [],
+        messageList = that.data.messageList.concat(ret.data);
       that.setData({
-        messageList: ret.data
+        page: ret.current_page < ret.last_page ? ret.current_page + 1 : null,
+        messageList: messageList
       })
     });
   },
@@ -92,7 +97,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    console.log("触底加载")
+    that.visitingCard();
   },
 
   /**

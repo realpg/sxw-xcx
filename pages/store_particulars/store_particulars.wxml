@@ -1,78 +1,78 @@
-
- <import src="../template/template.wxml"/> 
+<import src="../template/template.wxml" />
 <view catchtap='' catchtouchmove='' style='width:100%;overflow-x:hidden;'>
-<!-- 名片 -->
-<view class='card'>
-  <view class='card_css'>
-    <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
-    <view class='truename'>{{business_card.truename}}</view>
-    <view class='career'>{{business_card.career}}</view>
-    <view class='card_company'>公司：{{business_card.company}}</view>
-    <view class='card_company'>地址：{{business_card.address}}</view>
-    <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> </view>
-    <view class='card_business'>主营：{{business_card.business}}</view>
-  </view>
-  
-  <view class='name_of_index'>
-    <view>
-      <text class='card_mobile'> {{business_card.view}} </text> 人气</view>
-    <view>
-      <text class='card_mobile'> {{business_card.agree}} </text> 点赞</view>
-    <view>
-      <text class='card_mobile'> {{business_card.favorite}} </text> 收藏</view>
-  </view>
-
-  <view class='option'>
-    <view class='option_css' bindtap='setLike_card_Click' data-id='{{business_card.userid}}' data-mid='2'>
-      <image class='icon' src='{{business_card.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}' ></image>
-      <text> 点赞</text>
+  <!-- 名片 -->
+  <view class='card'>
+    <view class='card_css'>
+      <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+      <view class='truename'>{{business_card.truename}}</view>
+      <view class='career'>{{business_card.career}}</view>
+      <view class='card_company'>公司：{{business_card.company}}</view>
+      <view class='card_company'>地址：{{business_card.address}}</view>
+      <view class='card_company'>电话：
+        <text class='card_mobile'>{{business_card.mobile}}</text> </view>
+      <view class='card_business'>主营：{{business_card.business}}</view>
     </view>
-    <view class='option_css' bindtap='enshrine_card_Click'data-id='{{business_card.userid}}' data-mid='2' data-index="{{idx}}">
-      <image class='icon' src='{{business_card.I_favorite?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
-      <text>  收藏</text>
+
+    <view class='name_of_index'>
+      <view>
+        <text class='card_mobile'> {{business_card.view}} </text> 人气</view>
+      <view>
+        <text class='card_mobile'> {{business_card.agree}} </text> 点赞</view>
+      <view>
+        <text class='card_mobile'> {{business_card.favorite}} </text> 收藏</view>
     </view>
-    <view class='option_css'>
-      <button class='share_button' open-type='share'>
-        <image class='icon' src='../../images/store/share.png'></image>
-        <text class='share_text'>  分享</text>
-      </button>
+
+    <view class='option'>
+      <view class='option_css' bindtap='setLike_card_Click' data-id='{{business_card.userid}}' data-mid='2'>
+        <image class='icon' src='{{business_card.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'></image>
+        <text> 点赞</text>
+      </view>
+      <view class='option_css' bindtap='enshrine_card_Click' data-id='{{business_card.userid}}' data-mid='2' data-index="{{idx}}">
+        <image class='icon' src='{{business_card.I_favorite?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
+        <text>  收藏</text>
+      </view>
+      <view class='option_css'>
+        <button class='share_button' open-type='share'>
+          <image class='icon' src='../../images/store/share.png'></image>
+          <text class='share_text'>  分享</text>
+        </button>
+      </view>
     </view>
   </view>
-</view>
 
 
 
 
 
-<!-- 具体描述 -->
-<view class='specific'>
-  <view class='Shops'>商户简介</view>
-  <view class='specific_css'>{{business_card.introduce}}</view>
+  <!-- 具体描述 -->
+  <view class='specific'>
+    <view class='Shops'>商户简介</view>
+    <view class='specific_css'>{{business_card.introduce}}</view>
 
-<view class='company_photos'>公司照片:</view>
-<view class='hint_company' wx:if='{{thumb.length==0}}'>该公司没有上传照片</view>
-<view class='message_Img'>
-  <view class='message_Image' wx:for='{{thumb}}' wx:for-index='index'>
-    <image class='message_Image_Css' wx:if='{{item !=""}}' bindtap='previewImClick' data-id='{{index}}' src='{{item}}'></image>
-  </view>
-</view> 
+    <view class='company_photos'>公司照片:</view>
+    <view class='hint_company' wx:if='{{thumb.length==0}}'>该公司没有上传照片</view>
+    <view class='message_Img'>
+      <view class='message_Image' wx:for='{{thumb}}' wx:for-index='index'>
+        <image class='message_Image_Css' wx:if='{{item !=""}}' bindtap='previewImClick' data-id='{{index}}' src='{{item}}'></image>
+      </view>
+    </view>
 
-<view class='company_code'>公司二维码:</view>
-<view class='hint_code' wx:if='{{business_card.wxqr.length==0}}'>该公司没有上传二维码</view>
-<view class='code' >
-  <image  wx:if='{{business_card.wxqr.length!=0}}'  bindtap='previewImClick_code' class='code_img' mode="aspectFill" src='{{business_card.wxqr}}'></image>
-</view>
+    <view class='company_code'>公司二维码:</view>
+    <view class='hint_code' wx:if='{{business_card.wxqr.length==0}}'>该公司没有上传二维码</view>
+    <view class='code'>
+      <image wx:if='{{business_card.wxqr.length!=0}}' bindtap='previewImClick_code' class='code_img' mode="aspectFill" src='{{business_card.wxqr}}'></image>
+    </view>
 
-  <view class='view_details' data-introduce='{{business_card.introduce}}' data-thumb='{{business_card.thumb}}' data-wxqr='{{business_card.wxqr}}' bindtap='view_details_click'>
+    <!-- <view class='view_details' data-introduce='{{business_card.introduce}}' data-thumb='{{business_card.thumb}}' data-wxqr='{{business_card.wxqr}}' bindtap='view_details_click'>
     <text class='view_details_css'>查看详情</text>
+  </view> -->
   </view>
-</view>
 
 
-<!--具体信息-->
- <template is='messageBox' data='{{message:messageList}}'></template> 
+  <!--具体信息-->
+  <template is='messageBox' data='{{message:messageList}}'></template>
 
-<!-- <view class='message' wx:for='{{messageList}}'>
+  <!-- <view class='message' wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
     <view class='head_portrait'>
       <image class='head_portrait_icon' src='{{item.head_portrait_icon}}' />
@@ -132,9 +132,9 @@
   </view>
 </view> -->
 
-<view class='bottom'></view>
+  <view class='bottom'></view>
 
-<!-- 底部选择栏
+  <!-- 底部选择栏
 <view class='tab_select'>
   <view>
     <image class='tab_home_img' bindtap='back_homepage_click' src='../../images/store/tab_home.png'></image>
@@ -153,26 +153,42 @@
   </view>
 </view> -->
 
-<!-- 底部导航栏 -->
-<view class='navigation_bar'>
-  <view class='navigation_bar_css'>
-    <view bindtap='back_homepage_click' >
-      <image class='navigation_bar_Img' src='../../images/store/home.png'></image>
-      <view style='margin-top:-3rpx'>返回首页</view>
+  <view style='width:100%;height:20rpx;'></view>
+
+  <!-- 底部导航栏 -->
+  <view class='navigation_bar'>
+    <view class='navigation_bar_css'>
+      <view bindtap='back_homepage_click'>
+        <image class='navigation_bar_Img' src='../../images/store/home.png'></image>
+        <view style='margin-top:-3rpx'>返回首页</view>
+      </view>
+      <view bindtap='making_call_click'>
+        <image class='navigation_bar_Img' src='../../images/store/tab_phone.png'></image>
+        <view style='margin-top:-3rpx'>电话联系</view>
+      </view>
+      <view bindtap='ranking_list_click'>
+        <image class='navigation_bar_Img' src='../../images/store/tab_paihangbang.png'></image>
+        <view style='margin-top:-3rpx'>排行榜</view>
+      </view>
     </view>
-    <view bindtap='making_call_click'>
-      <image  class='navigation_bar_Img'  src='../../images/store/tab_phone.png'></image>
-      <view style='margin-top:-3rpx'>电话联系</view>
-    </view>
-    <view bindtap='ranking_list_click'>
-      <image  class='navigation_bar_Img'  src='../../images/store/tab_paihangbang.png'></image>
-      <view style='margin-top:-3rpx'>排行榜</view>
+
+    <view class='navigation_bar_share'>
+      <button bindtap='shareClick' class='shareBtn'>
+        <view>立即分享</view>
+      </button>
     </view>
   </view>
-
- <view class='navigation_bar_share'>
-      <button open-type="share" class='shareBtn'>
-      <view>立即分享</view></button>
-    </view> 
 </view>
+<view>
+</view>
+
+
+<!-- 弹出层 -->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}">
+  <view class='ruleZhezhaoContent'>
+    <view class='ruleZhezhaoText' >
+      <text>弹出层</text>
+      <text>效果</text> </view>
+    <image src='../../images/rule-hide.png' class='ruleHide' bindtap='hideRule'></image>
+  </view>
 </view>

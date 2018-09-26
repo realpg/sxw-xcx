@@ -162,7 +162,6 @@ Page({
         content: ret.content,
         itemid: ret.itemid,
         reply:'',
-
       })
 
 
@@ -254,7 +253,7 @@ Page({
   },
 
     //关注 取消
-    enshrineClick: function (e) {
+    enshrineClick_css: function (e) {
         const that = this;
         var index = e.currentTarget.dataset.index
         console.log("改变收藏信息",index,that.data.message[index])
@@ -316,7 +315,7 @@ Page({
     },
 
   //关注 取消
-  enshrineClick_css: function(e) {
+  enshrineClick: function(e) {
           const that = this;
           var index = e.currentTarget.dataset.index
           console.log("改变收藏信息",index,that.data.messageList[index])

@@ -108,9 +108,27 @@ color:#666
   line-height: 120rpx;
 }
 .logo{
-  padding: 20% 0%;
+  margin-top: 80%;
   text-align: center;
 }
 .logo_Img{
   width: 260rpx;
+}
+
+
+.hint{
+  position: absolute;
+  left:20rpx;
+  top: -80rpx;
+}
+.hint_css{
+  color:#fff;
+  background:#e64340;
+  font-size: 18rpx;
+  display: inline-block;
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  line-height: 28rpx;
+  text-align: center;
 }

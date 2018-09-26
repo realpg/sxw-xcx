@@ -61,7 +61,10 @@
   <block wx:for='{{recommend_store}}'>
    
             <view class='recommend_store_css scroll-view-item_H' data-id='{{item.id}}'data-mid='{{item.mid}}' bindtap='see_details_click' > 
-              <view class='store_name'>{{item.store_name}}</view>
+
+              <view class='store_name' ><image class='headImg'
+              src='{{item.avatarUrl?item.avatarUrl:"../../images/index/head_portrait.png"}}'></image><text class='store_name_css'>{{item.store_name}}</text></view>
+
               <view class='store_lable'>
                 <view wx:if="{{item.mid =='5'}}" class='store_type'>供应</view>
                 <view wx:if="{{item.mid =='6'}}" class='store_type' style='background:#1BB9FB'>求购</view>
@@ -201,3 +204,5 @@
  <!-- 客服-->
  <image bindtap='callClick' mode='aspectFill' class='servicer-image' src='../../images/index/service.png'/> 
  </view> 
+
+ {{scene}}

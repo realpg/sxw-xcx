@@ -158,19 +158,23 @@ height: 100%;
   display: flex;
   justify-content: space-between;
 }
-
+.headImg{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 1rpx solid #e6eaf2; 
+  margin-right: 15rpx;
+  margin-left: 15rpx;
+}
 .store_name {
-  line-height: 80rpx;
-  background: #2ACE84;
-  color: #ffffff;
-  text-align: center;
+  margin-top: 10rpx;
+  line-height: 70rpx;
+  background: #ffffff;
   font-size: 28rpx;
   font-weight: 700;
-   display: -webkit-box; 
+  display: flex;
   align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
+  /* justify-content: center; */
 }
 
 .store_lable {
@@ -178,7 +182,7 @@ height: 100%;
   margin: auto;
   display: flex;
   justify-content: space-around;
-  height: 80rpx;
+  height: 70rpx;
   align-items: center;
 }
 
@@ -206,6 +210,7 @@ height: 100%;
   white-space: normal;
   width: 95%;
   margin: auto;
+  height: 72rpx;
   font-size: 26rpx;
   color: #666;
   line-height: 36rpx;
@@ -224,14 +229,13 @@ height: 100%;
 }
 .Enter_store_css{
   font-size: 22rpx;
-  color:#01C46C;
   line-height: 32rpx;
   padding: 5rpx 20rpx;
   border-radius: 30rpx 30rpx;
   align-items: center;
-border: 1rpx solid #01C46C;
+  border: 1rpx solid #e6eaf2;
+  color: #333333;
 }
-
 .information_classification{
   background: #fff;
   display: flex;

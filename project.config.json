@@ -33,12 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
 					"name": "消息",
-					"pathName": "pages/store_particulars/store_particulars",
+					"pathName": "pages/store/store",
 					"query": ""
 				},
 				{
@@ -59,6 +59,18 @@
 					"pathName": "pages/index/index",
 					"query": "userid=99",
 					"scene": "1047"
+				},
+				{
+					"id": -1,
+					"name": "系统通知",
+					"pathName": "pages/messageList_system/messageList_system",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "名片",
+					"pathName": "pages/store_particulars/store_particulars",
+					"query": "id=29"
 				}
 			]
 		}

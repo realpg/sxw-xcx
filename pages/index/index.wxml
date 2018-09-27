@@ -204,5 +204,3 @@
  <!-- 客服-->
  <image bindtap='callClick' mode='aspectFill' class='servicer-image' src='../../images/index/service.png'/> 
  </view> 
-
- {{scene}}

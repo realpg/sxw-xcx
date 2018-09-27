@@ -1,5 +1,5 @@
 //测试标识
-var TESTMODE = false;
+var TESTMODE = true;
 //服务器地址
 var SERVER_URL = "https://dt.chinayarn.com/xcx/public";
 var DEBUG_URL = "http://xcx.hzmuji.com";
@@ -202,7 +202,7 @@ function login(param, successCallback, errorCallback) {
       // wxRequest(url, param, method, successCallback, errorCallback)
     },
     complete: function(ret) {
-      // // console.log("ret:" + JSON.stringify(ret))
+      console.log("ret:" + JSON.stringify(ret))
       // if (loading)
       //   hideLoading()
       // requestqueue()
@@ -556,7 +556,73 @@ function getMessageByID(param, successCallback, errorCallback) {
 }
 
 function getInviteQR(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/getInviteQR', param, "GET", successCallback, errorCallback);
+  // wxRequest(, , "GET", successCallback, errorCallback);
+  const App=getApp()
+  if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
+    //user_id未设置
+    if (judgeIsAnyNullStr(param.userid)) {
+      param.userid = App.globalData.DTuserInfo.userid;
+    }
+    param._token = App.globalData.DTuserInfo._token;
+  }
+
+  wx.downloadFile({
+    url: SERVER_URL + '/api/getInviteQR?userid=' + App.globalData.DTuserInfo.userid + '&_token=' + App.globalData.DTuserInfo._token,
+    success: function (res1) {
+      successCallback(res1)
+    },
+    fail: function (err) {
+      errorCallback(err);
+    }
+  });
+}
+function RefreshMyQR(param, successCallback, errorCallback) {
+  // wxRequest(SERVER_URL + , param, "GET", successCallback, errorCallback);
+  
+    // wxRequest(, , "GET", successCallback, errorCallback);
+    const App = getApp()
+    if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
+      //user_id未设置
+      if (judgeIsAnyNullStr(param.userid)) {
+        param.userid = App.globalData.DTuserInfo.userid;
+      }
+      param._token = App.globalData.DTuserInfo._token;
+    }
+    console.log("下载文件", param)
+    wx.downloadFile({
+      url: SERVER_URL + '/api/businesscard/RefreshMyQR' + param.userid + '&_token=' + param._token + '&_userid=' + param._userid,
+      success: function (res1) {
+        successCallback(res1)
+      },
+      fail: function (err) {
+        errorCallback(err);
+      }
+    });
+  }
+function getCardQR(param, successCallback, errorCallback) {
+  // wxRequest(, , "GET", successCallback, errorCallback);
+  const App = getApp()
+  if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
+    //user_id未设置
+    if (judgeIsAnyNullStr(param.userid)) {
+      param.userid = App.globalData.DTuserInfo.userid;
+    }
+    param._token = App.globalData.DTuserInfo._token;
+  }
+console.log("下载文件",param)
+  wx.downloadFile({
+    url: SERVER_URL + '/api/businesscard/getQRByUserid?userid=' + param.userid + '&_token=' + param._token+'&_userid='+param._userid,
+    success: function (res1) {
+      successCallback(res1)
+    },
+    fail: function (err) {
+      errorCallback(err);
+    }
+  });
+}
+
+function myInvited(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/myInvited', param, "GET", successCallback, errorCallback);
 }
 
 function uploadImage(param, successCallback, errorCallback) {
@@ -1058,6 +1124,7 @@ module.exports = {
   signIn: signIn,
   visitingCard: visitingCard,
   getInvited: getInvited,
+
   GetAdvertising: GetAdvertising,
   GetAdvertisingInfo: GetAdvertisingInfo,
   GetAdvertisingVIP: GetAdvertisingVIP,
@@ -1108,6 +1175,9 @@ module.exports = {
   getMyFJMYList: getMyFJMYList,
   getMessageByID: getMessageByID,
   getInviteQR: getInviteQR,
+  RefreshMyQR:RefreshMyQR,
+  getCardQR: getCardQR,
+  myInvited:myInvited,
   get_Receive_message: get_Receive_message,
   formatTime: formatTime,
   formatDate: formatDate,

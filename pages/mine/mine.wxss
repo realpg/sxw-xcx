@@ -1,8 +1,4 @@
 
-
-page {
-  background: #f1f4f6;
-}
 page {
   background: #f1f4f6;
 }
@@ -321,7 +317,7 @@ width: 22%;
   line-height: 40rpx;
   color: #000000;
 }
-button::after{
+.service_but::after{
   border: none;
 }
 .service_title{
@@ -367,8 +363,9 @@ width: 22%;
 
 }
  button{
-   margin: 0;
-   padding: 0;
+   
+  margin: 0;
+  padding: 0;
   font-size: 24rpx;
   color:#666;
   background: #fff;
@@ -448,3 +445,5 @@ background:#e64340;
 .logo_Img{
   width: 260rpx;
 }
+
+

@@ -111,6 +111,12 @@ Page({
 
     gold_coin_get: '0'
   },
+
+  cardClick:function(e){
+  wx.navigateTo({
+    url: '../store_particulars/store_particulars?id='+e.currentTarget.dataset.id,
+})
+  },
   //金币明细
   goldListClick: function() {
     wx.navigateTo({

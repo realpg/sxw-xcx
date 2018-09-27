@@ -103,6 +103,11 @@ Page({
     };
     util.getInvited(param, function (res) {
       console.log('邀请', res);
+      wx.showToast({
+        title: '接受邀请成功',
+        icon:'success',
+        duration:3000
+      })
     }, null)
 
   },
@@ -144,16 +149,22 @@ Page({
     var timestamp = (new Date()).getTime() / 1000;
     var addtime = app.globalData.DTuserInfo ? timestamp - app.globalData.DTuserInfo.regtime : 0;
     console.log("当前时间戳", timestamp)
-    var scene = decodeURIComponent(options.scene)
-    
+    var scene = JSON.stringify(decodeURIComponent(options.scene));
+
     // if (addtime<86400&&options.userid) {
-    var userid = scene?scene.userid:options.userid?options.userid:null;
+    var userid = scene ? scene.userid : options.userid ? options.userid : null;
+    if (options.userid) {
+      userid = options.userid
+    } else if (scene.search(/userid=\d/) >= 0) {
+      console.log("正则匹配成功", scene, scene.replace('userid=', '').replace('"', ""));
+      userid = scene.replace('"userid=', '').replace('"', "")
+    }
     console.log("scene", scene, userid)
 
     if (userid) {
       that.setData({
         userid: userid,
-        scene:scene
+        scene: scene
       })
       wx.showModal({
         title: '接受邀请',

@@ -61,10 +61,10 @@ Page({
   //确认发布
   payClick: function() {
     that = this
+    if (that.data.select.id != '' || that.data.select.mid != '') {
     wx.showModal({
       title: '提示',
       content: '是否确认发布？',
-      cancelColor: 'red',
       success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
@@ -74,6 +74,13 @@ Page({
         }
       }
     })
+    } else {
+      wx.showToast({
+        title: '您还没有勾选',
+        duration: 2000,
+        icon:'none'
+      })
+    }
   },
 
   confirm: function() {
@@ -82,19 +89,22 @@ Page({
       itemid: that.data.select.id,
       mid: that.data.select.mid,
     }
+    console.log('是否为空', that.data.select.id )
+   
     util.selectIssue(
       param,
       function(ret) {
         console.log(ret)
         wx.showToast({
-          title: '已通知后台处理',
-          duration: 2000
+          title: '已通知客服处理',
+          duration: 2000,
+        
         })
         setTimeout(function() {
           wx.navigateBack()
         }, 2000)
       }, null);
-
+   
   },
 
   //选择具体哪条信息

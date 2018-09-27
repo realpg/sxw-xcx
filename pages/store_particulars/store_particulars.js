@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    Img_code:'',
     thumb: {},
     wxqr: '',
     id: null,
@@ -84,27 +85,14 @@ Page({
       address: '南通、柳橙、诸暨',
       page_view: '888',
       like: '888'
-    }, ],
-    page: 1
+    },],
+    page: 1, 
+  
   },
-
-
-  shareClick: function() {
-    this.setData({
-      isRuleTrue: true
-    })
-  },
-  //关闭规则提示    
-  hideRule: function() {
-    this.setData({
-      isRuleTrue: false
-    })
-  },
-
 
 
   //联系商家
-  phoneClick: function(e) {
+  phoneClick: function (e) {
 
     // var phoneNumber =e.currentTarget.dataset.mobile
     // console.log(888, phoneNumber )
@@ -113,7 +101,7 @@ Page({
     })
   },
   //预览图片
-  previewImClick: function(e) {
+  previewImClick: function (e) {
     console.log(123456, e.currentTarget.dataset.id)
     var that = this;
     var id = e.currentTarget.dataset.id
@@ -130,7 +118,7 @@ Page({
     }
   },
 
-  previewImClick_code: function() {
+  previewImClick_code: function () {
     var that = this
     wx.previewImage({
       current: that.data.wxqr,
@@ -140,14 +128,15 @@ Page({
 
 
   //用户名片
-  visitingCardInfo: function() {
+  visitingCardInfo: function () {
     var param = {
       userid: wx.getStorageSync('DTUserinfo').userid,
       _token: wx.getStorageSync('DTUserinfo')._token,
       user_id: that.data.id
     };
-    util.visitingCardInfo(param, function(ret) {
+    util.visitingCardInfo(param, function (ret) {
       console.log('userinfo', ret)
+      console.log('小程序码',ret.xcxqr)
       let thumb = that.data.thumb
       thumb = ret.thumb.split(','),
         that.setData({
@@ -158,7 +147,7 @@ Page({
 
       var query = wx.createSelectorQuery();
       //选择id
-      query.select('.specific_css').boundingClientRect(function(rect) {
+      query.select('.specific_css').boundingClientRect(function (rect) {
         console.log('获取高度', rect.height)
 
         if (rect.height >= 90) {
@@ -171,13 +160,13 @@ Page({
 
     });
   },
-  getInfoByUserid: function() {
+  getInfoByUserid: function () {
     var param = {
       item_userid: that.data.id,
       page: that.data.page
     }
     if (that.data.page)
-      util.getInfoByUserid(param, function(ret) {
+      util.getInfoByUserid(param, function (ret) {
         console.log('供应信息', ret)
         // that.data.messageList.push(ret.data)
         for (var i in ret.data) {
@@ -196,14 +185,14 @@ Page({
             details: ret.data[i].introduce, //信息详情描述
             message_Img: //详情图片  后续跟进
               [{
-                  message_Image: ret.data[i].thumb
-                },
-                {
-                  message_Image: ret.data[i].thumb1
-                },
-                {
-                  message_Image: ret.data[i].thumb2
-                }
+                message_Image: ret.data[i].thumb
+              },
+              {
+                message_Image: ret.data[i].thumb1
+              },
+              {
+                message_Image: ret.data[i].thumb2
+              }
               ],
             time: ret.data[i].adddate, //发布时间
             addtime: ret.data[i].addtime, //发布详细时间
@@ -225,7 +214,7 @@ Page({
   },
 
   //供应信息
-  supplyByUserid: function() {
+  supplyByUserid: function () {
     var conditions = JSON.stringify({
       key: ['userid', 'status'],
       value: [that.data.id, '3']
@@ -235,7 +224,7 @@ Page({
       _token: wx.getStorageSync('DTUserinfo')._token,
       conditions: conditions
     };
-    util.supplyByUserid(param, function(ret) {
+    util.supplyByUserid(param, function (ret) {
       console.log('供应信息', ret)
       // that.data.messageList.push(ret.data)
       for (var i in ret.data) {
@@ -254,14 +243,14 @@ Page({
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
             [{
-                message_Image: ret.data[i].thumb
-              },
-              {
-                message_Image: ret.data[i].thumb1
-              },
-              {
-                message_Image: ret.data[i].thumb2
-              }
+              message_Image: ret.data[i].thumb
+            },
+            {
+              message_Image: ret.data[i].thumb1
+            },
+            {
+              message_Image: ret.data[i].thumb2
+            }
             ],
           time: ret.data[i].adddate, //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
@@ -281,7 +270,7 @@ Page({
   },
 
   //求购信息
-  PurchaseByUserid: function() {
+  PurchaseByUserid: function () {
     var conditions = JSON.stringify({
       key: ['userid', 'status'],
       value: [that.data.id, '3']
@@ -291,7 +280,7 @@ Page({
       _token: wx.getStorageSync('DTUserinfo')._token,
       conditions: conditions
     };
-    util.PurchaseByUserid(param, function(ret) {
+    util.PurchaseByUserid(param, function (ret) {
       console.log('求购信息', ret)
       // that.data.messageList.push(ret.data)
       for (var i in ret.data) {
@@ -309,14 +298,14 @@ Page({
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
             [{
-                message_Image: ret.data[i].thumb
-              },
-              {
-                message_Image: ret.data[i].thumb1
-              },
-              {
-                message_Image: ret.data[i].thumb2
-              }
+              message_Image: ret.data[i].thumb
+            },
+            {
+              message_Image: ret.data[i].thumb1
+            },
+            {
+              message_Image: ret.data[i].thumb2
+            }
             ],
           time: ret.data[i].adddate, //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
@@ -336,7 +325,7 @@ Page({
   },
 
   //纺织贸易
-  tradeByUserid: function() {
+  tradeByUserid: function () {
     var conditions = JSON.stringify({
       key: ['userid', 'status'],
       value: [that.data.id, '3']
@@ -346,7 +335,7 @@ Page({
       _token: wx.getStorageSync('DTUserinfo')._token,
       conditions: conditions
     };
-    util.tradeByUserid(param, function(ret) {
+    util.tradeByUserid(param, function (ret) {
       console.log('纺织贸易', ret)
       for (var i in ret.data) {
         that.data.messageList.push({
@@ -363,14 +352,14 @@ Page({
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
             [{
-                message_Image: ret.data[i].thumb
-              },
-              {
-                message_Image: ret.data[i].thumb1
-              },
-              {
-                message_Image: ret.data[i].thumb2
-              }
+              message_Image: ret.data[i].thumb
+            },
+            {
+              message_Image: ret.data[i].thumb1
+            },
+            {
+              message_Image: ret.data[i].thumb2
+            }
             ],
           time: ret.data[i].adddate, //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
@@ -391,7 +380,7 @@ Page({
   },
 
   //排序
-  sort: function(messageALL) {
+  sort: function (messageALL) {
     var that = this;
     var arr = messageALL;
     console.log("排序", arr);
@@ -422,7 +411,7 @@ Page({
   },
 
   //名片点赞
-  setLike_card_Click: function(e) {
+  setLike_card_Click: function (e) {
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
       // userid: wx.getStorageSync('DTUserinfo').userid.userid,
@@ -430,7 +419,7 @@ Page({
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
-    util.setLike(param, function(res) {
+    util.setLike(param, function (res) {
       console.log('点击名片点赞', res);
       wx.showToast({
         title: '点赞成功',
@@ -447,7 +436,7 @@ Page({
   },
 
   //点赞
-  setLikeClick: function(e) {
+  setLikeClick: function (e) {
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
     var param = {
       // userid: wx.getStorageSync('DTUserinfo').userid.userid,
@@ -455,7 +444,7 @@ Page({
       item_mid: e.currentTarget.dataset.mid,
       item_id: e.currentTarget.dataset.id
     };
-    util.setLike(param, function(res) {
+    util.setLike(param, function (res) {
       console.log('点击点赞', res);
       wx.showToast({
         title: '点赞成功',
@@ -475,7 +464,7 @@ Page({
   },
 
   //名片 关注 取消
-  enshrine_card_Click: function(e) {
+  enshrine_card_Click: function (e) {
     const that = this;
     var index = e.currentTarget.dataset.index
     console.log(111111, that.data.business_card.I_favorite)
@@ -486,10 +475,10 @@ Page({
         mid: e.currentTarget.dataset.mid,
         tid: e.currentTarget.dataset.id
       };
-      util.enshrine(param, function(res) {
+      util.enshrine(param, function (res) {
         console.log('收藏', res, that.data.business_card);
         wx.showToast({
-          title: '关注成功',
+          title: '收藏成功',
           icon: 'none',
           duration: 2000
         })
@@ -508,7 +497,7 @@ Page({
         tid: e.currentTarget.dataset.id,
         cancle: '1'
       };
-      util.enshrine(param, function(res) {
+      util.enshrine(param, function (res) {
         console.log('取消收藏', res, that.data.business_card, that.data.business_card);
 
         that.data.business_card.I_favorite = false;
@@ -532,7 +521,7 @@ Page({
 
   },
   //关注 取消
-  enshrineClick: function(e) {
+  enshrineClick: function (e) {
     const that = this;
     var index = e.currentTarget.dataset.index
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
@@ -545,7 +534,7 @@ Page({
           mid: e.currentTarget.dataset.mid,
           tid: e.currentTarget.dataset.id
         };
-        util.enshrine(param, function(res) {
+        util.enshrine(param, function (res) {
           console.log('收藏', res, that.data.messageList[index]);
           wx.showToast({
             title: '收藏成功',
@@ -567,7 +556,7 @@ Page({
           tid: e.currentTarget.dataset.id,
           cancle: '1'
         };
-        util.enshrine(param, function(res) {
+        util.enshrine(param, function (res) {
           console.log('取消收藏', res, that.data.messageList[index], that.data.messageList);
 
           that.data.messageList[index].I_favortie = false;
@@ -594,7 +583,7 @@ Page({
 
 
   //查看详情
-  view_details_click: function(e) {
+  view_details_click: function (e) {
     wx.navigateTo({
       url: '../shops_intro/shops_intro?introduce=' + e.currentTarget.dataset.introduce + '&wxqr=' + e.currentTarget.dataset.wxqr +
         '&thumb=' + e.currentTarget.dataset.thumb,
@@ -602,7 +591,7 @@ Page({
   },
 
   //查看详情
-  see_details_click: function(e) {
+  see_details_click: function (e) {
     wx.setStorageSync('businessCard', that.data.business_card)
     wx.navigateTo({
       url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
@@ -610,21 +599,21 @@ Page({
   },
 
   //返回首页
-  back_homepage_click: function() {
+  back_homepage_click: function () {
     wx.switchTab({
       url: '../index/index',
     })
   },
 
   //拨打电话
-  making_call_click: function() {
+  making_call_click: function () {
     wx.makePhoneCall({
       phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
     })
   },
 
   //排行榜
-  ranking_list_click: function() {
+  ranking_list_click: function () {
     wx.navigateTo({
       url: '../ranking_list/ranking_list',
     })
@@ -632,26 +621,29 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     that = this;
 
-    var scene = decodeURIComponent(options.scene)
+    var scene = JSON.stringify(decodeURIComponent(options.scene));
 
     if (options.id) {
       that.setData({
         id: options.id
       })
     } else {
-      that.setData({
-        scene: JSON.stringify(sence)
-      })
+      if (scene.search(/userid=\d/) >= 0) {
+        console.log("正则匹配成功", scene, scene.replace('userid=', '').replace('"', ""));
+        that.setData({
+          id: scene.replace('"userid=', '').replace('"', "")
+        })
+      }
     }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     that.visitingCardInfo();
     that.getInfoByUserid();
     // that.supplyByUserid();
@@ -662,42 +654,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     that.getInfoByUserid()
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh();
     console.log('下拉刷新');
     // this.requestNetAllData(page, 1);
@@ -706,20 +698,148 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: '我分享了' + that.data.business_card.truename + '的名片',
       path: 'pages/store_particulars/store_particulars?id=' + that.data.id,
-      success: function(res) {
+      success: function (res) {
         // 转发成功
         wx.showToast({
           title: '分享成功',
           duration: 1500
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 转发失败
       }
     }
   },
+
+
+
+  //获取小程序维码和设备宽高
+  canvas:function(){
+      that=this
+
+    //获得设备宽高
+    wx.getSystemInfo({
+      success: function (res) {
+        // console.log("设备", res.windowWidth,
+        //   res.windowWidth,
+        //   res.windowHeight,
+        //   res.windowWidth)
+        that.setData({
+          windowW: res.windowWidth,
+          canvasW: 750,
+          windowH: res.windowHeight,
+          canvasH: 475
+        })
+      },
+    })
+       //获得图片
+    util.getCardQR({ _userid:that.data.id }, function (res) {
+      console.log(res)
+
+      that.setData({
+        Img_code: res.tempFilePath
+      })
+      var canvas = wx.createCanvasContext('canvas');
+      that.drawCanvas(canvas);
+    }, function (err) {
+      wx.showModal({
+        title: '下载图片失败',
+        content: JSON.stringify(err),
+      })
+    });
+
+    
+
+  },
+
+  //画布
+  drawCanvas: function (){
+    that=this
+    const canvas = wx.createCanvasContext('canvas')
+    var windowW = that.data.canvasW;
+    var windowH = that.data.canvasH;
+    var qr = that.data.Img_code;
+    canvas.setFillStyle('#f1f4f6')
+    canvas.fillRect(0, 0, windowW, windowH);
+    canvas.setFillStyle('#ffffff')
+    canvas.fillRect(20, 20, windowW-40, windowH-40);
+    canvas.drawImage(qr, windowW*0.7 , windowH*0.13 , 180, 180);
+
+    canvas.setFillStyle('#000000');
+    canvas.setFontSize(36);
+    canvas.fillText(that.data.business_card.truename, windowW*0.07, windowH*0.24)
+
+    canvas.setFillStyle('#666666');
+    canvas.setFontSize(24);
+    canvas.fillText(that.data.business_card.career, windowW * 0.07, windowH * 0.35)
+
+    canvas.setFillStyle('#666666');
+    canvas.setFontSize(24);
+    canvas.fillText('长按识别图中的名片码', windowW * 0.3, windowH * 0.24)
+
+    canvas.setFillStyle('#000000');
+    canvas.setFontSize(26);
+    canvas.fillText('公司：' + that.data.business_card.company, windowW * 0.07, windowH * 0.46)
+    canvas.fillText('地址：' + (that.data.business_card.address.length > 18 ? that.data.business_card.address.substring(0, 18) + "..." : that.data.business_card.address), windowW * 0.07, windowH * 0.57)
+    canvas.fillText('电话：', windowW * 0.07, windowH * 0.68)
+    canvas.fillText('主营：' + (that.data.business_card.business.length > 18 ? that.data.business_card.business.substring(0, 18) + "..." : that.data.business_card.business), windowW * 0.07, windowH * 0.85)
+   
+    canvas.setFillStyle('#f7a821');
+    canvas.setFontSize(26);
+    canvas.fillText(that.data.business_card.mobile, windowW * 0.185, windowH * 0.68)
+    canvas.beginPath()
+    canvas.setStrokeStyle('#e6eaf2');
+    canvas.moveTo(windowW * 0.07, windowH * 0.75)
+    canvas.lineTo(windowW * 0.8, windowH * 0.75)
+    canvas.stroke()
+    canvas.draw(true,function(){
+      wx.canvasToTempFilePath({
+        canvasId: 'canvas',
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            canvas_img: res.tempFilePath,
+          })
+        }
+      })
+    });
+  },
+
+  //打开弹出层
+  shareClick: function () {
+    this.setData({
+      isRuleTrue: true
+    })
+    that.canvas();
+  },
+  //关闭规则提示    
+  hideRule: function () {
+    this.setData({
+      isRuleTrue: false
+    })
+  },
+  // 保存图片
+  saveImage: function (e) {
+    
+        wx.saveImageToPhotosAlbum({
+          filePath: that.data.canvas_img,
+          success(result) {
+            wx.showToast({
+              title: '图片保存成功',
+              icon: 'success',
+              duration: 2000
+            })
+            setTimeout(function () {
+              that.hideRule()
+            }, 2000)
+          }
+        })
+        //daozhe
+    
+  },
+
 })

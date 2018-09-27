@@ -496,7 +496,7 @@ button::after {
   display: flex;
   background: #fff;
   z-index: 999;
-  border-top: 1rpx solid #e6eaf2;
+  border-top: 1rpx solid #ffffff;
 }
 
 .navigation_bar_css {
@@ -529,6 +529,15 @@ button::after {
   background: #01c46c;
   font-weight: 700;
 }
+.hide {
+
+   position: absolute;
+
+   top: -9999px;
+
+   left: -9999px;
+
+}
 
 shareBtn::after {
   border-style: none;
@@ -559,10 +568,10 @@ shareBtn::after {
 }
 
 .ruleZhezhaoContent {
-  padding: 20rpx 0;
-  width: 80%;
-  background: #e1d2b1;
-  margin: 40% auto;
+  padding: 30rpx 0;
+  width: 96%;
+  background: #f1f4f6;
+  margin: 30% auto;
   border-radius: 20rpx;
   display: flex;
   flex-direction: column;
@@ -571,22 +580,12 @@ shareBtn::after {
   position: relative;
 }
 
-.ruleZhezhaoText {
-  width: 80%;
-  font-size: 30rpx;
-  color: #856d5f;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 25rpx 0 25rpx 0;
-}
-
 .ruleZhezhaoText text:nth-child(1) {
   color: #fff;
   font-size: 40rpx;
   height: 60rpx;
   width: 60rpx;
-  background: #664a2c;
+  background: #fff;
   display: block;
   text-align: center;
   line-height: 60rpx;
@@ -598,15 +597,20 @@ shareBtn::after {
   flex-wrap: wrap;
   width: 80%;
 }
-
-.ruleHide {
-  height: 60rpx !important;
-  width: 60rpx !important;
-  position: absolute;
-  top: -20rpx;
-  right: -20rpx;
+.hint{
+  font-size: 26rpx;
+  color: #999999;
+  line-height: 80rpx;
 }
-
+.save_but{
+  width: 25%;
+  margin: auto;
+  padding: 14rpx 16rpx;
+  font-size: 26rpx;
+  background: #f1f4f6;
+  border: 1rpx solid #999999;
+  color: #333333
+}
 .rule {
   display: block;
   border: 1px solid #fff;

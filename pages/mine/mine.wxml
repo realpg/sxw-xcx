@@ -1,6 +1,6 @@
 <!-- 名片 -->
-<view class='card' wx:if='{{business_card.groupid==6}}'>
-  <view class='card_css' >
+<view class='card'  wx:if='{{business_card.groupid==6}}'>
+  <view class='card_css' bindtap='cardClick' data-id='{{business_card.userid}}'>
     <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
      <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}' ></image>
       <view class='career_css'>
@@ -10,7 +10,7 @@
           <text class='redactInfo_css' style='background:gray'>审核中</text>
         </view>
         <view wx:else="">
-          <text bindtap='redactClick' class='redactInfo'>编辑资料</text>
+          <text catchtap='redactClick' class='redactInfo'>编辑资料</text>
         </view>
       </view>
       </view>
@@ -21,7 +21,7 @@
     <view class='card_company'>公司：{{business_card.company}}</view>
     <view class='card_company'>地址：{{business_card.companyInfo.address}}</view>
     <view class='card_company' style='position:relative'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> 
-    <view class='share'>
+    <view class='share' catchtap=''>
       <button open-type='share' class='share_but'>
         <image class='share_Img' src='../../images/store/share.png' mode='widthFix'></image>
       </button>
@@ -206,3 +206,4 @@
       <image class='jiantou_Img' src='../../images/personal_center/jiantou.png'></image>
     </button>
 </view> -->
+

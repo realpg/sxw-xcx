@@ -19,29 +19,33 @@ Page({
   onLoad: function(options) {
     that = this;
 
+    //https://blog.csdn.net/github_26672553/article/details/47054767
+
+
     //获得图片
     util.getInviteQR({}, function(res) {
       console.log(res)
-      wx.downloadFile({
-        url: res,
-        success: function(res1) {
-          that.setData({
-            Img_code: res1.tempFilePath
-          })
-          var canvas = wx.createCanvasContext('canvas');
-          that.drawCanvas(canvas);
-        }
-      });
-    }, null)
+
+      that.setData({
+        Img_code: res.tempFilePath
+      })
+      var canvas = wx.createCanvasContext('canvas');
+      that.drawCanvas(canvas);
+    }, function(err) {
+      wx.showModal({
+        title: '下载图片失败',
+        content: JSON.stringify(err),
+      })
+    });
 
     //获得设备宽高
     wx.getSystemInfo({
       success: function(res) {
         that.setData({
           windowW: res.windowWidth,
-          canvasW:res.windowWidth,
+          canvasW: res.windowWidth,
           windowH: res.windowHeight,
-          canvasH:res.windowWidth
+          canvasH: res.windowWidth
         })
       },
     })
@@ -54,14 +58,12 @@ Page({
     var qr = that.data.Img_code;
     canvas.setFillStyle('#01C46C')
     canvas.fillRect(0, 0, windowW, windowH);
-    canvas.drawImage(qr, windowW / 2 - 80, windowW / 2 - 100, 160, 160);
+    canvas.drawImage(qr, windowW / 2 - 80, windowH / 2 - 100, 160, 160);
     canvas.setFillStyle('white');
     canvas.setFontSize(18);
-    canvas.fillText('买纱卖纱到中国纱线网', windowW / 2 - 110, windowW / 2 - 120)
-    canvas.fillText('长按识别进入小程序', windowW / 2 - 89, windowW / 2+102)
-    canvas.draw(true, setTimeout(function() {
-      // that.daochu()
-    }, 500));
+    canvas.fillText('买纱卖纱到中国纱线网', (windowW - 180) / 2, windowH / 2 - 120)
+    canvas.fillText('长按识别进入小程序', (windowW - 162) / 2, windowH / 2 + 102)
+    canvas.draw(true);
 
   },
 
@@ -73,10 +75,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    console.log();
+    console.log("onready");
+    util.myInvited({}, function(ret) {
+      console.log(ret)
+      var sum = 0;
+      for (var i in ret) {
+        sum += ret[i].credit
+      }
+      that.setData({
+        gold: sum,
+        user: ret.length
+      })
+    })
   },
 
-  daochu: function () {
+  daochu: function() {
     console.log('导出');
     var that = this;
     var windowW = that.data.canvasW;
@@ -89,12 +102,11 @@ Page({
       destWidth: windowW,
       destHeight: windowH,
       canvasId: 'canvas',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
-          success(res) {
-          }
+          success(res) {}
         })
         wx.previewImage({
           urls: [res.tempFilePath],
@@ -135,7 +147,7 @@ Page({
     const that = this;
     return {
       title: '我分享了纱线网小程序',
-      path: 'pages/index/index?userid=' +app.globalData.DTuserInfo.userid,
+      path: 'pages/index/index?userid=' + app.globalData.DTuserInfo.userid,
       success: function(res) {
         // 转发成功
         wx.showToast({

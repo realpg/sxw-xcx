@@ -1,12 +1,13 @@
-<import src="../../wxParse/wxParse.wxml"/>
+<import src="../../wxParse/wxParse.wxml" />
 
-<view class='message' wx:for='{{message}}' >
-   <view class='message_css' bindtap='openClick' data-index='{{index}}'>
-   <text wx:if="{{item.isread==0}}" class='hint'></text>
-  <view class='message_title' >{{item.title}} </view>
-  <view class='message_time'>{{item.time}}</view>
+<view class='message' wx:for='{{message}}' bindtap='openClick' data-index='{{index}}'>
+  <view class='message_css'>
+    <text wx:if="{{item.isread==0}}" class='hint'></text>
+    <view class='message_title'>{{item.title}} </view>
+    <view class='message_time'>{{item.time}}</view>
   </view>
-  <view class='{{item.state ? "message_content" : "message_content_css"}}'>
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-</view>
+  <!-- {{item.state}} -->
+  <view wx:if="{{item.state}}" class='message_content_css'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
 </view> 

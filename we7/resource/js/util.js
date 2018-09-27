@@ -382,6 +382,9 @@ util.getUserInfo = function (cb, wxInfo) {
 						if (res.confirm) {
 							util.getUserInfo();
 						}
+            else{
+              typeof cb == "function" && cb({});
+            }
 					}
 				})
 			}

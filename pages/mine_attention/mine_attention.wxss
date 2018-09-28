@@ -273,7 +273,7 @@ padding-bottom: 3%;
 .number_rev{
   margin-left: 10rpx;
   color: #666;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
 .iconImg_rev{
 width: 100rpx;
@@ -282,12 +282,13 @@ border-radius: 50%;
 border:1rpx solid #e6eaf2;
 }
 .pageView_rev{
+  margin-top: 6rpx;
 display: flex;
 align-items: center;
 }
 .pageView_Img_rev{
-  width: 32rpx;
-  height: 30rpx;
+  width: 34rpx;
+  height: 34rpx;
 }
 .vip_Img_rev{
   margin-left: 15rpx;

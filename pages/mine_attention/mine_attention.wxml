@@ -9,13 +9,13 @@
 
 <view class=''></view>
 
-<view class='hint' wx:if='{{message.length<1 && id!=4}}'>您还未收藏该类信息</view>
-<view class='hint' wx:if='{{cardList.length<1 && id==4}}'>您还未收藏名片</view>
+<view class='hint' wx:if='{{message.length<1 && nn!=4}}'>您还未收藏该类信息</view>
+<view class='hint' wx:if='{{cardList.length<1 && nn==4}}'>您还未收藏名片</view>
 
 <!-- 收藏信息 -->
  <template is='messageBox' data='{{message}}'></template> 
 <!-- 收藏名片 -->
-<view wx:if='{{id==4}}'>
+<view wx:if='{{nn==4}}'>
 <view class='messageList_rev'  wx:for='{{cardList}}'>
   <view class='messageListCss_rev' data-id='{{item.userid}}' bindtap='messageList_click'>
     <view class='message_rev'>
@@ -34,9 +34,10 @@
       <view class='enter_css_rev'>
         <text class='enter_rev'>查看</text>
       </view>
-      <view class='pageView_rev'>
-        <image class='pageView_Img_rev' src='../../images/index/eye.png'></image>
-        <text class='number_rev'>{{item.view}}</text>
+      <view class='pageView_rev' catchtap='cancelClick' data-mid='2' 
+      data-id='{{item.userid}}' data-index="{{index}}">
+        <image class='pageView_Img_rev' src='{{item.I_favorite?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
+        <text class='number_rev'>{{item.favorite}}</text>
       </view>
     </view>
   </view>

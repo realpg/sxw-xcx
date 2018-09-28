@@ -179,12 +179,12 @@ Page({
     }
 
     console.log(app.globalData)
-    if (!app.globalData.DTuserInfo)
-      return app.getopenid(that.reload);
-    else {
-      app.getopenid();
+    // if (!app.globalData.DTuserInfo)
+    //   return app.getopenid(that.reload);
+    // else {
+    //   app.getopenid();
       that.reload();
-    }
+    // }
   },
 
   slideshowClick: function (e) {
@@ -747,7 +747,7 @@ Page({
       })
       setTimeout(function () {
         that.nextScroll()
-      }, 5000)
+      }, 3000)
     })
 
     //首页轮播图

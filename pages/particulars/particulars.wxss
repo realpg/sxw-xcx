@@ -614,7 +614,6 @@ align-items: center;
   display: flex;
   background: #fff;
   z-index: 999;
-  border-top: 1rpx solid #ffffff; 
 }
 .navigation_bar_css{
   width: 50%;

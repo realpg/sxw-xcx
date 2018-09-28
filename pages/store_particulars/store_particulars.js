@@ -775,26 +775,23 @@ Page({
 
     canvas.setFillStyle('#666666');
     canvas.setFontSize(24);
-    canvas.fillText(that.data.business_card.career, windowW * 0.07, windowH * 0.35)
-
-    canvas.setFillStyle('#666666');
-    canvas.setFontSize(24);
-    canvas.fillText('长按识别图中的名片码', windowW * 0.3, windowH * 0.24)
+    canvas.fillText(that.data.business_card.career, windowW * 0.07, windowH * 0.35);
+    canvas.fillText('长按识别图中的名片码', windowW * 0.3, windowH * 0.24);
 
     canvas.setFillStyle('#000000');
-    canvas.setFontSize(26);
-    canvas.fillText('公司：' + that.data.business_card.company, windowW * 0.07, windowH * 0.46)
-    canvas.fillText('地址：' + (that.data.business_card.address.length > 18 ? that.data.business_card.address.substring(0, 18) + "..." : that.data.business_card.address), windowW * 0.07, windowH * 0.57)
-    canvas.fillText('电话：', windowW * 0.07, windowH * 0.68)
-    canvas.fillText('主营：' + (that.data.business_card.business.length > 18 ? that.data.business_card.business.substring(0, 18) + "..." : that.data.business_card.business), windowW * 0.07, windowH * 0.85)
+    canvas.setFontSize(24);
+    canvas.fillText('公司：' + that.data.business_card.company, windowW * 0.07, windowH * 0.46);
+    canvas.fillText('地址：' + (that.data.business_card.address.length > 18 ? that.data.business_card.address.substring(0, 18) + "..." : that.data.business_card.address), windowW * 0.07, windowH * 0.57);
+    canvas.fillText('电话：', windowW * 0.07, windowH * 0.68);
+    canvas.fillText('主营：' + (that.data.business_card.business.length > 18 ? that.data.business_card.business.substring(0, 18) + "..." : that.data.business_card.business), windowW * 0.07, windowH * 0.85);
    
     canvas.setFillStyle('#f7a821');
-    canvas.setFontSize(26);
-    canvas.fillText(that.data.business_card.mobile, windowW * 0.185, windowH * 0.68)
-    canvas.beginPath()
+    canvas.setFontSize(24);
+    canvas.fillText(that.data.business_card.mobile, windowW * 0.165, windowH * 0.68);
+    canvas.beginPath();
     canvas.setStrokeStyle('#e6eaf2');
-    canvas.moveTo(windowW * 0.07, windowH * 0.75)
-    canvas.lineTo(windowW * 0.8, windowH * 0.75)
+    canvas.moveTo(windowW * 0.07, windowH * 0.75);
+    canvas.lineTo(windowW * 0.9, windowH * 0.75);
     canvas.stroke()
     canvas.draw(true,function(){
       wx.canvasToTempFilePath({

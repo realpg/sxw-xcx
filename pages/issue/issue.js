@@ -121,12 +121,12 @@ Page({
    */
   onReady: function () {
     that=this;
-    app.login(app, function () {
+    // app.login(app, function () {
       that.setData({
         business_card: app.globalData.DTuserInfo
       })
-      console.log("现在的userinfo", that.data.business_card)
-    });
+    //   console.log("现在的userinfo", that.data.business_card)
+    // });
   },
 
   /**

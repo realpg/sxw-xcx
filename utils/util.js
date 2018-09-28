@@ -1,5 +1,5 @@
 //测试标识
-var TESTMODE = true;
+var TESTMODE = false;
 //服务器地址
 var SERVER_URL = "https://dt.chinayarn.com/xcx/public";
 var DEBUG_URL = "http://xcx.hzmuji.com";
@@ -9,7 +9,7 @@ var requesting = false;
 var showloading=false
 
 //接口调用相关方法
-
+ 
 function wxRequest(url, param, method, successCallback, errorCallback, loading) {
   if (typeof(loading) == 'undefined') {
 

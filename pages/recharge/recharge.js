@@ -7,16 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    amount: [{
-      id: '0',
-      num: '10',
-      background: ''
-    }, {
-      id: '1',
-      num: '20',
-      background: '',
-      color: ''
-    },],
+    amount:[],
     pergold: 1,
     perprice: 1.0,
     zsgold: '0',

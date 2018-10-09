@@ -2,6 +2,10 @@ page{
   background: #f1f4f6;
   border-top: 1rpx solid  #e6eaf2;
 }
+
+.switch{
+  zoom: 0.8;
+}
 .hint{
   background: #fff;
 }

@@ -10,6 +10,7 @@ page{
 }
 
 .card_css {
+  position: relative;
   width: 85%;
   margin: auto;
   background: #fff;
@@ -58,7 +59,14 @@ page{
   float: right;
   border-radius: 50%;
 }
-
+.vip_Img {
+width:28rpx;
+height:32rpx;
+position:absolute;
+top:110rpx;
+right:32rpx;
+z-index:2;
+}
 .name_of_index {
   width: 60%;
   margin: auto;
@@ -207,6 +215,16 @@ page{
    background:#FFE5C0;
   color:#FFA827;
  }
+ .rev_lable{
+  font-size: 30rpx;
+  color: #666666;
+  line-height: 42rpx;
+  margin-bottom: 10rpx;
+}
+.rev_lable_css{
+  display: flex;
+  margin-right: 20rpx;
+}
  .text_css{
    margin-left: 10rpx;
  }

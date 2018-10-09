@@ -9,7 +9,7 @@ var requesting = false;
 var showloading=false
 
 //接口调用相关方法
- 
+
 function wxRequest(url, param, method, successCallback, errorCallback, loading) {
   if (typeof(loading) == 'undefined') {
 
@@ -27,7 +27,12 @@ function wxRequest(url, param, method, successCallback, errorCallback, loading) 
     loading: loading
   })
   console.log(queue)
-  if (!requesting) {
+  if(!getApp().globalData.DTuserInfo){
+      getApp().getopenid(function(){
+        requestqueue()
+      });
+  }
+  else if (!requesting) {
     requestqueue();
   }
 }
@@ -542,6 +547,12 @@ function getMyBuyList(param, successCallback, errorCallback) {
 function getMyFJMYList(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
 }
+//我收藏的名片
+function getMyCardList(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
+}
+
+
 //我收到的留言
 function get_Receive_message(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/comment/tome', param, "GET", successCallback, errorCallback);
@@ -1075,6 +1086,28 @@ function getToday() {
   return year + "-" + month + "-" + day;
 }
 
+//拨打电话权限
+function makePhoneCall(obj){
+  var card = getApp().globalData.DTuserInfo.businesscard;
+  if(card.vip>0){
+    // if(false){
+    wx.makePhoneCall(obj)
+  }
+  else{
+    wx.showModal({
+      title: '只有会员用户才能拨打电话',
+      content: '是否跳转至会员购买页面',
+      success:function(res){
+        if(res.confirm){
+          wx.navigateTo({
+            url: '../mine_promotion/mine_promotion',
+          })
+        }
+      }
+    })
+  }
+}
+
 //验证手机号
 function phonenum_verify(phone) {
   var phoneReg = /(^1[3|4|5|6|7|8]\d{9}$)|(^09\d{8}$)/;
@@ -1105,7 +1138,7 @@ module.exports = {
   test: test,
   getByConditions: getByConditions,
   getAllList: getAllList,
-
+  makePhoneCall:makePhoneCall,
   getSellList: getSellList,
   getBuyList: getBuyList,
   getFJMYList: getFJMYList,
@@ -1173,6 +1206,7 @@ module.exports = {
   getMySellList: getMySellList,
   getMyBuyList: getMyBuyList,
   getMyFJMYList: getMyFJMYList,
+  getMyCardList: getMyCardList,
   getMessageByID: getMessageByID,
   getInviteQR: getInviteQR,
   RefreshMyQR:RefreshMyQR,

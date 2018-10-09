@@ -58,11 +58,11 @@ Page({
     var qr = that.data.Img_code;
     canvas.setFillStyle('#01C46C')
     canvas.fillRect(0, 0, windowW, windowH);
-    canvas.drawImage(qr, windowW / 2 - 80, windowH / 2 - 100, 160, 160);
+    canvas.drawImage(qr, windowW / 2 - 70, windowH / 2 - 90, 140, 140);
     canvas.setFillStyle('white');
-    canvas.setFontSize(18);
-    canvas.fillText('买纱卖纱到中国纱线网', (windowW - 180) / 2, windowH / 2 - 120)
-    canvas.fillText('长按识别进入小程序', (windowW - 162) / 2, windowH / 2 + 102)
+    canvas.setFontSize(16);
+    canvas.fillText('买纱卖纱到中国纱线网', (windowW - 180) / 2+10, windowH / 2 - 110)
+    canvas.fillText('长按识别进入小程序', (windowW - 162) / 2+10, windowH / 2 + 90)
     canvas.draw(true);
 
   },

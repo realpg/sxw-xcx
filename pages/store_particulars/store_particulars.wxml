@@ -5,12 +5,13 @@
   <view class='card'>
     <view class='card_css'>
       <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+      <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}'></image>
       <view class='truename'>{{business_card.truename}}</view>
       <view class='career'>{{business_card.career}}</view>
-      <view class='card_company'>公司：{{business_card.company}}</view>
+      <view class='card_company con'>公司：<text class='fuzzy'>{{business_card.company}}</text></view>
       <view class='card_company'>地址：{{business_card.address}}</view>
-      <view class='card_company'>电话：
-        <text class='card_mobile'>{{business_card.mobile}}</text> </view>
+      <view class='card_company con'>电话：
+        <text class='card_mobile fuzzy'>{{business_card.mobile}}</text> </view>
       <view class='card_business'>主营：{{business_card.business}}</view>
     </view>
 
@@ -32,11 +33,9 @@
         <image class='icon' src='{{business_card.I_favorite?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
         <text>  收藏</text>
       </view>
-      <view class='option_css'>
-        <button class='share_button' open-type='share'>
+      <view class='option_css' bindtap='selectClick' >
           <image class='icon' src='../../images/store/share.png'></image>
           <text class='share_text'>  分享</text>
-        </button>
       </view>
     </view>
   </view>
@@ -54,7 +53,7 @@
     <view class='hint_company' wx:if='{{thumb.length==0}}'>该公司没有上传照片</view>
     <view class='message_Img'>
       <view class='message_Image' wx:for='{{thumb}}' wx:for-index='index'>
-        <image class='message_Image_Css' wx:if='{{item !=""}}' bindtap='previewImClick' data-id='{{index}}' src='{{item}}'></image>
+        <image class='message_Image_Css' wx:if='{{item !=""}}' bindtap='previewImClick_company' data-id='{{index}}' src='{{item}}'></image>
       </view>
     </view>
 
@@ -174,9 +173,11 @@
     </view>
 
     <view class='navigation_bar_share'>
-      <button bindtap='shareClick' class='shareBtn'>
+      <!-- bindtap='shareClick' -->
+      <button bindtap='selectClick' class='shareBtn'>
         <view>立即分享</view>
       </button>
+
     </view>
   </view>
 </view>
@@ -184,13 +185,33 @@
 </view>
 
 
-<!-- 弹出层 -->
+<!-- 图片保存弹出层 -->
 <view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap='hideRule'>
   <view class='ruleZhezhaoContent' catchtap='Rule'>
-      <canvas canvas-id='canvas' class='hide' style='width:750px;height:475px;margin: 0;padding: 0;display: block;border-radius: 10rpx'></canvas>
-      <image src='{{canvas_img}}' mode='widthFix' style='width:100%'></image>
-      <text class='hint'>点击将图片保存到手机相册，朋友圈添加分享名片图片</text>
-      <button bindtap="saveImage" class='save_but'>保存到手机</button>
+    <canvas canvas-id='canvas' class='hide' style='width:750px;height:475px;margin: 0;padding: 0;display: block;border-radius: 10rpx'></canvas>
+    <image src='{{canvas_img}}' mode='widthFix' style='width:100%;height:458rpx;'></image>
+    <text class='hint'>点击将图片保存到手机相册，朋友圈添加分享名片图片</text>
+    <button bindtap="saveImage" class='save_but'>保存到手机</button>
   </view>
 </view>
 
+
+<!-- 弹出选择栏 -->
+<view class="select_column {{is_select_True?'select_column_Show':'select_column_Hide'}}" bindtap='hideSelect'>
+  <view class='select_column_Content' catchtap='Rule'>
+    <view>分享到</view>
+    <view class='select'>
+       <view>
+       <button class='friend_btu' open-type='share' hover-class="none">
+          <image class='friends_Img'  src='../../images/store/friend.png'></image>
+          <view>好友和微群</view>
+      </button>
+      </view>
+      <view bindtap='shareClick' >
+           <image class='friends_Img' src='../../images/store/cricle_friends.png'></image>
+          <view>朋友圈</view>
+      </view>
+    </view> 
+        <view class='cancel' bindtap='hideSelect'>取消</view>
+      </view>
+    </view>

@@ -10,6 +10,7 @@
 <view class='card_css'>
  <image class='icon_first' src='../../images/store/icon_{{index+1}}.png'></image>
  <image class='head_Img_css' src='{{item.businesscard.avatarUrl}}'></image>
+  <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}' ></image>
  <view class='truename'>{{item.businesscard.truename}}</view>
  <view class='career'>{{item.businesscard.career}}</view>
  <view class='card_company'>公司：{{item.businesscard.company}}</view>
@@ -54,6 +55,7 @@
   <view class='messageListCss'  data-id='{{item.userid}}' bindtap='card_details_click'>
     <view class='message'>
       <image class='head_Img' src='{{item.businesscard.avatarUrl}}'></image>
+        <image class='icon_vip_css' src='{{item.bussinesscard.vip!=0?"../../images/index/vip.png":""}}' mode='widthFix' />
       <view class='messageCss'>
         <view class='employee_information'>
           <view class='name'>{{item.businesscard.truename}}</view>

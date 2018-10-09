@@ -9,8 +9,11 @@
 
 <view class=''></view>
 
-<view class='hint' wx:if='{{message.length<1 && nn!=4}}'>您还未收藏该类信息</view>
-<view class='hint' wx:if='{{cardList.length<1 && nn==4}}'>您还未收藏名片</view>
+<view class='hint' wx:if='{{message.length<1 && nn==1}}'>{{hint_one}}</view>
+<view class='hint' wx:if='{{message.length<1 && nn==2}}'>{{hint_two}}</view>
+<view class='hint' wx:if='{{message.length<1 && nn==3}}'>{{hint_three}}</view>
+
+<view class='hint' wx:if='{{cardList.length<1 && nn==4}}'>{{hint_code}}</view>
 
 <!-- 收藏信息 -->
  <template is='messageBox' data='{{message}}'></template> 

@@ -37,6 +37,7 @@ color:#666
 }
 .message_title{
   margin-left: 10rpx;
+  width: 60%
 }
 .hint{
   display: inline-block;

@@ -122,22 +122,20 @@ Page({
     console.log("同步缓存数据", data)
     if (typeof data.data != 'undefined')
       that.setData(data.data)
-
-    that = this
-    let display = that.data.display;
-    wx.createIntersectionObserver().relativeToViewport().observe('.notice', (res) => {
-      res.intersectionRect.height // 相交区域的高度
-      console.log(343434, res.intersectionRect.height)
-      if (res.intersectionRect.height > 0) {
-        that.setData({
-          display: 'none'
-        })
-      } else {
-        that.setData({
-          display: 'block'
-        })
-      }
-    })
+    // let display = that.data.display;
+    // wx.createIntersectionObserver().relativeToViewport().observe('.notice', (res) => {
+    //   res.intersectionRect.height // 相交区域的高度
+    //   console.log(343434, res.intersectionRect.height)
+    //   if (res.intersectionRect.height > 0) {
+    //     that.setData({
+    //       display: 'none'
+    //     })
+    //   } else {
+    //     that.setData({
+    //       display: 'block'
+    //     })
+    //   }
+    // })
 
 
     var scroll_width = parseInt(app.globalData.SystemInfo.windowWidth * 471 / 750);
@@ -267,7 +265,7 @@ Page({
                 }
                 ],
               time: ret.data[i].adddate, //发布时间
-              addtime: ret.data[i].addtime, //发布详细时间
+              addtime: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               favorite: ret.data[i].favorite, //收藏
@@ -328,7 +326,7 @@ Page({
                 }
                 ],
               time: ret.data[i].adddate, //发布时间
-              addtime: ret.data[i].addtime, //发布详细时间
+              addtime: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               favorite: ret.data[i].favorite, //收藏
@@ -382,7 +380,7 @@ Page({
                 }
                 ],
               time: ret.data[i].adddate, //发布时间
-              addtime: ret.data[i].addtime, //发布详细时间
+              addtime: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               favorite: ret.data[i].favorite, //收藏
@@ -437,7 +435,7 @@ Page({
                 }
                 ],
               time: ret.data[i].adddate, //发布时间
-              addtime: ret.data[i].addtime, //发布详细时间
+              addtime: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
               favorite: ret.data[i].favorite, //收藏
@@ -514,10 +512,7 @@ Page({
 
   //联系商家
   phoneClick: function (e) {
-
-    // var phoneNumber =e.currentTarget.dataset.mobile
-    // console.log(888, phoneNumber )
-    wx.makePhoneCall({
+    util.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
     })
   },
@@ -895,5 +890,21 @@ Page({
       current: that.data.message[idx].message_Img[index].message_Image,
       urls: urls // 需要预览的图片http链接列表
     })
-  }
+  },
+
+//监听用户滑动事件
+  onPageScroll(Object) {
+    console.log('滑动距离', Object.scrollTop)
+    that=this;
+    let display = that.data.display;
+    if (Object.scrollTop < 400) {
+        that.setData({
+          display: 'none'
+        })
+      } else {
+        that.setData({
+          display: 'block'
+        })
+      }
+  },
 })

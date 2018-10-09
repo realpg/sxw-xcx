@@ -17,6 +17,7 @@ Page({
   classifyClick: function(e){
     const that = this;
     console.log(e.currentTarget.dataset.id);
+    console.log('权限',that.data.business_card.groupid)
     if (that.data.business_card.groupid != 6){
 
       if (app.globalData.DTuserInfo.updating) {
@@ -125,7 +126,7 @@ Page({
       that.setData({
         business_card: app.globalData.DTuserInfo
       })
-    //   console.log("现在的userinfo", that.data.business_card)
+      console.log("现在的userinfo", that.data.business_card)
     // });
   },
 

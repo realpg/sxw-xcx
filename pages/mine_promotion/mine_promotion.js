@@ -25,7 +25,7 @@ Page({
   selectClick:function(e){
     console.log(e.currentTarget.dataset.advertisingvip)
   wx.navigateTo({
-    url: '../pay_advertising/pay_advertising?advertisingVIP=' + e.currentTarget.dataset.advertisingvip,
+    url: '../pay_advertising/pay_advertising?advertisingVIP=' + e.currentTarget.dataset.advertisingvip + '&id=' + e.currentTarget.dataset.id,
 })
   },
 

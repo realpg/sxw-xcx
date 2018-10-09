@@ -55,6 +55,7 @@ page{
   height: 60rpx;
   margin-right: 10rpx;
   border-radius: 50%;
+  border: 1rpx solid #e6eaf2;
 }
 .message_img{
   width: 100rpx;

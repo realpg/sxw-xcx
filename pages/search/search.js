@@ -90,6 +90,7 @@ Page({
 
     messageList: [],
     searching: false,
+    hint:''
   },
 
   //联系商家
@@ -151,6 +152,7 @@ Page({
     console.log('点击搜索', that.data.index)
     that.setData({
       messageList: [],
+      hint:'',
       supply_next_page: [{
         mid: 5,
         next_page: 1
@@ -192,7 +194,11 @@ Page({
         break
     }
     that.addHistory();
-
+     setTimeout(function(){
+       that.setData({
+         hint: '未找到对应搜索结果'
+       })
+     },1000)
   },
 
   //查询全部 
@@ -257,7 +263,7 @@ Page({
                   message_Image: data.thumb2
                 }
                 ],
-              time: data.adddate, //发布时间
+              time: util.formatTime(new Date(data.addtime * 1000)), //发布时间
               addtime: data.addtime, //发布详细时间
               address: data.address, //货物存放地
               page_view: data.hits, //浏览量
@@ -340,7 +346,7 @@ Page({
                     message_Image: ret.data[i].thumb2
                   }
                   ],
-                time: ret.data[i].adddate, //发布时间
+                time: util.formatTime(new Date(data.addtime * 1000)), //发布时间
                 addtime: ret.data[i].addtime, //发布详细时间
                 address: ret.data[i].address, //货物存放地
                 page_view: ret.data[i].hits, //浏览量
@@ -426,7 +432,7 @@ Page({
                     message_Image: ret.data[i].thumb2
                   }
                   ],
-                time: ret.data[i].adddate, //发布时间
+                time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
                 addtime: ret.data[i].addtime, //发布详细时间
                 address: ret.data[i].address, //货物存放地
                 page_view: ret.data[i].hits, //浏览量
@@ -511,7 +517,7 @@ Page({
                     message_Image: ret.data[i].thumb2
                   }
                   ],
-                time: ret.data[i].adddate, //发布时间
+                time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
                 addtime: ret.data[i].addtime, //发布详细时间
                 address: ret.data[i].address, //货物存放地
                 page_view: ret.data[i].hits, //浏览量
@@ -877,5 +883,23 @@ Page({
         });
 
     }
+  },
+
+    //图片预览
+  previewImClick: function (e) {
+    console.log(1111, e.currentTarget)
+    var that = this;
+    var idx = e.currentTarget.dataset.idx;
+    var index = e.currentTarget.dataset.index;
+    var urls = [];
+    for (var i in that.data.messageList[idx].message_Img) {
+      urls.push(that.data.messageList[idx].message_Img[i].message_Image)
+    }
+    console.log(that.data.messageList[idx].message_Img[index],
+      that.data.messageList[idx].message_Img)
+    wx.previewImage({
+      current: that.data.messageList[idx].message_Img[index].message_Image,
+      urls: urls // 需要预览的图片http链接列表
+    })
   }
 })

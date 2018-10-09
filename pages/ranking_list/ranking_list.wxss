@@ -12,6 +12,7 @@ margin-top: 20rpx;
 }
 
 .card_css {
+  position: relative;
   width: 85%;
   margin: auto;
   background: #fff;
@@ -61,7 +62,22 @@ margin-top: 20rpx;
   border-radius: 50%;
   border: 1rpx solid #e6eaf2
 }
-
+.vip_Img {
+width:28rpx;
+height:32rpx;
+position:absolute;
+top:128rpx;
+right:32rpx;
+z-index:2;
+}
+.icon_vip_css{
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 70rpx;
+  left: 67rpx;
+  z-index:2;
+}
 .information_classification{
   background: #fff;
   display: flex;
@@ -183,6 +199,7 @@ line-height: 50rpx;
 padding-bottom: 3%;
 }
 .message{
+  position: relative;
   display: flex;
    line-height: 50rpx;
 }

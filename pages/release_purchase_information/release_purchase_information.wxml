@@ -71,9 +71,7 @@
 
 <!--个人信息 -->
 <view class='personal_data' bindtap='personal_data_click'>
-  <view class='personal'>
-    个人信息详情<text style='color:red;font-size:40rpx;'>*</text></view>
-
+  <view class='personal'>个人信息详情<text style='color:red;font-size:40rpx;'>*</text></view>
   <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
 
 </view>

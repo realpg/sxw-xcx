@@ -6,6 +6,10 @@ width: 100%;
 z-index: 999;
 background: #f1f4f6
 }
+swiper{
+display: block;
+height: 347rpx;
+}
 .scroll-view_H{
   white-space: nowrap;
 }

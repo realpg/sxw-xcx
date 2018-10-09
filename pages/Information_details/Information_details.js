@@ -17,8 +17,6 @@ Page({
 
   setInfo:function(){
     var param = {
-      userid: wx.getStorageSync('DTUserinfo').userid,
-      _token: wx.getStorageSync('DTUserinfo')._token,
       itemid: that.data.itemid,
     };
     util.setInfo(param, function (res) {

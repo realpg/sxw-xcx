@@ -14,8 +14,8 @@
       </picker>
     </view>
     <input class='search_input' bindinput='seekInput' value='{{seekInp}}' type='text' placeholder='请输入名称/品牌/名片' bindtap='searching'></input>
-    <view class='searchIcon_css'>
-      <image bindtap='seekClick' class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
+    <view class='searchIcon_css' bindtap='seekClick'>
+      <image  class='searchIcon' src='../../images/index/icon_search.png' mode='widthFix'></image>
     </view>
   </view>
 </view>
@@ -58,7 +58,7 @@
 
 <block wx:else>
   <view class='hint' wx:if="{{messageList.length<1}}">
-    未找到对应搜索结果
+  {{hint}}
   </view>
   <view wx:if='{{messageList.length>0 && index!=4}}'>
 

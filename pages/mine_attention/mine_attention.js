@@ -22,6 +22,7 @@ Page({
     fjmy_next_page: 1,
     card_next_page: 1,
     nn: 1,
+    hint:'',
   },
   //联系商家
   phoneClick: function(e) {
@@ -183,6 +184,7 @@ Page({
         fjmy_color: '',
         card_color: '',
         message: that.data.sellList,
+
       })
       if (that.data.message.length == 0)
         that.getSellList()
@@ -193,6 +195,7 @@ Page({
         fjmy_color: '',
         card_color: '',
         message: that.data.buyList,
+      
 
       })
       if (that.data.message.length == 0)
@@ -204,7 +207,7 @@ Page({
         fjmy_color: '#01C46C',
         card_color: '',
         message: that.data.fjmyList,
-
+        
       })
       if (that.data.message.length == 0)
         that.getFJMYList()
@@ -286,7 +289,7 @@ Page({
                   message_Image: ret.data[i].item.thumb2
                 }
               ],
-            time: ret.data[i].item.adddate, //发布时间
+            time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
             addtime: ret.data[i].item.addtime, //发布详细时间
             address: ret.data[i].item.address, //货物存放地
             page_view: ret.data[i].item.hits, //浏览量
@@ -297,10 +300,15 @@ Page({
         console.log("供应", sellList)
         sellList = that.data.sellList.concat(sellList);
         console.log("供应", sellList)
-        that.setData({
+        that.setData({   
           sellList: sellList,
-          sell_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
+          sell_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url,
         })
+        setTimeout(function(){
+            that.setData({
+              hint_one:'您还未关注该类信息'
+            })
+        },1000)
         // console.log(that.data.sellList)
         that.changeMessage();
       }, null)
@@ -343,7 +351,7 @@ Page({
                   message_Image: ret.data[i].item.thumb2
                 }
               ],
-            time: ret.data[i].item.adddate, //发布时间
+            time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
             addtime: ret.data[i].item.addtime, //发布详细时间
             address: ret.data[i].item.address, //货物存放地
             page_view: ret.data[i].item.hits, //浏览量
@@ -357,6 +365,11 @@ Page({
           buyList: buyList,
           buy_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
+        setTimeout(function () {
+          that.setData({
+            hint_two: '您还未关注该类信息'
+          })
+        }, 1000)
         that.changeMessage();
       }, null)
   },
@@ -399,7 +412,7 @@ Page({
                   message_Image: ret.data[i].item.thumb2
                 }
               ],
-            time: ret.data[i].item.adddate, //发布时间
+            time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
             addtime: ret.data[i].item.addtime, //发布详细时间
             address: ret.data[i].item.address, //货物存放地
             page_view: ret.data[i].item.hits, //浏览量
@@ -414,6 +427,11 @@ Page({
           fjmyList: fjmyList,
           fjmy_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
+        setTimeout(function () {
+          that.setData({
+            hint_three: '您还未关注该类信息'
+          })
+        }, 1000)
         that.changeMessage();
       }, null)
   },
@@ -452,6 +470,11 @@ Page({
           cardList: cardList,
           card_next_page: ret.next_page_url ? ret.next_page_url.split('page=')[1] : ret.next_page_url
         })
+        setTimeout(function () {
+          that.setData({
+            hint_code: '您还未收藏名片'
+          })
+        }, 1000)
         that.changeMessage();
       }, null)
   },
@@ -523,6 +546,22 @@ Page({
   onShareAppMessage: function() {
 
   },
-
+  //图片预览
+  previewImClick: function (e) {
+    console.log(1111, e.currentTarget)
+    var that = this;
+    var idx = e.currentTarget.dataset.idx;
+    var index = e.currentTarget.dataset.index;
+    var urls = [];
+    for (var i in that.data.message[idx].message_Img) {
+      urls.push(that.data.message[idx].message_Img[i].message_Image)
+    }
+    console.log(that.data.message[idx].message_Img[index],
+      that.data.message[idx].message_Img)
+    wx.previewImage({
+      current: that.data.message[idx].message_Img[index].message_Image,
+      urls: urls // 需要预览的图片http链接列表
+    })
+  }
 
 })

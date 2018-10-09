@@ -7,6 +7,7 @@ page{
 }
 
 .price_column{
+  margin-top: 3rpx;
   background: #fff;
   padding: 20rpx 0;
   margin-bottom: 20rpx;
@@ -26,7 +27,8 @@ page{
   font-size: 28rpx;
   text-align: center;
   margin-top: 20rpx;
-  padding: 20rpx 0 60rpx 0;
+  padding: 20rpx 0 30rpx 0;
+  line-height: 40rpx;
 }
 .hint_time{
   line-height: 60rpx;
@@ -37,10 +39,28 @@ page{
   color: #9C9C9C;
   font-size: 24rpx;
 }
+.describe{background: #fff;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  padding: 20rpx 0 30rpx 0;
+  line-height: 40rpx;
+}
+.describe_title{
+  line-height: 60rpx;
+  text-align: center;
+}
+.describe_context{
+  display: block;
+  width: 90%;
+  margin: auto;
+  color: #9C9C9C;
+  font-size: 24rpx;
+}
 
 .gold{
   margin-top: 100rpx;
   display: flex;
+  align-items: center;
   justify-content: space-around;
   font-size: 26rpx;
   color: #9C9C9C;

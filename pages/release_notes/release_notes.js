@@ -1,17 +1,30 @@
 // pages/release_notes/release_notes.js
+const app = getApp()
+const util = require('../../utils/util.js');
+var that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+  fbxz:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that=this
+    var fbxz = that.data.fbxz
+    util.getSystemKeyValue({
+      id: 27
+    }, function (ret) {
+      that.setData({
+        fbxz: ret.value,
+      })
+      console.log(222222222222222222222, that.data.fbxz)
+    }, null)
   
   },
 

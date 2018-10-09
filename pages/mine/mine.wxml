@@ -1,10 +1,10 @@
 <!-- 名片 -->
 <view class='card'  wx:if='{{business_card.groupid==6}}'>
-  <view class='card_css' bindtap='cardClick' data-id='{{business_card.userid}}'>
-    <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+  <view class='card_css' >
+    <image  bindtap='cardClick' data-id='{{business_card.userid}}' class='head_Img' src='{{business_card.avatarUrl}}'></image>
      <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}' ></image>
-      <view class='career_css'>
-    <view class='truename'>{{business_card.truename}}</view>
+      <view bindtap='cardClick' data-id='{{business_card.userid}}' class='career_css'>
+    <view bindtap='cardClick' data-id='{{business_card.userid}}' class='truename'>{{business_card.truename}}</view>
      <view class='state itemscenter'>
         <view wx:if="{{business_card.updating}}">
           <text class='redactInfo_css' style='background:gray'>审核中</text>
@@ -16,18 +16,16 @@
       </view>
 
       <view class='career'>{{business_card.career}}</view>
-  
-
-    <view class='card_company'>公司：{{business_card.company}}</view>
-    <view class='card_company'>地址：{{business_card.companyInfo.address}}</view>
-    <view class='card_company' style='position:relative'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> 
+    <view class='card_company'bindtap='cardClick' data-id='{{business_card.userid}}'>公司：{{business_card.company}}</view>
+    <view class='card_company'bindtap='cardClick' data-id='{{business_card.userid}}'>地址：{{business_card.companyInfo.address}}</view>
+    <view class='card_company' style='position:relative'>电话：<text class=' card_mobile'>{{business_card.mobile}}</text> 
     <view class='share' catchtap=''>
-      <button open-type='share' class='share_but'>
+      <button catchtap='' open-type='share' class='share_but'>
         <image class='share_Img' src='../../images/store/share.png' mode='widthFix'></image>
       </button>
     </view>
     </view>
-    <view class='card_business'>主营：{{business_card.companyInfo.business}}</view>
+    <view class='card_business' bindtap='cardClick' data-id='{{business_card.userid}}'>主营：{{business_card.companyInfo.business}}</view>
   </view>
 
   <view class='name_of_index'>

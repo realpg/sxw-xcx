@@ -11,16 +11,13 @@
   </view>
 </view>
 </view>
-
-
-
 <view catchtap='' catchtouchmove='' style='width:100%;overflow-x:hidden;'>
 <!--轮播图-->
 <view style='position: relative;'>
-    <swiper class='slide-swiper' circular='true' autoplay='6000' duration="1000" indicator-dots='true' indicator-color='true' >
+    <swiper    class='slide-swiper' circular='true' autoplay='6000' duration="1000" indicator-dots='true' indicator-color='true' >
   <block wx:for='{{slideshow}}' >
-    <swiper-item>
-      <image bindtap='slideshowClick' data-linktype='{{item.linktype}}' data-id='{{item.itemid}}' data-mid='{{item.mid}}' data-userid='{{item.userid}}' src='{{item.slideshowImg}}' mode='aspectFill' class='slide_image'/>
+    <swiper-item >
+      <image  bindtap='slideshowClick' data-linktype='{{item.linktype}}' data-id='{{item.itemid}}' data-mid='{{item.mid}}' data-userid='{{item.userid}}' src='{{item.slideshowImg}}' mode='aspectFill' class='slide_image'/>
     </swiper-item>
   </block>
 </swiper>
@@ -55,9 +52,33 @@
  <image  class='notImg_one' src='../../images/index/jiantou_right.png' />
 </view>
 
+<!-- 滑块轮播——重做 -->
+<swiper  class='slide-swiper' circular='true' autoplay='6000' duration="1000" display-multiple-items='1.6'>
+  <block wx:for="{{recommend_store}}">
+    <swiper-item>
+      <view class='recommend_store_css scroll-view-item_H' data-id='{{item.id}}'data-mid='{{item.mid}}' bindtap='see_details_click' > 
+              <view class='store_name' ><image class='headImg'
+              src='{{item.avatarUrl?item.avatarUrl:"../../images/index/head_portrait.png"}}'></image><text class='store_name_css'>{{item.store_name}}</text></view>
+              <view class='store_lable'>
+                <view wx:if="{{item.mid =='5'}}" class='store_type'>供应</view>
+                <view wx:if="{{item.mid =='6'}}" class='store_type' style='background:#1BB9FB'>求购</view>
+                <view wx:if="{{item.mid =='88'}}" class='store_type' style='background:#54E098'>纺机</view>
+               <view wx:for='{{item.lableList}}' wx:for-index='index'>
+                   <view class='lable_one' wx:if='{{index==0}}'>#{{item.tagname}}#</view>
+                  <view class='lable_two' wx:if='{{index==1}}'>#{{item.tagname}}#</view>
+                </view>
+              </view>
+              <view class='store_info'>{{item.store_info}}</view>
+              <view class='Enter_store'>
+                <text class='Enter_store_css'>查看详情</text>
+              </view>
+            </view>
+    </swiper-item>
+  </block>
+</swiper>
 
 <!-- 滑块轮播 -->
-<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
+<!-- <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
   <block wx:for='{{recommend_store}}'>
    
             <view class='recommend_store_css scroll-view-item_H' data-id='{{item.id}}'data-mid='{{item.mid}}' bindtap='see_details_click' > 
@@ -72,7 +93,7 @@
                <view wx:for='{{item.lableList}}' wx:for-index='index'>
                    <view class='lable_one' wx:if='{{index==0}}'>#{{item.tagname}}#</view>
                   <view class='lable_two' wx:if='{{index==1}}'>#{{item.tagname}}#</view>
-                   <!-- <view class='lable_one' wx:if='{{index==2}}'>#{{item.tagname}}#</view> -->
+              
                 </view>
               </view>
               <view class='store_info'>{{item.store_info}}</view>
@@ -81,7 +102,11 @@
               </view>
             </view>
   </block>
-</scroll-view>
+</scroll-view> -->
+
+
+
+
 
 <!--分类-->
 <view class='information_classification'>
@@ -94,9 +119,10 @@
 
 <!--具体信息(修改) -->
 <view class='revision'  wx:for='{{message}}' wx:for-index='idx'>
-  <view class='rev_head'  style='position:relative'>
+
+  <view class='rev_head'  style='position:relative' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
     <view class='headImg_vipImg'>
-      <image class='rev_headImg' bindtap='messageList_click' data-id='{{item.userid}}'  src='{{item.head_portrait_icon}}'></image>
+      <image class='rev_headImg' catchtap='messageList_click' data-id='{{item.userid}}'  src='{{item.head_portrait_icon}}'></image>
       <image class='rev_vipImg' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}'></image>
     </view>
     <view class='rev_personal_information'>
@@ -104,16 +130,18 @@
           <text  wx:if="{{item.mid ==6}}" class='rev_demand'style='background:#1BB9FB'>{{item.demand}}</text>
           <text  wx:if="{{item.mid ==88}}" class='rev_demand'style='background:#54E098'>{{item.demand}}</text></view>
       <view class='rev_company'>{{item.company}}</view>
-      <image class='rev_phone' bindtap='phoneClick' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix'></image>
+      <image class='rev_phone' catchtap='phoneClick' data-mobile='{{item.mobile}}' src='../../images/index/btn_dianhua.png' mode='widthFix'></image>
     </view>
   </view>
 
   <view class='rev_body'>
+  <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
   <view class='rev_lable_css'>
     <view class='rev_lable' wx:for='{{item.lableList}}' wx:for-index='index'><text class='rev_lable_css'  wx:if='{{index==0}}'>#{{item.tagname}}#</text><text class='rev_lable_css'  wx:if='{{index==1}}'>#{{item.tagname}}#</text> <text class='rev_lable_css'  wx:if='{{index==2}}'>#{{item.tagname}}#</text> </view>
        </view>
     <view class='rev_context'>
     {{item.details}}
+    </view>
     </view>
      <view class='message_Img' wx:if='{{item.message_Img[0].message_Image!=""}}'>
           <view class='message_Image' wx:for='{{item.message_Img}}'>
@@ -121,7 +149,7 @@
         </view>
      </view>
     <view class='rev_address'>存放地：{{item.address}}</view>
-    <view class='rev_time'>{{item.time}}</view>
+    <view class='rev_time'>{{item.addtime}}</view>
     <view class='rev_bottom'>
       <view class='rev_eye'>
         <image class='rev_eyeImg' src='../../images/index/eye.png'/> 

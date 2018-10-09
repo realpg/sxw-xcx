@@ -20,7 +20,8 @@ Page({
     advertisingVIP: [],
     userinfo: [],
     index: null,
-    paying: false
+    paying: false,
+    describe:''
   },
 
   radioChange: function (e) {
@@ -48,42 +49,47 @@ Page({
 
   payClick: function () {
     that = this
-    if (that.data.index !== null) {
-
+    console.log('?????', that.data.userinfo.groupid)
+    if (that.data.index !== null){
+      if (that.data.userinfo.groupid== 6) {
       wx.showModal({
         title: '提示',
         content: '是否确认购买？',
         confirmText: "确定",
         cancelText: "取消",
-        success: function (res) {
+        success: function (res){
           if (res.confirm) {
             console.log('用户点击确定')
-            if (that.data.userinfo.groupid != 5) {
-              that.confirm();
-            } else {
-              wx.showToast({
-                title: "请先完善个人信息",
-                druation: 2000,
-                icon: 'none'
-              })
-              setTimeout(function(){
-                wx.switchTab({
-                  url: "../mine/mine"
-                })
-              },2000)
-            }
+            that.confirm();
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
         }
       })
     } else {
+      wx.showModal({
+        title: '完善个人信息后才能发布！',
+        content: '是否确认购买？',
+        confirmText: "确定",
+        cancelText: "取消",
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateTo({
+              url: "../personal_data/personal_data"
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } 
+    }else{
       wx.showToast({
         title: "请选择一项",
         icon: 'none',
         druation: 2000
       })
-
     }
   },
 
@@ -176,6 +182,17 @@ Page({
       console.log('vip', advertisingVIP, that.data.advertisingVIP);
     }
 
+
+    that = this
+    var describe= that.data.describe
+    util.getSystemKeyValue({
+      id: options.id
+    }, function (ret) {
+      that.setData({
+        describe: ret.value,
+      })
+      console.log(222222222222222222222, that.data.describe)
+    }, null)
   },
 
   /**
@@ -206,7 +223,14 @@ Page({
 
   },
 
-
+  /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+    console.log('下拉刷新');
+    // this.requestNetAllData(page, 1);
+  },
 
   /**
    * 页面上拉触底事件的处理函数

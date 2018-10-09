@@ -71,8 +71,7 @@
 
 <!--个人信息 -->
 <view class='personal_data' bindtap='personal_data_click'>
-  <view class='personal'>
-    个人信息详情<text style='color:red;font-size:40rpx;'>*</text></view>
+  <view class='personal'>个人信息详情<text style='color:red;font-size:40rpx;'>*</text></view>
 
   <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
 
@@ -81,10 +80,14 @@
 <!--我要推广 -->
 <view class='personal_data generalize' bindtap='personal_click'>
   <view class='personal'> 我要推广</view>
-
   <image class='jiantouImg' src='../../images/index/jiantou_right.png' mode='widthFix'></image>
-
 </view>
+
+<!-- 置顶
+<view class='personal_data generalize'>
+  <view class='personal'> 信息置顶</view>
+  <switch class='switch' name="switch"/>
+</view> -->
 
 <!--金币-->
 <view class='gold_coin'>

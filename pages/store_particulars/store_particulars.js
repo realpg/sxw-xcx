@@ -101,7 +101,7 @@ Page({
     })
   },
   //预览图片
-  previewImClick: function (e) {
+  previewImClick_company: function (e) {
     console.log(123456, e.currentTarget.dataset.id)
     var that = this;
     var id = e.currentTarget.dataset.id
@@ -194,7 +194,7 @@ Page({
                 message_Image: ret.data[i].thumb2
               }
               ],
-            time: ret.data[i].adddate, //发布时间
+            time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
             addtime: ret.data[i].addtime, //发布详细时间
             address: ret.data[i].address, //货物存放地
             page_view: ret.data[i].hits, //浏览量
@@ -252,7 +252,7 @@ Page({
               message_Image: ret.data[i].thumb2
             }
             ],
-          time: ret.data[i].adddate, //发布时间
+          time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
@@ -307,7 +307,7 @@ Page({
               message_Image: ret.data[i].thumb2
             }
             ],
-          time: ret.data[i].adddate, //发布时间
+          time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
@@ -361,7 +361,7 @@ Page({
               message_Image: ret.data[i].thumb2
             }
             ],
-          time: ret.data[i].adddate, //发布时间
+          time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
           addtime: ret.data[i].addtime, //发布详细时间
           address: ret.data[i].address, //货物存放地
           page_view: ret.data[i].hits, //浏览量
@@ -774,19 +774,19 @@ Page({
     canvas.fillText(that.data.business_card.truename, windowW*0.07, windowH*0.24)
 
     canvas.setFillStyle('#666666');
-    canvas.setFontSize(24);
+    canvas.setFontSize(26);
     canvas.fillText(that.data.business_card.career, windowW * 0.07, windowH * 0.35);
     canvas.fillText('长按识别图中的名片码', windowW * 0.3, windowH * 0.24);
 
     canvas.setFillStyle('#000000');
-    canvas.setFontSize(24);
+    canvas.setFontSize(26);
     canvas.fillText('公司：' + that.data.business_card.company, windowW * 0.07, windowH * 0.46);
     canvas.fillText('地址：' + (that.data.business_card.address.length > 18 ? that.data.business_card.address.substring(0, 18) + "..." : that.data.business_card.address), windowW * 0.07, windowH * 0.57);
     canvas.fillText('电话：', windowW * 0.07, windowH * 0.68);
     canvas.fillText('主营：' + (that.data.business_card.business.length > 18 ? that.data.business_card.business.substring(0, 18) + "..." : that.data.business_card.business), windowW * 0.07, windowH * 0.85);
    
     canvas.setFillStyle('#f7a821');
-    canvas.setFontSize(24);
+    canvas.setFontSize(26);
     canvas.fillText(that.data.business_card.mobile, windowW * 0.165, windowH * 0.68);
     canvas.beginPath();
     canvas.setStrokeStyle('#e6eaf2');
@@ -812,6 +812,7 @@ Page({
       isRuleTrue: true
     })
     that.canvas();
+    that.hideSelect();
   },
   //关闭规则提示    
   hideRule: function () {
@@ -839,4 +840,34 @@ Page({
     
   },
 
+
+  //打开选择栏
+  selectClick:function(){
+    this.setData({
+      is_select_True: true
+    })
+  },
+  //关闭规则提示    
+  hideSelect: function () {
+    this.setData({
+      is_select_True: false
+    })
+  },
+  //图片预览
+  previewImClick: function (e) {
+    console.log(1111, e.currentTarget)
+    var that = this;
+    var idx = e.currentTarget.dataset.idx;
+    var index = e.currentTarget.dataset.index;
+    var urls = [];
+    for (var i in that.data.messageList[idx].message_Img) {
+      urls.push(that.data.messageList[idx].message_Img[i].message_Image)
+    }
+    console.log(that.data.messageList[idx].message_Img[index],
+      that.data.messageList[idx].message_Img)
+    wx.previewImage({
+      current: that.data.messageList[idx].message_Img[index].message_Image,
+      urls: urls // 需要预览的图片http链接列表
+    })
+  }
 })

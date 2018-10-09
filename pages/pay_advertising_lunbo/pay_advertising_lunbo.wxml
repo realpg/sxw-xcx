@@ -42,6 +42,6 @@
   <view class='gain_gold' bindtap='gain_goldClick'>获取金币</view>
 </view>
 
-<view style='height:200rpx;'></view>
+<view style='width:100%;height:140rpx;'></view>
 <!-- 确认按钮 -->
 <view bindtap='payClick' class='confirm_button'>立即购买</view>

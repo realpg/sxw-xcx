@@ -25,7 +25,7 @@
 <!-- 图片 -->
       <view class='revision_message_Img'>
        <view class='revision_message_Image' wx:for='{{item.message_Img}}' wx:for-index='index'>
-          <image  class='revision_message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick'  mode='aspectFill' data-id='{{index}}' src='{{item}}'></image>
+          <image  class='revision_message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick_css'  mode='aspectFill' data-id='{{index}}' src='{{item}}'></image>
         </view>
       </view>
 
@@ -171,9 +171,10 @@
 </view>
 
 <!-- 名片 -->
-<view class='card'>
-  <view class='card_css'>
+<view class='card' data-id='{{business_card.userid}}' bindtap='view_card_click' >
+  <view class='card_css' >
     <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
+    <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}'></image>
     <view class='truename'>{{business_card.truename}}</view>
     <view class='career'>{{business_card.career}}</view>
     <view class='card_company'>公司：{{business_card.company}}</view>

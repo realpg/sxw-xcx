@@ -83,8 +83,8 @@ page {
 width:28rpx;
 height:32rpx;
 position:absolute;
-top:115rpx;
-right:40rpx;
+top:110rpx;
+right:32rpx;
 z-index:2;
 
 }

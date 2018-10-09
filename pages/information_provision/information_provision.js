@@ -56,7 +56,7 @@ Page({
                     message_Image: ret.data[i].thumb2
                   }
                 ],
-              time: ret.data[i].adddate, //发布时间
+              time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
@@ -111,7 +111,7 @@ Page({
                     message_Image: ret.data[i].thumb2
                   }
                 ],
-              time: ret.data[i].adddate, //发布时间
+              time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
@@ -166,7 +166,7 @@ Page({
                     message_Image: ret.data[i].thumb2
                   }
                 ],
-              time: ret.data[i].adddate, //发布时间
+              time: util.formatTime(new Date(ret.data[i].addtime * 1000)), //发布时间
               addtime: ret.data[i].addtime, //发布详细时间
               address: ret.data[i].address, //货物存放地
               page_view: ret.data[i].hits, //浏览量
@@ -431,4 +431,22 @@ Page({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
   },
+
+  //图片预览
+  previewImClick: function (e) {
+    console.log(1111, e.currentTarget)
+    var that = this;
+    var idx = e.currentTarget.dataset.idx;
+    var index = e.currentTarget.dataset.index;
+    var urls = [];
+    for (var i in that.data.message[idx].message_Img) {
+      urls.push(that.data.message[idx].message_Img[i].message_Image)
+    }
+    console.log(that.data.message[idx].message_Img[index],
+      that.data.message[idx].message_Img)
+    wx.previewImage({
+      current: that.data.message[idx].message_Img[index].message_Image,
+      urls: urls // 需要预览的图片http链接列表
+    })
+  }
 })

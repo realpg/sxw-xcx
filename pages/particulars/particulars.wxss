@@ -323,7 +323,14 @@ margin-left: 50rpx;
   width: 24rpx;
   height: 36rpx;
 }
-
+.vip_Img {
+width:28rpx;
+height:32rpx;
+position:absolute;
+top:110rpx;
+right:32rpx;
+z-index:2;
+}
 .dianzan{
    width: 34rpx;
   height: 34rpx;
@@ -418,6 +425,7 @@ button::after {
 }
 
 .card_css {
+  position: relative;
   width: 85%;
   margin: auto;
   background: #fff;

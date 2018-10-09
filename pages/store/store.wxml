@@ -30,9 +30,36 @@
 
 </view>
 
+<!--滑块轮播——重做 -->
+<swiper  circular='true' autoplay='6000' duration="1000" display-multiple-items='1.6'>
+  <block  wx:for='{{recommend_store}}'>
+    <swiper-item >
+     <view class='recommend_store_css scroll-view-item_H' bindtap='messageList_click' data-id='{{item.userid}}'>
+      <view class='business_card_css'>
+        <view class='name_css'>{{item.name}} </view>
+        <image class='headImg_css' src='{{item.headImg}}'></image>
+        <view class='post_css'>{{item.post}}</view>
+        <view class='itemscenter'>
+          <view>公司：</view>
+          <text>{{item.company}} </text>
+        </view>
+        <view class='itemscenter'>
+          <view>地址：</view>
+          <text>{{item.address}} </text>
+        </view>
+        <view class='itemscenter'>
+          <view>电话：</view>
+          <text style='color:#f7a821'>{{item.phone}} </text>
+        </view>
+        <view class='The_main_css'>主营：{{item.The_main}}</view>
+      </view>
+    </view>
+    </swiper-item>
+  </block>
+</swiper>
 
 <!-- 滑块轮播 -->
-<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%" bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
+<!-- <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%" bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
   <block wx:for='{{recommend_store}}'>
     <view class='recommend_store_css scroll-view-item_H' bindtap='messageList_click' data-id='{{item.userid}}'>
       <view class='business_card_css'>
@@ -55,7 +82,7 @@
       </view>
     </view>
   </block>
-</scroll-view>
+</scroll-view> -->
 <!-- 滑块轮播
 <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%"  bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation='true'>
   <block wx:for='{{recommend_store}}'>

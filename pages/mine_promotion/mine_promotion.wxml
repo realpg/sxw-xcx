@@ -4,7 +4,7 @@
 <view>
 
 <!-- 广告位——>VIP -->
-  <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg1.png) no-repeat;background-size:100% 100%;' class='advertising_position' data-advertisingVIP='{{advertisingVIP3}}' bindtap='selectClick'>
+  <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg1.png) no-repeat;background-size:100% 100%;' class='advertising_position' data-advertisingVIP='{{advertisingVIP3}}' data-id='21' bindtap='selectClick'>
     <view class='title'>可选名片或信息</view>
     <!-- <view class='title' style='color:black' wx:if='{{index>1}}'>可选名片或信息</view> -->
     <view class='advertising_position_css'>
@@ -17,7 +17,7 @@
     </view>
   </view>
 
-    <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg2.png) no-repeat;background-size:100% 100%;' class='advertising_position' data-advertisingVIP='{{advertisingVIP2}}' bindtap='selectClick'>
+    <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg2.png) no-repeat;background-size:100% 100%;' class='advertising_position' data-advertisingVIP='{{advertisingVIP2}}' data-id='22' bindtap='selectClick'>
     <view class='title'>可选名片或信息</view>
     <!-- <view class='title' style='color:black' wx:if='{{index>1}}'>可选名片或信息</view> -->
     <view class='advertising_position_css'>
@@ -31,7 +31,7 @@
     </view>
   </view>
 
-    <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg3.png) no-repeat;background-size:100% 100%;' class='advertising_position' data-advertisingVIP='{{advertisingVIP1}}' bindtap='selectClick'>
+    <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg3.png) no-repeat;background-size:100% 100%;' class='advertising_position' data-advertisingVIP='{{advertisingVIP1}}' data-id='23' bindtap='selectClick'>
     <view class='title' style='color:black'>可选名片或信息</view>
     <view class='advertising_position_css'>
       <image class='Img' src='../../images/personal_center/vip3.png'></image>
@@ -50,8 +50,6 @@
     <view class='text'>{{item.name}}</view>
     <view class='text'>剩余数量：{{item.sellingADs.length}}</view>
     </view>
-
   </view>
-
 
 </view>

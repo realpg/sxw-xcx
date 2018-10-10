@@ -8,27 +8,4 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
-.con {
-margin: 0 auto;
-list-style-type: none;
 
-}
-.con li {
-width: 150px;
-height: 150px;
-background: #fff;
-margin: 10px;
-float: left;
-box-shadow: 2px 2px 2px #999;
--webkit-transition: 0.5s all ease;
-}
-.con .fuzzy {
--webkit-transform: scale(0.9);
-box-shadow: 0 0 10px 4px white;
-text-shadow: 0 0 10px black;
-opacity: 0.8;
-color: rgba(0, 0, 0, 0);
-}
-.con .amplification {
--webkit-transform: scale(1.1);
-}

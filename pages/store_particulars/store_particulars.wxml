@@ -10,8 +10,7 @@
       <view class='career'>{{business_card.career}}</view>
       <view class='card_company con'>公司：<text class='fuzzy'>{{business_card.company}}</text></view>
       <view class='card_company'>地址：{{business_card.address}}</view>
-      <view class='card_company con'>电话：
-        <text class='card_mobile fuzzy'>{{business_card.mobile}}</text> </view>
+      <view class='card_company con'>电话：<text class='card_mobile fuzzy'>{{business_card.mobile}}</text> </view>
       <view class='card_business'>主营：{{business_card.business}}</view>
     </view>
 

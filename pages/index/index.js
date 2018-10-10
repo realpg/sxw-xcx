@@ -122,20 +122,20 @@ Page({
     console.log("同步缓存数据", data)
     if (typeof data.data != 'undefined')
       that.setData(data.data)
-    // let display = that.data.display;
-    // wx.createIntersectionObserver().relativeToViewport().observe('.notice', (res) => {
-    //   res.intersectionRect.height // 相交区域的高度
-    //   console.log(343434, res.intersectionRect.height)
-    //   if (res.intersectionRect.height > 0) {
-    //     that.setData({
-    //       display: 'none'
-    //     })
-    //   } else {
-    //     that.setData({
-    //       display: 'block'
-    //     })
-    //   }
-    // })
+    let display = that.data.display;
+    wx.createIntersectionObserver().relativeToViewport().observe('.notice', (res) => {
+      res.intersectionRect.height // 相交区域的高度
+      console.log(343434, res.intersectionRect.height)
+      if (res.intersectionRect.height > 0) {
+        that.setData({
+          display: 'none'
+        })
+      } else {
+        that.setData({
+          display: 'block'
+        })
+      }
+    })
 
 
     var scroll_width = parseInt(app.globalData.SystemInfo.windowWidth * 471 / 750);
@@ -248,7 +248,7 @@ Page({
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: ret.data[i].mid == 5 ? '供应' : ret.data[i].mid == 6 ? '求购' : ret.data[i].mid == 88 ? '纺机' : "未知", //发布类别  ()
-              company: ret.data[i].businesscard.company, //公司
+              company: util.hiddenCompany(ret.data[i].businesscard.company) , //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -309,7 +309,7 @@ Page({
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '供应', //发布类别  ()
-              company: ret.data[i].businesscard.company, //公司
+              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -363,7 +363,7 @@ Page({
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '求购', //发布类别  ()
-              company: ret.data[i].businesscard.company, //公司
+              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -418,7 +418,7 @@ Page({
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '纺机', //发布类别  ()
-              company: ret.data[i].businesscard.company, //公司
+              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -731,7 +731,7 @@ Page({
         recommend_store.push({
           avatarUrl: ret[i].info.businesscard.avatarUrl, //头像
           id: ret[i].info.itemid, //信息id
-          store_name: ret[i].info.company,
+          store_name:util.hiddenCompany(ret[i].info.company),
           mid: ret[i].item_mid,
           lableList: ret[i].info.tags,
           store_info: ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
@@ -893,18 +893,18 @@ Page({
   },
 
 //监听用户滑动事件
-  onPageScroll(Object) {
-    console.log('滑动距离', Object.scrollTop)
-    that=this;
-    let display = that.data.display;
-    if (Object.scrollTop < 400) {
-        that.setData({
-          display: 'none'
-        })
-      } else {
-        that.setData({
-          display: 'block'
-        })
-      }
-  },
+  // onPageScroll(Object) {
+  //   console.log('滑动距离', Object.scrollTop)
+  //   that=this;
+  //   let display = that.data.display;
+  //   if (Object.scrollTop < 400) {
+  //       that.setData({
+  //         display: 'none'
+  //       })
+  //     } else {
+  //       that.setData({
+  //         display: 'block'
+  //       })
+  //     }
+  // },
 })

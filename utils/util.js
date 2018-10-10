@@ -1085,18 +1085,27 @@ function getToday() {
     today += "0";
   return year + "-" + month + "-" + day;
 }
-
+//隐藏公司名
+function hiddenCompany(obj){
+  var card = getApp().globalData.DTuserInfo.businesscard;
+  if (card.vip > 0) {
+    return obj;
+  } else{
+    obj = obj.substring(0, 2) + '****' + obj.substring(obj.length - 4, obj.length)
+    return obj;
+  }
+}
 //拨打电话权限
 function makePhoneCall(obj){
   var card = getApp().globalData.DTuserInfo.businesscard;
   if(card.vip>0){
     // if(false){
     wx.makePhoneCall(obj)
-  }
+  } 
   else{
     wx.showModal({
-      title: '只有会员用户才能拨打电话',
-      content: '是否跳转至会员购买页面',
+      title: '会员用户才能拨打电话',
+      content: '是否跳转至会员购买页面?',
       success:function(res){
         if(res.confirm){
           wx.navigateTo({
@@ -1157,6 +1166,7 @@ module.exports = {
   signIn: signIn,
   visitingCard: visitingCard,
   getInvited: getInvited,
+  hiddenCompany: hiddenCompany,
 
   GetAdvertising: GetAdvertising,
   GetAdvertisingInfo: GetAdvertisingInfo,

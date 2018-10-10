@@ -95,7 +95,7 @@ Page({
 
   //联系商家
   phoneClick: function (e) {
-    wx.makePhoneCall({
+    util.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
     })
   },
@@ -198,7 +198,7 @@ Page({
        that.setData({
          hint: '未找到对应搜索结果'
        })
-     },1000)
+     },1500)
   },
 
   //查询全部 
@@ -247,7 +247,7 @@ Page({
               position: data.businesscard ? data.businesscard.career : "", //职位
               demand: '纺机', //发布类别  ()
               mobile: data.mobile,
-              company: data.businesscard ? data.businesscard.company : "", //公司
+              company: data.businesscard ? util.hiddenCompany(data.businesscard.company)  : "", //公司
               lableList: data.tags,
               details: data.introduce, //信息详情描述
               I_agree: data.I_agree,
@@ -330,7 +330,7 @@ Page({
                 position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
                 demand: '纺机', //发布类别  ()
                 mobile: ret.data[i].mobile,
-                company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
+                company: ret.data[i].businesscard ? util.hiddenCompany(ret.data[i].businesscard.company) : "", //公司
                 lableList: ret.data[i].tags,
                 details: ret.data[i].introduce, //信息详情描述
                 I_agree: ret.data[i].I_agree,
@@ -416,7 +416,7 @@ Page({
                 position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
                 demand: '纺机', //发布类别  ()
                 mobile: ret.data[i].mobile,
-                company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
+                company: ret.data[i].businesscard ? util.hiddenCompany(ret.data[i].businesscard.company) : "", //公司
                 lableList: ret.data[i].tags,
                 details: ret.data[i].introduce, //信息详情描述
                 I_agree: ret.data[i].I_agree,
@@ -501,7 +501,7 @@ Page({
                 position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
                 demand: '纺机', //发布类别  ()
                 mobile: ret.data[i].mobile,
-                company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
+                company: ret.data[i].businesscard ? util.hiddenCompany(ret.data[i].businesscard.company) : "", //公司
                 lableList: ret.data[i].tags,
                 details: ret.data[i].introduce, //信息详情描述
                 I_agree: ret.data[i].I_agree,
@@ -570,7 +570,7 @@ Page({
             position: ret.data[i].businesscard ? ret.data[i].businesscard.career : "", //职位
             //   demand: '纺机', //发布类别  ()
             //   mobile: ret.data[i].mobile,
-            company: ret.data[i].businesscard ? ret.data[i].businesscard.company : "", //公司
+            company: ret.data[i].businesscard ? util.hiddenCompany(ret.data[i].businesscard.company) : "", //公司
             //   lableList: ret.data[i].tags,
             business: ret.data[i].businesscard.business,
             businesscard: ret.data[i].businesscard,

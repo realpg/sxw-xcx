@@ -96,8 +96,8 @@ Page({
 
     // var phoneNumber =e.currentTarget.dataset.mobile
     // console.log(888, phoneNumber )
-    wx.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
+    util.makePhoneCall({
+      phoneNumber: that.data.business_card.mobile//仅为示例，并非真实的电话号码
     })
   },
   //预览图片
@@ -144,6 +144,14 @@ Page({
           thumb: thumb,
           wxqr: ret.wxqr
         })
+      var card = getApp().globalData.DTuserInfo.businesscard;
+      if (card.vip < 1) {
+        that.data.business_card.mobile = that.data.business_card.mobile.substring(0, 3) + '****' + that.data.business_card.mobile.substring(7,11),
+          that.data.business_card.company = that.data.business_card.company.substring(0, 2) + '****' + that.data.business_card.company.substring(that.data.business_card.company.length - 4, that.data.business_card.company.length)
+        that.setData({
+          business_card:that.data.business_card,
+        })
+      }
 
       var query = wx.createSelectorQuery();
       //选择id
@@ -179,7 +187,7 @@ Page({
             position: ret.data[i].businesscard.career, //职位
             demand: '供应', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: ret.data[i].businesscard.company, //公司
+            company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
             lableList: ret.data[i].tags,
 
             details: ret.data[i].introduce, //信息详情描述
@@ -237,7 +245,7 @@ Page({
           position: ret.data[i].businesscard.career, //职位
           demand: '供应', //发布类别  ()
           mobile: ret.data[i].mobile,
-          company: ret.data[i].businesscard.company, //公司
+          company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
           lableList: ret.data[i].tags,
 
           details: ret.data[i].introduce, //信息详情描述
@@ -293,7 +301,7 @@ Page({
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '求购', //发布类别  ()
-          company: ret.data[i].businesscard.company, //公司
+          company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
           lableList: ret.data[i].tags,
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
@@ -347,7 +355,7 @@ Page({
           position: ret.data[i].businesscard.career, //职位
           demand: '纺机', //发布类别  ()
           mobile: ret.data[i].mobile,
-          company: ret.data[i].businesscard.company, //公司
+          company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
           lableList: ret.data[i].tags,
           details: ret.data[i].introduce, //信息详情描述
           message_Img: //详情图片  后续跟进
@@ -607,8 +615,8 @@ Page({
 
   //拨打电话
   making_call_click: function () {
-    wx.makePhoneCall({
-      phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
+    util.makePhoneCall({
+      phoneNumber: that.data.business_card.mobile//仅为示例，并非真实的电话号码
     })
   },
 
@@ -787,7 +795,7 @@ Page({
    
     canvas.setFillStyle('#f7a821');
     canvas.setFontSize(26);
-    canvas.fillText(that.data.business_card.mobile, windowW * 0.165, windowH * 0.68);
+    canvas.fillText(that.data.business_card.mobile, windowW * 0.168, windowH * 0.68);
     canvas.beginPath();
     canvas.setStrokeStyle('#e6eaf2');
     canvas.moveTo(windowW * 0.07, windowH * 0.75);

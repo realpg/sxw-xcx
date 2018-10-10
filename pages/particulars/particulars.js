@@ -95,12 +95,11 @@ Page({
   },
   //拨打电话
   phoneClick:function(){
-    
     that.making_call_click();
   },
   making_call_click: function() {
-    wx.makePhoneCall({
-      phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
+    util.makePhoneCall({
+      phoneNumber: that.data.business_card.mobile//仅为示例，并非真实的电话号码
     })
   },
 
@@ -414,7 +413,7 @@ Page({
         position: ret.businesscard.career, //职位
         demand: '供应', //发布类别  ()
         mobile: ret.mobile,
-        company: ret.businesscard.company, //公司
+        company:util.hiddenCompany(ret.businesscard.company), //公司
         lableList: ret.tags,
         I_agree: ret.I_agree,
         I_favortie: ret.I_favortie,
@@ -431,8 +430,19 @@ Page({
       that.setData({
         message: that.data.message,
         leave_word_details: arr,
-        business_card: ret.businesscard
+        business_card:ret.businesscard
       })
+      //根据权限隐藏电话号和公司名
+      var card = getApp().globalData.DTuserInfo.businesscard;
+      var business_card = that.data.business_card;
+      business_card = ret.business_card
+      if (card.vip < 1) {
+        that.data.business_card.mobile = that.data.business_card.mobile.substring(0, 3) + '****' + that.data.business_card.mobile.substring(7, 11),
+          that.data.business_card.company = that.data.business_card.company.substring(0, 2) + '****' + that.data.business_card.company.substring(that.data.business_card.company.length - 4, that.data.business_card.company.length)
+        that.setData({
+          business_card: that.data.business_card,
+        })
+      }
       that.supplyByUserid();
       that.PurchaseByUserid();
       that.tradeByUserid();
@@ -472,7 +482,7 @@ Page({
         position: ret.businesscard.career, //职位
         demand: '求购', //发布类别  ()
         mobile: ret.mobile,
-        company: ret.businesscard.company, //公司
+        company: util.hiddenCompany(ret.businesscard.company) , //公司
         lableList: ret.tags,
         I_agree: ret.I_agree,
         I_favortie: ret.I_favortie,
@@ -533,7 +543,7 @@ Page({
         position: ret.businesscard.career, //职位
         demand: '纺机', //发布类别  ()
         mobile: ret.mobile,
-        company: ret.businesscard.company, //公司
+        company: util.hiddenCompany(ret.businesscard.company), //公司
         lableList: ret.tags,
         I_agree: ret.I_agree,
         I_favortie: ret.I_favortie,
@@ -588,7 +598,7 @@ Page({
           position: ret.data[i].businesscard.career, //职位
           demand: '供应', //发布类别  ()
           mobile: ret.data[i].mobile,
-          company: ret.data[i].businesscard.company, //公司
+          company: util.hiddenCompany(ret.data[i].businesscard.company) , //公司
           lableList: ret.data[i].tags,
           I_agree: ret.data[i].I_agree,
           I_favortie: ret.data[i].I_favortie,
@@ -650,7 +660,7 @@ Page({
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '求购', //发布类别  ()
-          company: ret.data[i].businesscard.company, //公司
+          company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
           lableList: ret.data[i].tags,
           I_agree: ret.data[i].I_agree,
           I_favortie: ret.data[i].I_favortie,
@@ -710,7 +720,7 @@ Page({
           position: ret.data[i].businesscard.career, //职位
           demand: '纺机', //发布类别  ()
           mobile: ret.data[i].mobile,
-          company: ret.data[i].businesscard.company, //公司
+          company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
           lableList: ret.data[i].tags,
           I_agree: ret.data[i].I_agree,
           I_favortie: ret.data[i].I_favortie,

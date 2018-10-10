@@ -40,7 +40,7 @@ Page({
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '供应', //发布类别  ()
-              company: ret.data[i].businesscard.company, //公司
+              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -95,7 +95,7 @@ Page({
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '求购', //发布类别  ()
-              company: ret.data[i].businesscard.company, //公司
+              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -150,7 +150,7 @@ Page({
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '纺机', //发布类别  ()
-              company: ret.data[i].businesscard.company, //公司
+              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -343,7 +343,7 @@ Page({
   phoneClick: function(e) {
     // var phoneNumber =e.currentTarget.dataset.mobile 
     // console.log(888, phoneNumber )
-    wx.makePhoneCall({
+    util.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
     })
   },

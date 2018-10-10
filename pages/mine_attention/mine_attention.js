@@ -26,10 +26,7 @@ Page({
   },
   //联系商家
   phoneClick: function(e) {
-
-    // var phoneNumber =e.currentTarget.dataset.mobile
-    // console.log(888, phoneNumber )
-    wx.makePhoneCall({
+    util.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
     })
   },
@@ -273,7 +270,7 @@ Page({
             position: ret.data[i].item.businesscard.career, //职位
             mobile: ret.data[i].item.businesscard.mobile, //电话
             demand: '供应', //发布类别  ()
-            company: ret.data[i].item.businesscard.company, //公司
+            company: util.hiddenCompany(ret.data[i].item.businesscard.company), //公司
             lableList: ret.data[i].item.tags,
             details: ret.data[i].item.introduce, //信息详情描述
             I_favortie: ret.data[i].item.I_favortie,
@@ -335,7 +332,7 @@ Page({
             position: ret.data[i].item.businesscard.career, //职位
             mobile: ret.data[i].item.businesscard.mobile, //电话
             demand: '求购', //发布类别  ()
-            company: ret.data[i].item.businesscard.company, //公司
+            company: util.hiddenCompany(ret.data[i].item.businesscard.company), //公司
             lableList: ret.data[i].item.tags,
             details: ret.data[i].item.introduce, //信息详情描述
             I_favortie: ret.data[i].item.I_favortie,
@@ -396,7 +393,7 @@ Page({
             position: ret.data[i].item.businesscard.career, //职位
             mobile: ret.data[i].item.businesscard.mobile, //电话
             demand: '纺机', //发布类别  ()
-            company: ret.data[i].item.businesscard.company, //公司
+            company: util.hiddenCompany(ret.data[i].item.businesscard.company), //公司
             lableList: ret.data[i].item.tags,
             details: ret.data[i].item.introduce, //信息详情描述
             I_favortie: ret.data[i].item.I_favortie,
@@ -456,7 +453,7 @@ Page({
             icon_vip: ret.data[i].item.vip, //  0===非vip 1-3==vip
             name: ret.data[i].item.truename, //用户姓名
             career: ret.data[i].item.career, //职位
-            company: ret.data[i].item.company, //公司
+            company: util.hiddenCompany(ret.data[i].item.company), //公司
             business: ret.data[i].item.business, //主营
             view: ret.data[i].item.view, //浏览量
             favorite: ret.data[i].item.favorite, //收藏

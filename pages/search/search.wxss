@@ -382,9 +382,13 @@ border-radius: 50%;
   left: 67rpx;
   z-index:2;
 }
+.card_pageView{
+  display: flex;
+  align-items: center;
+}
 .card_pageView_Img{
-  width: 30rpx;
-  height: 20rpx;
+  width: 32rpx;
+  height: 30rpx;
 }
 .card_vip_Img{
   margin-left: 15rpx;

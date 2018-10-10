@@ -77,6 +77,18 @@ let that;
          business_card: list,
          todayList: list
        })
+       var card = getApp().globalData.DTuserInfo.businesscard;
+       if (card.vip < 1) {
+         for (var i in that.data.todayList) {
+           that.data.todayList[i].businesscard.mobile = that.data.todayList[i].businesscard.mobile.substring(0, 3) + '****' + that.data.todayList[i].businesscard.mobile.substring(7, 11);
+           that.data.todayList[i].businesscard.company = that.data.todayList[i].businesscard.company.substring(0, 2) + '****' + that.data.todayList[i].businesscard.company.substring(that.data.todayList[i].businesscard.company.length - 4, that.data.todayList[i].businesscard.company.length)
+         }
+         that.setData({
+           business_card: that.data.todayList,
+           todayList: that.data.todayList
+         })
+       }
+       console.log('隐藏', that.data.todayList)
      });
 
    },
@@ -94,8 +106,19 @@ let that;
           // business_card: ret
           weekList: ret
         })
+       var card = getApp().globalData.DTuserInfo.businesscard;
+       if (card.vip < 1) {
+         for (var i in that.data.weekList) {
+           that.data.weekList[i].businesscard.mobile = that.data.weekList[i].businesscard.mobile.substring(0, 3) + '****' + that.data.weekList[i].businesscard.mobile.substring(7, 11);
+           that.data.weekList[i].businesscard.company = that.data.weekList[i].businesscard.company.substring(0, 2) + '****' + that.data.weekList[i].businesscard.company.substring(that.data.weekList[i].businesscard.company.length - 4, that.data.weekList[i].businesscard.company.length)
+         }
+         that.setData({
+           weekList: that.data.weekList
+         })
+       }
+       console.log('隐藏', that.data.weekList)
      });
-
+    
    },
 
    monthraking: function () {
@@ -112,6 +135,17 @@ let that;
         //  business_card: list,
           monthList: list
         })
+       var card = getApp().globalData.DTuserInfo.businesscard;
+       if (card.vip < 1) {
+         for (var i in that.data.monthList) {
+           that.data.monthList[i].businesscard.mobile = that.data.monthList[i].businesscard.mobile.substring(0, 3) + '****' + that.data.monthList[i].businesscard.mobile.substring(7, 11);
+           that.data.monthList[i].businesscard.company = that.data.monthList[i].businesscard.company.substring(0, 2) + '****' + that.data.monthList[i].businesscard.company.substring(that.data.monthList[i].businesscard.company.length - 4, that.data.monthList[i].businesscard.company.length)
+         }
+         that.setData({
+           monthList: that.data.monthList
+         })
+       }
+       console.log('隐藏', that.data.monthList)
      });
 
    },

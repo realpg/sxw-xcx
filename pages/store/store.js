@@ -103,6 +103,9 @@ Page({
       console.log('名片列表', ret)
       var messageList = [],
         messageList = that.data.messageList.concat(ret.data);
+      for (var i in messageList){
+          messageList[i].company = util.hiddenCompany(messageList[i].company )
+      }
       that.setData({
         page: ret.current_page < ret.last_page ? ret.current_page + 1 : null,
         messageList: messageList
@@ -132,25 +135,44 @@ Page({
     //名片推荐
     util.card_recommend({}, function(ret) {
       console.log(77777777, ret);
-      var recommend_store = that.data.recommend_store;
-
+      var recommend_store = that.data.recommend_store;  
+      var card = getApp().globalData.DTuserInfo.businesscard; 
+      if (card.vip < 1) {
       for (var i in ret) {
-
         recommend_store.push({
           userid: ret[i].businesscard.userid,
           name: ret[i].businesscard.truename,
           post: ret[i].businesscard.career,
-          phone: ret[i].businesscard.mobile,
+          phone: ret[i].businesscard.mobile.substring(0, 3) + '****' + ret[i].businesscard.mobile.substring(7, 11),
           headImg: ret[i].businesscard.avatarUrl,
-          company: ret[i].businesscard.company,
+          company: util.hiddenCompany(ret[i].businesscard.company),
           address: ret[i].businesscard.address.length > 13 ? ret[i].businesscard.address.substring(0, 13) + "..." : ret[i].businesscard.address,
           The_main: ret[i].businesscard.introduce.length > 13 ? ret[i].businesscard.introduce.substring(0, 13) + "..." : ret[i].businesscard.introduce ,
          // ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
         })
       }
+      }else{
+        for (var i in ret) {
+          recommend_store.push({
+            userid: ret[i].businesscard.userid,
+            name: ret[i].businesscard.truename,
+            post: ret[i].businesscard.career,
+            phone: ret[i].businesscard.mobile,
+            headImg: ret[i].businesscard.avatarUrl,
+            company: util.hiddenCompany(ret[i].businesscard.company),
+            address: ret[i].businesscard.address.length > 13 ? ret[i].businesscard.address.substring(0, 13) + "..." : ret[i].businesscard.address,
+            The_main: ret[i].businesscard.introduce.length > 13 ? ret[i].businesscard.introduce.substring(0, 13) + "..." : ret[i].businesscard.introduce,
+            // ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
+          })
+        }
+      }
+
       that.setData({
         recommend_store: recommend_store,
       })
+
+  
+
       setTimeout(function () {
         that.nextScroll()
       }, 5000)

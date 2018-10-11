@@ -17,7 +17,5 @@
   </view>
 </view>
 
-
-
 <!-- 确认按钮 -->
 <view class='confirm_button' bindtap='getJf'>确认充值</view>

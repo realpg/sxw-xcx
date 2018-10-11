@@ -36,14 +36,16 @@
     "pages/goldList/goldList",
     "pages/messageList/messageList",
     "pages/messageList_comments/messageList_comments",
-    "pages/messageList_system/messageList_system"
+    "pages/messageList_system/messageList_system",
+    "pages/upload/upload"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "纱线网",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
+  
   },
   "tabBar": {
     "color": "#3f3f3f",

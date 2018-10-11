@@ -1,7 +1,7 @@
 // pages/personal_data/personal_data.js
 const app = getApp();
 const util = require('../../utils/util.js');
-var that = this;
+var that
 
 let count;
 Page({
@@ -72,21 +72,26 @@ Page({
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: function(res) {
           console.log(res, typeof(res.tempFiles[0]));
-          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          for (let i in res.tempFilePaths) {
-            util.uploadImage({
-              file: res.tempFilePaths[i]
-            }, function(ret) {
-              console.log("上传成功", ret)
-              that.data.avatar.push(
-                ret
-              );
-              that.setData({
-                avatar: that.data.avatar
-              })
-            }, null);
 
-          }
+          const src = res.tempFilePaths[0]
+
+          wx.redirectTo({
+            url: `../upload/upload?src=${src}`
+          })
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          // for (let i in res.tempFilePaths) {
+          //   util.uploadImage({
+          //     file: res.tempFilePaths[i]
+          //   }, function(ret) {
+          //     console.log("上传成功", ret)
+          //     that.data.avatar.push(
+          //       ret
+          //     );
+          //     that.setData({
+          //       avatar: that.data.avatar
+          //     })
+          //   }, null);
+          // }
 
         }
       })

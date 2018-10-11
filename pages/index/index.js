@@ -164,16 +164,16 @@ Page({
         userid: userid,
         scene: scene
       })
-      wx.showModal({
-        title: '接受邀请',
-        content: '您即将接受用户[' + that.data.userid + ']的邀请，是否确认？',
-        showCancel: true,
-        success: function (res) {
-          if (res.confirm) {
+      // wx.showModal({
+      //   title: '接受邀请',
+      //   content: '您即将接受用户[' + that.data.userid + ']的邀请，是否确认？',
+      //   showCancel: true,
+      //   success: function (res) {
+      //     if (res.confirm) {
             that.invited(that.data.userid)
-          }
-        }
-      })
+      //     }
+      //   }
+      // })
     }
 
     console.log(app.globalData)

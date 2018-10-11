@@ -47,7 +47,8 @@ page {
   margin-bottom: 10rpx;
 }
 .revision_lable_css{
-  display: -webkit-box;
+  display:flex;
+ flex-wrap:wrap; 
   margin-right: 20rpx;
 }
 .revision_context{
@@ -117,8 +118,8 @@ page {
  right: 10rpx;
 }
 .revision_eye_Img{
-  width: 36rpx;
-  height: 36rpx;
+  width: 34rpx;
+  height: 30rpx;
 }
 .revision_jiantou_img{
   margin-top: 6rpx;
@@ -133,7 +134,7 @@ page {
   margin-top: 10rpx;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between；
+  justify-content: space-between;
 }
 .revision_message_Image{
   width: 29%;

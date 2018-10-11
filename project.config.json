@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -71,6 +71,13 @@
 					"name": "名片",
 					"pathName": "pages/store_particulars/store_particulars",
 					"query": "id=29"
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/personal_data/personal_data",
+					"query": "",
+					"scene": "1047"
 				}
 			]
 		}

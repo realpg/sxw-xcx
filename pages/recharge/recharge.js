@@ -210,8 +210,7 @@ Page({
               wx.showToast({
                 title: '支付失败',
               })
-              backApp()
-              
+              backApp()    
             }
           })
         }
@@ -249,7 +248,6 @@ Page({
       pay_amount: pay_amount,
       zsgold: zsgold
     })
-
   },
   getPayAmount(gold) {
     return gold / that.data.pergold * that.data.perprice

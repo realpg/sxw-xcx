@@ -94,7 +94,6 @@ Page({
   },
 
   confirm: function () {
-
     that.setData({
       paying: true
     })
@@ -110,7 +109,7 @@ Page({
       // })
       wx.showToast({
         title: "购买成功",
-        druation: 3000,
+        druation: 2000,
         icon: 'success'
       })
       // var pages = getCurrentPages();
@@ -118,7 +117,7 @@ Page({
       // my_page.refresh()
       setTimeout(function () {
         wx.navigateBack()
-      }, 3000)
+      }, 2000)
     }, null)
 
   },

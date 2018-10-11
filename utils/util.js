@@ -636,7 +636,15 @@ function myInvited(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/myInvited', param, "GET", successCallback, errorCallback);
 }
 
-function uploadImage(param, successCallback, errorCallback) {
+function uploadImage(param, successCallback, errorCallback,showloading) {
+  if(typeof showloading=='undefined')
+    showloading=false
+    if(showloading){
+      wx.showLoading({
+          title:"上传中",
+          mask:true,
+      })
+    }
   wx.uploadFile({
     url: SERVER_URL + '/api/uploadImage',
     filePath: param.file,
@@ -672,7 +680,7 @@ function uploadImage(param, successCallback, errorCallback) {
       })
     },
     complete: function() {
-      // hideLoading()
+      hideLoading()
     }
   })
 }

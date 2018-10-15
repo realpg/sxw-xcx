@@ -21,10 +21,10 @@ Page({
     userinfo: [],
     index: null,
     paying: false,
-    describe:''
+    describe: ''
   },
 
-  radioChange: function (e) {
+  radioChange: function(e) {
     console.log("id", that.data.advertisingVIP[e.detail.value].id)
     var index = null;
     if (parseInt(e.detail.value) == 2) {
@@ -47,44 +47,55 @@ Page({
 
   },
 
-  payClick: function () {
+  payClick: function() {
     that = this
     console.log('?????', that.data.userinfo.groupid)
-    if (that.data.index !== null){
-      if (that.data.userinfo.groupid== 6) {
-      wx.showModal({
-        title: '提示',
-        content: '是否确认购买？',
-        confirmText: "确定",
-        cancelText: "取消",
-        success: function (res){
-          if (res.confirm) {
-            console.log('用户点击确定')
-            that.confirm();
-          } else if (res.cancel) {
-            console.log('用户点击取消')
+    if (that.data.index !== null) {
+      if (that.data.userinfo.groupid == 6) {
+        wx.showModal({
+          title: '提示',
+          content: '是否确认购买？',
+          confirmText: "确定",
+          cancelText: "取消",
+          success: function(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              that.confirm();
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
           }
+        })
+      } else {
+        var updating = app.globalData.DTuserInfo.updating;
+        if (!updating)
+          //不在审核信息中
+          wx.showModal({
+            title: '完善个人信息后才能购买！',
+            content: '是否跳转至完善个人信息？',
+            confirmText: "确定",
+            cancelText: "取消",
+            success: function(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                wx.navigateTo({
+                  url: "../personal_data/personal_data"
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        else {
+          wx.showModal({
+            title: '个人信息审核尚未完成！',
+            content: '个人信息审核中，请耐心等待',
+            confirmText: "确定",
+            showCancel:false
+          })
         }
-      })
+      }
     } else {
-      wx.showModal({
-        title: '完善个人信息后才能发布！',
-        content: '是否确认购买？',
-        confirmText: "确定",
-        cancelText: "取消",
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-            wx.navigateTo({
-              url: "../personal_data/personal_data"
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-    } 
-    }else{
       wx.showToast({
         title: "请选择一项",
         icon: 'none',
@@ -93,7 +104,7 @@ Page({
     }
   },
 
-  confirm: function () {
+  confirm: function() {
     that.setData({
       paying: true
     })
@@ -102,7 +113,7 @@ Page({
       _token: app.globalData.DTuserInfo._token,
       id: that.data.advertisingVIP[that.data.index].id
     };
-    util.payVIP(param, function (res) {
+    util.payVIP(param, function(res) {
       console.log('vip广告位', res);
       // that.setData({
       //   advertisingAssign: res
@@ -115,7 +126,7 @@ Page({
       // var pages = getCurrentPages();
       // var my_page = pages[pages.length - 3];
       // my_page.refresh()
-      setTimeout(function () {
+      setTimeout(function() {
         wx.navigateBack()
       }, 2000)
     }, null)
@@ -123,19 +134,19 @@ Page({
   },
 
   // 获取金币
-  gain_goldClick: function () {
+  gain_goldClick: function() {
     wx.navigateTo({
       url: '../recharge/recharge',
     })
   },
 
-  GetAdvertisingInfo: function () {
+  GetAdvertisingInfo: function() {
     var param = {
       userid: app.globalData.DTuserInfo.userid.userid,
       _token: app.globalData.DTuserInfo._token,
       pid: that.data.pid
     };
-    util.GetAdvertisingInfo(param, function (res) {
+    util.GetAdvertisingInfo(param, function(res) {
       console.log('广告位', res);
       // that.setData({
       //   advertisingAssign: res
@@ -146,14 +157,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     that = this;
 
     that.setData({
       vip_to: new Date().getTime(),
       gold_coin_balance: app.globalData.DTuserInfo.credit
     })
-    util.vipTimeto({}, function (ret) {
+    util.vipTimeto({}, function(ret) {
       that.data.hint_time = parseInt(ret);
       var date = new Date(that.data.hint_time * 1000);
       that.setData({
@@ -183,10 +194,10 @@ Page({
 
 
     that = this
-    var describe= that.data.describe
+    var describe = that.data.describe
     util.getSystemKeyValue({
       id: options.id
-    }, function (ret) {
+    }, function(ret) {
       that.setData({
         describe: ret.value,
       })
@@ -197,35 +208,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     console.log(util.formatTime(new Date(1535126400 * 1000)))
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-  onPullDownRefresh: function () {
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
     wx.stopPullDownRefresh();
     console.log('下拉刷新');
     // this.requestNetAllData(page, 1);
@@ -234,14 +245,14 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

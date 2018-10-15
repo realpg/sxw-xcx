@@ -71,22 +71,33 @@ Page({
           }
         })
       } else {
-        wx.showModal({
-          title: '完善个人信息后才能发布！',
-          content: '是否确认购买？',
-          confirmText: "确定",
-          cancelText: "取消",
-          success: function (res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-              wx.navigateTo({
-                url: "../personal_data/personal_data"
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
+        var updating = app.globalData.DTuserInfo.updating;
+        if (!updating)
+          //不在审核信息中
+          wx.showModal({
+            title: '完善个人信息后才能购买！',
+            content: '是否跳转至完善个人信息？',
+            confirmText: "确定",
+            cancelText: "取消",
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                wx.navigateTo({
+                  url: "../personal_data/personal_data"
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
             }
-          }
-        })
+          })
+        else {
+          wx.showModal({
+            title: '个人信息审核尚未完成！',
+            content: '个人信息审核中，请耐心等待',
+            confirmText: "确定",
+            showCancel: false
+          })
+        }
       }
     } else {
       wx.showToast({

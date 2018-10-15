@@ -44,7 +44,8 @@ Page({
           file: avatar
         }, function(ret) {
           console.log("上传成功", ret)
-          var pages = wx.getCurrentPages()
+          var pages = getCurrentPages();
+          console.log(pages)
           var that = pages[pages.length - 2]
           that.data.avatar.push(
             ret

@@ -1,9 +1,12 @@
 @import "common.wxss";
-
+page{
+  background: #000000;
+}
 .cropper{
     position: absolute;
     top: 0;
     left: 0;
+   
 }
 
 .cropper-buttons{

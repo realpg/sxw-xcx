@@ -672,9 +672,9 @@ function uploadImage(param, successCallback, errorCallback,showloading) {
       }
     },
     fail: function(err) {
-      // console.log("wxRequest fail:" + JSON.stringify(err))
+      console.log("wxRequest fail:" + JSON.stringify(err))
       wx.showToast({
-        title: ret.data.message ? ret.data.message : "上传失败",
+        title: err ? JSON.stringify(err): "上传失败",
         icon: 'none',
         duration: 2000
       })

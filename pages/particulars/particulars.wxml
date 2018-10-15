@@ -16,7 +16,7 @@
 
   <view class='revision_body'>
   <view class='revision_lable_css'>
-    <view class='revision_lable' wx:for='{{item.lableList}}' wx:for-index='index'><text class='revision_lable_css'  wx:if='{{index==0}}'>#{{item.tagname}}#</text><text class='revision_lable_css'  wx:if='{{index==1}}'>#{{item.tagname}}#</text> <text class='revision_lable_css'  wx:if='{{index==2}}'>#{{item.tagname}}#</text> <text class='revision_lable_css'  wx:if='{{index==3}}'>#{{item.tagname}}#</text> <text class='revision_lable_css'  wx:if='{{index==4}}'>#{{item.tagname}}#</text> </view>
+    <view class='revision_lable' wx:for='{{item.lableList}}' wx:for-index='index'><text class='revision_lable_css' >#{{item.tagname}}#</text> </view>
        </view>
     <view class='revision_context'>
     {{item.details}}
@@ -143,7 +143,7 @@
   <view class='leave_word_details' wx:for='{{leave_word_details}}' wx:for-item='items' wx:for-index='index'  wx:if='{{index < message_number}}'>
     <view class='leave_word_details_css'>
       <view class='leave_word_iconImage'>
-        <image class='leave_word_iconImage_css' src='{{items.iconImg}}'></image>
+        <image class='leave_word_iconImage_css' src='{{items.iconImg?items.iconImg:"../../images/index/head_portrait.png"}}'></image>
         <text class='leave_word_name'>{{items.truename}}</text>
       </view>
       <view class='leave_word_time'>{{items.addtime}}</view>

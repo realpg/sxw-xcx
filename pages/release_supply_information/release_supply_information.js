@@ -305,7 +305,7 @@ Page({
   //个人信息详情
   personal_data_click: function() {
     wx.navigateTo({
-      url: '../personal_data/personal_data',
+      url: '../personal_data_view/personal_data_view',
     })
   },
   //我要推广

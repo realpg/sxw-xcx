@@ -67,7 +67,7 @@
 
     <view class='enter_pageView'>
       <view>
-        <text class='enter' data-id='{{item.userid}}' bindtap='card_details_click'>查看</text>
+        <text class='enter' >查看</text>
       </view>
       <view class='pageView'>
         <image class='pageView_Img' src='../../images/index/eye.png'></image>

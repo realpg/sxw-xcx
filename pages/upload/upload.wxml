@@ -2,19 +2,11 @@
 <!-- <image src='{{test}}' style='width:750rpx;height:750rpx'></image> -->
 <view class="cropper-wrapper">
   <template is="we-cropper" data="{{...cropperOpt}}" />
-  <view class="cropper-buttons">
+  <view class="cropper-buttons" style='position:fixed;bottom:30rpx'>
     <view class="upload" bindtap="uploadTap">
       重新选择
     </view>
     <view class="getCropperImage" bindtap="getCropperImage">
-      确定
-    </view>
-  </view>
-  <view class="">
-    <view class="" bindtap="uploadTap">
-      重新选择
-    </view>
-    <view class="" bindtap="getCropperImage">
       确定
     </view>
   </view>

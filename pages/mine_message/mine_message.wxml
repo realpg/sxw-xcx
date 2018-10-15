@@ -22,6 +22,16 @@
    <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 
+<!-- <view class='new'>
+  <view>
+    <image class='new_xiaoxi' src='../../images/personal_center/comment.png'></image>
+    <text>我的评论</text>
+  </view>
+  <view>
+    <image class='jiantou_Img_css' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
+  </view>
+</view> -->
+
 <view class='logo'>
 <image class='logo_Img' src='../../images/store/logo.png' mode='widthFix'></image>
 </view>

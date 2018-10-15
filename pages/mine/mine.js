@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    clockin_today:'',
     business_card: {
       name: '',
       post: '',
@@ -292,7 +293,8 @@ Page({
 
       that.setData({
         sign_in_date: that.data.sign_in_date,
-        business_card: that.data.business_card
+        business_card: that.data.business_card,
+        clockin_today:true
       })
     })
   },
@@ -331,6 +333,9 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+    that.setData({
+      clockin_today: app.globalData.DTuserInfo.clockin_today
+    })
   },
 
   /**

@@ -8,7 +8,8 @@
   </navigator>
   <view class='head'>
     <view class='head_css' style=' position:relative;'>
-      <image class='head_img' src='{{item.user_card.avatarUrl||"../../images/index/head_portrait.png"}}'></image>
+    
+      <image class='head_img' src='{{item.user_card.avatarUrl?item.user_card.avatarUrl:"../../images/index/head_portrait.png"}}'></image>
       <text>  {{item.user_card.truename}}  于{{item.addtime}}留言：</text>
       <!-- <text wx:if='{{!item.reply&&!item.replyer}}' class='reply_button'>回复</text> -->
     </view>
@@ -17,7 +18,7 @@
   <block wx:if='{{item.reply&&item.replyer}}'>
   <view class='head'>
     <view class='head_css'>
-      <image class='head_img' src='{{item.replyer_card.avatarUrl||"../../images/index/head_portrait.png"}}'></image>
+      <image class='head_img' src='{{item.replyer_card.avatarUrl?item.replyer_card.avatarUrl:"../../images/index/head_portrait.png"}}'></image>
       <text>{{item.replyer_card.truename}} 于{{item.replytime}}回复了您：</text>
     </view>
     <view class='context'>{{item.reply}}</view>

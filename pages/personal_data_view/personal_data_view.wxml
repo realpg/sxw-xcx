@@ -6,7 +6,7 @@
       <view class='ThatMessageImg' wx:for='{{avatar}}' data-index='id'>
         <image class='MessageImg_one' bindtap='previewImClick_one' data-id='{{item.id}}' src='{{item}}' mode='aspectFill' />
 
-        <image class='DelImg_one' bindtap='DelClick_one' data-id='{{item.id}}' src='../../images/index/del.png' />
+        
       </view>
 
       <view class='AddImgFunction' wx-if='{{avatar.length<1}}'>
@@ -21,16 +21,16 @@
 
       <text class='sort' decode='emsp'>姓  名</text>
       <text class='prompt'> *</text>
-      <input class='name_input' type='text' placeholder='请输入姓名' value="{{businesscard.truename}}" bindblur="changeBusinesscard" data-key="truename" />
+      <input disabled="disabled" class='name_input' type='text' placeholder='请输入姓名' value="{{businesscard.truename}}" bindblur="changeBusinesscard" data-key="truename" />
     </view>
     <view class='name'>
 
       <text class='sort' decode='emsp'>手  机</text>
       <text class='prompt'>*  </text>
-      <input class='name_input' type='number' placeholder='请输入手机号' value="{{businesscard.mobile}}" bindblur="changeBusinesscard" data-key="mobile" bindchange='changeMobile' />
+      <input disabled="disabled" class='name_input' type='number' placeholder='请输入手机号' value="{{businesscard.mobile}}" bindblur="changeBusinesscard" data-key="mobile" bindchange='changeMobile' />
     </view>
     <view class='name' wx:if='{{verification_code}}'>验证码：
-      <input type='number'  style='width:40%;' bindblur="changeBusinesscard" data-key="vertify_code" />
+      <input disabled="disabled"  type='number'  style='width:40%;' bindblur="changeBusinesscard" data-key="vertify_code" />
       <button wx:if='{{sending_cd==0}}' class='codeBtn' bindtap='getVerificationCode'>获取验证码</button>
       <button wx:else='' class='codeBtn_css'>{{sending_cd}} s</button>
     </view>
@@ -42,25 +42,25 @@
   <view class='company_name'>
     公司名称
     <text class='prompt'>*</text>
-    <input class='input_company' type='text' placeholder='请输入公司名称' value="{{businesscard.company}}" bindblur="changeBusinesscard" data-key="company" />
+    <input disabled="disabled" class='input_company' type='text' placeholder='请输入公司名称' value="{{businesscard.company}}" bindblur="changeBusinesscard" data-key="company" />
   </view>
   <view class='company_name'>
     公司职位
     <text class='prompt'>*</text>
-    <input class='input_company' type='text' placeholder='请输入您的职位' value="{{businesscard.career}}" bindblur="changeBusinesscard" data-key="career" maxlength='8' />
+    <input disabled="disabled" class='input_company' type='text' placeholder='请输入您的职位' value="{{businesscard.career}}" bindblur="changeBusinesscard" data-key="career" maxlength='8' />
   </view>
-  <view class='company_name' bindtap='promptClick'>
+  <view class='company_name' >
     业务类别
     <text class='prompt'>*</text>
-    <input class='input_business' type='text' placeholder='请选择业务类别' value='{{businesscard.ywlb[0].name}}{{businesscard.ywlb[1].name?",":""}}{{businesscard.ywlb[1].name}}{{businesscard.ywlb[2].name?",":""}}{{businesscard.ywlb[2].name}}{{businesscard.ywlb.length>3?"...":""}}'
+    <input disabled="disabled"  class='input_business' type='text' placeholder='请选择业务类别' value='{{businesscard.ywlb[0].name}}{{businesscard.ywlb[1].name?",":""}}{{businesscard.ywlb[1].name}}{{businesscard.ywlb[2].name?",":""}}{{businesscard.ywlb[2].name}}{{businesscard.ywlb.length>3?"...":""}}'
       disabled="disabled" />
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png' />
   </view>
-  <view class='business_name' bindtap='addressClick'>
+  <view class='business_name' >
     详细地址
     <text class='prompt'>*</text>
    
-    <textarea  auto-height='true' class='input_business' type='text' placeholder='请选择详细地址' value="{{businesscard.address}}" bindblur="changeBusinesscard" data-key="address"></textarea>
+    <textarea  disabled="disabled" auto-height='true' class='input_business' type='text' placeholder='请选择详细地址' value="{{businesscard.address}}" bindblur="changeBusinesscard" data-key="address"></textarea>
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png' />
   </view>
 </view>
@@ -70,7 +70,7 @@
   <view class='main_product_title'>
     主营产品<text class='prompt'>*</text>
   </view>
-  <textarea class='main_product_info' maxlength='30' placeholder='请输入主营产品(不超过30字)' value="{{businesscard.business}}" bindinput="changeBusinesscard" data-key="business" />
+  <textarea disabled="disabled" class='main_product_info' maxlength='30' placeholder='请输入主营产品(不超过30字)' value="{{businesscard.business}}" bindinput="changeBusinesscard" data-key="business" />
   <view class='hint_num'>(已输入{{businesscard.business.length}}/30)</view>
 </view>
 
@@ -79,7 +79,7 @@
   <view class='main_product_title'>
     公司简介<text class='prompt'>*</text>
   </view>
-  <textarea class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介' value="{{businesscard.introduce}}" bindblur="changeBusinesscard" data-key="introduce" />
+  <textarea disabled="disabled"  class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介' value="{{businesscard.introduce}}" bindblur="changeBusinesscard" data-key="introduce" />
 </view>
 
 <!--上传图片-->
@@ -91,14 +91,6 @@
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{thumb}}' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick_two' data-id='{{index}}' src='{{item}}' mode='aspectFill' />
-
-      <image class='DelImg' bindtap='DelClick_two' data-id='{{index}}' src='../../images/index/del.png' />
-    </view>
-
-    <view class='AddImgFunction' wx-if='{{thumb.length<6}}'>
-      <view class='AddImgClick' bindtap='AddImgClick_two'>
-        <image class='AddImg' src='../../images/index/add1.png' />
-      </view>
     </view>
   </view>
 
@@ -112,7 +104,7 @@
     <view class='ThatMessageImg' wx:for='{{wxqr}}' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick_three' data-id='{{item.id}}' src='{{item}}' mode='aspectFill' />
 
-      <image class='DelImg' bindtap='DelClick_three' data-id='{{item.id}}' src='../../images/index/del.png' />
+     
     </view>
 
     <view class='AddImgFunction' wx-if='{{wxqr.length<1}}'>
@@ -126,6 +118,6 @@
 
 
 <!--提交发布-->
-<view  class='submit' bindtap='submitClick'>提交发布</view>
+<!-- <view  class='submit' bindtap='submitClick'>提交发布</view> -->
 
-<view style='width:100%;height:50rpx;'></view>
+<!-- <view style='width:100%;height:50rpx;'></view> -->

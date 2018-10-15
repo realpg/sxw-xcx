@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -33,12 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "消息",
-					"pathName": "pages/store_particulars/store_particulars",
+					"pathName": "pages/ranking_list/ranking_list",
 					"query": ""
 				},
 				{
@@ -78,6 +78,12 @@
 					"pathName": "pages/personal_data/personal_data",
 					"query": "",
 					"scene": "1047"
+				},
+				{
+					"id": -1,
+					"name": "消息",
+					"pathName": "pages/mine_message/mine_message",
+					"query": ""
 				}
 			]
 		}

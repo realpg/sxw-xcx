@@ -116,8 +116,9 @@
   <view class='sign_in_css'>
     <view bindtap='goldListClick'>金币: <text class='gold'>{{business_card.credit}}</text>
     </view>
-    <view>
-      <text bindtap='singInClick' class='singIn'>签到</text>
+    <view >
+      <text wx:if='{{!clockin_today}}' bindtap='singInClick' class='singIn'>签到</text>
+      <text wx:else  class='singIn singIn_css'>今日已签到</text>
     </view>
     <view>
       <text class='gain' bindtap='gainClick'>获取金币</text>

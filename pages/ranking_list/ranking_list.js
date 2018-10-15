@@ -27,8 +27,17 @@ let that;
 
    //名片详情
    card_details_click: function (e) {
+     console.log('浏览量加', that.data.business_card)
      wx.navigateTo({
        url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
+     })
+     for (var i in that.data.business_card) {
+       if ( that.data.business_card[i].businesscard.userid == e.currentTarget.dataset.id)      {
+         that.data.business_card[i].businesscard.view++;
+       }
+     }
+     that.setData({
+       business_card: that.data.business_card
      })
    },
    //信息栏选择

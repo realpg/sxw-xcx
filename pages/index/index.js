@@ -123,7 +123,7 @@ Page({
     if (typeof data.data != 'undefined')
       that.setData(data.data)
     let display = that.data.display;
-    wx.createIntersectionObserver().relativeToViewport().observe('.notice', (res) => {
+    wx.createIntersectionObserver().relativeToViewport().observe('#hidden', (res) => {
       res.intersectionRect.height // 相交区域的高度
       console.log(343434, res.intersectionRect.height)
       if (res.intersectionRect.height > 0) {
@@ -892,12 +892,13 @@ Page({
     })
   },
 
+ 
 //监听用户滑动事件
   // onPageScroll(Object) {
   //   console.log('滑动距离', Object.scrollTop)
   //   that=this;
   //   let display = that.data.display;
-  //   if (Object.scrollTop < 400) {
+  //   if (Object.scrollTop < 500 && Object.scrollTop >= 0) {
   //       that.setData({
   //         display: 'none'
   //       })

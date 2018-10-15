@@ -132,3 +132,22 @@ color:#666
   line-height: 28rpx;
   text-align: center;
 }
+
+
+
+.new{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between; 
+  font-size: 28rpx;
+  align-items: center;
+}
+.jiantou_Img_css{
+  width: 18rpx;
+  height: 28rpx;
+}
+.new_xiaoxi{
+  width: 60rpx;
+  height: 60rpx;
+}

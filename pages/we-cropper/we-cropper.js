@@ -934,14 +934,14 @@ function cut () {
     self.ctx.fillRect(x + width, 0, boundWidth - x - width, boundHeight);
     self.ctx.fill();
 
-    self.ctx.beginPath()
-    // self.ctx.setStrokeStyle('white')
-    // self.ctx.setLineDash([5,5])
-    // self.ctx.arc(boundWidth / 2, boundHeight/2, width/2, 0, 2 * Math.PI)
-    self.ctx.setStrokeStyle('black')
-    self.ctx.setLineDash([5, 10],5)
-    self.ctx.arc(boundWidth / 2, boundHeight / 2, width / 2, 0, 2 * Math.PI)
-    self.ctx.stroke()
+    // self.ctx.beginPath()
+    // // self.ctx.setStrokeStyle('white')
+    // // self.ctx.setLineDash([5,5])
+    // // self.ctx.arc(boundWidth / 2, boundHeight/2, width/2, 0, 2 * Math.PI)
+    // self.ctx.setStrokeStyle('black')
+    // self.ctx.setLineDash([5, 10],5)
+    // self.ctx.arc(boundWidth / 2, boundHeight / 2, width / 2, 0, 2 * Math.PI)
+    // self.ctx.stroke()
 
     boundOption.forEach(function (op) {
       self.ctx.beginPath();

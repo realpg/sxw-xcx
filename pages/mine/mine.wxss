@@ -235,6 +235,9 @@ align-items: center;
   font-size: 26rpx;
   margin-right: 20rpx;
 }
+.singIn_css{
+  background: #999999;
+}
 
 .gold {
   color: #ff9800;

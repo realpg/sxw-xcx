@@ -131,7 +131,7 @@ font-size: 26rpx;
 margin-top: 40rpx;
 }
 .hot_word_css{
-  background: #E1E1E1;
+  background: #01C46C;
   padding: 6rpx 20rpx;
   color: #fff;
   border-radius: 30rpx;

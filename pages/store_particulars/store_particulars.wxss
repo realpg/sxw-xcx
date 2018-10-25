@@ -634,7 +634,7 @@ shareBtn::after {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
-  top: 0;
+  bottom: 0;
   left: 0;
 }
 .select_column_Show{
@@ -643,6 +643,7 @@ shareBtn::after {
 .select_column_Hide {
    display: none;
 }
+
 .select_column_Content {
   padding: 30rpx 0  0;
   width: 100%;
@@ -655,6 +656,7 @@ shareBtn::after {
   bottom: 0;
   z-index: 999;
   font-size: 32rpx;
+  
 }
 .select{
   width: 100%;

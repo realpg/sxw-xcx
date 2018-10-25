@@ -24,7 +24,7 @@
     </view>
 
     <view class='option'>
-      <view class='option_css' bindtap='setLike_card_Click' data-id='{{business_card.userid}}' data-mid='2'>
+      <view class='option_css' bindtap='setLike_card_Click' data-id='{{business_card.userid}}' data-mid='2' data-index="{{idx}}">
         <image class='icon' src='{{business_card.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'></image>
         <text> 点赞</text>
       </view>
@@ -32,11 +32,13 @@
         <image class='icon' src='{{business_card.I_favorite?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
         <text>  收藏</text>
       </view>
-      <view class='option_css' bindtap='selectClick' >
+       <view class='option_css' bindtap='selectClick' >
           <image class='icon' src='../../images/store/share.png'></image>
           <text class='share_text'>  分享</text>
-      </view>
+      </view> 
     </view>
+  
+      
   </view>
 
 
@@ -69,7 +71,7 @@
 
 
   <!--具体信息-->
-  <template is='messageBox' data='{{message:messageList}}'></template>
+  <template is='messageBox' data='{{message}}'></template>
 
   <!-- <view class='message' wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
@@ -197,7 +199,7 @@
 
 <!-- 弹出选择栏 -->
 <view class="select_column {{is_select_True?'select_column_Show':'select_column_Hide'}}" bindtap='hideSelect'>
-  <view class='select_column_Content' catchtap='Rule'>
+  <view class=" select_column_Content" catchtap='Rule'>
     <view>分享到</view>
     <view class='select'>
        <view>

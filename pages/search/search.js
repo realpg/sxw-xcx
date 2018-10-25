@@ -198,7 +198,7 @@ Page({
        that.setData({
          hint: '未找到对应搜索结果'
        })
-     },1500)
+     },2000)
   },
 
   //查询全部 
@@ -742,35 +742,67 @@ Page({
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
+    for (var i in that.data.messageList) {
+      if (that.data.messageList[i].id == e.currentTarget.dataset.id) {
+        that.data.messageList[i].businesscard.view++;
+      }
+    }
+    that.setData({
+      messageList: that.data.messageList
+    })
   },
-  //点赞
+  
+  //点赞 取消
   setLikeClick: function (e) {
-
+    const that = this;
+    var index = e.currentTarget.dataset.index
+    console.log("改变收藏信息", index, that.data.messageList[index])
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    var param = {
-      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
-      // _token: wx.getStorageSync('DTUserinfo')._token,
-      item_mid: e.currentTarget.dataset.mid,
-      item_id: e.currentTarget.dataset.id
-    };
-    util.setLike(param, function (res) {
-      console.log('点击点赞', res);
-      wx.showToast({
-        title: '点赞成功',
-        icon: 'none',
-        duration: 2000
-      })
-      for (var i in that.data.messageList) {
-        if (that.data.messageList[i].id == res.itemid && that.data.message[i].mid == e.currentTarget.dataset.mid) {
-          that.data.messageList[i].I_agree = true;
-          that.data.messageList[i].like++;
-        }
+
+    if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
+      if (that.data.messageList[index].I_agree == false) {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id
+        };
+        util.setLike(param, function (res) {
+          console.log('点赞', res, that.data.messageList[index]);
+          wx.showToast({
+            title: '点赞成功',
+            icon: 'none',
+            duration: 2000
+          })
+          that.data.messageList[index].I_agree = true;
+          that.data.messageList[index].like++;
+
+          that.setData({
+            messageList: that.data.messageList
+          })
+        }, null)
+      } else {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id,
+          cancle: '1'
+        };
+        util.setLike(param, function (res) {
+          console.log('取消点赞', res, that.data.messageList[index], that.data.messageList);
+          that.data.messageList[index].I_agree = false;
+          that.data.messageList[index].like--;
+          that.setData({
+            messageList: that.data.messageList
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none',
+            duration: 2000
+          })
+        }, null)
       }
       that.setData({
         messageList: that.data.messageList
       })
-    }, null)
-
+    }
   },
 
   //关注 取消
@@ -841,17 +873,18 @@ Page({
     wx.navigateTo({
       url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
     })
+    for (var i in that.data.messageList){
+      if (that.data.messageList[i].id == e.currentTarget.dataset.id && that.data.messageList[i].mid == e.currentTarget.dataset.mid) {
+        that.data.messageList[i].page_view++;
+      }
+    }
+    that.setData({
+      messageList: that.data.messageList
+    })
   },
   searching: function () {
     that.setData({
       searching: false
-    })
-  },
-
-  //点击头像查看名片
-  messageList_click: function (e) {
-    wx.navigateTo({
-      url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
   },
 

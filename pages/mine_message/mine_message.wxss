@@ -6,20 +6,23 @@
   font-size: 30rpx;
   line-height: 110rpx;
   display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx;
   align-items: center;
 
+  }
+  .xiaoxi_CSS{
+    display: flex;
+    align-items: center;
   }
 .xiaoxi{
   width: 60rpx;
   height: 60rpx;
-  margin-left: 10rpx;
-  margin-right: 20rpx;
+  margin-right: 10rpx;
 }
 .jiantou_Img{
   width: 18rpx;
   height: 28rpx;
-  position: absolute;
-  right: 5%;
 }
 
 
@@ -118,7 +121,7 @@ color:#666
 
 .hint{
   position: absolute;
-  left:20rpx;
+  left:30rpx;
   top: -80rpx;
 }
 .hint_css{
@@ -147,6 +150,7 @@ color:#666
   width: 18rpx;
   height: 28rpx;
 }
+
 .new_xiaoxi{
   width: 60rpx;
   height: 60rpx;

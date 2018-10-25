@@ -227,13 +227,12 @@ padding-bottom: 3%;
 .main_business{
   margin-top: 10rpx;
   line-height: 46rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
    display: -webkit-box; 
   align-items: center;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  color: #666;
 }
 .enter{
   background: #01C46C;

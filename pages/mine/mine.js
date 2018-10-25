@@ -243,60 +243,140 @@ Page({
   singInClick: function() {
     let date = new Date();
     let day = date.getDay();
-
-    let param = {
-      userid: that.data.business_card.userid,
-      _token: that.data.business_card._token,
-    };
-    util.signIn(param, function(ret) {
-      console.log("签到记录", ret, day);
-
-      switch (day) {
-        case 1:
-          that.data.sign_in_date[0].isSignin = true;
-          break;
-
-        case 2:
-          that.data.sign_in_date[1].isSignin = true;
-          break;
-
-        case 3:
-          that.data.sign_in_date[2].isSignin = true;
-          break;
-
-        case 4:
-          that.data.sign_in_date[3].isSignin = true;
-          break;
-
-        case 5:
-          that.data.sign_in_date[4].isSignin = true;
-          break;
-
-        case 6:
-          that.data.sign_in_date[5].isSignin = true;
-          break;
-
-        case 7:
-          that.data.sign_in_date[6].isSignin = true;
-          break;
-
-        default:
-
-          break;
+    console.log('签到权限', app.globalData.DTuserInfo)
+    if (app.globalData.DTuserInfo.groupid != 6) {
+      if (app.globalData.DTuserInfo.updating) {
+        wx.showModal({
+          title: '个人信息审核中',
+          content: '请等待审核完成',
+          showCancel: false
+        })
+      } else {
+        wx.showModal({
+          title: '请完善个人信息！',
+          content: '是否前往完善个人信息?',
+          showCancel: true,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.navigateTo({
+                url: "../personal_data/personal_data"
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
       }
+      return;
+    } else {
+      let param = {
+        userid: that.data.business_card.userid,
+        _token: that.data.business_card._token,
+      };
+      util.signIn(param, function (ret) {
+        console.log("签到记录", ret, day);
 
-      wx.showToast({
-        title: '金币+' + that.data.gold_coin_get,
-        duration: 1500
-      })
-      that.data.business_card.credit += parseInt(that.data.gold_coin_get)
+        switch (day) {
+          case 1:
+            that.data.sign_in_date[0].isSignin = true;
+            break;
 
-      that.setData({
-        sign_in_date: that.data.sign_in_date,
-        business_card: that.data.business_card,
-        clockin_today:true
+          case 2:
+            that.data.sign_in_date[1].isSignin = true;
+            break;
+
+          case 3:
+            that.data.sign_in_date[2].isSignin = true;
+            break;
+
+          case 4:
+            that.data.sign_in_date[3].isSignin = true;
+            break;
+
+          case 5:
+            that.data.sign_in_date[4].isSignin = true;
+            break;
+
+          case 6:
+            that.data.sign_in_date[5].isSignin = true;
+            break;
+
+          case 7:
+            that.data.sign_in_date[6].isSignin = true;
+            break;
+
+          default:
+
+            break;
+        }
+
+        wx.showToast({
+          title: '金币+' + that.data.gold_coin_get,
+          duration: 1500
+        })
+        that.data.business_card.credit += parseInt(that.data.gold_coin_get)
+
+        that.setData({
+          sign_in_date: that.data.sign_in_date,
+          business_card: that.data.business_card,
+          clockin_today: true
+        })
       })
-    })
+    }
+    // let param = {
+    //   userid: that.data.business_card.userid,
+    //   _token: that.data.business_card._token,
+    // };
+    // util.signIn(param, function(ret) {
+    //   console.log("签到记录", ret, day);
+
+    //   switch (day) {
+    //     case 1:
+    //       that.data.sign_in_date[0].isSignin = true;
+    //       break;
+
+    //     case 2:
+    //       that.data.sign_in_date[1].isSignin = true;
+    //       break;
+
+    //     case 3:
+    //       that.data.sign_in_date[2].isSignin = true;
+    //       break;
+
+    //     case 4:
+    //       that.data.sign_in_date[3].isSignin = true;
+    //       break;
+
+    //     case 5:
+    //       that.data.sign_in_date[4].isSignin = true;
+    //       break;
+
+    //     case 6:
+    //       that.data.sign_in_date[5].isSignin = true;
+    //       break;
+
+    //     case 7:
+    //       that.data.sign_in_date[6].isSignin = true;
+    //       break;
+
+    //     default:
+
+    //       break;
+    //   }
+
+    //   wx.showToast({
+    //     title: '金币+' + that.data.gold_coin_get,
+    //     duration: 1500
+    //   })
+    //   that.data.business_card.credit += parseInt(that.data.gold_coin_get)
+
+    //   that.setData({
+    //     sign_in_date: that.data.sign_in_date,
+    //     business_card: that.data.business_card,
+    //     clockin_today:true
+    //   })
+    // })
   },
 
   refresh: function() {
@@ -304,6 +384,10 @@ Page({
       that.setData({
         business_card: app.globalData.DTuserInfo
       })
+      that.setData({
+        clockin_today: app.globalData.DTuserInfo.clockin_today
+      })
+      console.log("签到 信息", app.globalData.DTuserInfo.clockin_today)
       console.log("现在的userinfo", that.data.business_card)
     });
 
@@ -333,16 +417,14 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    that.setData({
-      clockin_today: app.globalData.DTuserInfo.clockin_today
-    })
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    that.refresh()
+    // that.refresh()
   },
 
   /**

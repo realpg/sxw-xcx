@@ -40,6 +40,14 @@ Page({
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
     })
+    for (var i in that.data.messageList) {
+      if (that.data.messageList[i].userid == e.currentTarget.dataset.id) {
+        that.data.messageList[i].bussinesscard.view++;
+      }
+    }
+    that.setData({
+      messageList: that.data.messageList
+    })
   },
 
   /**

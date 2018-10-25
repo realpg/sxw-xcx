@@ -1,5 +1,5 @@
  <import src="../template/template.wxml"/> 
-<view class='revision' wx:for='{{message}}' wx:for-index='idx'>
+<view class='revision' wx:for='{{message_details}}' wx:for-index='idx'>
   <view class='revision_head'  style='position:relative'>
     <view class='headImg_vipImg'>
       <image class='revision_headImg' bindtap='messageList_click' data-id='{{item.userid}}'  src='{{item.head_portrait_icon}}'></image>
@@ -28,8 +28,8 @@
           <image  class='revision_message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick_css'  mode='aspectFill' data-id='{{index}}' src='{{item}}'></image>
         </view>
       </view>
-
-    <view class='revision_address'>存放地：{{item.address}}</view>
+ <view wx:if="{{item.mid ==6}}" class='revision_address'>收货地：{{item.address}}</view>  
+    <view wx:else class='revision_address'>存放地：{{item.address}}</view>
     <view class='revision_time'> 发布时间：{{item.addtime}}</view>
      <view class='revision_time'> 更新时间：{{item.edittime}}</view>
       <view class='revision_hint'>联系时请说是在中国纱线网上看到的</view>
@@ -38,7 +38,7 @@
         <image class='revision_eye_Img' src='../../images/index/eye.png'/> 
         <text  class='revision_eye_num'>{{item.page_view}}</text>
       </view>
-       <view class='revision_eye'  bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}'>
+       <view class='revision_eye'  bindtap='setLikeClick_css' data-id='{{item.id}}' data-mid='{{item.mid}}'  data-index="{{idx}}">
         <image class='revision_eye_Img' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> 
         <text  class='revision_eye_num'>{{item.like}}</text>
       </view>
@@ -46,12 +46,10 @@
         <image class='revision_eye_Img'src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'/> 
         <text class='revision_eye_num'>{{item.favorite}}</text>
       </view>
-       <button open-type='share'>
-          <view class='dianzan_Css'>
-            <image class='dianzan' src='../../images/store/share.png'></image>
-            <text class='like'>转发</text>
-          </view>
-        </button>
+         <view class='revision_eye' bindtap='selectClick' >
+          <image class='revision_eye_Img' src='../../images/store/share.png'></image>
+          <text class='revision_eye_num'>  分享</text>
+      </view>
     </view>
   </view>
 </view>
@@ -211,7 +209,7 @@
 
 <!--推荐信息-->
 
- <template is='messageBox' data='{{message:messageList}}'></template> 
+ <template is='messageBox' data='{{message}}'></template> 
  
  <!-- <view class='message' wx-if="{{!(item.id==id && item.mid==mid)}}" wx:for='{{messageList}}' wx:for-index="idx">
   <view class='messageCss' data-id='{{item.id}}'>
@@ -301,7 +299,46 @@
   </view>
 
  <view class='navigation_bar_share'>
-      <button open-type="share" class='shareBtn'>
-      <view>立即分享</view></button>
+        <button bindtap='selectClick' class='shareBtn'>
+        <view>立即分享</view>
+      </button>
+ 
     </view> 
 </view>
+
+
+
+<!-- 图片保存弹出层 -->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap='hideRule'>
+
+  <view class='ruleZhezhaoContent' catchtap='Rule'>
+    <canvas canvas-id='canvas' class='hide' style='width:750px;height:400px;margin: 0;padding: 0;display: block;border-radius: 10rpx;'></canvas>
+     <!-- <image src='{{Img_code}}'></image> -->
+    <image src='{{canvas_img}}' mode='widthFix' style='width:100%;height:386rpx;'></image>
+    <text class='hint'>点击将图片保存到手机相册，朋友圈添加分享图片</text>
+    <button bindtap="saveImage" class='save_but'>保存到手机</button>
+  </view>
+</view>
+
+
+<!-- 弹出选择栏 -->
+<view class="select_column {{is_select_True?'select_column_Show':'select_column_Hide'}}" bindtap='hideSelect'>
+  <view class='select_column_Content' catchtap='Rule'>
+    <view>分享到</view>
+    <view class='select'>
+       <view>
+       <button class='friend_btu' open-type='share' hover-class="none">
+          <image class='friends_Img'  src='../../images/store/friend.png'></image>
+          <view>好友和微群</view>
+      </button>
+      </view>
+      <view bindtap='shareClick' >
+           <image class='friends_Img' src='../../images/store/cricle_friends.png'></image>
+          <view>朋友圈</view>
+      </view>
+    </view> 
+        <view class='cancel' bindtap='hideSelect'>取消</view>
+      </view>
+    </view>
+
+   

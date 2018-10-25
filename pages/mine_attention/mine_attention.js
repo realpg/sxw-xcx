@@ -59,11 +59,11 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           setTimeout(function () {
             that.loading()
-          }, 2000)
+          }, 1500)
         }, null)
 
   },
@@ -88,7 +88,7 @@ Page({
           wx.showToast({
             title: '收藏成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message[index].I_favortie = true;
           that.data.message[index].favorite++;
@@ -117,11 +117,11 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           setTimeout(function() {
             that.loading()
-          }, 2000)
+          }, 1500)
 
         }, null)
       }
@@ -133,35 +133,58 @@ Page({
 
   },
 
-  //点赞
-  setLikeClick: function(e) {
+  //点赞 取消
+  setLikeClick: function (e) {
+    const that = this;
+    var index = e.currentTarget.dataset.index
+    console.log("改变收藏信息", index, that.data.message[index])
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    var param = {
-      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
-      // _token: wx.getStorageSync('DTUserinfo')._token,
-      item_mid: e.currentTarget.dataset.mid,
-      item_id: e.currentTarget.dataset.id
-    };
-    util.setLike(param, function(res) {
-      console.log('点击点赞', res);
-      wx.showToast({
-        title: '点赞成功',
-        icon: 'none',
-        duration: 2000
-      })
-      for (var i in that.data.message) {
-        if (that.data.message[i].id == res.itemid && that.data.message[i].mid == e.currentTarget.dataset.mid) {
-          that.data.message[i].I_agree = true;
-          that.data.message[i].like++;
-        }
+
+    if (that.data.message[index].id == e.currentTarget.dataset.id && that.data.message[index].mid == e.currentTarget.dataset.mid) {
+      if (that.data.message[index].I_agree == false) {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id
+        };
+        util.setLike(param, function (res) {
+          console.log('点赞', res, that.data.message[index]);
+          wx.showToast({
+            title: '点赞成功',
+            icon: 'none',
+            duration: 1500
+          })
+          that.data.message[index].I_agree = true;
+          that.data.message[index].like++;
+
+          that.setData({
+            message: that.data.message
+          })
+        }, null)
+      } else {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id,
+          cancle: '1'
+        };
+        util.setLike(param, function (res) {
+          console.log('取消点赞', res, that.data.message[index], that.data.message);
+          that.data.message[index].I_agree = false;
+          that.data.message[index].like--;
+          that.setData({
+            message: that.data.message
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none',
+            duration: 1500
+          })
+        }, null)
       }
       that.setData({
         message: that.data.message
       })
-    }, null)
-
+    }
   },
-
 
   //信息栏选择
   selectClick: function(e) {

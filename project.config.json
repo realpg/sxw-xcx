@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "消息",
-					"pathName": "pages/ranking_list/ranking_list",
+					"pathName": "pages/mine_message/mine_message",
 					"query": ""
 				},
 				{
@@ -83,6 +83,12 @@
 					"id": -1,
 					"name": "消息",
 					"pathName": "pages/mine_message/mine_message",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "信息扫码进入",
+					"pathName": "pages/particulars/particulars",
 					"query": ""
 				}
 			]

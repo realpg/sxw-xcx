@@ -457,11 +457,15 @@ Page({
         icon: "none",
       })
     } else {
-
+      wx.showLoading({
+        title: '发送中',
+        mask:true
+      })
       util.sendVertifyCode({
         phonenum: that.data.businesscard.mobile
       }, function(ret) {
         console.log("发送读秒")
+        wx.hideLoading()
         var num = 61;
         var timer = setInterval(function() {
           num--;

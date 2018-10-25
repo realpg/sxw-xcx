@@ -29,6 +29,7 @@ Page({
     ImageList: [],
     gold_coin_balance: '0',
     gold_coin_pay: '1',
+    vip:''
   },
 
   getEdit: function () {
@@ -76,8 +77,14 @@ Page({
       }
     }, null)
 
+    var s_id;
+    if (that.data.itemid)
+      s_id = 16; //修改
+    else
+      s_id = 6; //发布
+
     util.getSystemKeyValue({
-      id: 4
+      id: s_id
     }, function (ret) {
       that.setData({
         gold_coin_pay: ret.value,
@@ -306,7 +313,7 @@ Page({
   //个人信息详情
   personal_data_click: function () {
     wx.navigateTo({
-      url: '../ personal_data_view / personal_data_view',
+      url: '../personal_data_view/personal_data_view',
     })
   },
   //我要推广
@@ -333,7 +340,8 @@ Page({
   onLoad: function (options) {
     that = this
     that.setData({
-      gold_coin_balance: app.globalData.DTuserInfo.credit
+      gold_coin_balance: app.globalData.DTuserInfo.credit,
+      vip: app.globalData.DTuserInfo.businesscard.vip
     })
     console.log('参数', options)
     if (options.itemid) {

@@ -177,7 +177,8 @@ background: #fff;
   border: 1rpx solid #01C46C;
   border-radius: 10rpx;
   background: #01C46C;
-  padding: 2rpx 10rpx;
+  padding: 4rpx 10rpx;
+  font-size: 26rpx;
 }
 
 .agreement_css{

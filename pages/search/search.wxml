@@ -23,7 +23,6 @@
 
 <view wx:if='{{!searching}}' >
   <view class='search searchs' >
-
     <view class='search_history'>
       <view class='recently_history'>最近搜索</view>
       <view bindtap='clear' class='del_history'>

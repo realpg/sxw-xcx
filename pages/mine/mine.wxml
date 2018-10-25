@@ -141,13 +141,17 @@
  { id: '8', iconImg: '../../images/personal_center/kefu.png', title: '联系客服', describe: '随时联系客服咨询和反馈', }, -->
 <!-- 选项 -->
 <view class='invite' bindtap='mine_item_click' data-id='0'>
+<view class='invite_css'> 
   <image class='yaoyue_Img_css' src='../../images/personal_center/yaoyue.png' mode='widthFix'></image>
   <text class='context'>邀约赚金币</text>
+  </view>
   <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 <view class='answer' bindtap='mine_item_click' data-id='1'>
+<view class='invite_css'> 
   <image class='yaoyue_Img_css' src='../../images/personal_center/dati.png' mode='widthFix'></image>
   <text class='context'>答题赚金币</text>
+</view>
     <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 

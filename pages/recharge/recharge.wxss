@@ -71,7 +71,7 @@ input{
   background:#01C46C;
   color: #FFFFFF;
   position: fixed;
-  bottom: 100rpx;
+  bottom: 80rpx;
   left: 5%;
   display: flex;
   justify-content: center;

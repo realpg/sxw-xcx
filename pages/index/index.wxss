@@ -554,6 +554,7 @@ align-items: center;
   padding-left: 10%;
   display: flex;
   align-items: center;
+  text-align: center;
   font-size: 30rpx;
   color: #01C46C;
 }
@@ -579,11 +580,10 @@ align-items: center;
 }
 .rev_eye_Img{
   width: 36rpx;
-  height: 36rpx;
+  height: 34rpx;
 }
 .rev_jiantou_img{
   margin-left: 6rpx;
-  margin-top: 4rpx;
   width: 18rpx;
   height: 26rpx;
 }

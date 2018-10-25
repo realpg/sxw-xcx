@@ -6,7 +6,8 @@ var DEBUG_URL = "http://xcx.hzmuji.com";
 var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 var queue = [];
 var requesting = false;
-var showloading=false
+var showloading = false;
+var logining = false;
 
 //接口调用相关方法
 
@@ -27,12 +28,15 @@ function wxRequest(url, param, method, successCallback, errorCallback, loading) 
     loading: loading
   })
   console.log(queue)
-  if(!getApp().globalData.DTuserInfo){
-      getApp().getopenid(function(){
+  if (!getApp().globalData.DTuserInfo) {
+    if (!logining) {
+      logining = true;
+      getApp().getopenid(function() {
+        logining = false;
         requestqueue()
       });
-  }
-  else if (!requesting) {
+    }
+  } else if (!requesting) {
     requestqueue();
   }
 }
@@ -42,9 +46,9 @@ function wxRequest(url, param, method, successCallback, errorCallback, loading) 
 function requestqueue() {
   if (queue.length < 1) {
     requesting = false;
-    if(showloading){
-    hideLoading()
-      showloading=false
+    if (showloading) {
+      hideLoading()
+      showloading = false
     }
     return;
   } else {
@@ -85,9 +89,9 @@ function requestqueue() {
     }
     param._token = App.globalData.DTuserInfo._token;
   }
-  if (loading && !showloading){
+  if (loading && !showloading) {
     showLoading();
-    showloading=true;
+    showloading = true;
   }
   var time_start = new Date().getTime();
   console.log("param：" + JSON.stringify(param))
@@ -106,7 +110,13 @@ function requestqueue() {
         successCallback(ret.data.ret);
       else {
         if (ret.data.code == '102') {
-          App.getopenid();
+          if (!logining) {
+            logining = true;
+            getApp().getopenid(function () {
+              logining = false;
+              requestqueue()
+            });
+          }
           setTimeout(function() {
             wxRequest(url, param, method, successCallback, errorCallback);
           }, 500)
@@ -568,7 +578,7 @@ function getMessageByID(param, successCallback, errorCallback) {
 
 function getInviteQR(param, successCallback, errorCallback) {
   // wxRequest(, , "GET", successCallback, errorCallback);
-  const App=getApp()
+  const App = getApp()
   if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
     //user_id未设置
     if (judgeIsAnyNullStr(param.userid)) {
@@ -579,37 +589,40 @@ function getInviteQR(param, successCallback, errorCallback) {
 
   wx.downloadFile({
     url: SERVER_URL + '/api/getInviteQR?userid=' + App.globalData.DTuserInfo.userid + '&_token=' + App.globalData.DTuserInfo._token,
-    success: function (res1) {
+    success: function(res1) {
       successCallback(res1)
     },
-    fail: function (err) {
+    fail: function(err) {
       errorCallback(err);
     }
   });
 }
+
 function RefreshMyQR(param, successCallback, errorCallback) {
   // wxRequest(SERVER_URL + , param, "GET", successCallback, errorCallback);
-  
-    // wxRequest(, , "GET", successCallback, errorCallback);
-    const App = getApp()
-    if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
-      //user_id未设置
-      if (judgeIsAnyNullStr(param.userid)) {
-        param.userid = App.globalData.DTuserInfo.userid;
-      }
-      param._token = App.globalData.DTuserInfo._token;
+
+  // wxRequest(, , "GET", successCallback, errorCallback);
+  const App = getApp()
+  if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
+    //user_id未设置
+    if (judgeIsAnyNullStr(param.userid)) {
+      param.userid = App.globalData.DTuserInfo.userid;
     }
-    console.log("下载文件", param)
-    wx.downloadFile({
-      url: SERVER_URL + '/api/businesscard/RefreshMyQR' + param.userid + '&_token=' + param._token + '&_userid=' + param._userid,
-      success: function (res1) {
-        successCallback(res1)
-      },
-      fail: function (err) {
-        errorCallback(err);
-      }
-    });
+    param._token = App.globalData.DTuserInfo._token;
   }
+  console.log("下载文件", param)
+  wx.downloadFile({
+    url: SERVER_URL + '/api/businesscard/RefreshMyQR' + param.userid + '&_token=' + param._token + '&_userid=' + param._userid,
+    success: function(res1) {
+      successCallback(res1)
+    },
+    fail: function(err) {
+      errorCallback(err);
+    }
+  });
+}
+
+//名片详情页下载二维码
 function getCardQR(param, successCallback, errorCallback) {
   // wxRequest(, , "GET", successCallback, errorCallback);
   const App = getApp()
@@ -620,13 +633,59 @@ function getCardQR(param, successCallback, errorCallback) {
     }
     param._token = App.globalData.DTuserInfo._token;
   }
-console.log("下载文件",param)
+  console.log("下载文件", param)
   wx.downloadFile({
-    url: SERVER_URL + '/api/businesscard/getQRByUserid?userid=' + param.userid + '&_token=' + param._token+'&_userid='+param._userid,
-    success: function (res1) {
+    url: SERVER_URL + '/api/businesscard/getQRByUserid?userid=' + param.userid + '&_token=' + param._token + '&_userid=' + param._userid,
+    success: function(res1) {
       successCallback(res1)
     },
-    fail: function (err) {
+    fail: function(err) {
+      errorCallback(err);
+    }
+  });
+}
+
+//信息详情页下载二维码
+function getInfoQR(param, successCallback, errorCallback) {
+  // wxRequest(, , "GET", successCallback, errorCallback);
+  const App = getApp()
+  if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
+    //user_id未设置
+    if (judgeIsAnyNullStr(param.userid)) {
+      param.userid = App.globalData.DTuserInfo.userid;
+    }
+    param._token = App.globalData.DTuserInfo._token;
+  }
+  console.log("下载文件", param)
+  wx.downloadFile({
+    url: SERVER_URL + '/api/info/getQR?userid=' + param.userid + '&_token=' + param._token + '&mid=' + param.mid + '&itemid=' + param.itemid,
+    success: function(res1) {
+      successCallback(res1)
+    },
+    fail: function(err) {
+      errorCallback(err);
+    }
+  });
+}
+
+//下载头像
+function getHeadImg(param, successCallback, errorCallback) {
+  // wxRequest(, , "GET", successCallback, errorCallback);
+  const App = getApp()
+  if (!judgeIsAnyNullStr(App.globalData.DTuserInfo)) {
+    //user_id未设置
+    if (judgeIsAnyNullStr(param.userid)) {
+      param.userid = App.globalData.DTuserInfo.userid;
+    }
+    param._token = App.globalData.DTuserInfo._token;
+  }
+  console.log("下载文件", param)
+  wx.downloadFile({
+    url: SERVER_URL + '/api/businesscard/getAvatarByUserid?userid=' + param.userid + '&_token=' + param._token + '&_userid=' + param._userid,
+    success: function(res1) {
+      successCallback(res1)
+    },
+    fail: function(err) {
       errorCallback(err);
     }
   });
@@ -636,15 +695,15 @@ function myInvited(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/myInvited', param, "GET", successCallback, errorCallback);
 }
 
-function uploadImage(param, successCallback, errorCallback,showloading) {
-  if(typeof showloading=='undefined')
-    showloading=false
-    if(showloading){
-      wx.showLoading({
-          title:"上传中",
-          mask:true,
-      })
-    }
+function uploadImage(param, successCallback, errorCallback, showloading) {
+  if (typeof showloading == 'undefined')
+    showloading = false
+  if (showloading) {
+    wx.showLoading({
+      title: "上传中",
+      mask: true,
+    })
+  }
   wx.uploadFile({
     url: SERVER_URL + '/api/uploadImage',
     filePath: param.file,
@@ -674,7 +733,7 @@ function uploadImage(param, successCallback, errorCallback,showloading) {
     fail: function(err) {
       console.log("wxRequest fail:" + JSON.stringify(err))
       wx.showToast({
-        title: err ? JSON.stringify(err): "上传失败",
+        title: err ? JSON.stringify(err) : "上传失败",
         icon: 'none',
         duration: 2000
       })
@@ -1094,28 +1153,27 @@ function getToday() {
   return year + "-" + month + "-" + day;
 }
 //隐藏公司名
-function hiddenCompany(obj){
+function hiddenCompany(obj) {
   var card = getApp().globalData.DTuserInfo.businesscard;
   if (card.vip > 0) {
     return obj;
-  } else{
+  } else {
     obj = obj.substring(0, 2) + '****' + obj.substring(obj.length - 4, obj.length)
     return obj;
   }
 }
 //拨打电话权限
-function makePhoneCall(obj){
+function makePhoneCall(obj) {
   var card = getApp().globalData.DTuserInfo.businesscard;
-  if(card.vip>0){
+  if (card.vip > 0) {
     // if(false){
     wx.makePhoneCall(obj)
-  } 
-  else{
+  } else {
     wx.showModal({
       title: '会员用户才能拨打电话',
       content: '是否跳转至会员购买页面?',
-      success:function(res){
-        if(res.confirm){
+      success: function(res) {
+        if (res.confirm) {
           wx.navigateTo({
             url: '../mine_promotion/mine_promotion',
           })
@@ -1134,28 +1192,70 @@ function phonenum_verify(phone) {
   return true;
 }
 
-function get_string_bytes(str){
-  var bytesCount=0;
+function get_string_bytes(str) {
+  var bytesCount = 0;
   for (var i = 0; i < str.length; i++) {
     var c = str.charAt(i);
     if (/^[\u0000-\u00ff]$/.test(c)) //匹配双字节
     {
       bytesCount += 1;
-    }
-    else {
+    } else {
       bytesCount += 2;
     }
   }
   return bytesCount
 }
 
+//同步点赞
+function syncAgree(mid, itemid, agree) {
+  var pages = getCurrentPages();
+  for (var i in pages) {
+    var page = pages[i];
+    if (typeof(page.data.message) != 'undefined') {
+      var message = page.data.message
+      console.log("寻找信息", message, mid, itemid)
+      for (var i in message) {
+        if (message[i].mid == mid && message[i].id == itemid) {
+          console.log("找到信息")
+          message[i].I_agree = agree;
+          message[i].like = agree ? message[i].like + 1 : message[i].like - 1
+          page.setData({
+            message: message
+          })
+        }
+      }
+    }
+  }
+}
+
+//同步点赞
+function syncFavorite(mid, itemid, agree) {
+  var pages = getCurrentPages();
+  for (var i in pages) {
+    var page = pages[i];
+    if (typeof(page.data.message) != 'undefined') {
+      var message = page.data.message
+      console.log("寻找信息", message, mid, itemid)
+      for (var i in message) {
+        if (message[i].mid == mid && message[i].id == itemid) {
+          console.log("找到信息")
+          message[i].I_favortie = agree;
+          message[i].favorite = agree ? message[i].favorite + 1 : message[i].favorite - 1
+          page.setData({
+            message: message
+          })
+        }
+      }
+    }
+  }
+}
 module.exports = {
   getOpenId: getOpenId,
   login: login,
   test: test,
   getByConditions: getByConditions,
   getAllList: getAllList,
-  makePhoneCall:makePhoneCall,
+  makePhoneCall: makePhoneCall,
   getSellList: getSellList,
   getBuyList: getBuyList,
   getFJMYList: getFJMYList,
@@ -1175,6 +1275,8 @@ module.exports = {
   visitingCard: visitingCard,
   getInvited: getInvited,
   hiddenCompany: hiddenCompany,
+  syncAgree: syncAgree,
+  syncFavorite: syncFavorite,
 
   GetAdvertising: GetAdvertising,
   GetAdvertisingInfo: GetAdvertisingInfo,
@@ -1219,17 +1321,19 @@ module.exports = {
   selectIssue: selectIssue,
   sendwriteBack: sendwriteBack,
   goldListClick: goldListClick,
-  get_Send_message:get_Send_message,
-  
+  get_Send_message: get_Send_message,
+
   getMySellList: getMySellList,
   getMyBuyList: getMyBuyList,
   getMyFJMYList: getMyFJMYList,
   getMyCardList: getMyCardList,
   getMessageByID: getMessageByID,
   getInviteQR: getInviteQR,
-  RefreshMyQR:RefreshMyQR,
+  RefreshMyQR: RefreshMyQR,
   getCardQR: getCardQR,
-  myInvited:myInvited,
+  getInfoQR: getInfoQR,
+  getHeadImg: getHeadImg,
+  myInvited: myInvited,
   get_Receive_message: get_Receive_message,
   formatTime: formatTime,
   formatDate: formatDate,

@@ -4,21 +4,27 @@
   <view><text class='comments'>我的评论</text></view>
 </view> -->
 <view bindtap='view_click' data-id='1' class='xiaoxi_css' style='position: relative;'>
+ <view class='xiaoxi_CSS'>
   <text  class="hint" ><text wx:if="{{business_card.message>0}}" class='hint_css'>{{business_card.message}}</text></text>
   <image class='xiaoxi' src='../../images/personal_center/inform.png'></image>
   <text>系统通知</text>
+  </view>
    <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 
 <view bindtap='view_click' data-id='2' class='xiaoxi_css' style='position: relative;'>
+ <view class='xiaoxi_CSS'>
   <image class='xiaoxi' src='../../images/personal_center/leave_message.png'></image>
   <text>收到留言</text>
+  </view>
    <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 
 <view bindtap='view_click' data-id='3' class='xiaoxi_css' style='position: relative;'>
+<view class='xiaoxi_CSS'>
   <image class='xiaoxi' src='../../images/personal_center/comment.png'></image>
   <text>我的评论</text>
+</view>
    <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 

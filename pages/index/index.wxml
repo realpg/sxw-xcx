@@ -55,12 +55,12 @@
     <image class='notImg' src='../../images/index/headline.png' mode='widthFix' />
     <swiper class='notT' autoplay="true" circular="true" vertical='true'>
       <block wx:for="{{information_list}}">
-      
+
         <swiper-item class='vvv'>
-        
+
           <view class='noticeText'>{{item.title}}</view>
-          </swiper-item>
-        </block>
+        </swiper-item>
+      </block>
     </swiper>
     <image class='notImg_one' src='../../images/index/jiantou_right.png' />
   </view>
@@ -157,7 +157,8 @@
       <view data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
         <view class='revision_lable_css'>
           <view class='rev_lable' wx:for='{{item.lableList}}' wx:for-index='index'>
-           <text class='revision_lable_css' >#{{item.tagname}}#</text></view>
+            <text class='revision_lable_css'>#{{item.tagname}}#</text>
+          </view>
         </view>
         <view class='rev_context'>
           {{item.details}}
@@ -165,17 +166,21 @@
       </view>
       <view class='message_Img' wx:if='{{item.message_Img[0].message_Image!=""}}'>
         <view class='message_Image' wx:for='{{item.message_Img}}'>
-          <image data-id='{{message.id}}' data-mid='{{message.mid}}' data-idx='{{idx}}' data-index="{{index}}" catchtap='previewImClick' class='message_Image_Css' src='{{item.message_Image}}' />
+          <block wx:if="{{item.message_Image!==''}}">
+            <image data-id='{{message.id}}' data-mid='{{message.mid}}' data-idx='{{idx}}' data-index="{{index}}" catchtap='previewImClick' class='message_Image_Css' src='{{item.message_Image}}' />
+          </block>
         </view>
       </view>
-      <view class='rev_address'>存放地：{{item.address}}</view>
+      <view wx:if="{{item.mid ==6}}" class='rev_address'>收货地：{{item.address}}</view>  
+      <view wx:else class='rev_address'>存放地：{{item.address}}</view>
+
       <view class='rev_time'>{{item.addtime}}</view>
       <view class='rev_bottom'>
         <view class='rev_eye'>
           <image class='rev_eyeImg' src='../../images/index/eye.png' />
           <text class='rev_eye_num'>{{item.page_view}}</text>
         </view>
-        <view class='rev_eye' bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}'>
+        <view class='rev_eye' bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}">
           <image class='rev_eye_Img' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}' />
           <text class='rev_eye_num'>{{item.like}}</text>
         </view>
@@ -183,7 +188,8 @@
           <image class='rev_eye_Img' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}' />
           <text class='rev_eye_num'>{{item.favorite}}</text>
         </view>
-        <view class='Check_the_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>查看详情
+        <view class='Check_the_details' data-mid='{{item.mid}}' data-id='{{item.id}}' bindtap='see_details_click'>
+          <text>查看详情</text>
           <image class='rev_jiantou_img' src='../../images/index/jiantou.png'></image>
         </view>
       </view>

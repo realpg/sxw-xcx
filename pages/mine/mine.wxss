@@ -340,8 +340,6 @@ width: 22%;
 .jiantou_Img{
   width: 18rpx;
   height: 28rpx;
-  position: absolute;
-  right: 5%;
 }
 .redactList{
   display: flex;
@@ -418,27 +416,35 @@ background:#e64340;
   background: #fff;
   height: 100rpx;
   display: flex;
+  padding: 0 30rpx;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 1rpx solid #e6eaf2
+}
+.invite_css{
+  width: 40%;
+  display: flex;
+  align-items: center;
 }
 .yaoyue_Img{
   margin-left: 5%;
   width: 60rpx;
-  
 }
 .yaoyue_Img_css{
-  margin-left: 5%;
   width: 50rpx;
   
 }
 .context{
- margin-left: 20rpx;
+ margin-left: 10rpx;
  font-size: 28rpx;
 }
 .answer{
+  display: flex;
+  padding: 0 30rpx;
+  justify-content: space-between;
   background: #fff;
   height: 100rpx;
-  display: flex;
+
   align-items: center;
 }
 .logo{

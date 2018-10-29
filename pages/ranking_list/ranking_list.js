@@ -89,8 +89,10 @@ let that;
        var card = getApp().globalData.DTuserInfo.businesscard;
        if (card.vip < 1) {
          for (var i in that.data.todayList) {
+           if (that.data.todayList[i].businesscard.buys > 0){
            that.data.todayList[i].businesscard.mobile = that.data.todayList[i].businesscard.mobile.substring(0, 3) + '****' + that.data.todayList[i].businesscard.mobile.substring(7, 11);
            that.data.todayList[i].businesscard.company = that.data.todayList[i].businesscard.company.substring(0, 2) + '****' + that.data.todayList[i].businesscard.company.substring(that.data.todayList[i].businesscard.company.length - 4, that.data.todayList[i].businesscard.company.length)
+         }
          }
          that.setData({
            business_card: that.data.todayList,
@@ -116,10 +118,12 @@ let that;
           weekList: ret
         })
        var card = getApp().globalData.DTuserInfo.businesscard;
-       if (card.vip < 1) {
+       if (card.vip < 1 ) {
          for (var i in that.data.weekList) {
+           if (that.data.weekList[i].businesscard.buys > 0){
            that.data.weekList[i].businesscard.mobile = that.data.weekList[i].businesscard.mobile.substring(0, 3) + '****' + that.data.weekList[i].businesscard.mobile.substring(7, 11);
            that.data.weekList[i].businesscard.company = that.data.weekList[i].businesscard.company.substring(0, 2) + '****' + that.data.weekList[i].businesscard.company.substring(that.data.weekList[i].businesscard.company.length - 4, that.data.weekList[i].businesscard.company.length)
+           }
          }
          that.setData({
            weekList: that.data.weekList
@@ -145,10 +149,12 @@ let that;
           monthList: list
         })
        var card = getApp().globalData.DTuserInfo.businesscard;
-       if (card.vip < 1) {
+       if (card.vip < 1 ) {
          for (var i in that.data.monthList) {
+           if (that.data.monthList[i].businesscard.buys > 0){
            that.data.monthList[i].businesscard.mobile = that.data.monthList[i].businesscard.mobile.substring(0, 3) + '****' + that.data.monthList[i].businesscard.mobile.substring(7, 11);
            that.data.monthList[i].businesscard.company = that.data.monthList[i].businesscard.company.substring(0, 2) + '****' + that.data.monthList[i].businesscard.company.substring(that.data.monthList[i].businesscard.company.length - 4, that.data.monthList[i].businesscard.company.length)
+         }
          }
          that.setData({
            monthList: that.data.monthList

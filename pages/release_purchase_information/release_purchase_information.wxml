@@ -24,7 +24,7 @@
   <!--所在地-->
   <view class="address">
     <view view class='picker_css'>
-      <text class='sort' decode='emsp'>所在地:&emsp;</text>
+      <text class='sort' decode='emsp'>收货地址:&emsp;</text>
       <input class='Address_input' type='text' placeholder='请输入收货地址' bindblur="changeAddress" value='{{content.address}}'></input>
     </view>
   </view>

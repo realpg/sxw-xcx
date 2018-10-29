@@ -255,17 +255,33 @@ Page({
       util.sellEdit_post(param, function(ret) {
         console.log(ret);
         app.globalData.DTuserInfo.credit -= that.data.gold_coin_pay;
-        wx.showToast({
-          title: "已受理，3个工作日内完成审核",
-          icon: "none",
-          success: function() {
-            setTimeout(function() {
-              wx.reLaunch({
-                url: "../index/index",
-              })
-            }, 2000)
-          }
-        })
+        // 是否要审核
+        if (that.data.Whether_the_audit == 0){
+          wx.showToast({
+            title: "发布成功",
+            icon: "success",
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: "../index/index",
+                })
+              }, 2000)
+            }
+          })
+        } else {
+          wx.showToast({
+            title: "已受理，3个工作日内完成审核",
+            icon: "none",
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: "../index/index",
+                })
+              }, 2000)
+            }
+          })
+        }
+      
       }, null)
     } else {
       var param = {
@@ -355,6 +371,14 @@ Page({
    */
   onReady: function() {
     const that = this;
+    // 获取是否自动审核状态
+    util.getSystemKeyValue({
+      id:1
+    }, function (ret) {
+      that.setData({
+        Whether_the_audit: ret.value,
+      })
+    }, null)
     that.getEdit();
   },
 

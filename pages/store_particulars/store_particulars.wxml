@@ -5,7 +5,7 @@
   <view class='card'>
     <view class='card_css'>
       <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
-      <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}'></image>
+      <image class='vip_Img' src='{{business_card.vip !=0?"../../images/index/vip.png":""}}'></image>
       <view class='truename'>{{business_card.truename}}</view>
       <view class='career'>{{business_card.career}}</view>
       <view class='card_company con'>公司：<text class='fuzzy'>{{business_card.company}}</text></view>
@@ -49,21 +49,22 @@
   <view class='specific'>
     <view class='Shops'>商户简介</view>
     <view class='specific_css'>{{business_card.introduce}}</view>
-
+<view wx:if='{{Whether_company==1}}'>
     <view class='company_photos'>公司照片:</view>
-    <view class='hint_company' wx:if='{{thumb.length==0}}'>该公司没有上传照片</view>
+    <view class='hint_company' wx:if='{{thumb ==""}}'>该公司没有上传照片</view>
     <view class='message_Img'>
       <view class='message_Image' wx:for='{{thumb}}' wx:for-index='index'>
         <image class='message_Image_Css' wx:if='{{item !=""}}' bindtap='previewImClick_company' data-id='{{index}}' src='{{item}}'></image>
       </view>
     </view>
-
+</view>
+<view wx:if='{{Whether_code==1}}'>
     <view class='company_code'>公司二维码:</view>
     <view class='hint_code' wx:if='{{business_card.wxqr.length==0}}'>该公司没有上传二维码</view>
     <view class='code'>
       <image wx:if='{{business_card.wxqr.length!=0}}' bindtap='previewImClick_code' class='code_img' mode="aspectFill" src='{{business_card.wxqr}}'></image>
     </view>
-
+</view>
     <!-- <view class='view_details' data-introduce='{{business_card.introduce}}' data-thumb='{{business_card.thumb}}' data-wxqr='{{business_card.wxqr}}' bindtap='view_details_click'>
     <text class='view_details_css'>查看详情</text>
   </view> -->

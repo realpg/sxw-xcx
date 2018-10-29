@@ -98,9 +98,9 @@ Page({
     that.making_call_click();
   },
   making_call_click: function() {
-    util.makePhoneCall({
-      phoneNumber: that.data.business_card.mobile //仅为示例，并非真实的电话号码
-    })
+   util.makePhoneCall({
+     phoneNumber: that.data.business_card.mobile 
+   }, that.data.business_card.buys > 0)
   },
 
   //评论触发
@@ -233,7 +233,7 @@ Page({
           wx.showToast({
             title: '点赞成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message_details[index].I_agree = true;
           that.data.message_details[index].like++;
@@ -260,7 +260,7 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
         }, null)
       }
@@ -288,7 +288,7 @@ Page({
           wx.showToast({
             title: '点赞成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message[index].I_agree = true;
           that.data.message[index].like++;
@@ -313,7 +313,7 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
         }, null)
       }
@@ -343,7 +343,7 @@ Page({
           wx.showToast({
             title: '收藏成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message_details[index].I_favortie = true;
           that.data.message_details[index].favorite++;
@@ -374,7 +374,7 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
 
         }, null)
@@ -407,7 +407,7 @@ Page({
           wx.showToast({
             title: '关注成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message[index].I_favortie = true;
           that.data.message[index].favorite++;
@@ -436,7 +436,7 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
 
         }, null)
@@ -444,9 +444,7 @@ Page({
       that.setData({
         message: that.data.message
       })
-
     }
-
   },
 
   //供应
@@ -482,12 +480,12 @@ Page({
         mid: 5,
         userid: ret.businesscard.userid, //userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-        icon_vip: ret.vip, //  0===非vip 1-3==vip  
+        icon_vip: ret.businesscard.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
         position: ret.businesscard.career, //职位
         demand: '供应', //发布类别  ()
         mobile: ret.mobile,
-        company: util.hiddenCompany(ret.businesscard.company), //公司
+        company: ret.businesscard.buys > 0 ? util.hiddenCompany(ret.businesscard.company) : ret.businesscard.company, //公司
         lableList: ret.tags,
         I_agree: ret.I_agree,
         I_favortie: ret.I_favortie,
@@ -508,9 +506,8 @@ Page({
       })
       //根据权限隐藏电话号和公司名
       var card = getApp().globalData.DTuserInfo.businesscard;
-      var business_card = that.data.business_card;
-      business_card = ret.business_card
-      if (card.vip < 1) {
+      if (card.vip < 1 && that.data.business_card.buys>0) {
+        console.log(99999999999)
         that.data.business_card.mobile = that.data.business_card.mobile.substring(0, 3) + '****' + that.data.business_card.mobile.substring(7, 11),
           that.data.business_card.company = that.data.business_card.company.substring(0, 2) + '****' + that.data.business_card.company.substring(that.data.business_card.company.length - 4, that.data.business_card.company.length)
         that.setData({
@@ -534,7 +531,6 @@ Page({
       console.log('buyInfoDetails', ret)
       var arr = [];
       for (var i in ret.comments) {
-
         arr.push({
           addtime: util.formatTime(new Date(ret.comments[i].addtime * 1000)),
           content: ret.comments[i].content,
@@ -551,7 +547,7 @@ Page({
         mid: 6,
         userid: ret.businesscard.userid, //userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-        icon_vip: ret.vip, //  0===非vip 1-3==vip  
+        icon_vip: ret.businesscard.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
         position: ret.businesscard.career, //职位
         demand: '求购', //发布类别  ()
@@ -576,6 +572,16 @@ Page({
         leave_word_details: arr,
         business_card: ret.businesscard
       })
+      //根据权限隐藏电话号和公司名
+      var card = getApp().globalData.DTuserInfo.businesscard;
+      if (card.vip < 1) {
+        console.log(99999999999)
+        that.data.business_card.mobile = that.data.business_card.mobile.substring(0, 3) + '****' + that.data.business_card.mobile.substring(7, 11),
+          that.data.business_card.company = that.data.business_card.company.substring(0, 2) + '****' + that.data.business_card.company.substring(that.data.business_card.company.length - 4, that.data.business_card.company.length)
+        that.setData({
+          business_card: that.data.business_card,
+        })
+      }
       that.supplyByUserid();
       that.PurchaseByUserid();
       that.tradeByUserid();
@@ -612,7 +618,7 @@ Page({
         mid: 88,
         userid: ret.businesscard.userid, //userid
         head_portrait_icon: ret.user.avatarUrl ? ret.user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-        icon_vip: ret.vip, //  0===非vip 1-3==vip  
+        icon_vip: ret.businesscard.vip, //  0===非vip 1-3==vip  
         name: ret.businesscard.truename, //用户姓名
         position: ret.businesscard.career, //职位
         demand: '纺机', //发布类别  ()
@@ -667,12 +673,12 @@ Page({
             mid: 5,
             userid: ret.data[i].businesscard.userid, //userid
             head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-            icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+            icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
             name: ret.data[i].businesscard.truename, //用户姓名
             position: ret.data[i].businesscard.career, //职位
             demand: '供应', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
+            company: ret.data[i].businesscard.buys > 0 ? util.hiddenCompany(ret.data[i].businesscard.company) : ret.data[i].businesscard.company, //公司
             lableList: ret.data[i].tags,
             I_agree: ret.data[i].I_agree,
             I_favortie: ret.data[i].I_favortie,
@@ -730,7 +736,7 @@ Page({
             mid: 6,
             userid: ret.data[i].businesscard.userid, //userid
             head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-            icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+            icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
             name: ret.data[i].businesscard.truename, //用户姓名
             position: ret.data[i].businesscard.career, //职位
             demand: '求购', //发布类别  ()
@@ -789,7 +795,7 @@ Page({
             mid: 88,
             userid: ret.data[i].businesscard.userid, //userid
             head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-            icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+            icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
             name: ret.data[i].businesscard.truename, //用户姓名
             position: ret.data[i].businesscard.career, //职位
             demand: '纺机', //发布类别  ()
@@ -1214,11 +1220,11 @@ Page({
         wx.showToast({
           title: '图片保存成功',
           icon: 'success',
-          duration: 2000
+          duration: 1500
         })
         setTimeout(function() {
           that.hideRule()
-        }, 2000)
+        }, 1500)
       }
     })
     //daozhe

@@ -5,7 +5,12 @@
 
 <!-- 问题 -->
 
-<view class='question' wx:for='{{question}}' bindtap='answeringClick'>
+<view class='question' wx:for='{{question}}' bindtap='answeringClick' data-id='{{item.id}}'
+data-title='{{item.title}}' data-answer='{{item.answer}}'>
   <view class='question_title'>{{index+1}}、{{item.title}}</view>
+</view>
+<!-- logo -->
+<view class='logo'>
+<image class='logo_Img' src='../../images/store/logo.png' mode='widthFix'></image>
 </view>
 

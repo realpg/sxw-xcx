@@ -476,6 +476,7 @@ button::after {
   height: 120rpx;
   float: right;
   border-radius: 50%;
+  border: 1rpx solid #e6eaf2;
 }
 
 .Css{

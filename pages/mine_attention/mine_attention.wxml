@@ -2,9 +2,9 @@
 
 <view class='attention'>
   <view class='attention_info' style='color:{{info_color}}' bindtap='selectClick' data-nn='1'>供应信息</view>
-  <view class='attention_card' style='color:{{qiugou_color}}' bindtap='selectClick' data-nn='2'>求购信息</view>
-  <view class='attention_fjmy' style='color:{{fjmy_color}}' bindtap='selectClick' data-nn='3'>纺机贸易</view>
-  <view class='attention_fjmy' style='color:{{card_color}}' bindtap='selectClick' data-nn='4'>名片</view>
+  <view class='attention_info' style='color:{{qiugou_color}}' bindtap='selectClick' data-nn='2'>求购信息</view>
+  <!-- <view class='attention_fjmy' style='color:{{fjmy_color}}' bindtap='selectClick' data-nn='3'>纺机贸易</view> -->
+  <view class='attention_info' style='color:{{card_color}}' bindtap='selectClick' data-nn='4'>名片</view>
 </view>
 
 <view class=''></view>

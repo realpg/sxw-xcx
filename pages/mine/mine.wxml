@@ -19,10 +19,8 @@
     <view class='card_company'bindtap='cardClick' data-id='{{business_card.userid}}'>公司：{{business_card.company}}</view>
     <view class='card_company'bindtap='cardClick' data-id='{{business_card.userid}}'>地址：{{business_card.companyInfo.address}}</view>
     <view class='card_company'  style='position:relative'>电话：<text class=' card_mobile'>{{business_card.mobile}}</text> 
-    <view class='share' catchtap=''>
-      <button catchtap='' open-type='share' class='share_but'>
+    <view class='share'  catchtap='selectClick'>
         <image class='share_Img' src='../../images/store/share.png' mode='widthFix'></image>
-      </button>
     </view>
     </view>
     <view class='card_business' bindtap='cardClick' data-id='{{business_card.userid}}'>主营：{{business_card.companyInfo.business}}</view>
@@ -210,3 +208,33 @@
     </button>
 </view> -->
 
+<!-- 图片保存弹出层 -->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap='hideRule'>
+  <view class='ruleZhezhaoContent' catchtap='Rule'>
+    <canvas canvas-id='canvas' class='hide' style='width:750px;height:475px;margin: 0;padding: 0;display: block;border-radius: 10rpx'></canvas>
+    <image src='{{canvas_img}}' mode='widthFix' style='width:100%;height:458rpx;'></image>
+    <text class='hint_huabu'>点击将图片保存到手机相册，朋友圈添加分享名片图片</text>
+    <button bindtap="saveImage" class='save_but'>保存到手机</button>
+  </view>
+</view>
+
+
+<!-- 弹出选择栏 -->
+<view class="select_column {{is_select_True?'select_column_Show':'select_column_Hide'}}" bindtap='hideSelect'>
+  <view class=" select_column_Content" catchtap='Rule'>
+    <view>分享到</view>
+    <view class='select'>
+       <view>
+       <button class='friend_btu' open-type='share' hover-class="none">
+          <image class='friends_Img'  src='../../images/store/friend.png'></image>
+          <view>好友和微群</view>
+      </button>
+      </view>
+      <view bindtap='shareClick' >
+           <image class='friends_Img' src='../../images/store/cricle_friends.png'></image>
+          <view>朋友圈</view>
+      </view>
+    </view> 
+        <view class='cancel' bindtap='hideSelect'>取消</view>
+      </view>
+    </view>

@@ -283,6 +283,14 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+    // 获取是否自动审核状态
+    util.getSystemKeyValue({
+      id: 12
+    }, function (ret) {
+      that.setData({
+        Whether_the_audit: ret.value,
+      })
+    }, null)
   },
 
   /**
@@ -371,25 +379,25 @@ Page({
       avatarUrl: that.data.avatar[0],
       wxqr: that.data.wxqr[0]
     }
-    var toast_content={
+    var toast_content = {
       company: "公司名称",
       career: "职位",
       address: "详细地址",
-      introduce: "公司简介",
+      // introduce: "公司简介",
       business: "主营产品",
       mobile: "手机",
       truename: "姓名",
       ywlb_ids: "业务类别",
-      thumb: "公司照片",
+      // thumb: "公司照片",
       avatarUrl: "头像",
     }
-    if (that.data.verification_code){
-      toast_content.vertify_code="验证码"
+    if (that.data.verification_code) {
+      toast_content.vertify_code = "验证码"
     }
 
-    for (var i in toast_content){
-      if(!param[i]){
-        var title = '请填写'+toast_content[i]+'！'
+    for (var i in toast_content) {
+      if (!param[i]) {
+        var title = '请填写' + toast_content[i] + '！'
         wx.showToast({
           title: title,
           icon: 'none'
@@ -397,9 +405,9 @@ Page({
         return;
       }
     }
-    
+
     var name_bytes = util.get_string_bytes(param.truename);
-    if (name_bytes>12){
+    if (name_bytes > 12) {
       wx.showToast({
         title: "姓名长度在12字节以内！",
         icon: 'none'
@@ -411,16 +419,34 @@ Page({
     util.editInfo_post(param, function(ret) {
       console.log(ret);
       app.globalData.DTuserInfo.credit -= that.data.gold_coin_pay;
-      wx.showToast({
-        title: "已受理，3个工作日内完成审核",
-        icon: "none",
-        success: function() {
-          app.globalData.DTuserInfo.updating=true;
-          setTimeout(function() {
-          wx.navigateBack()
-          }, 2000)
+      var title = "已受理，3个工作日内完成审核"
+      if (typeof(ret) != 'string')
+        if (ret.nochange) {
+          title = ret.ret
         }
-      })
+      if (that.data.Whether_the_audit == 0){
+        wx.showToast({
+          title: "发布成功",
+          icon: "success",
+          success: function () {
+            app.globalData.DTuserInfo.updating = true;
+            setTimeout(function () {
+              wx.navigateBack()
+            }, 1500)
+          }
+        })
+        }else{
+        wx.showToast({
+          title: title,
+          icon: "none",
+          success: function () {
+            app.globalData.DTuserInfo.updating = true;
+            setTimeout(function () {
+              wx.navigateBack()
+            }, 1500)
+          }
+        })
+        }
     }, null)
   },
 
@@ -436,7 +462,7 @@ Page({
   },
 
   changeMobile: function(e) {
-    
+
     var verification_code = that.data.verification_code
     if (e.detail.value != that.data.mobile && util.phonenum_verify(e.detail.value)) {
       verification_code = true
@@ -459,7 +485,7 @@ Page({
     } else {
       wx.showLoading({
         title: '发送中',
-        mask:true
+        mask: true
       })
       util.sendVertifyCode({
         phonenum: that.data.businesscard.mobile
@@ -504,7 +530,7 @@ Page({
   },
   onPullDownRefresh: function() {
     console.log('下拉刷新')
-      wx.stopPullDownRefresh();
+    wx.stopPullDownRefresh();
     // that.setData({
     //   avatar: app.globalData.DTuserInfo.avatarUrl ? [app.globalData.DTuserInfo.avatarUrl] : []
     // })

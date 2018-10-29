@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "消息",
-					"pathName": "pages/mine_message/mine_message",
+					"pathName": "pages/help_center/help_center",
 					"query": ""
 				},
 				{

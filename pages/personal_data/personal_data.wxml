@@ -57,7 +57,7 @@
     <image class='Image_jiantou' src='../../images/index/jiantou_right.png' />
   </view>
   <view class='business_name' bindtap='addressClick'>
-    详细地址
+    公司地址
     <text class='prompt'>*</text>
    
     <textarea  auto-height='true' class='input_business' type='text' placeholder='请选择详细地址' value="{{businesscard.address}}" bindblur="changeBusinesscard" data-key="address"></textarea>
@@ -70,14 +70,14 @@
   <view class='main_product_title'>
     主营产品<text class='prompt'>*</text>
   </view>
-  <textarea class='main_product_info' maxlength='30' placeholder='请输入主营产品(不超过30字)' value="{{businesscard.business}}" bindinput="changeBusinesscard" data-key="business" />
+  <textarea class='main_product_info' maxlength='30' placeholder='本公司主营...' value="{{businesscard.business}}" bindinput="changeBusinesscard" data-key="business" />
   <view class='hint_num'>(已输入{{businesscard.business.length}}/30)</view>
 </view>
 
 <!--主营公司简介-->
 <view class='main_company_profile'>
   <view class='main_product_title'>
-    公司简介<text class='prompt'>*</text>
+    公司简介<text class='prompt'></text>
   </view>
   <textarea class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介' value="{{businesscard.introduce}}" bindblur="changeBusinesscard" data-key="introduce" />
 </view>
@@ -86,7 +86,7 @@
 
 <view class='AddImgList'>
   <view style='font-size:30rpx;line-height:80rpx'>上传公司照片
-<text style='font-size:26rpx;'>(最多上传六张)</text><text class='prompt'>*</text>
+<!-- <text style='font-size:26rpx;'>(最多上传六张)</text><text class='prompt'>*</text> -->
   </view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{thumb}}' data-index='id'>
@@ -107,7 +107,7 @@
 <!--上传二维码-->
 
 <view class='AddImgList'>
-  <view style='font-size:30rpx;line-height:80rpx'>上传二维码</view>
+  <view style='font-size:30rpx;line-height:80rpx'>上传公司二维码</view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{wxqr}}' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick_three' data-id='{{item.id}}' src='{{item}}' mode='aspectFill' />

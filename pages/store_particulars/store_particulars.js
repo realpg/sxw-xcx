@@ -22,13 +22,24 @@ Page({
 
 
   //联系商家
-  phoneClick: function (e) {
-
-    // var phoneNumber =e.currentTarget.dataset.mobile
-    // console.log(888, phoneNumber )
+  phoneClick: function (e) { 
+    if (that.data.business_card.buys > 0){
     util.makePhoneCall({
       phoneNumber: that.data.business_card.mobile//仅为示例，并非真实的电话号码
     })
+    }else{
+      wx.showModal({
+        title: '会员用户才能拨打电话',
+        content: '是否跳转至会员购买页面?',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../mine_promotion/mine_promotion',
+            })
+          }
+        }
+      })
+    }
   },
   //预览图片
   previewImClick_company: function (e) {
@@ -69,13 +80,14 @@ Page({
       console.log('小程序码',ret.xcxqr)
       let thumb = that.data.thumb
       thumb = ret.thumb.split(','),
+      console.log('公司照片',that.data.thumb)
         that.setData({
           business_card: ret,
           thumb: thumb,
           wxqr: ret.wxqr
         })
       var card = getApp().globalData.DTuserInfo.businesscard;
-      if (card.vip < 1) {
+      if (card.vip < 1 && that.data.business_card.buys>0 ) {
         that.data.business_card.mobile = that.data.business_card.mobile.substring(0, 3) + '****' + that.data.business_card.mobile.substring(7,11),
           that.data.business_card.company = that.data.business_card.company.substring(0, 2) + '****' + that.data.business_card.company.substring(that.data.business_card.company.length - 4, that.data.business_card.company.length)
         that.setData({
@@ -112,12 +124,12 @@ Page({
             id: ret.data[i].itemid, //信息id
             mid: ret.data[i].mid,
             head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-            icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+            icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
             name: ret.data[i].businesscard.truename, //用户姓名
             position: ret.data[i].businesscard.career, //职位
             demand: '供应', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
+            company: ret.data[i].businesscard.buys > 0 ? util.hiddenCompany(ret.data[i].businesscard.company) : ret.data[i].businesscard.company, //公司
             lableList: ret.data[i].tags,
 
             details: ret.data[i].introduce, //信息详情描述
@@ -170,7 +182,7 @@ Page({
           id: ret.data[i].itemid, //信息id
           mid: 5,
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-          icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '供应', //发布类别  ()
@@ -227,7 +239,7 @@ Page({
           mobile: ret.data[i].mobile,
           mid: 6,
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-          icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '求购', //发布类别  ()
@@ -280,7 +292,7 @@ Page({
           id: ret.data[i].itemid, //信息id
           mid: 88,
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-          icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '纺机', //发布类别  ()
@@ -621,8 +633,8 @@ Page({
   //拨打电话
   making_call_click: function () {
     util.makePhoneCall({
-      phoneNumber: that.data.business_card.mobile//仅为示例，并非真实的电话号码
-    })
+      phoneNumber: that.data.business_card.mobile
+    }, that.data.business_card.buys > 0)
   },
 
   //排行榜
@@ -636,6 +648,22 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    // 获取是否显示公司照片
+    util.getSystemKeyValue({
+      id: 40
+    }, function (ret) {
+      that.setData({
+        Whether_company: ret.value,
+      })
+    }, null)
+    // 获取是否显示公司二维码
+    util.getSystemKeyValue({
+      id: 41
+    }, function (ret) {
+      that.setData({
+        Whether_code: ret.value,
+      })
+    }, null)
 
     var scene = JSON.stringify(decodeURIComponent(options.scene));
 

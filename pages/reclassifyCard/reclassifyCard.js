@@ -26,7 +26,9 @@ Page({
       var messageList = [],
         messageList = that.data.messageList.concat(ret.data);
       for (var i in messageList) {
+        if (messageList[i].bussinesscard.buys>0){
         messageList[i].company = util.hiddenCompany(messageList[i].company)
+        }
       }
       that.setData({
         page: ret.current_page < ret.last_page ? ret.current_page + 1 : null,

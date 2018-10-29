@@ -67,7 +67,7 @@
   <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
   <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>供应信息</view>
   <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>求购信息</view>
-  <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>纺机贸易</view>
+  <!-- <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>纺机贸易</view> -->
 </view>
 
 <!-- 信息 -->

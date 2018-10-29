@@ -10,7 +10,6 @@ var showloading = false;
 var logining = false;
 
 //接口调用相关方法
-
 function wxRequest(url, param, method, successCallback, errorCallback, loading) {
   if (typeof(loading) == 'undefined') {
 
@@ -112,7 +111,7 @@ function requestqueue() {
         if (ret.data.code == '102') {
           if (!logining) {
             logining = true;
-            getApp().getopenid(function () {
+            getApp().getopenid(function() {
               logining = false;
               requestqueue()
             });
@@ -246,6 +245,7 @@ function getSellList(param, successCallback, errorCallback, loading) {
 }
 
 function getFJMYList(param, successCallback, errorCallback, loading) {
+  return;
   // if (typeof(loading) == 'undefined') {
   //   loading = false
   // }
@@ -278,10 +278,12 @@ function buyEdit_post(param, successCallback, errorCallback) {
 
 //纺机贸易
 function fjmyEdit_get(param, successCallback, errorCallback) {
+  return;
   wxRequest(SERVER_URL + '/api/fjmy/edit', param, "GET", successCallback, errorCallback);
 }
 
 function fjmyEdit_post(param, successCallback, errorCallback) {
+  return;
   wxRequest(SERVER_URL + '/api/fjmy/edit', param, "POST", successCallback, errorCallback);
 }
 
@@ -289,7 +291,7 @@ function getBanner(param, successCallback, errorCallback) {
   param.pid = "1";
   wxRequest(SERVER_URL + '/api/ad/getByPid', param, "GET", successCallback, errorCallback);
 }
-
+//关键变量接口
 function getSystemKeyValue(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/system/getKeyValue', param, "GET", successCallback, errorCallback);
 }
@@ -403,6 +405,7 @@ function PurchaseByUserid(param, successCallback, errorCallback) {
 
 //纺织贸易
 function tradeByUserid(param, successCallback, errorCallback) {
+  return;
   wxRequest(SERVER_URL + '/api/fjmy/getByCondition', param, "GET", successCallback, errorCallback);
 }
 
@@ -416,8 +419,9 @@ function buyInfoDetails(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + '/api/buy/getById', param, "GET", successCallback, errorCallback);
 }
 
-//求购信息详情
+//纺机信息详情
 function tradeInfoDetails(param, successCallback, errorCallback) {
+  return;
   wxRequest(SERVER_URL + '/api/fjmy/getById', param, "GET", successCallback, errorCallback);
 }
 
@@ -462,6 +466,7 @@ function BuySearch(param, successCallback, errorCallback) {
 
 //纺机信息详情
 function FrameSearch(param, successCallback, errorCallback) {
+  return;
   wxRequest(SERVER_URL + '/api/fjmy/search', param, "POST", successCallback, errorCallback);
 }
 
@@ -491,6 +496,7 @@ function buyList_mine(param, successCallback, errorCallback) {
 
 //我的发布_纺机
 function fjmyList_mine(param, successCallback, errorCallback) {
+  return;
   param.conditions = JSON.stringify({
     key: ["userid"],
     value: [getApp().globalData.DTuserInfo.userid]
@@ -555,6 +561,7 @@ function getMyBuyList(param, successCallback, errorCallback) {
 
 //我收藏的纺机信息
 function getMyFJMYList(param, successCallback, errorCallback) {
+  return;
   wxRequest(SERVER_URL + '/api/myFavorite', param, "GET", successCallback, errorCallback);
 }
 //我收藏的名片
@@ -1163,9 +1170,12 @@ function hiddenCompany(obj) {
   }
 }
 //拨打电话权限
-function makePhoneCall(obj) {
+function makePhoneCall(obj, judge) {
+  //judge表示是否需要判断，不传时默认判断
+  if (typeof judge == 'undefined')
+    judge = true
   var card = getApp().globalData.DTuserInfo.businesscard;
-  if (card.vip > 0) {
+  if (card.vip > 0 || !judge) {
     // if(false){
     wx.makePhoneCall(obj)
   } else {

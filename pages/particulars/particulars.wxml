@@ -172,13 +172,13 @@
 <view class='card' data-id='{{business_card.userid}}' bindtap='view_card_click' >
   <view class='card_css' >
     <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
-    <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}'></image>
+    <!-- <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}'></image> -->
     <view class='truename'>{{business_card.truename}}</view>
     <view class='career'>{{business_card.career}}</view>
     <view class='card_company'>公司：{{business_card.company}}</view>
     <view class='card_company'>地址：{{business_card.address}}</view>
     <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> 
-        <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
+      
       </view>
     <view class='card_business'>主营：{{business_card.business}}</view>
   </view>

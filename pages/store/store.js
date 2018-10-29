@@ -6,7 +6,7 @@ Page({
 
   /**
    * 页面的初始数据
-   */
+   */ 
   data: {
     array: [1, 2, 3, 4, 5, 6],
     toView: 'green',
@@ -25,9 +25,7 @@ Page({
       id: 2,
       slideshowImg: '../../images/index/Yarn_image1.jpg'
     }],
-
     classify: [],
-
     classifys: {
       icon_path: '../../images/store/icon_paihangbang.png',
       name: '排行榜'
@@ -40,16 +38,14 @@ Page({
     supply_color: '',
     buy_color: '',
     equipment_color: '',
-
     messageList: [],
-
     page: 1
   },
 
   //搜索框跳转
   serchClick: function() {
     wx.navigateTo({
-      url: '../search/search?index=4',
+      url: '../search/search?index=3',
     })
   },
 
@@ -112,7 +108,9 @@ Page({
       var messageList = [],
         messageList = that.data.messageList.concat(ret.data);
       for (var i in messageList){
+        if (messageList[i].bussinesscard.buys>0){
           messageList[i].company = util.hiddenCompany(messageList[i].company )
+        }
       }
       that.setData({
         page: ret.current_page < ret.last_page ? ret.current_page + 1 : null,
@@ -145,7 +143,7 @@ Page({
       console.log(77777777, ret);
       var recommend_store = that.data.recommend_store;  
       var card = getApp().globalData.DTuserInfo.businesscard; 
-      if (card.vip < 1) {
+      if (card.vip < 1 ) {
       for (var i in ret) {
         recommend_store.push({
           userid: ret[i].businesscard.userid,

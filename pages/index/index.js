@@ -35,7 +35,7 @@ Page({
   },
 
   //点赞 取消
-  setLikeClick: function (e) {
+  setLikeClick: function(e) {
     const that = this;
     var index = e.currentTarget.dataset.index
     console.log("改变收藏信息", index, that.data.message[index])
@@ -46,12 +46,12 @@ Page({
           item_mid: e.currentTarget.dataset.mid,
           item_id: e.currentTarget.dataset.id
         };
-        util.setLike(param, function (res) {
+        util.setLike(param, function(res) {
           console.log('点赞', res, that.data.message[index]);
           wx.showToast({
             title: '点赞成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message[index].I_agree = true;
           that.data.message[index].like++;
@@ -65,7 +65,7 @@ Page({
           item_id: e.currentTarget.dataset.id,
           cancle: '1'
         };
-        util.setLike(param, function (res) {
+        util.setLike(param, function(res) {
           console.log('取消点赞', res, that.data.message[index], that.data.message);
           that.data.message[index].I_agree = false;
           that.data.message[index].like--;
@@ -75,7 +75,7 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
         }, null)
       }
@@ -104,7 +104,7 @@ Page({
           wx.showToast({
             title: '收藏成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message[index].I_favortie = true;
           that.data.message[index].favorite++;
@@ -122,18 +122,15 @@ Page({
           cancle: '1'
         };
         util.enshrine(param, function(res) {
-          console.log('取消收藏', res, that.data.message[index], that.data.message);
-
           that.data.message[index].I_favortie = false;
           that.data.message[index].favorite--;
-
           that.setData({
             message: that.data.message
           })
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
 
         }, null)
@@ -146,8 +143,8 @@ Page({
 
   },
 
+  //邀请
   invited: function() {
-
     var param = {
       inviter_userid: that.data.userid
     };
@@ -156,10 +153,9 @@ Page({
       wx.showToast({
         title: '接受邀请成功',
         icon: 'success',
-        duration: 3000
+        duration: 1500
       })
     }, null)
-
   },
 
   /**
@@ -168,6 +164,15 @@ Page({
   onLoad: function(options) {
 
     that = this;
+    // 获取客服电话
+    util.getSystemKeyValue({
+      id: 30
+    }, function(ret) {
+      that.setData({
+        service_Tel: ret.value,
+      })
+    }, null)
+
     var data = wx.getStorageSync("data-mine_index");
     console.log("同步缓存数据", data)
     if (typeof data.data != 'undefined')
@@ -214,27 +219,13 @@ Page({
         userid: userid,
         scene: scene
       })
-      // wx.showModal({
-      //   title: '接受邀请',
-      //   content: '您即将接受用户[' + that.data.userid + ']的邀请，是否确认？',
-      //   showCancel: true,
-      //   success: function (res) {
-      //     if (res.confirm) {
       that.invited(that.data.userid)
-      //     }
-      //   }
-      // })
     }
-
     console.log(app.globalData)
-    // if (!app.globalData.DTuserInfo)
-    //   return app.getopenid(that.reload);
-    // else {
-    //   app.getopenid();
     that.reload();
-    // }
   },
 
+  // 轮播图跳转
   slideshowClick: function(e) {
     console.log(e.currentTarget.dataset.id, e.currentTarget.dataset.mid, e.currentTarget.dataset.userid, e.currentTarget.dataset.linktype);
     switch (e.currentTarget.dataset.linktype) {
@@ -263,6 +254,7 @@ Page({
     that = this
   },
 
+  // 纺织头条
   Textile_headlines: function() {
     util.InfoList({}, function(res) {
       console.log('根据条件查询资讯列表', res);
@@ -277,9 +269,9 @@ Page({
     }, null)
   },
 
+  // 获取全部信息
   getAllList: function() {
     console.log("加载全部信息中")
-
     if (that.data.all_next_page)
       util.getAllList({
         page: that.data.all_next_page
@@ -290,19 +282,20 @@ Page({
           if (ret.data[i].user)
             messageALL.push({
               id: ret.data[i].itemid, //信息id
-              mid: ret.data[i].mid,
+              mid: ret.data[i].mid, //信息类型(供应5,求购6,纺机88)
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
+              icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip
               name: ret.data[i].user.truename, //用户姓名
               userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: ret.data[i].mid == 5 ? '供应' : ret.data[i].mid == 6 ? '求购' : ret.data[i].mid == 88 ? '纺机' : "未知", //发布类别  ()
-              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
-              lableList: ret.data[i].tags,
+              company: ret.data[i].businesscard.buys != 0 ? util.hiddenCompany(ret.data[i].businesscard.company) : ret.data[i].businesscard.company, //公司(根据公司发布求购信息的条数判断)
+              buys: ret.data[i].businesscard.buys, //发布求购信息的总条数
+              lableList: ret.data[i].tags, //标签
               details: ret.data[i].introduce, //信息详情描述
-              I_agree: ret.data[i].I_agree,
-              I_favortie: ret.data[i].I_favortie,
+              I_agree: ret.data[i].I_agree, //点赞状态
+              I_favortie: ret.data[i].I_favortie, //收藏状态
               message_Img: //详情图片  后续跟进
                 [{
                     message_Image: ret.data[i].thumb
@@ -339,8 +332,8 @@ Page({
       }, null)
   },
 
+  //供应信息列表
   getSellList: function() {
-
     if (that.data.sell_next_page)
       util.getSellList({
         page: that.data.sell_next_page
@@ -353,13 +346,14 @@ Page({
               id: ret.data[i].itemid, //信息id
               mid: 5,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
+              icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip
               name: ret.data[i].user.truename, //用户姓名
               userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '供应', //发布类别  ()
-              company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
+              company: ret.data[i].businesscard.buys != 0 ? util.hiddenCompany(ret.data[i].businesscard.company) : ret.data[i].businesscard.company, //公司
+              buys: ret.data[i].businesscard.buys, //发布求购信息的总条数
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -393,8 +387,8 @@ Page({
       }, null)
   },
 
+  //求购信息列表
   getBuyList: function() {
-
     if (that.data.buy_next_page)
       util.getBuyList({
         page: that.data.buy_next_page
@@ -407,13 +401,14 @@ Page({
               id: ret.data[i].itemid, //信息id
               mid: 6,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
+              icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip
               name: ret.data[i].businesscard.truename, //用户姓名
               userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '求购', //发布类别  ()
               company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
+              buys: ret.data[i].businesscard.buys, //发布求购信息的总条数
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -448,13 +443,12 @@ Page({
       }, null)
   },
 
+  //纺机信息列表(此模块暂时不要隐藏)
   getFJMYList: function() {
-
     if (that.data.fjmy_next_page)
       util.getFJMYList({
         page: that.data.fjmy_next_page
       }, function(ret) {
-        console.log("纺机列表", ret);
         var fjmyList = [];
         for (var i in ret.data) {
           if (ret.data[i].user)
@@ -462,13 +456,14 @@ Page({
               id: ret.data[i].itemid, //信息id
               mid: 88,
               head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-              icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip
+              icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip
               name: ret.data[i].businesscard.truename, //用户姓名
               userid: ret.data[i].businesscard.userid, //userid
               position: ret.data[i].businesscard.career, //职位
               mobile: ret.data[i].businesscard.mobile, //电话
               demand: '纺机', //发布类别  ()
               company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
+              buys: ret.data[i].businesscard.buys, //发布求购信息的总条数
               lableList: ret.data[i].tags,
               details: ret.data[i].introduce, //信息详情描述
               I_agree: ret.data[i].I_agree,
@@ -515,7 +510,6 @@ Page({
   },
 
   classifyClick: function(e) {
-
     console.log(e.currentTarget.dataset.id);
     for (var i in that.data.classify) {
       if (e.currentTarget.dataset.id == that.data.classify[i].id) {
@@ -524,9 +518,8 @@ Page({
     }
   },
 
-  // 供应信息 采购大厅 二手设备 签到
+  // 供应信息 求购大厅 纺机贸易 签到
   classifyClick: function(e) {
-
     if (e.currentTarget.dataset.id != 4) {
       wx.navigateTo({
         url: '../information_provision/information_provision?id=' + e.currentTarget.dataset.id,
@@ -562,7 +555,7 @@ Page({
         var param = {};
         util.signIn(param, function(ret) {
           console.log(ret)
-          app.globalData.DTuserInfo.clockin_today=true
+          app.globalData.DTuserInfo.clockin_today = true
           wx.showToast({
             title: '签到成功',
             duration: 1500
@@ -572,20 +565,21 @@ Page({
     }
   },
 
+
   //联系客服
   callClick: function() {
     wx.makePhoneCall({
-      phoneNumber: '1340000' //仅为示例，并非真实的电话号码
+      phoneNumber: that.data.service_Tel
     })
   },
 
   //联系商家
   phoneClick: function(e) {
     util.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
-    })
+      phoneNumber: e.currentTarget.dataset.mobile
+    }, e.currentTarget.dataset.buys > 0 || e.currentTarget.dataset.mid != 5)
   },
-  //排序
+  //信息排序
   sort: function(messageALL) {
     var arr = messageALL;
     console.log("排序", arr);
@@ -621,14 +615,12 @@ Page({
       nn: e.target.dataset.nn
     })
     that.changeMessage();
-    // console.log(e)
   },
 
   //根据that.data.nn改变展示内容
   changeMessage: function() {
     if (that.data.nn == 1) {
       var messageALL = that.data.messageALL;
-
       that.setData({
         all_color: '#01C46C',
         supply_color: '#9B9B9B',
@@ -637,9 +629,6 @@ Page({
         message: messageALL,
       })
     } else if (that.data.nn == 2) {
-      // if (that.data.sellList.length == 0){
-      //   that.getSellList();
-      // }
       that.setData({
         all_color: '#9B9B9B',
         supply_color: '#01C46C',
@@ -648,9 +637,6 @@ Page({
         message: that.data.sellList
       })
     } else if (that.data.nn == 3) {
-      // if (that.data.buyList.length == 0) {
-      //   that.getBuyList();
-      // }
       that.setData({
         all_color: '#9B9B9B',
         supply_color: '#9B9B9B',
@@ -659,9 +645,6 @@ Page({
         message: that.data.buyList
       })
     } else if (that.data.nn == 4) {
-      // if (that.data.fjmyList.length==0) {
-      //   that.getFJMYList();
-      // }
       that.setData({
         all_color: '#9B9B9B',
         supply_color: '#9B9B9B',
@@ -676,7 +659,7 @@ Page({
     }
   },
 
-  //查看详情
+  //查看详情详情
   see_details_click: function(e) {
     wx.navigateTo({
       url: '../particulars/particulars?id=' + e.currentTarget.dataset.id + '&mid=' + e.currentTarget.dataset.mid,
@@ -699,7 +682,6 @@ Page({
     var page = 1;
     that.reload()
     console.log('下拉刷新');
-    // this.requestNetAllData(page, 1);
   },
 
   //触底加载
@@ -745,22 +727,25 @@ Page({
     that.setData({
       slideshow: [],
       classify: [{
-        id: 1,
-        cimg: '../../images/index/icon_xinxigy.png',
-        ciName: '供应信息'
-      }, {
-        id: 2,
-        cimg: '../../images/index/icon_shop.png',
-        ciName: '求购大厅'
-      }, {
-        id: 3,
-        cimg: '../../images/index/icon_ershou.png',
-        ciName: '纺机贸易'
-      }, {
-        id: 4,
-        cimg: '../../images/index/icon_qiandao.png',
-        ciName: '签到'
-      }],
+          id: 1,
+          cimg: '../../images/index/icon_xinxigy.png',
+          ciName: '供应信息'
+        }, {
+          id: 2,
+          cimg: '../../images/index/icon_shop.png',
+          ciName: '求购大厅'
+        },
+        //  {
+        //   id: 3,
+        //   cimg: '../../images/index/icon_ershou.png',
+        //   ciName: '纺机贸易'
+        // },
+        {
+          id: 4,
+          cimg: '../../images/index/icon_qiandao.png',
+          ciName: '签到'
+        }
+      ],
       noticesr: [{
         title: '祝贝娜：纤维用量增长，纤维用量增长，纤维用量增长'
       }, {
@@ -797,18 +782,15 @@ Page({
 
     app = getApp();
 
-
-    // that.Loading();
     //首页推荐
     util.homepage_recommend({}, function(ret) {
       console.log(222222, ret);
       var recommend_store = that.data.recommend_store;
       for (var i in ret) {
-        console.log("首页推荐", ret)
         recommend_store.push({
           avatarUrl: ret[i].info.businesscard.avatarUrl, //头像
           id: ret[i].info.itemid, //信息id
-          store_name: util.hiddenCompany(ret[i].info.company),
+          store_name: ret[i].info.businesscard.buys > 0 ? util.hiddenCompany(ret[i].info.company) : ret[i].info.company,
           mid: ret[i].item_mid,
           lableList: ret[i].info.tags,
           store_info: ret[i].info.introduce.length > 40 ? ret[i].info.introduce.substring(0, 40) + "……" : ret[i].info.introduce,
@@ -845,9 +827,6 @@ Page({
 
     //获取
     that.getAllList();
-    // that.getSellList();
-    // that.getBuyList();
-    // that.getFJMYList();
 
   },
   //点击头像查看名片
@@ -859,12 +838,10 @@ Page({
 
   scroll: function(e) { //有用
     console.log(e)
-
     if (that.data.timer) {
       clearTimeout(that.data.timer);
       // console.log("销毁计时器")
     }
-
 
     var timer = setTimeout(function() {
       // console.log("自动滚动")

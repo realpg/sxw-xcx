@@ -121,13 +121,7 @@ page{
 
 
 
-.AddImgList{
-width: 90%;
-padding: 1% 5% 5% 5%;
-margin: auto;
-background: #fff;
-margin-top: 20rpx;
-}
+
 
 
 
@@ -211,7 +205,7 @@ margin-top: 20rpx;
 
 .AddImgList{
 width: 90%;
-padding: 5% 5%;
+padding:1% 5% 5% 6%;
 margin: auto;
 background: #fff;
 }

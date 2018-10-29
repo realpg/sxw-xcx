@@ -16,7 +16,7 @@
     <view class='line'></view>
   </view>
 
-  <!--供应信息 采购大厅 二手设备 -->
+  <!--供应信息 求购信息 纺机贸易 -->
   <view class='classifyList'>
     <view class='classify' wx:for='{{classify}}' wx:for-index='id'>
       <view class='ci' bindtap='classifyClick' data-id='{{item.id}}'>

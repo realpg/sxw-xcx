@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    Img_code: '',
     clockin_today:'',
     business_card: {
       name: '',
@@ -500,5 +501,136 @@ Page({
     // pages[pages.length - 1].onPullDownRefresh()
     that.redactClick()
   },
+
+
+
+  //获取小程序维码和设备宽高
+  canvas: function () {
+    that = this
+    //获得设备宽高
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowW: res.windowWidth,
+          canvasW: 750,
+          windowH: res.windowHeight,
+          canvasH: 475
+        })
+      },
+    })
+    //获得图片
+    util.getCardQR({ _userid: app.globalData.DTuserInfo.userid}, function (res) {
+      console.log( '获取图片',res)
+      that.setData({
+        Img_code: res.tempFilePath
+      })
+      var canvas = wx.createCanvasContext('canvas');
+      that.drawCanvas(canvas);
+    }, function (err) {
+      wx.showModal({
+        title: '下载图片失败',
+        content: JSON.stringify(err),
+      })
+    });
+  },
+
+  //画布
+  drawCanvas: function () {
+    that = this
+    const canvas = wx.createCanvasContext('canvas')
+    var windowW = that.data.canvasW;
+    var windowH = that.data.canvasH;
+    var qr = that.data.Img_code;
+    canvas.setFillStyle('#f1f4f6')
+    canvas.fillRect(0, 0, windowW, windowH);
+    canvas.setFillStyle('#ffffff')
+    canvas.fillRect(20, 20, windowW - 40, windowH - 40);
+    canvas.drawImage(qr, windowW * 0.7, windowH * 0.13, 180, 180);
+
+    canvas.setFillStyle('#000000');
+    canvas.setFontSize(36);
+    canvas.fillText(that.data.business_card.truename, windowW * 0.07, windowH * 0.24)
+
+    canvas.setFillStyle('#666666');
+    canvas.setFontSize(26);
+    canvas.fillText(that.data.business_card.career, windowW * 0.07, windowH * 0.35);
+    canvas.fillText('长按识别图中的名片码', windowW * 0.3, windowH * 0.24);
+
+    canvas.setFillStyle('#000000');
+    canvas.setFontSize(26);
+    canvas.fillText('公司：' + that.data.business_card.company, windowW * 0.07, windowH * 0.46);
+    console.log('地址',that.data.business_card.address)
+    canvas.fillText('地址：' + (that.data.business_card.companyInfo.address.length > 18 ? that.data.business_card.companyInfo.address.substring(0, 18) + "..." : that.data.business_card.companyInfo.address), windowW * 0.07, windowH * 0.57);
+    canvas.fillText('电话：', windowW * 0.07, windowH * 0.68);
+    canvas.fillText('主营：' + (that.data.business_card.companyInfo.business.length > 18 ? that.data.business_card.companyInfo.business.substring(0, 18) + "..." : that.data.business_card.companyInfo.business), windowW * 0.07, windowH * 0.85);
+
+    canvas.setFillStyle('#f7a821');
+    canvas.setFontSize(26);
+    canvas.fillText(that.data.business_card.mobile, windowW * 0.168, windowH * 0.68);
+    canvas.beginPath();
+    canvas.setStrokeStyle('#e6eaf2');
+    canvas.moveTo(windowW * 0.07, windowH * 0.75);
+    canvas.lineTo(windowW * 0.9, windowH * 0.75);
+    canvas.stroke()
+    canvas.draw(true, function () {
+      wx.canvasToTempFilePath({
+        canvasId: 'canvas',
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            canvas_img: res.tempFilePath,
+          })
+        }
+      })
+    });
+  },
+
+  //打开选择栏
+  selectClick: function () {
+    this.setData({
+      is_select_True: true
+    })
+  },
+  //关闭选择弹出层   
+  hideSelect: function () {
+    this.setData({
+      is_select_True: false
+    })
+  },
+  //打开画布图片弹出层
+  shareClick: function () {
+    this.setData({
+      isRuleTrue: true
+    })
+    that.canvas();
+    that.hideSelect();
+  },
+  //关闭   
+  hideRule: function () {
+    this.setData({
+      isRuleTrue: false
+    })
+  },
+
+  // 保存图片
+  saveImage: function (e) {
+
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.canvas_img,
+      success(result) {
+        wx.showToast({
+          title: '图片保存成功',
+          icon: 'success',
+          duration: 2000
+        })
+        setTimeout(function () {
+          that.hideRule()
+        }, 2000)
+      }
+    })
+    //daozhe
+  },
+
+
 
 })

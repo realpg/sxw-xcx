@@ -1,19 +1,25 @@
 // pages/question_answering/question_answering.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    question:'请问你们的广告位怎么卖？',
-    answering:'在我要推广里查看！在我要推广里查看！在我要推广里查看！重要的事情说三遍'
+    question:'请问该问题怎么解决？',
+    answer:'亲！您有什么不懂得可以直接联系客服哦'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const that = this;
+    console.log(options)
+    that.setData({
+      question: options.title ,
+      answer: options.answer,
+    })
   },
 
   /**

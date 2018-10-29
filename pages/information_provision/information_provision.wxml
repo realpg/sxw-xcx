@@ -1,6 +1,6 @@
 <import src="../template/template.wxml"/>
 
-<view style='width:100%;height:122rpx;color:#ffffff'></view>
+<view style='width:100%;height:212rpx;color:#ffffff'></view>
 <!--搜索框-->
 <view class='top'>
   <view class='searchBox' bindtap='serchClick'>
@@ -10,14 +10,14 @@
   </view>
 </view>
 
-
 <!--分类-->
+<view class='top_css'>
 <view class='information_classification'>
   <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>供应信息</view>
   <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>求购信息</view>
-  <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>纺机贸易</view>
+  <!-- <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>纺机贸易</view> -->
 </view>
-
+</view>
 <!-- 具体信息 -->
   <template is='messageBox' data='{{message}}' ></template>
 

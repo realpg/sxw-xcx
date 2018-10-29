@@ -11,6 +11,14 @@ width: 100%;
 z-index: 999;
 background: #f1f4f6
 }
+.top_css{
+position: fixed;
+top:122rpx;
+height: 90rpx;
+width: 100%;
+z-index: 999;
+background: #f1f4f6
+}
 .jiantou_img{
  margin-left: 5rpx;
  width:14rpx;

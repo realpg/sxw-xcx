@@ -9,10 +9,21 @@
 </swiper>
 </view>
 
-<!--分类-->
+ <!-- 分类(超过四个)—-->
+  <!-- <scroll-view class='e' scroll-x='true' scroll-with-animation='true' scroll-left='0'>
+    <view class='nav'>
+      <view class='list {{item.setchoose?"all":"allhide"}}' wx:for='{{classify}}' data-id='{{item.catid}}' bindtap='selectClick'>{{item.catname}}
+       <view class='nbs' wx:if='{{item.setchoose}}'></view>
+      </view>    
+    </view>  
+  </scroll-view> -->
+
+
+<!-- 分类 -->
 <view class='information_classification'>
-  <view class='{{item.setchoose?"all":"allhide"}}' wx:for='{{classify}}' data-id='{{item.catid}}' bindtap='selectClick'>{{item.catname}}</view>
+  <view class='{{item.setchoose?"all":"allhide"}}' wx:for='{{classify}}' wx:if='{{index<4}}' data-id='{{item.catid}}' bindtap='selectClick'>{{item.catname}}</view>
 </view>
+
 
 <!--信息列表 -->
 <view class='information_list' bindtap='information_details_click' wx:for='{{information_list}}' data-itemid='{{item.itemid}}'>

@@ -145,28 +145,6 @@ Page({
         classify: that.data.classify
       })
 
-      // console.log(that.data.classify[0].catid)
-      // var conditions = JSON.stringify({ key: ['catid'], value: [that.data.classify[0].catid] });
-      // let param = {
-      //   userid: wx.getStorageSync('UserInfo').userid,
-      //   _token: wx.getStorageSync('UserInfo')._token,
-      //   conditions: conditions
-      // };
-      // util.InfoListByCondition(param, function (res) {
-      //   console.log('根据条件查询资讯列表', res);
-      //   for (let i in res.data) {
-      //     that.data.information_list.push({
-      //       addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
-      //       itemid: res.data[i].itemid,
-      //       title: res.data[i].title,
-      //       thumb: res.data[i].thumb
-      //     })
-      //   }
-      //   that.setData({
-      //     information_list: that.data.information_list
-      //   })
-
-      // }, null)
 
       console.log(that.data.classify)
     }, null)

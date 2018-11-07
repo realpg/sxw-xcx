@@ -1,5 +1,5 @@
 <view class='recharge'>
-  <view><input type='number' placeholder='请输入购买数量{{pergold}}金币/{{perprice}}元' bindinput='changeinput' value='{{buy_golds}}'></input></view>
+  <view><input type='number' placeholder='请输入购买数量{{pergold}}金币/{{perprice}}元' bindinput='changeinput' value='{{buy_golds}}' maxlength='7'></input></view>
   <text class='confirm' bindtap='getJf'>确定</text>
 </view>
 <view wx:if="{{pay_amount>0}}"class='gold' style='font-size:40rpx'><strong>需支付{{pay_amount}} 元</strong></view>

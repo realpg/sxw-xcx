@@ -73,6 +73,8 @@ z-index: 999;
 }
 .searchIcon_css{
   width: 100rpx;
+  display: flex;
+  align-items: center;
 }
 
 

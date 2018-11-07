@@ -19,6 +19,7 @@ height: 100%;
   font-size: 30rpx;
   color:  #9B9B9B; 
 }
+
 .all{
   color:#01C46C;
 }
@@ -44,6 +45,7 @@ allhide{
     align-content:space-around;
 }
 .title{
+  width: 100%;
    display: -webkit-box; 
    align-items: center;
   -webkit-box-orient: vertical;
@@ -53,4 +55,31 @@ allhide{
 .time{
   font-size: 28rpx;
   color: #B2B2B2;
+}
+
+
+.e{
+  background: #ffffff;
+}
+.nav{
+background: #fff;
+width: 100%;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+align-content: center;
+white-space: nowrap;
+padding: 24rpx 0rpx 10rpx;   
+justify-content: end;
+font-size: 32rpx;
+}
+ .list{
+  /* position: relative; */
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+} 
+.nbs{
+border-bottom: 2.4px solid  #01C46C;
+margin-top: 10rpx;
+ /* width: 100%;  */
 }

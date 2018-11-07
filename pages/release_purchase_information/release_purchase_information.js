@@ -29,6 +29,7 @@ Page({
     ImageList: [],
     gold_coin_balance: '',
     gold_coin_pay: '1',
+    vip:''
   },
 
   getEdit: function () {
@@ -76,8 +77,14 @@ Page({
       }
     }, null)
 
+    var s_id;
+    if (that.data.itemid)
+      s_id = 15; //修改
+    else
+      s_id = 5; //发布
+
     util.getSystemKeyValue({
-      id: 4
+      id: s_id
     }, function (ret) {
       that.setData({
         gold_coin_pay: ret.value,
@@ -249,17 +256,32 @@ Page({
       util.buyEdit_post(param, function (ret) {
         console.log(ret);
         app.globalData.DTuserInfo.credit -= that.data.gold_coin_pay;
-        wx.showToast({
-          title: "已受理，3个工作日内完成审核",
-          icon: "none",
-          success: function () {
-            setTimeout(function () {
-              wx.reLaunch({
-                url: "../index/index",
-              })
-            }, 2000)
-          }
-        })
+        // 是否要审核
+        if (that.data.Whether_the_audit == 0) {
+          wx.showToast({
+            title: "发布成功",
+            icon: "success",
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: "../index/index",
+                })
+              }, 2000)
+            }
+          })
+        } else {
+          wx.showToast({
+            title: "已受理，3个工作日内完成审核",
+            icon: "none",
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: "../index/index",
+                })
+              }, 2000)
+            }
+          })
+        }
       }, null)
     } else
     {
@@ -332,7 +354,8 @@ Page({
   onLoad: function (options) {
     that = this
     that.setData({
-      gold_coin_balance: app.globalData.DTuserInfo.credit
+      gold_coin_balance: app.globalData.DTuserInfo.credit,
+        vip: app.globalData.DTuserInfo.businesscard.vip
     })
     console.log('参数', options)
     if (options.itemid) {
@@ -347,6 +370,14 @@ Page({
    */
   onReady: function () {
     const that = this;
+    // 获取是否自动审核状态
+    util.getSystemKeyValue({
+      id: 2
+    }, function (ret) {
+      that.setData({
+        Whether_the_audit: ret.value,
+      })
+    }, null)
     that.getEdit();
   },
 

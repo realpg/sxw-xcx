@@ -61,8 +61,7 @@ page{
   align-items: center;
 }
 .Image_jiantou{
-  position: absolute;
-  right: 35rpx;
+  padding:20rpx 20rpx;
   width: 16rpx;
   height: 26rpx;
   }
@@ -71,13 +70,21 @@ page{
   width: 450rpx;
 }
 .input_business{
-  width: 455rpx;
-  line-height: 50rpx;
-  display: -webkit-box; 
+  width: 440rpx;
+  line-height: 45rpx;
+  font-size: 32rpx;
+  padding-top: 4rpx;
+  /* display: -webkit-box; 
   align-items: center;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  overflow: hidden;
+  overflow: hidden; */
+  
+}
+.placeholder{
+  line-height: 90rpx;
+  padding-top: 20rpx;
+  font-size: 32rpx;
 }
 .main_product{
   margin-top: 30rpx;
@@ -121,13 +128,7 @@ page{
 
 
 
-.AddImgList{
-width: 90%;
-padding: 1% 5% 5% 5%;
-margin: auto;
-background: #fff;
-margin-top: 20rpx;
-}
+
 
 
 
@@ -211,7 +212,7 @@ margin-top: 20rpx;
 
 .AddImgList{
 width: 90%;
-padding: 5% 5%;
+padding:1% 5% 5% 6%;
 margin: auto;
 background: #fff;
 }
@@ -243,3 +244,5 @@ background: #fff;
   width: 160rpx;
   height:160rpx;
 }
+
+

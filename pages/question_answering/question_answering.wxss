@@ -15,3 +15,12 @@ page{
  line-height: 50rpx;
  color: #666;
 }
+.logo{
+  position: fixed;
+  bottom: 130rpx;
+  text-align: center;
+  left: 245rpx;
+}
+.logo_Img{
+  width: 260rpx;
+}

@@ -243,3 +243,13 @@ background: #fff;
   width: 160rpx;
   height:160rpx;
 }
+.hint_code{
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 100rpx;
+}
+.hint_company{
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 100rpx;
+}

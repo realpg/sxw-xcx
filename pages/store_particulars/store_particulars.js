@@ -15,90 +15,39 @@ Page({
     business_card: [],
     introduceShow: false,
     specific: '宁纺集团棉纺分公司，1987年新上一万枚纱锭，从而使企业结束了有织，无染，无纺的历史，形成了从纺纱、织布、染整一条龙生产格局。经过近几年的发展，目前棉纺分公司拥有细纱机53台，粗纱机11台，并条机24台，梳棉机44台，精简机10台，清',
-    messageList: [],
-    message: [{
-      id: '0',
-      head_portrait_icon: '../../images/index/head_portrait.png',
-      icon_vip: '../../images/index/vip.png',
-      name: '董晓珺',
-      position: '销售总监',
-      demand: '供应',
-      company: '董南通金源纺织科技有限公司',
-      lable_three: '混纺纱',
-      lable_four: '纺织用纱',
-      lable_five: '混纺纱',
-      details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支',
-      message_Img: [{
-        message_Image: '../../images/index/Image_details1.png'
-      }, {
-        message_Image: '../../images/index/Image_details2.png'
-      }, {
-        message_Image: '../../images/index/Image_details3.png'
-      }],
-      time: '2018-6-28 14:25',
-      address: '南通、柳橙、诸暨',
-      page_view: '888',
-      like: '888'
-    }, {
-      id: '1',
-      head_portrait_icon: '../../images/index/head_portrait.png',
-      icon_vip: '../../images/index/vip.png',
-      name: '董晓珺',
-      position: '销售总监',
-      demand: '供应',
-      company: '董南通金源纺织科技有限公司',
-      lable_three: '混纺纱',
-      lable_four: '纺织用纱',
-      lable_five: '混纺纱',
-      details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支',
-      message_Img: [{
-        message_Image: '../../images/index/Image_details1.png'
-      }, {
-        message_Image: '../../images/index/Image_details2.png'
-      }, {
-        message_Image: '../../images/index/Image_details3.png'
-      }],
-      time: '2018-6-28 14:25',
-      address: '南通、柳橙、诸暨',
-      page_view: '888',
-      like: '888'
-    }, {
-      id: '2',
-      head_portrait_icon: '../../images/index/head_portrait.png',
-      icon_vip: '../../images/index/vip.png',
-      name: '董晓珺',
-      position: '销售总监',
-      demand: '供应',
-      company: '董南通金源纺织科技有限公司',
-      lable_three: '混纺纱',
-      lable_four: '纺织用纱',
-      lable_five: '混纺纱',
-      details: '精疏紧密60支,条干13.56,棉结50强力180,气流纺织21,环纺普纱28支，气流纺织21,环纺普纱28支',
-      message_Img: [{
-        message_Image: '../../images/index/Image_details1.png'
-      }, {
-        message_Image: '../../images/index/Image_details2.png'
-      }, {
-        message_Image: '../../images/index/Image_details3.png'
-      }],
-      time: '2018-6-28 14:25',
-      address: '南通、柳橙、诸暨',
-      page_view: '888',
-      like: '888'
-    },],
+    message: [],
     page: 1, 
   
   },
 
 
   //联系商家
-  phoneClick: function (e) {
-
-    // var phoneNumber =e.currentTarget.dataset.mobile
-    // console.log(888, phoneNumber )
+  phoneClick: function (e) { 
+    if (that.data.business_card.buys > 0){
+      if (that.data.business_card.mobile == '') {
+        wx.showToast({
+          title: '暂无手机号',
+          icon: 'none',
+          duration: 1500
+        })
+      } else {
     util.makePhoneCall({
       phoneNumber: that.data.business_card.mobile//仅为示例，并非真实的电话号码
     })
+      }
+    }else{
+      wx.showModal({
+        title: '会员用户才能拨打电话',
+        content: '是否跳转至会员购买页面?',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../mine_promotion/mine_promotion',
+            })
+          }
+        }
+      })
+    }
   },
   //预览图片
   previewImClick_company: function (e) {
@@ -139,13 +88,14 @@ Page({
       console.log('小程序码',ret.xcxqr)
       let thumb = that.data.thumb
       thumb = ret.thumb.split(','),
+      console.log('公司照片',that.data.thumb)
         that.setData({
           business_card: ret,
           thumb: thumb,
           wxqr: ret.wxqr
         })
       var card = getApp().globalData.DTuserInfo.businesscard;
-      if (card.vip < 1) {
+      if (card.vip < 1 && that.data.business_card.buys>0 ) {
         that.data.business_card.mobile = that.data.business_card.mobile.substring(0, 3) + '****' + that.data.business_card.mobile.substring(7,11),
           that.data.business_card.company = that.data.business_card.company.substring(0, 2) + '****' + that.data.business_card.company.substring(that.data.business_card.company.length - 4, that.data.business_card.company.length)
         that.setData({
@@ -176,18 +126,18 @@ Page({
     if (that.data.page)
       util.getInfoByUserid(param, function (ret) {
         console.log('供应信息', ret)
-        // that.data.messageList.push(ret.data)
+        // that.data.message.push(ret.data)
         for (var i in ret.data) {
-          that.data.messageList.push({
+          that.data.message.push({
             id: ret.data[i].itemid, //信息id
             mid: ret.data[i].mid,
             head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-            icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+            icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
             name: ret.data[i].businesscard.truename, //用户姓名
             position: ret.data[i].businesscard.career, //职位
             demand: '供应', //发布类别  ()
             mobile: ret.data[i].mobile,
-            company: util.hiddenCompany(ret.data[i].businesscard.company), //公司
+            company: ret.data[i].businesscard.buys > 0 ? util.hiddenCompany(ret.data[i].businesscard.company) : ret.data[i].businesscard.company, //公司
             lableList: ret.data[i].tags,
 
             details: ret.data[i].introduce, //信息详情描述
@@ -212,10 +162,10 @@ Page({
             favorite: ret.data[i].favorite, //收藏
           })
         }
-        that.data.messageList = that.sort(that.data.messageList)
+        that.data.message = that.sort(that.data.message)
         that.setData({
           page: ret.next_page,
-          messageList: that.data.messageList
+          message: that.data.message
         })
       });
 
@@ -234,13 +184,13 @@ Page({
     };
     util.supplyByUserid(param, function (ret) {
       console.log('供应信息', ret)
-      // that.data.messageList.push(ret.data)
+      // that.data.message.push(ret.data)
       for (var i in ret.data) {
-        that.data.messageList.push({
+        that.data.message.push({
           id: ret.data[i].itemid, //信息id
           mid: 5,
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-          icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '供应', //发布类别  ()
@@ -270,9 +220,9 @@ Page({
           favorite: ret.data[i].favorite, //收藏
         })
       }
-      that.data.messageList = that.sort(that.data.messageList)
+      that.data.message = that.sort(that.data.message)
       that.setData({
-        messageList: that.data.messageList
+        message: that.data.message
       })
     });
   },
@@ -290,14 +240,14 @@ Page({
     };
     util.PurchaseByUserid(param, function (ret) {
       console.log('求购信息', ret)
-      // that.data.messageList.push(ret.data)
+      // that.data.message.push(ret.data)
       for (var i in ret.data) {
-        that.data.messageList.push({
+        that.data.message.push({
           id: ret.data[i].itemid, //信息id
           mobile: ret.data[i].mobile,
           mid: 6,
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-          icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '求购', //发布类别  ()
@@ -325,9 +275,9 @@ Page({
           favorite: ret.data[i].favorite, //收藏
         })
       }
-      that.data.messageList = that.sort(that.data.messageList)
+      that.data.message = that.sort(that.data.message)
       that.setData({
-        messageList: that.data.messageList
+        message: that.data.message
       })
     });
   },
@@ -346,11 +296,11 @@ Page({
     util.tradeByUserid(param, function (ret) {
       console.log('纺织贸易', ret)
       for (var i in ret.data) {
-        that.data.messageList.push({
+        that.data.message.push({
           id: ret.data[i].itemid, //信息id
           mid: 88,
           head_portrait_icon: ret.data[i].user.avatarUrl ? ret.data[i].user.avatarUrl : '../../images/index/head_portrait.png', //头像，后面是默认头像
-          icon_vip: ret.data[i].vip, //  0===非vip 1-3==vip  
+          icon_vip: ret.data[i].businesscard.vip, //  0===非vip 1-3==vip  
           name: ret.data[i].businesscard.truename, //用户姓名
           position: ret.data[i].businesscard.career, //职位
           demand: '纺机', //发布类别  ()
@@ -379,9 +329,9 @@ Page({
           favorite: ret.data[i].favorite, //收藏
         })
       }
-      that.data.messageList = that.sort(that.data.messageList)
+      that.data.message = that.sort(that.data.message)
       that.setData({
-        messageList: that.data.messageList
+        message: that.data.message
       })
 
     });
@@ -420,57 +370,131 @@ Page({
 
   //名片点赞
   setLike_card_Click: function (e) {
-    console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    var param = {
-      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
-      // _token: wx.getStorageSync('DTUserinfo')._token,
-      item_mid: e.currentTarget.dataset.mid,
-      item_id: e.currentTarget.dataset.id
-    };
-    util.setLike(param, function (res) {
-      console.log('点击名片点赞', res);
-      wx.showToast({
-        title: '点赞成功',
-        icon: 'none',
-        duration: 2000
-      })
+    // console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
+    // var param = {
+    //   // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+    //   // _token: wx.getStorageSync('DTUserinfo')._token,
+    //   item_mid: e.currentTarget.dataset.mid,
+    //   item_id: e.currentTarget.dataset.id
+    // };
+    // util.setLike(param, function (res) {
+    //   console.log('点击名片点赞', res);
+    //   wx.showToast({
+    //     title: '点赞成功',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
 
-      that.data.business_card.I_agree = true;
-      that.data.business_card.agree++;
-      that.setData({
-        business_card: that.data.business_card
-      })
-    }, null)
+    //   that.data.business_card.I_agree = true;
+    //   that.data.business_card.agree++;
+    //   that.setData({
+    //     business_card: that.data.business_card
+    //   })
+    // }, null)
+    const that = this;
+
+
+    if (that.data.business_card.I_agree == false) {
+      console.log(32432432);
+      var param = {
+        item_mid: e.currentTarget.dataset.mid,
+        item_id: e.currentTarget.dataset.id
+      };
+      util.setLike(param, function (res) {
+        console.log('收藏', res, that.data.business_card);
+        wx.showToast({
+          title: '点赞成功',
+          icon: 'none',
+          duration: 2000
+        })
+        that.data.business_card.I_agree= true;
+        that.data.business_card.agree++;
+
+        that.setData({
+          business_card: that.data.business_card
+        })
+      }, null)
+    } else {
+      var param = {
+        // userid: wx.getStorageSync('DTUserinfo').userid.userid,
+        // _token: wx.getStorageSync('DTUserinfo')._token,
+        item_mid: e.currentTarget.dataset.mid,
+        item_id: e.currentTarget.dataset.id,
+        cancle: '1'
+      };
+      util.setLike(param, function (res) {
+        
+        that.data.business_card.I_agree = false;
+        that.data.business_card.agree--;
+
+        that.setData({
+          business_card: that.data.business_card
+        })
+        wx.showToast({
+          title: '取消成功',
+          icon: 'none',
+          duration: 2000
+        })
+
+      }, null)
+    }
+    that.setData({
+      business_card: that.data.business_card
+    })
+
   },
 
-  //点赞
+  //点赞 取消
   setLikeClick: function (e) {
+    const that = this;
+    var index = e.currentTarget.dataset.index
+    console.log("改变收藏信息", index, that.data.message[index])
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    var param = {
-      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
-      // _token: wx.getStorageSync('DTUserinfo')._token,
-      item_mid: e.currentTarget.dataset.mid,
-      item_id: e.currentTarget.dataset.id
-    };
-    util.setLike(param, function (res) {
-      console.log('点击点赞', res);
-      wx.showToast({
-        title: '点赞成功',
-        icon: 'none',
-        duration: 2000
-      })
-      for (var i in that.data.messageList) {
-        if (that.data.messageList[i].id == res.itemid && that.data.messageList[i].mid == e.currentTarget.dataset.mid) {
-          that.data.messageList[i].I_agree = true;
-          that.data.messageList[i].like++;
-        }
+
+    if (that.data.message[index].id == e.currentTarget.dataset.id && that.data.message[index].mid == e.currentTarget.dataset.mid) {
+      if (that.data.message[index].I_agree == false) {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id
+        };
+        util.setLike(param, function (res) {
+          console.log('点赞', res, that.data.message[index]);
+          wx.showToast({
+            title: '点赞成功',
+            icon: 'none',
+            duration: 2000
+          })
+          that.data.message[index].I_agree = true;
+          that.data.message[index].like++;
+          that.setData({
+            message: that.data.message
+          })
+        }, null)
+      } else {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id,
+          cancle: '1'
+        };
+        util.setLike(param, function (res) {
+          console.log('取消点赞', res, that.data.message[index], that.data.message);
+          that.data.message[index].I_agree = false;
+          that.data.message[index].like--;
+          that.setData({
+            message: that.data.message
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none',
+            duration: 2000
+          })
+        }, null)
       }
       that.setData({
-        messageList: that.data.messageList
+        message: that.data.message
       })
-    }, null)
+    }
   },
-
   //名片 关注 取消
   enshrine_card_Click: function (e) {
     const that = this;
@@ -534,8 +558,8 @@ Page({
     var index = e.currentTarget.dataset.index
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
 
-    if (that.data.messageList[index].id == e.currentTarget.dataset.id && that.data.messageList[index].mid == e.currentTarget.dataset.mid) {
-      if (that.data.messageList[index].I_favortie == false) {
+    if (that.data.message[index].id == e.currentTarget.dataset.id && that.data.message[index].mid == e.currentTarget.dataset.mid) {
+      if (that.data.message[index].I_favortie == false) {
         var param = {
           // userid: wx.getStorageSync('DTUserinfo').userid.userid,
           // _token: wx.getStorageSync('DTUserinfo')._token,
@@ -543,17 +567,17 @@ Page({
           tid: e.currentTarget.dataset.id
         };
         util.enshrine(param, function (res) {
-          console.log('收藏', res, that.data.messageList[index]);
+          console.log('收藏', res, that.data.message[index]);
           wx.showToast({
             title: '收藏成功',
             icon: 'none',
             duration: 2000
           })
-          that.data.messageList[index].I_favortie = true;
-          that.data.messageList[index].favorite++;
+          that.data.message[index].I_favortie = true;
+          that.data.message[index].favorite++;
 
           that.setData({
-            messageList: that.data.messageList
+            message: that.data.message
           })
         }, null)
       } else {
@@ -565,13 +589,13 @@ Page({
           cancle: '1'
         };
         util.enshrine(param, function (res) {
-          console.log('取消收藏', res, that.data.messageList[index], that.data.messageList);
+          console.log('取消收藏', res, that.data.message[index], that.data.message);
 
-          that.data.messageList[index].I_favortie = false;
-          that.data.messageList[index].favorite--;
+          that.data.message[index].I_favortie = false;
+          that.data.message[index].favorite--;
 
           that.setData({
-            messageList: that.data.messageList
+            message: that.data.message
           })
           wx.showToast({
             title: '取消成功',
@@ -582,12 +606,13 @@ Page({
         }, null)
       }
       that.setData({
-        messageList: that.data.messageList
+        message: that.data.message
       })
 
     }
 
   },
+
 
 
   //查看详情
@@ -616,8 +641,8 @@ Page({
   //拨打电话
   making_call_click: function () {
     util.makePhoneCall({
-      phoneNumber: that.data.business_card.mobile//仅为示例，并非真实的电话号码
-    })
+      phoneNumber: that.data.business_card.mobile
+    }, that.data.business_card.buys > 0)
   },
 
   //排行榜
@@ -631,6 +656,22 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    // 获取是否显示公司照片
+    util.getSystemKeyValue({
+      id: 40
+    }, function (ret) {
+      that.setData({
+        Whether_company: ret.value,
+      })
+    }, null)
+    // 获取是否显示公司二维码
+    util.getSystemKeyValue({
+      id: 41
+    }, function (ret) {
+      that.setData({
+        Whether_code: ret.value,
+      })
+    }, null)
 
     var scene = JSON.stringify(decodeURIComponent(options.scene));
 
@@ -707,15 +748,17 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    that.hideSelect()
     return {
       title: '我分享了' + that.data.business_card.truename + '的名片',
       path: 'pages/store_particulars/store_particulars?id=' + that.data.id,
       success: function (res) {
         // 转发成功
-        wx.showToast({
-          title: '分享成功',
-          duration: 1500
-        })
+        wx.showModal({
+          title: '',
+          content: '分享成功',
+          showCancel: false
+        })   
       },
       fail: function (res) {
         // 转发失败
@@ -747,7 +790,6 @@ Page({
        //获得图片
     util.getCardQR({ _userid:that.data.id }, function (res) {
       console.log(res)
-
       that.setData({
         Img_code: res.tempFilePath
       })
@@ -759,9 +801,6 @@ Page({
         content: JSON.stringify(err),
       })
     });
-
-    
-
   },
 
   //画布
@@ -845,7 +884,6 @@ Page({
           }
         })
         //daozhe
-    
   },
 
 
@@ -868,13 +906,13 @@ Page({
     var idx = e.currentTarget.dataset.idx;
     var index = e.currentTarget.dataset.index;
     var urls = [];
-    for (var i in that.data.messageList[idx].message_Img) {
-      urls.push(that.data.messageList[idx].message_Img[i].message_Image)
+    for (var i in that.data.message[idx].message_Img) {
+      urls.push(that.data.message[idx].message_Img[i].message_Image)
     }
-    console.log(that.data.messageList[idx].message_Img[index],
-      that.data.messageList[idx].message_Img)
+    console.log(that.data.message[idx].message_Img[index],
+      that.data.message[idx].message_Img)
     wx.previewImage({
-      current: that.data.messageList[idx].message_Img[index].message_Image,
+      current: that.data.message[idx].message_Img[index].message_Image,
       urls: urls // 需要预览的图片http链接列表
     })
   }

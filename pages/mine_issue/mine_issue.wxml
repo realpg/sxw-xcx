@@ -18,56 +18,13 @@
  </view>
 </view>
 
-<!-- 名片
-<view class='Css'></view>
-<view class='business_card' >
-  <view class='business_card_css'>
-    <view class='name'>{{business_card.businesscard.truename}}
-      <text class='post'>{{business_card.career}}</text>
-      <image class='headImg' src='{{business_card.avatarUrl}}'></image>
-    </view>
-
-    <view>
-      <image class='iconImg' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{business_card.mobile}} </text>
-    </view>
-    <view>
-      <image class='iconImg' src='../../images/store/company.png'></image>
-      <text>{{business_card.company}} </text>
-    </view>
-    <view>
-      <image class='iconImg' src='../../images/store/map.png'></image>
-      <text>{{business_card.companyInfo.address}} </text>
-    </view>
-
-    <view class='The_main'>主营：{{business_card.companyInfo.business}}</view>
-    <view class='options'>
-      <view class='browse'>
-        <image class='optionsImg' src='../../images/store/eye.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.businesscard.view}}                  </text>
-      </view>
-      <view class='browse'>
-        <image class='optionsImg' src='../../images/store/dianzan.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.businesscard.agree}}                  </text>
-      </view>
-      <view class='browse'>
-        <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.businesscard.favorite}} </text>
-      </view>
-      <view class='browse'>
-       <button open-type='share'><image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-        <text class='number'>转发</text></button>
-      </view>
-    </view>
-  </view>
-</view> -->
 
 <!--分类-->
 <view class='information_classification'>
   <view class='all' style='color:{{all_color}}' data-nn='1' bindtap='selectClick'>全部</view>
   <view style='color:{{supply_color}}' data-nn='2' bindtap='selectClick'>供应信息</view>
   <view style='color:{{buy_color}}' data-nn='3' bindtap='selectClick'>求购信息</view>
-  <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>纺机贸易</view>
+  <!-- <view style='color:{{equipment_color}}' data-nn='4' bindtap='selectClick'>纺机贸易</view> -->
 </view>
 
 <!-- 信息 -->

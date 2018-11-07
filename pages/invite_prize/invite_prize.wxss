@@ -7,11 +7,6 @@ page{
   background-color: #01C46C;
 }
 
-
-
-
-
-
 .Small_program_code{
   background: #01C46C;
   height: 320rpx;
@@ -54,7 +49,7 @@ font-size: 30rpx;
 color: #fff;
 }
 button::after{
-  border-style: none
+   border-style: none;
 }
 
 .earnings{
@@ -69,6 +64,7 @@ padding: 30rpx 50rpx;
   display: flex;
   justify-content: space-around;
   text-align: center;
+  padding-bottom: 20rpx;
 }
 .Image_gold_mine{
   width: 100rpx;

@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    Img_code: '',
     clockin_today:'',
     business_card: {
       name: '',
@@ -243,60 +244,140 @@ Page({
   singInClick: function() {
     let date = new Date();
     let day = date.getDay();
-
-    let param = {
-      userid: that.data.business_card.userid,
-      _token: that.data.business_card._token,
-    };
-    util.signIn(param, function(ret) {
-      console.log("签到记录", ret, day);
-
-      switch (day) {
-        case 1:
-          that.data.sign_in_date[0].isSignin = true;
-          break;
-
-        case 2:
-          that.data.sign_in_date[1].isSignin = true;
-          break;
-
-        case 3:
-          that.data.sign_in_date[2].isSignin = true;
-          break;
-
-        case 4:
-          that.data.sign_in_date[3].isSignin = true;
-          break;
-
-        case 5:
-          that.data.sign_in_date[4].isSignin = true;
-          break;
-
-        case 6:
-          that.data.sign_in_date[5].isSignin = true;
-          break;
-
-        case 7:
-          that.data.sign_in_date[6].isSignin = true;
-          break;
-
-        default:
-
-          break;
+    console.log('签到权限', app.globalData.DTuserInfo)
+    if (app.globalData.DTuserInfo.groupid != 6) {
+      if (app.globalData.DTuserInfo.updating) {
+        wx.showModal({
+          title: '个人信息审核中',
+          content: '请等待审核完成',
+          showCancel: false
+        })
+      } else {
+        wx.showModal({
+          title: '请完善个人信息！',
+          content: '是否前往完善个人信息?',
+          showCancel: true,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.navigateTo({
+                url: "../personal_data/personal_data"
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
       }
+      return;
+    } else {
+      let param = {
+        userid: that.data.business_card.userid,
+        _token: that.data.business_card._token,
+      };
+      util.signIn(param, function (ret) {
+        console.log("签到记录", ret, day);
 
-      wx.showToast({
-        title: '金币+' + that.data.gold_coin_get,
-        duration: 1500
-      })
-      that.data.business_card.credit += parseInt(that.data.gold_coin_get)
+        switch (day) {
+          case 1:
+            that.data.sign_in_date[0].isSignin = true;
+            break;
 
-      that.setData({
-        sign_in_date: that.data.sign_in_date,
-        business_card: that.data.business_card,
-        clockin_today:true
+          case 2:
+            that.data.sign_in_date[1].isSignin = true;
+            break;
+
+          case 3:
+            that.data.sign_in_date[2].isSignin = true;
+            break;
+
+          case 4:
+            that.data.sign_in_date[3].isSignin = true;
+            break;
+
+          case 5:
+            that.data.sign_in_date[4].isSignin = true;
+            break;
+
+          case 6:
+            that.data.sign_in_date[5].isSignin = true;
+            break;
+
+          case 7:
+            that.data.sign_in_date[6].isSignin = true;
+            break;
+
+          default:
+
+            break;
+        }
+
+        wx.showToast({
+          title: '金币+' + that.data.gold_coin_get,
+          duration: 1500
+        })
+        that.data.business_card.credit += parseInt(that.data.gold_coin_get)
+
+        that.setData({
+          sign_in_date: that.data.sign_in_date,
+          business_card: that.data.business_card,
+          clockin_today: true
+        })
       })
-    })
+    }
+    // let param = {
+    //   userid: that.data.business_card.userid,
+    //   _token: that.data.business_card._token,
+    // };
+    // util.signIn(param, function(ret) {
+    //   console.log("签到记录", ret, day);
+
+    //   switch (day) {
+    //     case 1:
+    //       that.data.sign_in_date[0].isSignin = true;
+    //       break;
+
+    //     case 2:
+    //       that.data.sign_in_date[1].isSignin = true;
+    //       break;
+
+    //     case 3:
+    //       that.data.sign_in_date[2].isSignin = true;
+    //       break;
+
+    //     case 4:
+    //       that.data.sign_in_date[3].isSignin = true;
+    //       break;
+
+    //     case 5:
+    //       that.data.sign_in_date[4].isSignin = true;
+    //       break;
+
+    //     case 6:
+    //       that.data.sign_in_date[5].isSignin = true;
+    //       break;
+
+    //     case 7:
+    //       that.data.sign_in_date[6].isSignin = true;
+    //       break;
+
+    //     default:
+
+    //       break;
+    //   }
+
+    //   wx.showToast({
+    //     title: '金币+' + that.data.gold_coin_get,
+    //     duration: 1500
+    //   })
+    //   that.data.business_card.credit += parseInt(that.data.gold_coin_get)
+
+    //   that.setData({
+    //     sign_in_date: that.data.sign_in_date,
+    //     business_card: that.data.business_card,
+    //     clockin_today:true
+    //   })
+    // })
   },
 
   refresh: function() {
@@ -304,6 +385,10 @@ Page({
       that.setData({
         business_card: app.globalData.DTuserInfo
       })
+      that.setData({
+        clockin_today: app.globalData.DTuserInfo.clockin_today
+      })
+      console.log("签到 信息", app.globalData.DTuserInfo.clockin_today)
       console.log("现在的userinfo", that.data.business_card)
     });
 
@@ -333,16 +418,14 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    that.setData({
-      clockin_today: app.globalData.DTuserInfo.clockin_today
-    })
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    that.refresh()
+    // that.refresh()
   },
 
   /**
@@ -386,15 +469,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+    that.hideSelect()
     return {
       title: '我分享了' + that.data.business_card.truename + '的名片',
       path: 'pages/store_particulars/store_particulars?id=' + app.globalData.DTuserInfo.userid,
       success: function(res) {
+        console.log("分享成功")
         // 转发成功
-        wx.showToast({
-          title: '分享成功',
-          duration: 1500
-        })
+        wx.showModal({
+          title: '',
+          content: '分享成功',
+          showCancel:false
+        })    
       },
       fail: function(res) {
         // 转发失败
@@ -418,5 +504,136 @@ Page({
     // pages[pages.length - 1].onPullDownRefresh()
     that.redactClick()
   },
+
+
+
+  //获取小程序维码和设备宽高
+  canvas: function () {
+    that = this
+    //获得设备宽高
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowW: res.windowWidth,
+          canvasW: 750,
+          windowH: res.windowHeight,
+          canvasH: 475
+        })
+      },
+    })
+    //获得图片
+    util.getCardQR({ _userid: app.globalData.DTuserInfo.userid}, function (res) {
+      console.log( '获取图片',res)
+      that.setData({
+        Img_code: res.tempFilePath
+      })
+      var canvas = wx.createCanvasContext('canvas');
+      that.drawCanvas(canvas);
+    }, function (err) {
+      wx.showModal({
+        title: '下载图片失败',
+        content: JSON.stringify(err),
+      })
+    });
+  },
+
+  //画布
+  drawCanvas: function () {
+    that = this
+    const canvas = wx.createCanvasContext('canvas')
+    var windowW = that.data.canvasW;
+    var windowH = that.data.canvasH;
+    var qr = that.data.Img_code;
+    canvas.setFillStyle('#f1f4f6')
+    canvas.fillRect(0, 0, windowW, windowH);
+    canvas.setFillStyle('#ffffff')
+    canvas.fillRect(20, 20, windowW - 40, windowH - 40);
+    canvas.drawImage(qr, windowW * 0.7, windowH * 0.13, 180, 180);
+
+    canvas.setFillStyle('#000000');
+    canvas.setFontSize(36);
+    canvas.fillText(that.data.business_card.truename, windowW * 0.07, windowH * 0.24)
+
+    canvas.setFillStyle('#666666');
+    canvas.setFontSize(26);
+    canvas.fillText(that.data.business_card.career, windowW * 0.07, windowH * 0.35);
+    canvas.fillText('长按识别图中的名片码', windowW * 0.3, windowH * 0.24);
+
+    canvas.setFillStyle('#000000');
+    canvas.setFontSize(26);
+    canvas.fillText('公司：' + that.data.business_card.company, windowW * 0.07, windowH * 0.46);
+    console.log('地址',that.data.business_card.address)
+    canvas.fillText('地址：' + (that.data.business_card.companyInfo.address.length > 18 ? that.data.business_card.companyInfo.address.substring(0, 18) + "..." : that.data.business_card.companyInfo.address), windowW * 0.07, windowH * 0.57);
+    canvas.fillText('电话：', windowW * 0.07, windowH * 0.68);
+    canvas.fillText('主营：' + (that.data.business_card.companyInfo.business.length > 18 ? that.data.business_card.companyInfo.business.substring(0, 18) + "..." : that.data.business_card.companyInfo.business), windowW * 0.07, windowH * 0.85);
+
+    canvas.setFillStyle('#f7a821');
+    canvas.setFontSize(26);
+    canvas.fillText(that.data.business_card.mobile, windowW * 0.168, windowH * 0.68);
+    canvas.beginPath();
+    canvas.setStrokeStyle('#e6eaf2');
+    canvas.moveTo(windowW * 0.07, windowH * 0.75);
+    canvas.lineTo(windowW * 0.9, windowH * 0.75);
+    canvas.stroke()
+    canvas.draw(true, function () {
+      wx.canvasToTempFilePath({
+        canvasId: 'canvas',
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            canvas_img: res.tempFilePath,
+          })
+        }
+      })
+    });
+  },
+
+  //打开选择栏
+  selectClick: function () {
+    this.setData({
+      is_select_True: true
+    })
+  },
+  //关闭选择弹出层   
+  hideSelect: function () {
+    this.setData({
+      is_select_True: false
+    })
+  },
+  //打开画布图片弹出层
+  shareClick: function () {
+    this.setData({
+      isRuleTrue: true
+    })
+    that.canvas();
+    that.hideSelect();
+  },
+  //关闭   
+  hideRule: function () {
+    this.setData({
+      isRuleTrue: false
+    })
+  },
+
+  // 保存图片
+  saveImage: function (e) {
+
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.canvas_img,
+      success(result) {
+        wx.showToast({
+          title: '图片保存成功',
+          icon: 'success',
+          duration: 2000
+        })
+        setTimeout(function () {
+          that.hideRule()
+        }, 2000)
+      }
+    })
+    //daozhe
+  },
+
+
 
 })

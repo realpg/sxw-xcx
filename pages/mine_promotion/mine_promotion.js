@@ -9,7 +9,6 @@ Page({
    */
   data: {
     banner:'../../images/personal_center/banner.png',
-
     advertisingVIP: [
       { id: 0, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg1.png', Img: '../../images/personal_center/vip1.png', gold_week: '100', gold_month: '350', gold_year: '3500' }, 
       { id: 1, bgImg: 'http://pccmmgtlu.bkt.clouddn.com/bg2.png', Img: '../../images/personal_center/vip2.png', gold_week: '80', gold_month: '300', gold_year: '3000' }, 

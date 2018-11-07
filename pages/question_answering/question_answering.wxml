@@ -1,2 +1,6 @@
 <view class='question'>{{question}}</view>
-<view class='answering'>{{answering}}</view>
+<view class='answering'>{{answer}}</view>
+<!-- logo -->
+<view class='logo'>
+<image class='logo_Img' src='../../images/store/logo.png' mode='widthFix'></image>
+</view>

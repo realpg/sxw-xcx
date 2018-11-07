@@ -8,7 +8,7 @@ background: #f1f4f6
 }
 swiper{
 display: block;
-height: 347rpx;
+height: 350rpx;
 }
 .scroll-view_H{
   white-space: nowrap;
@@ -19,10 +19,10 @@ height: 347rpx;
 .scroll-view-item_H{
   display: inline-block;
   width: 450rpx;
-  height: 300rpx;
+  height: 310rpx;
   background: #fff;
   font-size: 25rpx;
-  margin: 24rpx 10rpx;
+  margin: 20rpx 10rpx;
   border-radius: 16rpx 16rpx;
 }
 .bc_green{
@@ -140,7 +140,7 @@ page {
   justify-content: space-between;
 }
 .business_card_css{
-  padding: 3% 3% 3% 3%;
+  padding:20rpx;
   color: #666;
 }
 .name_css{

@@ -167,8 +167,24 @@ Page({
   /**
    * 测试支付购买积分
    */
+
   getJf(result) {
     var app = getApp();
+    // if (that.data.buy_golds<=1){
+    if (that.data.buy_golds == '' || that.data.buy_golds == 0 ||that.data.buy_golds ==undefined){
+        wx.showToast({
+          title: '请您输入购买数量',
+          icon:'none'       
+        })
+        return;
+    } else if (app.globalData.DTuserInfo.groupid !=6){
+      wx.showToast({
+        title: '未完善信息不能充值',
+        icon: 'none'
+      })
+      return; 
+    }
+    // }
     app.util.request({
       url: 'entry/wxapp/pay', //调用wxapp.php中的doPagePay方法获取支付参数
       // method:'post',
@@ -209,6 +225,7 @@ Page({
             'fail': function (res) {
               wx.showToast({
                 title: '支付失败',
+                icon:'none'
               })
               backApp()    
             }

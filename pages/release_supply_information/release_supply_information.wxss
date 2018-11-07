@@ -156,7 +156,7 @@ background: #fff;
   width: 90%;
   margin: auto;
   padding: 0 5%;
-  margin-top: 20rpx;
+  margin-top: 15rpx;
   display: flex;
   justify-content: space-between;
   height: 90rpx;
@@ -184,7 +184,8 @@ background: #fff;
   border: 1rpx solid #01C46C;
   border-radius: 10rpx;
   background: #01C46C;
-  padding: 2rpx 10rpx;
+  padding: 4rpx 10rpx;
+  font-size: 26rpx;
 }
 
 .agreement_css{

@@ -42,7 +42,8 @@
   margin-bottom: 10rpx;
 }
 .rev_lable_css{
-  display: flex;
+  display:flex;
+ flex-wrap:wrap; 
   margin-right: 20rpx;
 }
 .rev_context{
@@ -110,11 +111,10 @@
 }
 .rev_eye_Img{
   width: 36rpx;
-  height: 36rpx;
+  height: 34rpx;
 }
 .rev_jiantou_img{
-  margin-top: 6rpx;
-  margin-left: 6rpx;
+  margin-left:6rpx;
   width: 18rpx;
   height: 26rpx;
 }

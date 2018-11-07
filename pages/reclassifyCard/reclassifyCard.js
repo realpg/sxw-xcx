@@ -26,7 +26,9 @@ Page({
       var messageList = [],
         messageList = that.data.messageList.concat(ret.data);
       for (var i in messageList) {
+        if (messageList[i].bussinesscard.buys>0){
         messageList[i].company = util.hiddenCompany(messageList[i].company)
+        }
       }
       that.setData({
         page: ret.current_page < ret.last_page ? ret.current_page + 1 : null,
@@ -39,6 +41,14 @@ Page({
   messageList_click: function (e) {
     wx.navigateTo({
       url: '../store_particulars/store_particulars?id=' + e.currentTarget.dataset.id,
+    })
+    for (var i in that.data.messageList) {
+      if (that.data.messageList[i].userid == e.currentTarget.dataset.id) {
+        that.data.messageList[i].bussinesscard.view++;
+      }
+    }
+    that.setData({
+      messageList: that.data.messageList
     })
   },
 

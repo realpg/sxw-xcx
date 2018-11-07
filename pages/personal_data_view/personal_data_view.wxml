@@ -54,14 +54,14 @@
     <text class='prompt'>*</text>
     <input disabled="disabled"  class='input_business' type='text' placeholder='请选择业务类别' value='{{businesscard.ywlb[0].name}}{{businesscard.ywlb[1].name?",":""}}{{businesscard.ywlb[1].name}}{{businesscard.ywlb[2].name?",":""}}{{businesscard.ywlb[2].name}}{{businesscard.ywlb.length>3?"...":""}}'
       disabled="disabled" />
-    <image class='Image_jiantou' src='../../images/index/jiantou_right.png' />
+
   </view>
   <view class='business_name' >
     详细地址
     <text class='prompt'>*</text>
    
     <textarea  disabled="disabled" auto-height='true' class='input_business' type='text' placeholder='请选择详细地址' value="{{businesscard.address}}" bindblur="changeBusinesscard" data-key="address"></textarea>
-    <image class='Image_jiantou' src='../../images/index/jiantou_right.png' />
+   
   </view>
 </view>
 
@@ -77,7 +77,7 @@
 <!--主营公司简介-->
 <view class='main_company_profile'>
   <view class='main_product_title'>
-    公司简介<text class='prompt'>*</text>
+    公司简介
   </view>
   <textarea disabled="disabled"  class='main_company_profile_info' maxlength='-1' placeholder='请输入公司简介' value="{{businesscard.introduce}}" bindblur="changeBusinesscard" data-key="introduce" />
 </view>
@@ -85,21 +85,20 @@
 <!--上传图片-->
 
 <view class='AddImgList'>
-  <view style='font-size:30rpx;line-height:80rpx'>上传公司照片
-<text style='font-size:26rpx;'>(最多上传六张)</text><text class='prompt'>*</text>
-  </view>
+  <view style='font-size:30rpx;line-height:80rpx'>上传公司照片</view>
+     <view class='hint_company' wx:if='{{thumb ==""}}'>该公司没有上传照片</view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{thumb}}' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick_two' data-id='{{index}}' src='{{item}}' mode='aspectFill' />
     </view>
   </view>
-
 </view>
 
 <!--上传二维码-->
 
-<view class='AddImgList'>
+<!-- <view class='AddImgList'>
   <view style='font-size:30rpx;line-height:80rpx'>上传二维码</view>
+    <view class='hint_code' wx:if='{{wxqr==""}}'>该公司没有上传二维码</view>
   <view class='ThatMessageImgList'>
     <view class='ThatMessageImg' wx:for='{{wxqr}}' data-index='id'>
       <image class='MessageImg' bindtap='previewImClick_three' data-id='{{item.id}}' src='{{item}}' mode='aspectFill' />
@@ -107,13 +106,9 @@
      
     </view>
 
-    <view class='AddImgFunction' wx-if='{{wxqr.length<1}}'>
-      <view class='AddImgClick' bindtap='AddImgClick_three'>
-        <image class='AddImg' src='../../images/index/add2.png' mode='widthFix' />
-      </view>
-    </view>
+  
   </view>
-</view>
+</view> -->
 
 
 

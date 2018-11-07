@@ -12,9 +12,8 @@ App({
       },
     })
     console.log("设备信息", app.globalData.SystemInfo)
-
     this.globalData.DTuserInfo = wx.getStorageSync('DTUserInfo') || null
-      this.globalData.wx_userInfo = wx.getStorageSync('wx_userInfo') || null
+    this.globalData.wx_userInfo = wx.getStorageSync('wx_userInfo') || null
 
   },
   onShow:function(){

@@ -4,8 +4,8 @@
   <!-- 名片 -->
   <view class='card'>
     <view class='card_css'>
-      <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
-      <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}'></image>
+      <image class='head_Img' src='{{business_card.avatarUrl ? business_card.avatarUrl : "../../images/index/head_portrait.png"}}'></image>
+      <image class='vip_Img' src='{{business_card.vip !=0?"../../images/index/vip.png":""}}'></image>
       <view class='truename'>{{business_card.truename}}</view>
       <view class='career'>{{business_card.career}}</view>
       <view class='card_company con'>公司：<text class='fuzzy'>{{business_card.company}}</text></view>
@@ -24,7 +24,7 @@
     </view>
 
     <view class='option'>
-      <view class='option_css' bindtap='setLike_card_Click' data-id='{{business_card.userid}}' data-mid='2'>
+      <view class='option_css' bindtap='setLike_card_Click' data-id='{{business_card.userid}}' data-mid='2' data-index="{{idx}}">
         <image class='icon' src='{{business_card.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'></image>
         <text> 点赞</text>
       </view>
@@ -32,11 +32,13 @@
         <image class='icon' src='{{business_card.I_favorite?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
         <text>  收藏</text>
       </view>
-      <view class='option_css' bindtap='selectClick' >
+       <view class='option_css' bindtap='selectClick' >
           <image class='icon' src='../../images/store/share.png'></image>
           <text class='share_text'>  分享</text>
-      </view>
+      </view> 
     </view>
+  
+      
   </view>
 
 
@@ -46,22 +48,23 @@
   <!-- 具体描述 -->
   <view class='specific'>
     <view class='Shops'>商户简介</view>
-    <view class='specific_css'>{{business_card.introduce}}</view>
-
+    <view class='specific_css'>{{business_card.introduce== null?"":business_card.introduce}}</view>
+<view wx:if='{{Whether_company==1}}'>
     <view class='company_photos'>公司照片:</view>
-    <view class='hint_company' wx:if='{{thumb.length==0}}'>该公司没有上传照片</view>
+    <view class='hint_company' wx:if='{{thumb ==""}}'>该公司没有上传照片</view>
     <view class='message_Img'>
       <view class='message_Image' wx:for='{{thumb}}' wx:for-index='index'>
         <image class='message_Image_Css' wx:if='{{item !=""}}' bindtap='previewImClick_company' data-id='{{index}}' src='{{item}}'></image>
       </view>
     </view>
-
+</view>
+<view wx:if='{{Whether_code==1}}'>
     <view class='company_code'>公司二维码:</view>
     <view class='hint_code' wx:if='{{business_card.wxqr.length==0}}'>该公司没有上传二维码</view>
     <view class='code'>
       <image wx:if='{{business_card.wxqr.length!=0}}' bindtap='previewImClick_code' class='code_img' mode="aspectFill" src='{{business_card.wxqr}}'></image>
     </view>
-
+</view>
     <!-- <view class='view_details' data-introduce='{{business_card.introduce}}' data-thumb='{{business_card.thumb}}' data-wxqr='{{business_card.wxqr}}' bindtap='view_details_click'>
     <text class='view_details_css'>查看详情</text>
   </view> -->
@@ -69,7 +72,7 @@
 
 
   <!--具体信息-->
-  <template is='messageBox' data='{{message:messageList}}'></template>
+  <template is='messageBox' data='{{message}}'></template>
 
   <!-- <view class='message' wx:for='{{messageList}}'>
   <view class='messageCss' data-id='{{item.id}}'>
@@ -159,15 +162,15 @@
     <view class='navigation_bar_css'>
       <view bindtap='back_homepage_click'>
         <image class='navigation_bar_Img' src='../../images/store/home.png'></image>
-        <view style='margin-top:-3rpx'>返回首页</view>
+        <view style='margin-top:0rpx'>返回首页</view>
       </view>
       <view bindtap='making_call_click'>
         <image class='navigation_bar_Img' src='../../images/store/tab_phone.png'></image>
-        <view style='margin-top:-3rpx'>电话联系</view>
+        <view style='margin-top:0rpx'>电话联系</view>
       </view>
       <view bindtap='ranking_list_click'>
         <image class='navigation_bar_Img' src='../../images/store/tab_paihangbang.png'></image>
-        <view style='margin-top:-3rpx'>排行榜</view>
+        <view style='margin-top:0rpx'>排行榜</view>
       </view>
     </view>
 
@@ -197,7 +200,7 @@
 
 <!-- 弹出选择栏 -->
 <view class="select_column {{is_select_True?'select_column_Show':'select_column_Hide'}}" bindtap='hideSelect'>
-  <view class='select_column_Content' catchtap='Rule'>
+  <view class=" select_column_Content" catchtap='Rule'>
     <view>分享到</view>
     <view class='select'>
        <view>

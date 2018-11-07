@@ -7,8 +7,7 @@ page{
   font-size: 30rpx;
   color: #9B9B9B;
   line-height: 180rpx;
-  text-align: center;
-  
+  text-align: center; 
 }
 .attention{
   background: #fff;

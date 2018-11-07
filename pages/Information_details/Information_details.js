@@ -21,14 +21,6 @@ Page({
     };
     util.setInfo(param, function (res) {
       console.log('根据itemid查询资讯详情', res);
-      // for (var i in res.data) {
-        // that.data.information_list.push({
-        //   addtime: util.formatTime(new Date(res.data[i].addtime * 1000)),
-        //   itemid: res.data[i].itemid,
-        //   title: res.data[i].title,
-        //   thumb: res.data[i].thumb
-        // })
-      // }
       that.setData({
         messageTime: util.formatTime(new Date(res.addtime * 1000)),
         messageSource: res.copyfrom,
@@ -57,43 +49,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-   
-    /**
-      * 加载产品信息
-      * */
-
-
-
-    // wx.request({
-    //   url: app.https.url + "/select/Information",
-    //   data: {
-    //     id: that.data.id
-    //   },
-    //   header: { 'content-type': 'application/x-www-form-urlencoded' },
-    //   method: 'POST',
-    //   success: function (res) {
-    //     console.log(res.data)
-    //     // for (var i in res.data) {
-    //     that.setData({
-    //       id: res.data[0].id,
-    //       messageIconImg: res.data[0].images,
-    //       messageTitle: res.data[0].content,
-    //       messageSource: res.data[0].network,
-    //       messageTime: u.formatTime(new Date(res.data[0].gmtconfig)),
-    //       article: res.data[0].informationdetail,
-    //     })
-    //     var article = res.data[0].informationdetail;
-    //     if (article) {
-    //       WxParse.wxParse('article', 'html', article, that, 5);
-    //     }
-    //     // wx.setNavigationBarTitle({
-    //     //   title: res.data[0].productName,
-    //     // })
-
-    //   },
-    //   fail: function (res) { },
-    //   ompvare: function (res) { },
-    // })
   },
 
   /**

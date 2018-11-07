@@ -19,10 +19,8 @@
     <view class='card_company'bindtap='cardClick' data-id='{{business_card.userid}}'>公司：{{business_card.company}}</view>
     <view class='card_company'bindtap='cardClick' data-id='{{business_card.userid}}'>地址：{{business_card.companyInfo.address}}</view>
     <view class='card_company'  style='position:relative'>电话：<text class=' card_mobile'>{{business_card.mobile}}</text> 
-    <view class='share' catchtap=''>
-      <button catchtap='' open-type='share' class='share_but'>
+    <view class='share'  catchtap='selectClick'>
         <image class='share_Img' src='../../images/store/share.png' mode='widthFix'></image>
-      </button>
     </view>
     </view>
     <view class='card_business' bindtap='cardClick' data-id='{{business_card.userid}}'>主营：{{business_card.companyInfo.business}}</view>
@@ -47,69 +45,6 @@
   </view>
   </view>
 </view>
-
-<!-- 名片
-<view class='Css'></view>
-<view  wx:if='{{business_card.groupid==6}}' class='business_card'>
-<view class='Css'></view>
-  <view class='business_card_css'>
-    <view class='name'>{{business_card.businesscard.truename}}
-      <text class='post'>{{business_card.career}}</text>
-      <image class='headImg' src='{{business_card.avatarUrl}}'></image>
-    </view>
-
-    <view class='itemscenter'>
-      <image class='iconImg_dianhua' src='../../images/store/btn_dianhua.png'></image>
-      <text>{{business_card.businesscard.mobile}} </text>
-    </view>
-    <view class='itemscenter' >
-      <image class='iconImg_company' src='../../images/store/company.png'></image>
-      <text>{{business_card.company}} </text>
-    </view>
-    <view class='redactList itemscenter'>
-    <view class='redact' >
-      <image class='iconImg_map'  src='../../images/store/map.png'></image>
-      <text style="margin-left:4rpx; width:92%" >  {{business_card.companyInfo.address}} </text>
-      </view>
-      <view wx:if="{{business_card.updating}}">
-       <text class='redactInfo_css' style='background:gray'>审核中</text>
-      </view>
-<view wx:else="">
-       <text bindtap='redactClick' class='redactInfo' >编辑资料</text>
-      </view>
-
-    </view>
-
-    <view class='The_main'>主营：{{business_card.companyInfo.business}}</view>
-    <view class='options'>
-      <view class='browse'>
-        <image class='eye' src='../../images/store/eye.png' ></image>
-        <text class='number'>{{business_card.businesscard.view}}                  </text>
-      </view>
-      <view class='browse'>
-        <image class='dianzan' src='../../images/store/dianzan.png' ></image>
-        <text class='number'>{{business_card.businesscard.agree}}                  </text>
-      </view>
-      <view class='browse'>
-        <image class='optionsImg' src='../../images/store/star.png' mode='widthFix'></image>
-        <text class='number'>{{business_card.businesscard.userid}}                  </text>
-      </view>
-      <view class='browse'>
-       <button open-type='share'><image class='optionsImg' src='../../images/store/share.png' mode='widthFix'></image>
-        <text class='number'>分享</text></button>
-      </view>
-    </view>
-  </view>
-</view>
-
-<view wx:else='{{business_card.groupid==5}}' class='business_card'>
-<view wx:if="{{business_card.updating}}"class='business_card_css redactuserinfo'>
-      <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>信息审核中，请等待</text></button> 
-      </view>
-  <view wx:else bindtap='redactClick' class='business_card_css redactuserinfo'>
-   <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'><text class='redactuserinfo'  style='font-size:30rpx'>请完善个人信息</text></button> 
-  </view>
-  </view> -->
 
 <!-- 签到 -->
 <view class='sign_in'>
@@ -141,13 +76,17 @@
  { id: '8', iconImg: '../../images/personal_center/kefu.png', title: '联系客服', describe: '随时联系客服咨询和反馈', }, -->
 <!-- 选项 -->
 <view class='invite' bindtap='mine_item_click' data-id='0'>
+<view class='invite_css'> 
   <image class='yaoyue_Img_css' src='../../images/personal_center/yaoyue.png' mode='widthFix'></image>
   <text class='context'>邀约赚金币</text>
+  </view>
   <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 <view class='answer' bindtap='mine_item_click' data-id='1'>
+<view class='invite_css'> 
   <image class='yaoyue_Img_css' src='../../images/personal_center/dati.png' mode='widthFix'></image>
   <text class='context'>答题赚金币</text>
+</view>
     <image class='jiantou_Img' src='../../images/personal_center/jiantou.png' mode='widthFix'></image>
 </view>
 
@@ -206,3 +145,33 @@
     </button>
 </view> -->
 
+<!-- 图片保存弹出层 -->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap='hideRule'>
+  <view class='ruleZhezhaoContent' catchtap='Rule'>
+    <canvas canvas-id='canvas' class='hide' style='width:750px;height:475px;margin: 0;padding: 0;display: block;border-radius: 10rpx'></canvas>
+    <image src='{{canvas_img}}' mode='widthFix' style='width:100%;height:458rpx;'></image>
+    <text class='hint_huabu'>点击将图片保存到手机相册，朋友圈添加分享名片图片</text>
+    <button bindtap="saveImage" class='save_but'>保存到手机</button>
+  </view>
+</view>
+
+
+<!-- 弹出选择栏 -->
+<view class="select_column {{is_select_True?'select_column_Show':'select_column_Hide'}}" bindtap='hideSelect'>
+  <view class=" select_column_Content" catchtap='Rule'>
+    <view>分享到</view>
+    <view class='select'>
+       <view>
+       <button class='friend_btu' open-type='share' hover-class="none">
+          <image class='friends_Img'  src='../../images/store/friend.png'></image>
+          <view>好友和微群</view>
+      </button>
+      </view>
+      <view bindtap='shareClick' >
+           <image class='friends_Img' src='../../images/store/cricle_friends.png'></image>
+          <view>朋友圈</view>
+      </view>
+    </view> 
+        <view class='cancel' bindtap='hideSelect'>取消</view>
+      </view>
+    </view>

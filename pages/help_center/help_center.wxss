@@ -16,3 +16,11 @@ text-align: center;
   font-size: 28rpx;
   padding: 20rpx 0 ;
 }
+
+.logo{
+ margin-top: 180rpx;
+  text-align: center;
+}
+.logo_Img{
+  width: 260rpx;
+}

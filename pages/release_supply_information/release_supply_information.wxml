@@ -91,11 +91,14 @@
 
 <!--金币-->
 <view class='gold_coin'>
-  <view class='gold_coin_balance'>我的余额：
+  <view wx:if='{{vip<=0}}' class='gold_coin_balance'>我的余额：
     <text class='number'>{{gold_coin_balance}}</text>
   </view>
-  <view class='gold_coin_balance'>本次扣除：
+  <view wx:if='{{vip<=0}}' class='gold_coin_balance'>本次扣除：
     <text class='number'>{{gold_coin_pay}}</text>
+  </view>
+    <view wx:if='{{vip>0}}' style='font-size:26rpx;color:#333333'>
+    <text>vip用户免费发布</text>
   </view>
   <view bindtap='acquireClick'>
     <text class='acquire'>获取金币</text>

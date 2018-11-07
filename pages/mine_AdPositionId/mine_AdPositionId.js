@@ -8,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     advertising_position: []
   },
 
@@ -87,11 +86,14 @@ Page({
       var vip_now = ret[3] ? ret[3] : [];
       var vip_later = ret[0] ? ret[0] : [];
       var vip_earlier = ret[2] ? ret[2] : [];
-
       console.log(vip_now, vip_later, vip_earlier)
       for (var i in vip_now) {
         vip_now[i].time_begin = util.formatDate(new Date(vip_now[i].fromtime * 1000));
         vip_now[i].time_over = util.formatDate(new Date(vip_now[i].totime * 1000));
+      }
+      for (var i in vip_later) {
+        vip_later[i].time_begin = util.formatDate(new Date(vip_later[i].fromtime * 1000));
+        vip_later[i].time_over = util.formatDate(new Date(vip_later[i].totime * 1000));
       }
 
       that.setData({
@@ -99,6 +101,7 @@ Page({
         vip_later: vip_later,
         vip_earlier: vip_earlier
       })
+      console.log('以后的vip',vip_later);
     })
   },
   getMyAdplace: function () {

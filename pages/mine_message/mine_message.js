@@ -13,15 +13,16 @@ Page({
 
 //查看
   view_click:function(e){
-    if (e.target.dataset.id == 1) {
+    console.log(e)
+    if (e.currentTarget.dataset.id == 1) {
       wx.navigateTo({
         url: '../messageList_system/messageList_system',
       })
-    }else if (e.target.dataset.id==2){
+    } else if (e.currentTarget.dataset.id==2){
       wx.navigateTo({
         url: '../messageList/messageList',
       })
-    } else if (e.target.dataset.id == 3) {
+    } else if (e.currentTarget.dataset.id == 3) {
       wx.navigateTo({
         url: '../messageList_comments/messageList_comments',
       })

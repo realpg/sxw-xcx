@@ -1,5 +1,6 @@
+ <import src="../../wxParse/wxParse.wxml"/>
  <import src="../template/template.wxml"/> 
-<view class='revision' wx:for='{{message}}' wx:for-index='idx'>
+<view class='revision' wx:for='{{message_details}}' wx:for-index='idx'>
   <view class='revision_head'  style='position:relative'>
     <view class='headImg_vipImg'>
       <image class='revision_headImg' bindtap='messageList_click' data-id='{{item.userid}}'  src='{{item.head_portrait_icon}}'></image>
@@ -19,7 +20,9 @@
     <view class='revision_lable' wx:for='{{item.lableList}}' wx:for-index='index'><text class='revision_lable_css' >#{{item.tagname}}#</text> </view>
        </view>
     <view class='revision_context'>
-    {{item.details}}
+    <view class="wxParse">
+        <template is="wxParse" data="{{wxParseData:details.nodes}}"/>
+   </view>
     </view> 
 
 <!-- 图片 -->
@@ -28,8 +31,8 @@
           <image  class='revision_message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick_css'  mode='aspectFill' data-id='{{index}}' src='{{item}}'></image>
         </view>
       </view>
-
-    <view class='revision_address'>存放地：{{item.address}}</view>
+ <view wx:if="{{item.mid ==6}}" class='revision_address'>收货地：{{item.address}}</view>  
+    <view wx:else class='revision_address'>存放地：{{item.address}}</view>
     <view class='revision_time'> 发布时间：{{item.addtime}}</view>
      <view class='revision_time'> 更新时间：{{item.edittime}}</view>
       <view class='revision_hint'>联系时请说是在中国纱线网上看到的</view>
@@ -38,7 +41,7 @@
         <image class='revision_eye_Img' src='../../images/index/eye.png'/> 
         <text  class='revision_eye_num'>{{item.page_view}}</text>
       </view>
-       <view class='revision_eye'  bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}'>
+       <view class='revision_eye'  bindtap='setLikeClick_css' data-id='{{item.id}}' data-mid='{{item.mid}}'  data-index="{{idx}}">
         <image class='revision_eye_Img' src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> 
         <text  class='revision_eye_num'>{{item.like}}</text>
       </view>
@@ -46,79 +49,13 @@
         <image class='revision_eye_Img'src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'/> 
         <text class='revision_eye_num'>{{item.favorite}}</text>
       </view>
-       <button open-type='share'>
-          <view class='dianzan_Css'>
-            <image class='dianzan' src='../../images/store/share.png'></image>
-            <text class='like'>转发</text>
-          </view>
-        </button>
+         <view class='revision_eye' bindtap='selectClick' >
+          <image class='revision_eye_Img' src='../../images/store/share.png'></image>
+          <text class='revision_eye_num'>  分享</text>
+      </view>
     </view>
   </view>
 </view>
-<!--具体详情-->
-<!-- <view class='message' wx:for='{{message}}' wx:for-index="idx">
-  <view class='messageCss' data-id='{{item.id}}'>
-    <view class='head_portrait' bindtap='messageList_click' data-id='{{item.userid}}'>
-      <image class='head_portrait_icon' src='{{item.head_portrait_icon}}'></image>
-       <image class='icon_vip' src='{{item.icon_vip!=0?"../../images/index/vip.png":""}}' mode='widthFix'/>
-    </view>
-
-    <view class='The_specific_details'>
-      <view class='The_specific_details_one'>
-        <text class='datails_name'>{{item.name}}</text>
-        <text class='position'>{{item.position}}</text>
-        
-        <text  wx:if="{{item.mid ==5}}" class='demand'><text class='demand_css'>{{item.demand}}</text></text>
-          <text  wx:if="{{item.mid ==6}}" class='demand' style='background:#F7CF9A'><text class='demand_css'>{{item.demand}}</text></text>
-          <text  wx:if="{{item.mid ==88}}" class='demand' style='background:#9A9CF7'><text class='demand_css'>{{item.demand}}</text></text>
-
-        <image class='btn_dianhua' bindtap='making_call_click' src='../../images/index/btn_dianhua.png' mode='widthFix'></image>
-      </view>
-      <view class='company'>{{item.company}}</view>
-      <view class='lable'>
-        <text wx:if="{{item.lableList[0]}}" class='lable_three'>{{item.lableList[0].tagname}}</text>
-          <text wx:if="{{item.lableList[1]}}" class='lable_four'>{{item.lableList[1].tagname}}</text>
-           <text wx:if="{{item.lableList[2]}}" class='lable_five'>{{item.lableList[2].tagname}}</text>
-         <text wx:if="{{item.lableList[3]}}" class='lable_four'>{{item.lableList[3].tagname}}</text>
-          <text wx:if="{{item.lableList[4]}}" class='lable_five'>{{item.lableList[4].tagname}}</text>
-      </view>
-      <view class='details'>{{item.details}}</view>
-
-      <view class='message_Img'>
-       <view class='message_Image' wx:for='{{item.message_Img}}' wx:for-index='index'>
-          <image  class='message_Image_Css'   wx:if='{{item !=""}}' bindtap='previewImClick'  data-id='{{index}}' src='{{item}}'></image>
-        </view>
-      </view>
-
-      <view class='address_css'>
-        <image class='icon_map' src='../../images/index/icon_map.png'></image>
-        <text class='address'>存放地：{{item.address}}</text>
-      </view>
-      <view class='time'>发布时间：{{item.addtime}}</view>
-      <view class='time'>更新时间：{{item.edittime}}</view>
-      <view class='hint'>联系时请说是在中国纱线网上看到的</view>
-      <view class='eye_dianzan'>
-        <view class='eye_Css'>
-          <image class='eye' src='../../images/index/eye.png'></image>
-          <text class='view'>{{item.page_view}}</text>
-        </view>
-        <view bindtap='setLikeClick' data-id='{{item.id}}' data-mid='{{item.mid}}' class='dianzan_Css'>
-            <image class='dianzan'  src='{{item.I_agree?"../../images/index/dianzan_later.png":"../../images/index/dianzan.png"}}'/> <text class='like'>{{item.like}}</text></view>
-        <view bindtap='enshrineClick' data-id='{{item.id}}' data-mid='{{item.mid}}' data-index="{{idx}}" class='dianzan_Css'>
-          <image class='dianzan' src='{{item.I_favortie?"../../images/store/closestar.png":"../../images/store/star.png"}}'></image>
-          <text class='like'>{{item.favorite}}</text>
-        </view>
-        <button open-type='share'>
-          <view class='dianzan_Css'>
-            <image class='dianzan' src='../../images/store/share.png'></image>
-            <text class='like'>转发</text>
-          </view>
-        </button>
-      </view>
-    </view>
-  </view>
-</view> -->
-
 
 
 
@@ -173,14 +110,14 @@
 <!-- 名片 -->
 <view class='card' data-id='{{business_card.userid}}' bindtap='view_card_click' >
   <view class='card_css' >
-    <image class='head_Img' src='{{business_card.avatarUrl}}'></image>
-    <image class='vip_Img' src='{{business_card.businesscard.vip!=0?"../../images/index/vip.png":""}}'></image>
+    <image class='head_Img' src='{{business_card.avatarUrl? business_card.avatarUrl : "../../images/index/head_portrait.png"}}'></image>
+    <image class='vip_Img' src='{{business_card.vip!=0?"../../images/index/vip.png":""}}'></image>
     <view class='truename'>{{business_card.truename}}</view>
     <view class='career'>{{business_card.career}}</view>
     <view class='card_company'>公司：{{business_card.company}}</view>
     <view class='card_company'>地址：{{business_card.address}}</view>
     <view class='card_company'>电话：<text class='card_mobile'>{{business_card.mobile}}</text> 
-        <text data-id='{{business_card.userid}}' bindtap='view_card_click' class='view_card'>名片详情</text>
+      
       </view>
     <view class='card_business'>主营：{{business_card.business}}</view>
   </view>
@@ -211,7 +148,7 @@
 
 <!--推荐信息-->
 
- <template is='messageBox' data='{{message:messageList}}'></template> 
+ <template is='messageBox' data='{{message}}'></template> 
  
  <!-- <view class='message' wx-if="{{!(item.id==id && item.mid==mid)}}" wx:for='{{messageList}}' wx:for-index="idx">
   <view class='messageCss' data-id='{{item.id}}'>
@@ -288,20 +225,59 @@
   <view class='navigation_bar_css'>
     <view bindtap='back_homepage_click' >
       <image class='navigation_bar_Img' src='../../images/store/home.png'></image>
-      <view style='margin-top:-3rpx'>返回首页</view>
+      <view style='margin-top:0rpx'>返回首页</view>
     </view>
     <view bindtap='making_call_click'>
       <image  class='navigation_bar_Img'  src='../../images/store/tab_phone.png'></image>
-      <view style='margin-top:-3rpx'>电话联系</view>
+      <view style='margin-top:0rpx'>电话联系</view>
     </view>
     <view bindtap='ranking_list_click'>
       <image  class='navigation_bar_Img'  src='../../images/store/tab_paihangbang.png'></image>
-      <view style='margin-top:-3rpx'>排行榜</view>
+      <view style='margin-top:0rpx'>排行榜</view>
     </view>
   </view>
 
  <view class='navigation_bar_share'>
-      <button open-type="share" class='shareBtn'>
-      <view>立即分享</view></button>
+        <button bindtap='selectClick' class='shareBtn'>
+        <view>立即分享</view>
+      </button>
+ 
     </view> 
 </view>
+
+
+
+<!-- 图片保存弹出层 -->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap='hideRule'>
+
+  <view class='ruleZhezhaoContent' catchtap='Rule'>
+    <canvas canvas-id='canvas' class='hide' style='width:750px;height:400px;margin: 0;padding: 0;display: block;border-radius: 10rpx;'></canvas>
+     <!-- <image src='{{Img_code}}'></image> -->
+    <image src='{{canvas_img}}' mode='widthFix' style='width:100%;height:386rpx;'></image>
+    <text class='hint'>点击将图片保存到手机相册，朋友圈添加分享图片</text>
+    <button bindtap="saveImage" class='save_but'>保存到手机</button>
+  </view>
+</view>
+
+
+<!-- 弹出选择栏 -->
+<view class="select_column {{is_select_True?'select_column_Show':'select_column_Hide'}}" bindtap='hideSelect'>
+  <view class='select_column_Content' catchtap='Rule'>
+    <view>分享到</view>
+    <view class='select'>
+       <view>
+       <button class='friend_btu' open-type='share' hover-class="none">
+          <image class='friends_Img'  src='../../images/store/friend.png'></image>
+          <view>好友和微群</view>
+      </button>
+      </view>
+      <view bindtap='shareClick' >
+           <image class='friends_Img' src='../../images/store/cricle_friends.png'></image>
+          <view>朋友圈</view>
+      </view>
+    </view> 
+        <view class='cancel' bindtap='hideSelect'>取消</view>
+      </view>
+    </view>
+
+   

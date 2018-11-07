@@ -26,9 +26,18 @@ Page({
   },
   //联系商家
   phoneClick: function(e) {
+    console.log(e)
+    if (e.currentTarget.dataset.mobile == '') {
+      wx.showToast({
+        title: '暂无手机号',
+        icon: 'none',
+        duration: 1500
+      })
+    } else {
     util.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.mobile //仅为示例，并非真实的电话号码
-    })
+      phoneNumber: e.currentTarget.dataset.mobile
+    }, e.currentTarget.dataset.buys > 0 || e.currentTarget.dataset.mid != 5)
+    }
   },
   //点击头像查看名片
   messageList_click: function(e) {
@@ -59,11 +68,11 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           setTimeout(function () {
             that.loading()
-          }, 2000)
+          }, 1500)
         }, null)
 
   },
@@ -88,7 +97,7 @@ Page({
           wx.showToast({
             title: '收藏成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           that.data.message[index].I_favortie = true;
           that.data.message[index].favorite++;
@@ -117,11 +126,11 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: 'none',
-            duration: 2000
+            duration: 1500
           })
           setTimeout(function() {
             that.loading()
-          }, 2000)
+          }, 1500)
 
         }, null)
       }
@@ -133,35 +142,58 @@ Page({
 
   },
 
-  //点赞
-  setLikeClick: function(e) {
+  //点赞 取消
+  setLikeClick: function (e) {
+    const that = this;
+    var index = e.currentTarget.dataset.index
+    console.log("改变收藏信息", index, that.data.message[index])
     console.log(e.currentTarget.dataset.mid, e.currentTarget.dataset.id)
-    var param = {
-      // userid: wx.getStorageSync('DTUserinfo').userid.userid,
-      // _token: wx.getStorageSync('DTUserinfo')._token,
-      item_mid: e.currentTarget.dataset.mid,
-      item_id: e.currentTarget.dataset.id
-    };
-    util.setLike(param, function(res) {
-      console.log('点击点赞', res);
-      wx.showToast({
-        title: '点赞成功',
-        icon: 'none',
-        duration: 2000
-      })
-      for (var i in that.data.message) {
-        if (that.data.message[i].id == res.itemid && that.data.message[i].mid == e.currentTarget.dataset.mid) {
-          that.data.message[i].I_agree = true;
-          that.data.message[i].like++;
-        }
+
+    if (that.data.message[index].id == e.currentTarget.dataset.id && that.data.message[index].mid == e.currentTarget.dataset.mid) {
+      if (that.data.message[index].I_agree == false) {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id
+        };
+        util.setLike(param, function (res) {
+          console.log('点赞', res, that.data.message[index]);
+          wx.showToast({
+            title: '点赞成功',
+            icon: 'none',
+            duration: 1500
+          })
+          that.data.message[index].I_agree = true;
+          that.data.message[index].like++;
+
+          that.setData({
+            message: that.data.message
+          })
+        }, null)
+      } else {
+        var param = {
+          item_mid: e.currentTarget.dataset.mid,
+          item_id: e.currentTarget.dataset.id,
+          cancle: '1'
+        };
+        util.setLike(param, function (res) {
+          console.log('取消点赞', res, that.data.message[index], that.data.message);
+          that.data.message[index].I_agree = false;
+          that.data.message[index].like--;
+          that.setData({
+            message: that.data.message
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none',
+            duration: 1500
+          })
+        }, null)
       }
       that.setData({
         message: that.data.message
       })
-    }, null)
-
+    }
   },
-
 
   //信息栏选择
   selectClick: function(e) {
@@ -270,8 +302,9 @@ Page({
             position: ret.data[i].item.businesscard.career, //职位
             mobile: ret.data[i].item.businesscard.mobile, //电话
             demand: '供应', //发布类别  ()
-            company: util.hiddenCompany(ret.data[i].item.businesscard.company), //公司
-            lableList: ret.data[i].item.tags,
+            company: ret.data[i].item.businesscard.buys > 0 ? util.hiddenCompany(ret.data[i].item.businesscard.company) : ret.data[i].item.businesscard.company, //公司
+            buys:ret.data[i].item.businesscard.buys,
+            lableList: ret.data[i].item.tags, 
             details: ret.data[i].item.introduce, //信息详情描述
             I_favortie: ret.data[i].item.I_favortie,
             I_agree: ret.data[i].item.I_agree,
@@ -303,7 +336,7 @@ Page({
         })
         setTimeout(function(){
             that.setData({
-              hint_one:'您还未关注该类信息'
+              hint_one:'您还未收藏该类信息'
             })
         },1000)
         // console.log(that.data.sellList)
@@ -364,7 +397,7 @@ Page({
         })
         setTimeout(function () {
           that.setData({
-            hint_two: '您还未关注该类信息'
+            hint_two: '您还未收藏该类信息'
           })
         }, 1000)
         that.changeMessage();
@@ -426,7 +459,7 @@ Page({
         })
         setTimeout(function () {
           that.setData({
-            hint_three: '您还未关注该类信息'
+            hint_three: '您还未收藏该类信息'
           })
         }, 1000)
         that.changeMessage();
@@ -445,7 +478,8 @@ Page({
         var cardList = [];
         for (var i in ret.data) {
           // if (ret.data[i].user)
-          // console.log(ret.data[i].user)
+          console.log(ret.data[i])
+          if(ret.data[i].item)
           cardList.push({
             userid: ret.data[i].item.userid, //信息id
             mid: 2,
@@ -453,7 +487,7 @@ Page({
             icon_vip: ret.data[i].item.vip, //  0===非vip 1-3==vip
             name: ret.data[i].item.truename, //用户姓名
             career: ret.data[i].item.career, //职位
-            company: util.hiddenCompany(ret.data[i].item.company), //公司
+            company: ret.data[i].item.buys > 0 ? util.hiddenCompany(ret.data[i].item.company) : ret.data[i].item.company, //公司
             business: ret.data[i].item.business, //主营
             view: ret.data[i].item.view, //浏览量
             favorite: ret.data[i].item.favorite, //收藏

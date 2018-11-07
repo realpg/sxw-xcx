@@ -5,10 +5,30 @@
     <view class='vip_position_css'>
       <image style='margin-top: 70rpx;' class='Img' src='../../images/personal_center/vip{{4-item.vip}}.png'></image>
     </view>
-    <view class='time'>
-      <text class='useful_life'>有效期: </text>{{item.time_begin}} — {{item.time_over}}</view>
+    <view class='time' style='{{item.vip==1?"color:#000000":"color:#fffffff"}}'>
+      <text class='useful_life' style='{{item.vip==1?"color:#000000":"color:#fffffff"}}'>有效期: </text>{{item.time_begin}} — {{item.time_over}}</view>
   </view>
+
+<view class='hint' wx:if='{{vip_later.length>0}}'>待生效VIP</view>
+  <view style='background:url(http://pccmmgtlu.bkt.clouddn.com/bg{{4-item.vip}}.png) no-repeat;background-size:100% 100%;' class='vip_position' wx:for='{{vip_later}}'>
+    <view class='vip_position_css'>
+      <image style='margin-top: 70rpx;' class='Img' src='../../images/personal_center/vip{{4-item.vip}}.png'></image>
+    </view>
+    <view class='time' style='{{item.vip==1?"color:#000000":"color:#fffffff"}}'  >
+      <text class='useful_life' style='{{item.vip==1?"color:#000000":"color:#fffffff"}}'>有效期: </text>{{item.time_begin}} — {{item.time_over}}</view>
+  </view>
+
+
+  <!-- <view wx:if='{{vip_later.length>0}}'>
+    <view>待生效vip</view>
+    <view wx:for='{{vip_later}}'>
+      <view>{{item.vip}}</view>
+      <view>有效期: {{item.time_begin}} — {{item.time_over}}</view>
+    </view>
+  </view> -->
+
 </view>
+
 
 <view class='hint' wx:if='{{advertising_position.length>0}}'>我的广告位</view>
 <!-- 我的广告位 -->
